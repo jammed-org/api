@@ -5,19 +5,44 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
-
-    <!--
-    Redoc doesn't change outer page styles
-    -->
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
   </head>
   <body>
-    <redoc spec-url='https://api.jammedapp.com/v1.0/jammed.json'></redoc>
+    <div id="redoc-container"></div>
     <script src="https://cdn.jsdelivr.net/npm/redoc@latest/bundles/redoc.standalone.js"> </script>
+    <script type="text/javascript">
+    (function() {
+      Redoc.init(
+        "https://api.jammedapp.com/v1.0/jammed.json",
+        {
+          "hideHostname": true,
+          "disableSearch": true,
+          "theme": {
+            "colors": {
+              "primary": {
+                "main": "rgba(239, 76, 64, 1)",
+                "light": "#fbd0cd",
+                "dark": "#8a140c",
+                "contrastText": "#000"
+              },
+              "text": {
+                "primary": "rgba(0, 0, 0, 1)",
+                "secondary": "#4d4d4d"
+              }
+            },
+            "typography": {
+              "links": {
+                "color": "rgba(124, 185, 239, 1)",
+                "visited": "rgba(124, 185, 239, 1)",
+                "hover": "#d7eafa"
+              }
+            },
+            "menu": {
+              "backgroundColor": "rgba(255, 255, 255, 1)"
+            }
+          }
+        },
+        document.getElementById('redoc-container'));
+    })();
+    </script>
   </body>
 </html>
