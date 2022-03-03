@@ -1,0 +1,687 @@
+---
+openapi: 3.0.2
+info:
+  title: Jammed Bookings API
+  version: 1.0.0
+  license:
+    name: Jammed Bookings
+    url: https://jammed.app
+  contact:
+    email: api@jammed.app
+    url: https://support.jammedapp.com
+  x-logo:
+    url: 'https://jammed.app/static/assets/logo/fill.svg'
+    altText: Jammed logo
+  description: |
+    Jammed API allows you to integrate with the Jammed system, and automate key events within third-party systems. We are adding endpoints and features as we need them and as studios request them. If there's an endpoint you need, please contact us.
+
+    By subscribing to and listening to webhooks your studio can automate sending reminders, automate customer lists and mailing
+    systems, anything you can imagine really.
+
+    # Introduction
+    Jammed is powering scheduling and bookings for independent creative spaces, and we're building a new way to connect with them.
+    You can read more about [Jammed on the support pages](https://support.jammedapp.com).
+
+    At the moment, only webhooks are provided - you can't use the API directly.
+
+    # Getting started
+    To get started, you'll need to create a Jammed account and create a studio account.
+
+    Once you have setup your studio, head the to Website Setting page and press the 'Enable webhooks' button. From there, you can set the webhook URLs you want Jammed to send to.
+x-tagGroups:
+- name: Webhooks
+  tags:
+    - Booking Webhooks
+    - Customer Webhooks
+    - Booking Webhooks
+- name: Models
+  tags:
+    - booking_model
+    - customer_model
+    - group_model
+tags:
+  - name: Booking Webhooks
+    description: Events that happen to a booking
+  - name: Customer Webhooks
+    description: Events that happen to a customer
+  - name: Group Webhooks
+    description: Events that happen to a group/band
+  - name: booking_model
+    x-displayName: Booking Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/booking" />
+  - name: customer_model
+    x-displayName: Customer Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/customer" />
+  - name: group_model
+    x-displayName: Group Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/group" />
+servers:
+- url: https://auth.jammed.app/v1/
+
+x-webhooks:
+  booking.created:
+    get:
+      summary: booking.created
+      description: Made when a Jammed booking is made by a customer online, or made
+        by an admin user. Use the taken_by parameter to distinguish. When taken online,
+        taken_by=online - otherwise it is the name of the admin user that took the
+        booking.
+      tags:
+      - Booking Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/booking"
+              example:
+                "$ref": "#/components/examples/booking"
+  booking.updated:
+    get:
+      summary: booking.updated
+      description: Triggered when a booking is updated by a staff member
+      tags:
+      - Booking Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/booking"
+              example:
+                "$ref": "#/components/examples/booking"
+  booking.cancelled:
+    get:
+      summary: booking.cancelled
+      description: Triggered when a booking is cancelled by a customer or by a staff
+        member. Cancellations will free up this time to other customers wishing to
+        book the same time.
+      tags:
+      - Booking Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/booking"
+              example:
+                "$ref": "#/components/examples/booking"
+  booking.reminder:
+    get:
+      summary: booking.reminder
+      description: Booking reminders in Jammed are customisable, but by default are
+        triggered 24 hours prior to the start of the booking. An email is sent to
+        the user, but this event exists so you can also hook in other integrations
+        at this point
+      tags:
+      - Booking Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/booking"
+              example:
+                "$ref": "#/components/examples/booking"
+  booking.one_hour_before:
+    get:
+      summary: booking.one_hour_before
+      description: Triggered 1 hour before the booking starts
+      tags:
+      - Booking Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/booking"
+              example:
+                "$ref": "#/components/examples/booking"
+  booking.started:
+    get:
+      summary: booking.started
+      description: Triggered when the booking starts
+      tags:
+      - Booking Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/booking"
+              example:
+                "$ref": "#/components/examples/booking"
+  booking.finished:
+    get:
+      summary: booking.finished
+      description: Triggered when the booking finishes
+      tags:
+      - Booking Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/booking"
+              example:
+                "$ref": "#/components/examples/booking"
+  group.created:
+    get:
+      summary: group.created
+      description: Trigger when a group is made on Jammed (also known as bands). It
+        can be manually made in the admin interface, or made at booking time if the
+        group is new
+      tags:
+      - Group Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/group"
+              example:
+                "$ref": "#/components/examples/group"
+  group.updated:
+    get:
+      summary: group.updated
+      description: Trigger when a group is updated on Jammed (also known as bands)
+      tags:
+      - Group Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/group"
+              example:
+                "$ref": "#/components/examples/group"
+  group.deleted:
+    get:
+      summary: group.deleted
+      description: Trigger when a group is deleted on Jammed (also known as bands)
+      tags:
+      - Group Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/group"
+              example:
+                "$ref": "#/components/examples/group"
+  customer.created:
+    get:
+      summary: customer.created
+      description: Trigger when a customer is made on Jammed. It can be manually made
+        in the admin interface, or made at booking time if the customer is new
+      tags:
+      - Customer Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/customer"
+              example:
+                "$ref": "#/components/examples/customer"
+  customer.updated:
+    get:
+      summary: customer.updated
+      description: Trigger when a customer is updated on Jammed
+      tags:
+      - Customer Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/customer"
+              example:
+                "$ref": "#/components/examples/customer"
+  customer.deleted:
+    get:
+      summary: customer.deleted
+      description: Trigger when a customer is deleted on Jammed
+      tags:
+      - Customer Webhooks
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/customer"
+              example:
+                "$ref": "#/components/examples/customer"
+components:
+  schemas:
+    booking:
+      type: object
+      properties:
+        group:
+          type: object
+          title: Group
+          description: ''
+          properties:
+            name:
+              type: string
+              title: Name
+              description: ''
+              properties: {}
+            code:
+              type: string
+              title: Code
+              description: ''
+              properties: {}
+            number_of_members:
+              type: integer
+              title: NumberOfMembers
+              description: ''
+              properties: {}
+          required: []
+          additionalProperties: false
+        customer:
+          type: object
+          title: Customer
+          description: ''
+          properties:
+            name:
+              type: string
+              title: Name
+              description: ''
+              properties: {}
+            email:
+              type: string
+              title: Email
+              description: ''
+              properties: {}
+            mobile:
+              type: string
+              title: Mobile
+              description: ''
+              properties: {}
+            avatar:
+              type: string
+              title: Avatar
+              description: ''
+              properties: {}
+          required:
+          - name
+          additionalProperties: false
+        code:
+          type: string
+          title: Code
+          description: ''
+          properties: {}
+        created_at:
+          type: integer
+          title: CreatedAt
+          description: ''
+          properties: {}
+        updated_at:
+          type: integer
+          title: UpdatedAt
+          description: ''
+          properties: {}
+        price:
+          type: integer
+          title: Price
+          description: ''
+          properties: {}
+        price_currency:
+          type: string
+          title: PriceCurrency
+          description: ''
+          properties: {}
+        recording:
+          type: boolean
+          title: Recording
+          description: ''
+          properties: {}
+        regular:
+          type: boolean
+          title: Regular
+          description: ''
+          properties: {}
+        title:
+          type: string
+          title: Title
+          description: ''
+          properties: {}
+        friendly_date:
+          type: string
+          title: FriendlyDate
+          description: ''
+          properties: {}
+        friendly_time:
+          type: string
+          title: FriendlyTime
+          description: ''
+          properties: {}
+        start_at:
+          type: integer
+          title: StartAt
+          description: ''
+          properties: {}
+        end_at:
+          type: integer
+          title: EndAt
+          description: ''
+          properties: {}
+        number_expected:
+          type: integer
+          title: NumberExpected
+          description: ''
+          properties: {}
+        has_amount_due:
+          type: boolean
+          title: HasAmountDue
+          description: ''
+          properties: {}
+        remaining_amount:
+          type: integer
+          title: RemainingAmount
+          description: ''
+          properties: {}
+        room:
+          type: object
+          title: Room
+          description: ''
+          properties:
+            name:
+              type: string
+              title: Name
+              description: ''
+              properties: {}
+            code:
+              type: string
+              title: Code
+              description: ''
+              properties: {}
+          required:
+          - name
+          additionalProperties: false
+        taken_by:
+          type: string
+          title: TakenBy
+          description: ''
+          properties: {}
+    customer:
+      type: object
+      properties:
+        name:
+          type: string
+          title: Name
+          description: ''
+          properties: {}
+        email:
+          type: string
+          title: Email
+          description: ''
+          properties: {}
+        mobile:
+          type: string
+          title: Mobile
+          description: ''
+          properties: {}
+        avatar:
+          type: string
+          title: Avatar
+          description: ''
+          properties: {}
+        status:
+          type: string
+          title: Status
+          description: ''
+          properties: {}
+        bands:
+          type: array
+          title: Bands
+          description: ''
+          items:
+            type: object
+            title: ''
+            description: ''
+            properties:
+              code:
+                type: string
+                title: Code
+                description: ''
+                properties: {}
+              name:
+                type: string
+                title: Name
+                description: ''
+                properties: {}
+              number:
+                type: integer
+                title: Number
+                description: ''
+                properties: {}
+              booking_count:
+                type: integer
+                title: BookingCount
+                description: ''
+                properties: {}
+        signed_up:
+          type: boolean
+          title: SignedUp
+          description: ''
+          properties: {}
+        signed_up_at:
+          type: integer
+          title: SignedUpAt
+          description: ''
+          properties: {}
+        regular_bookings_count:
+          type: integer
+          title: RegularBookingsCount
+          description: ''
+          properties: {}
+        regular_bookings:
+          type: array
+          title: RegularBookings
+          description: ''
+          items:
+            type: object
+            title: ''
+            description: ''
+            properties:
+              name:
+                type: string
+                title: Name
+                description: ''
+                properties: {}
+              id:
+                type: integer
+                title: Id
+                description: ''
+                properties: {}
+        bookings_count:
+          type: integer
+          title: BookingsCount
+          description: ''
+          properties: {}
+        created_at:
+          type: integer
+          title: CreatedAt
+          description: ''
+          properties: {}
+        updated_at:
+          type: integer
+          title: UpdatedAt
+          description: ''
+          properties: {}
+        last_booking_at:
+          type: integer
+          title: LastBookingAt
+          description: ''
+          properties: {}
+    group:
+      type: object
+      properties:
+        name:
+          type: string
+          title: Name
+          description: ''
+          properties: {}
+        group_type:
+          type: string
+          title: GroupType
+          description: ''
+          properties: {}
+        number_of_members:
+          type: integer
+          title: NumberOfMembers
+          description: ''
+          properties: {}
+        customers:
+          type: array
+          title: Customers
+          description: ''
+          items:
+            type: object
+            title: ''
+            description: ''
+            properties:
+              name:
+                type: string
+                title: Name
+                description: ''
+                properties: {}
+              email:
+                type: string
+                title: Email
+                description: ''
+                properties: {}
+              mobile:
+                type: string
+                title: Mobile
+                description: ''
+                properties: {}
+        regular_bookings:
+          type: array
+          title: RegularBookings
+          description: ''
+          items:
+            type: object
+            title: ''
+            description: ''
+            properties:
+              name:
+                type: string
+                title: Name
+                description: ''
+                properties: {}
+              id:
+                type: integer
+                title: Id
+                description: ''
+                properties: {}
+        customer_count:
+          type: integer
+          title: CustomerCount
+          description: ''
+          properties: {}
+        regular_bookings_count:
+          type: integer
+          title: RegularBookingsCount
+          description: ''
+          properties: {}
+        bookings_count:
+          type: integer
+          title: BookingsCount
+          description: ''
+          properties: {}
+        created_at:
+          type: integer
+          title: CreatedAt
+          description: ''
+          properties: {}
+        updated_at:
+          type: integer
+          title: UpdatedAt
+          description: ''
+          properties: {}
+        last_booking_at:
+          type: integer
+          title: LastBookingAt
+          description: ''
+          properties: {}
+  examples:
+    booking:
+      name: Rush
+      group_type: band
+      number_of_members: 3
+      customers:
+      - name: Geddy Lee
+        email: geddy22@yahoo.ca
+      - name: Neil Peart
+        email: theprofessor2112@gmail.com
+        mobile: "+447584948502"
+      - name: Alex Lifeson
+        email: alex-lifeson@me.com
+        mobile: "+442072983029"
+      customer_count: 3
+      regular_bookings:
+      - name: Monday 8pm Red Room
+        id: 503
+      regular_bookings_count: 1
+      bookings_count: 61
+      created_at: 1646247874
+      updated_at: 1646247874
+    customer:
+      email: Geddy Lee
+      avatar: https://www.gravatar.com/avatar/02e414a53149473ddd8ed541fac40b6f?d=mp&s=45
+      status: unregistered
+      signed_up: false
+      bands:
+      - name: Rush
+        code: DI3EK30SP
+        number: 3
+        booking_count: 9
+      regular_bookings_count: 1
+      regular_bookings:
+      - name: Geddy Lee (Rush)
+        id: 2112
+      bookings_count: 9
+      last_booking_at: 1643799530
+      created_at: 1643799530
+      updated_at: 1643799530
+    group:
+      name: Rush
+      group_type: band
+      number_of_members: 3
+      customers:
+      - name: Geddy Lee
+        email: geddy22@yahoo.ca
+        mobile: "+447584948502"
+      - name: Neil Peart
+        email: theprofessor2112@gmail.com
+        mobile: "+447584948502"
+      - name: Alex Lifeson
+        email: alex-lifeson@me.com
+        mobile: "+442072983029"
+      customer_count: 3
+      regular_bookings:
+      - name: Geddy Lee (Rush)
+        id: 2112
+      regular_bookings_count: 1
+      bookings_count: 6171
+      created_at: 1646247874
+      updated_at: 1646247874
