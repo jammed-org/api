@@ -81,8 +81,7 @@ servers:
     description: Jammed API endpoint
 
 paths:
-
-  /bookings:
+  /bookings.json:
     get:
       tags:
         - Booking Endpoints
@@ -108,7 +107,7 @@ paths:
             type: string
           example: "Bearer <api_key>"
 
-  /bookings/cancelled:
+  /bookings/cancelled.json:
     get:
       tags:
         - Booking Endpoints
@@ -134,7 +133,7 @@ paths:
             type: string
           example: "Bearer <api_key>"
 
-  /bookings/started:
+  /bookings/started.json:
     get:
       tags:
         - Booking Endpoints
@@ -160,7 +159,7 @@ paths:
             type: string
           example: "Bearer <api_key>"
 
-  /bookings/finished:
+  /bookings/finished.json:
     get:
       tags:
         - Booking Endpoints
@@ -186,7 +185,7 @@ paths:
             type: string
           example: "Bearer <api_key>"
 
-  /customers:
+  /customers.json:
     get:
       tags:
         - Customer Endpoints
@@ -212,7 +211,7 @@ paths:
             type: string
           example: "Bearer <api_key>"
 
-  /groups:
+  /groups.json:
     get:
       tags:
         - Group Endpoints
@@ -509,77 +508,58 @@ components:
           type: string
           title: Code
           description: ""
-          properties: {}
+        id:
+          type: string
+          title: id
+          description: "Same as code"
         created_at:
           type: integer
           title: CreatedAt
-          description: ""
-          properties: {}
+          description: "Unix timestamp from epoch"
         updated_at:
           type: integer
           title: UpdatedAt
-          description: ""
-          properties: {}
+          description: "Unix timestamp from epoch"
         price:
           type: integer
           title: Price
           description: ""
-          properties: {}
         price_currency:
           type: string
           title: PriceCurrency
           description: ""
-          properties: {}
         recording:
           type: boolean
           title: Recording
           description: ""
-          properties: {}
         regular:
           type: boolean
           title: Regular
           description: ""
-          properties: {}
         title:
           type: string
           title: Title
           description: ""
-          properties: {}
-        friendly_date:
-          type: string
-          title: FriendlyDate
-          description: ""
-          properties: {}
-        friendly_time:
-          type: string
-          title: FriendlyTime
-          description: ""
-          properties: {}
         start_at:
           type: integer
           title: StartAt
-          description: ""
-          properties: {}
+          description: "Unix timestamp from epoch"
         end_at:
           type: integer
           title: EndAt
-          description: ""
-          properties: {}
+          description: "Unix timestamp from epoch"
         number_expected:
           type: integer
           title: NumberExpected
           description: ""
-          properties: {}
         has_amount_due:
           type: boolean
           title: HasAmountDue
           description: ""
-          properties: {}
         remaining_amount:
           type: integer
           title: RemainingAmount
           description: ""
-          properties: {}
         room:
           type: object
           title: Room
@@ -589,12 +569,10 @@ components:
               type: string
               title: Name
               description: ""
-              properties: {}
             code:
               type: string
               title: Code
               description: ""
-              properties: {}
           required:
             - name
           additionalProperties: false
@@ -602,7 +580,6 @@ components:
           type: string
           title: TakenBy
           description: ""
-          properties: {}
     customer:
       type: object
       properties:
@@ -610,27 +587,22 @@ components:
           type: string
           title: Name
           description: ""
-          properties: {}
         email:
           type: string
           title: Email
           description: ""
-          properties: {}
         mobile:
           type: string
           title: Mobile
           description: ""
-          properties: {}
         avatar:
           type: string
           title: Avatar
           description: ""
-          properties: {}
         status:
           type: string
           title: Status
           description: ""
-          properties: {}
         bands:
           type: array
           title: Bands
@@ -644,37 +616,30 @@ components:
                 type: string
                 title: Code
                 description: ""
-                properties: {}
               name:
                 type: string
                 title: Name
                 description: ""
-                properties: {}
               number:
                 type: integer
                 title: Number
                 description: ""
-                properties: {}
               booking_count:
                 type: integer
                 title: BookingCount
                 description: ""
-                properties: {}
         signed_up:
           type: boolean
           title: SignedUp
           description: ""
-          properties: {}
         signed_up_at:
           type: integer
           title: SignedUpAt
           description: ""
-          properties: {}
         regular_bookings_count:
           type: integer
           title: RegularBookingsCount
           description: ""
-          properties: {}
         regular_bookings:
           type: array
           title: RegularBookings
@@ -688,32 +653,26 @@ components:
                 type: string
                 title: Name
                 description: ""
-                properties: {}
               id:
                 type: integer
                 title: Id
                 description: ""
-                properties: {}
         bookings_count:
           type: integer
           title: BookingsCount
           description: ""
-          properties: {}
         created_at:
           type: integer
           title: CreatedAt
           description: ""
-          properties: {}
         updated_at:
           type: integer
           title: UpdatedAt
           description: ""
-          properties: {}
         last_booking_at:
           type: integer
           title: LastBookingAt
           description: ""
-          properties: {}
     group:
       type: object
       properties:
@@ -721,17 +680,14 @@ components:
           type: string
           title: Name
           description: ""
-          properties: {}
         group_type:
           type: string
           title: GroupType
           description: ""
-          properties: {}
         number_of_members:
           type: integer
           title: NumberOfMembers
           description: ""
-          properties: {}
         customers:
           type: array
           title: Customers
@@ -745,17 +701,14 @@ components:
                 type: string
                 title: Name
                 description: ""
-                properties: {}
               email:
                 type: string
                 title: Email
                 description: ""
-                properties: {}
               mobile:
                 type: string
                 title: Mobile
                 description: ""
-                properties: {}
         regular_bookings:
           type: array
           title: RegularBookings
@@ -769,42 +722,34 @@ components:
                 type: string
                 title: Name
                 description: ""
-                properties: {}
               id:
                 type: integer
                 title: Id
                 description: ""
-                properties: {}
         customer_count:
           type: integer
           title: CustomerCount
           description: ""
-          properties: {}
         regular_bookings_count:
           type: integer
           title: RegularBookingsCount
           description: ""
-          properties: {}
         bookings_count:
           type: integer
           title: BookingsCount
           description: ""
-          properties: {}
         created_at:
           type: integer
           title: CreatedAt
           description: ""
-          properties: {}
         updated_at:
           type: integer
           title: UpdatedAt
           description: ""
-          properties: {}
         last_booking_at:
           type: integer
           title: LastBookingAt
           description: ""
-          properties: {}
   examples:
     booking:
       name: Rush
