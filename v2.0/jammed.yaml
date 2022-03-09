@@ -24,6 +24,8 @@ info:
 
     Jammed offers webhooks and a polling API, so you can integrate how ever you like with the system.
 
+    You can also see the version history and roadmap for the [Jammed API on the public Github project](https://github.com/jammed-org/api).
+
     # Authentication
     You authenticate with the API using an API key - this is found in the website settings of the admin section.
 
@@ -35,6 +37,7 @@ info:
     To get started, you'll need to create a Jammed account and create a studio account.
 
     Once you have setup your studio, head the to Website Setting page and press the 'Enable webhooks' button. From there, you can set the webhook URLs you want Jammed to send to.
+
 x-tagGroups:
   - name: Endpoints
     tags:
