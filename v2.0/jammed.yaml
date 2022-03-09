@@ -2,7 +2,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 1.0.0
+  version: 2.0.1
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -504,6 +504,14 @@ components:
               title: Avatar
               description: ""
               properties: {}
+            reminders_opt_in:
+              type: boolean
+              title: Reminders opt-in
+              description: "Whether this customer wants to receive reminders"
+            mailing_list_opt_in:
+              type: boolean
+              title: Mailing list opt-in
+              description: "Whether this customer wants to be on the mailing list"
           required:
             - name
           additionalProperties: false
@@ -606,6 +614,14 @@ components:
           type: string
           title: Status
           description: ""
+        reminders_opt_in:
+          type: boolean
+          title: Reminders opt-in
+          description: "Whether this customer wants to receive reminders"
+        mailing_list_opt_in:
+          type: boolean
+          title: Mailing list opt-in
+          description: "Whether this customer wants to be on the mailing list"
         bands:
           type: array
           title: Bands
