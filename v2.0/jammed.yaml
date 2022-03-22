@@ -2,7 +2,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.0.1
+  version: 2.0.2
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -559,6 +559,18 @@ components:
           type: integer
           title: EndAt
           description: "Unix timestamp from epoch"
+        duration:
+          type: integer
+          title: Duration
+          description: "The duration of the booking in seconds"
+        duration_hours:
+          type: float
+          title: DurationHours
+          description: "The duration of the booking in hours, e.g. 1pm-2.30pm = `2.5` hours"
+        duration_full_hours:
+          type: integer
+          title: DurationFullHours
+          description: "The duration of the booking in hours, rounded up to each full hour, e.g. 1pm-2.30pm = `3` hours"
         number_expected:
           type: integer
           title: NumberExpected
