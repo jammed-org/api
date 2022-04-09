@@ -44,6 +44,7 @@ x-tagGroups:
       - Booking Endpoints
       - Customer Endpoints
       - Group Endpoints
+      - Room Endpoints
   - name: Webhooks
     tags:
       - Booking Webhooks
@@ -54,6 +55,7 @@ x-tagGroups:
       - booking_model
       - customer_model
       - group_model
+      - room_model
 tags:
   - name: Booking Webhooks
     description: Events that happen with a booking
@@ -67,6 +69,8 @@ tags:
     description: Polling API for customers
   - name: Group Endpoints
     description: Polling API for groups
+  - name: Room Endpoints
+    description: Polling API for rooms
   - name: booking_model
     x-displayName: Booking Model
     description: |
@@ -79,6 +83,10 @@ tags:
     x-displayName: Group Model
     description: |
       <SchemaDefinition schemaRef="#/components/schemas/group" />
+  - name: room_model
+    x-displayName: Room Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/room" />
 servers:
   - url: https://api.jammed.app/v2/
     description: Jammed API endpoint
@@ -230,6 +238,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/group'
+        "401":
+          description: Unauthorized - Invalid API key
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+
+  /rooms.json:
+    get:
+      tags:
+        - Room Endpoints
+      summary: Find all rooms
+      description: Returns all rooms
+      operationId: getRooms
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/room'
         "401":
           description: Unauthorized - Invalid API key
       parameters:
@@ -609,6 +643,72 @@ components:
           type: string
           title: TakenBy
           description: ""
+    room:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+        space_for:
+          type: integer
+          title: SpaceFor
+          description: "The capacity of the room"
+        order:
+          type: integer
+          title: Order
+        twenty_four_hour_booking:
+          type: boolean
+          title: TwentyFourHourBooking
+          description: "Whether the room can be booked 24 hours a day"
+        space_type:
+          type: string
+          title: SpaceType
+          description: "The type of space the room is"
+        hex_colour:
+          type: string
+          title: HexColour
+          description: "The hex colour of the room on the dashboard"
+        active:
+          type: boolean
+          title: Active
+          description: "Whether the room is active for Jammed online bookings"
+        images:
+          type: array
+          title: Images
+          description: "The images of the room"
+          items:
+            type: object
+            properties:
+              original:
+                type: string
+                title: original
+                description: "Image URL"
+        data:
+          type: object
+          title: Data
+          description: "The hidden data of the room - can be set and used by back-end systems"
+        prices_set:
+          type: integer
+          title: PricesSet
+          description: "The count of prices set for the room"
+        price_to:
+          type: string
+          title: PriceTo
+          description: "The maximum price for the room"
+        price_from:
+          type: string
+          title: PriceFrom
+          description: "The minimum price for the room"
+
     customer:
       type: object
       properties:
