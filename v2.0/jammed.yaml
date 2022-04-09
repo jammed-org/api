@@ -642,29 +642,13 @@ components:
           description: "Whether this customer wants to be on the mailing list"
         bands:
           type: array
-          title: Bands
+          title: Bands or Groups
           description: ""
           items:
             type: object
             title: ""
             description: ""
-            properties:
-              code:
-                type: string
-                title: Code
-                description: ""
-              name:
-                type: string
-                title: Name
-                description: ""
-              number:
-                type: integer
-                title: Number
-                description: ""
-              booking_count:
-                type: integer
-                title: BookingCount
-                description: ""
+            "$ref": "#/components/schemas/short_group"
         signed_up:
           type: boolean
           title: SignedUp
@@ -733,19 +717,7 @@ components:
             type: object
             title: ""
             description: ""
-            properties:
-              name:
-                type: string
-                title: Name
-                description: ""
-              email:
-                type: string
-                title: Email
-                description: ""
-              mobile:
-                type: string
-                title: Mobile
-                description: ""
+            "$ref": "#/components/schemas/short_customer"
         regular_bookings:
           type: array
           title: RegularBookings
