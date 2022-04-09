@@ -454,67 +454,89 @@ x-webhooks:
                 "$ref": "#/components/examples/customer"
 components:
   schemas:
+    short_room:
+      type: object
+      title: Basic room info
+      properties:
+        name:
+          type: string
+          title: Name
+          description: ""
+        code:
+          type: string
+          title: Code
+          description: ""
+      required:
+        - name
+      additionalProperties: false
+    short_customer:
+      type: object
+      title: Basic customer info
+      description: ""
+      properties:
+        name:
+          type: string
+          title: Name
+          description: ""
+          properties: {}
+        email:
+          type: string
+          title: Email
+          description: ""
+          properties: {}
+        mobile:
+          type: string
+          title: Mobile
+          description: ""
+          properties: {}
+        avatar:
+          type: string
+          title: Avatar
+          description: ""
+          properties: {}
+        reminders_opt_in:
+          type: boolean
+          title: Reminders opt-in
+          description: "Whether this customer wants to receive reminders"
+        mailing_list_opt_in:
+          type: boolean
+          title: Mailing list opt-in
+          description: "Whether this customer wants to be on the mailing list"
+      required:
+        - name
+      additionalProperties: false
+    short_group:
+      type: object
+      title: Basic group info
+      description: ""
+      properties:
+        name:
+          type: string
+          title: Name
+          description: ""
+          properties: {}
+        code:
+          type: string
+          title: Code
+          description: ""
+          properties: {}
+        number_of_members:
+          type: integer
+          title: NumberOfMembers
+          description: ""
+          properties: {}
+      required: []
+      additionalProperties: false
     booking:
       type: object
       properties:
         group:
           type: object
-          title: Group
-          description: ""
-          properties:
-            name:
-              type: string
-              title: Name
-              description: ""
-              properties: {}
-            code:
-              type: string
-              title: Code
-              description: ""
-              properties: {}
-            number_of_members:
-              type: integer
-              title: NumberOfMembers
-              description: ""
-              properties: {}
-          required: []
-          additionalProperties: false
+          "$ref": "#/components/schemas/short_group"
         customer:
-          type: object
-          title: Customer
-          description: ""
-          properties:
-            name:
-              type: string
-              title: Name
-              description: ""
-              properties: {}
-            email:
-              type: string
-              title: Email
-              description: ""
-              properties: {}
-            mobile:
-              type: string
-              title: Mobile
-              description: ""
-              properties: {}
-            avatar:
-              type: string
-              title: Avatar
-              description: ""
-              properties: {}
-            reminders_opt_in:
-              type: boolean
-              title: Reminders opt-in
-              description: "Whether this customer wants to receive reminders"
-            mailing_list_opt_in:
-              type: boolean
-              title: Mailing list opt-in
-              description: "Whether this customer wants to be on the mailing list"
-          required:
-            - name
-          additionalProperties: false
+          "$ref": "#/components/schemas/short_customer"
+        room:
+          "$ref": "#/components/schemas/short_room"
         code:
           type: string
           title: Code
@@ -583,22 +605,6 @@ components:
           type: integer
           title: RemainingAmount
           description: ""
-        room:
-          type: object
-          title: Room
-          description: ""
-          properties:
-            name:
-              type: string
-              title: Name
-              description: ""
-            code:
-              type: string
-              title: Code
-              description: ""
-          required:
-            - name
-          additionalProperties: false
         taken_by:
           type: string
           title: TakenBy
