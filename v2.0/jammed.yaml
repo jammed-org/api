@@ -2,7 +2,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.0.2
+  version: 2.0.3
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -221,6 +221,86 @@ paths:
           schema:
             type: string
           example: "Bearer <api_key>"
+    post:
+      tags:
+        - Customer Endpoints
+      summary: Create a customer
+      description: |
+        Create a new customer on Jammed.
+
+        With a new customer, you must at least provide an **name** and **email address**.
+
+        You can also issue `actions` to the endpoint, to create and invite the customer to set a password - Jammed will then send them an email from your account with a link to set their password.
+
+        You can't create a customer with an email address that already exists as a registered customer on Jammed. You can create a customer with an email address that already exists, so long as the customer is not yet registered on Jammed.
+
+        **Jammed API doesn't accept passwords for customer creation process** - they must be set by the customer themselves in the invitation process to verify the email and to improve security.
+      operationId: createCustomer
+      responses:
+        "201":
+          description: Customer created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/customer'
+        "401":
+          description: Unauthorized - Invalid API key
+        "422":
+          description: Unprocessable - the customer parameters you provided are invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
+
+      requestBody:
+        description: Create a new customer in Jammed
+        required: true
+        content:
+          form-data:
+            schema:
+              $ref: '#/components/schemas/customer_create'
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+
+  /customers/:id.json:
+    get:
+      tags:
+        - Customer Endpoints
+      summary: Find a customer by ID
+      description: Returns customer with the given ID
+      operationId: getCustomer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/customer'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - Customer with the given ID was not found
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
 
   /groups.json:
     get:
@@ -488,6 +568,54 @@ x-webhooks:
                 "$ref": "#/components/examples/customer"
 components:
   schemas:
+    customer_create_body:
+      type: object
+      title: Customer info
+      properties:
+        name:
+          type: string
+          title: Name
+          description: ""
+          properties: {}
+        email:
+          type: string
+          title: Email
+          description: ""
+          properties: {}
+        mobile:
+          type: string
+          title: Mobile
+          description: ""
+          properties: {}
+        reminders_opt_in:
+          type: boolean
+          title: Reminders opt-in
+          description: "Whether this customer wants to receive reminders"
+        mailing_list_opt_in:
+          type: boolean
+          title: Mailing list opt-in
+          description: "Whether this customer wants to be on the mailing list"
+      required:
+        - name
+        - email
+    customer_create_actions:
+      type: object
+      title: Customer creation actions - optional
+      properties:
+        invite:
+          type: boolean
+          title: Invite
+          description: Invite this customer to set a password on Jammed. An email will be sent to them and the invite code will last 2 days
+
+    customer_create:
+      type: object
+      description: ""
+      properties:
+        customer:
+          "$ref": "#/components/schemas/customer_create_body"
+        actions:
+          "$ref": "#/components/schemas/customer_create_actions"
+
     short_room:
       type: object
       title: Basic room info
@@ -859,6 +987,17 @@ components:
           type: integer
           title: LastBookingAt
           description: ""
+    unprocessable_error:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Error status
+          example: "error"
+        message:
+          type: string
+          description: Error message
+          example: "The customer parameters you provided are invalid"
   examples:
     booking:
       name: Rush
