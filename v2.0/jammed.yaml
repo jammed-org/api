@@ -88,7 +88,7 @@ tags:
     description: |
       <SchemaDefinition schemaRef="#/components/schemas/room" />
 servers:
-  - url: https://api.jammed.app/v2/
+  - url: https://api.jammed.app/api/v2/
     description: Jammed API endpoint
 
 paths:
