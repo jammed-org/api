@@ -2,7 +2,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.0.3
+  version: 2.0.4
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -45,6 +45,8 @@ x-tagGroups:
       - Customer Endpoints
       - Group Endpoints
       - Room Endpoints
+      - Coupon Endpoints
+      - Promocode Endpoints
   - name: Webhooks
     tags:
       - Booking Webhooks
@@ -56,6 +58,8 @@ x-tagGroups:
       - customer_model
       - group_model
       - room_model
+      - coupon_model
+      - promocode_model
 tags:
   - name: Booking Webhooks
     description: Events that happen with a booking
@@ -87,6 +91,14 @@ tags:
     x-displayName: Room Model
     description: |
       <SchemaDefinition schemaRef="#/components/schemas/room" />
+  - name: coupon_model
+    x-displayName: Coupon Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/coupon" />
+  - name: promocode_model
+    x-displayName: Promocode Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/promocode" />
 servers:
   - url: https://api.jammed.app/api/v2/
     description: Jammed API endpoint
@@ -287,7 +299,7 @@ paths:
         "401":
           description: Unauthorized - Invalid API key
         "404":
-          description: Not found - Customer with the given ID was not found
+          description: Not found - Customer was not found
       parameters:
         - name: Authorization
           in: header
@@ -300,6 +312,194 @@ paths:
           required: true
           schema:
             type: integer
+
+  /coupons/:id.json:
+    get:
+      tags:
+        - Coupon Endpoints
+      summary: Find a coupon by ID
+      description: Returns coupon with the given ID
+      operationId: getCoupon
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/coupon'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - Coupon was not found
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+  /coupons.json:
+    get:
+      tags:
+        - Coupon Endpoints
+      summary: Find all coupons
+      description: Returns all coupons
+      operationId: getCoupons
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/coupon'
+        "401":
+          description: Unauthorized - Invalid API key
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+    post:
+      tags:
+        - Coupon Endpoints
+      summary: Create a coupon
+      description: |
+        Create a new coupon on Jammed.
+
+        With a new coupon, you must at least provide an **name**, **amount** and **discount_type**.
+
+        `discount type` is either `fixed_amount`, or `percentage` - and `amount` is in pence/cents or whole pencentage points.
+
+        Once created, a Coupon can be used by staff members only on a booking. To allow customers to use the Coupon, you need to generate Promocode for the Coupon.
+      operationId: createCoupon
+      responses:
+        "201":
+          description: Coupon created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/coupon'
+        "401":
+          description: Unauthorized - Invalid API key
+        "422":
+          description: Unprocessable - the coupon parameters you provided are invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
+      requestBody:
+        description: Create a new coupon in Jammed
+        required: true
+        content:
+          form-data:
+            schema:
+              $ref: '#/components/schemas/coupon_create'
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+
+  /coupons/:coupon_id/promcodes.json:
+    get:
+      tags:
+        - Promocode Endpoints
+      summary: Find all promocodes
+      description: Returns all promocodes
+      operationId: getPromocodes
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/promocode'
+        "401":
+          description: Unauthorized - Invalid API key
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+        - name: coupon_id
+          description: Coupon ID to list the promocodes for
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 123
+    post:
+      tags:
+        - Promocode Endpoints
+      summary: Create a promocode
+      description: |
+        Create a promocode for a coupon
+
+        You can provide the API with a **code**, but if you don't we'll generate one for you.
+
+        You can just `POST` an empty body to create a promocode for a coupon with a generated code.
+
+        With promocodes you can specify minimum booking values, redemptions limits, limit only to one customer, and limit one use per customer.
+
+        Once created, a Promocode can be used to apply the Coupon to a booking via the customer booking form
+      operationId: createPromocode
+      responses:
+        "201":
+          description: Promocode created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/promocode'
+        "401":
+          description: Unauthorized - Invalid API key
+        "422":
+          description: Unprocessable - the promocode parameters you provided are invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
+      requestBody:
+        description: Create a new promocode in Jammed
+        required: true
+        content:
+          form-data:
+            schema:
+              $ref: '#/components/schemas/promocode_create'
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+        - name: coupon_id
+          description: Coupon ID to create promocode for
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 123
 
   /groups.json:
     get:
@@ -986,6 +1186,155 @@ components:
           type: integer
           title: LastBookingAt
           description: ""
+
+    promocode:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+          description: |
+            The code the customer can use to redeem the promocode, they enter this code when booking.
+
+            The code is case-insensitive and must be unique
+        minimum_booking_value:
+          type: integer
+          description: |
+            The minimum booking value the Promocode can be used for.
+
+            If attempted for a booking below this value, the Coupon will not be applied
+        limit_to_customer_id:
+          type: integer
+          description: |
+            The customer ID the Promocode can only be used for.
+
+            If the customer ID is not set, the Promocode can be used for any customer
+        redemption_limit:
+          type: integer
+          description: |
+            The number of times the Promocode can be redeemed in total, 0 or null means unlimited.
+
+            If the limit is reached, the Promocode will be able to be applied
+    coupon:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: A label for the coupon - this is seen by your customers
+        discount_type:
+          type: string
+          description: |
+            The type of discount the coupon gives
+
+            Either: 'fixed_amount' or 'percentage'
+        amount:
+          type: string
+          description: |
+            The integer decimal amount, or percentage that the coupon will deduct.
+
+            For `discount_type=percentage`, `10` would mean 10%
+
+            For `discount_type=fixed_amount`, `10` would mean $0.10 or £0.10 etc
+        all_new_customers:
+          type: boolean
+          description: Set to true if you want the coupon to apply to all new customers automatically
+        expires_at:
+          type: string
+          description: The ISO8601 timestamp when the coupon expires. If not set, the coupon will never expire
+        created_at:
+          type: string
+          description: The ISO8601 timestamp when the coupon was created
+        fully_used:
+          type: boolean
+          description: Is set as true if the coupon has been used up, and cannot be used anymore
+        expired:
+          type: boolean
+          description: Is set as true if the coupon has expired
+        status:
+          type: string
+          description: |
+            The status of the coupon: `active`, `deleted`, `expired`, `fully used`
+        promocodes:
+          type: array
+          description: |
+            The promocodes that are linked to this coupon.
+
+    coupon_create:
+      type: object
+      description: ""
+      properties:
+        coupon:
+          "$ref": "#/components/schemas/coupon_create_body"
+    coupon_create_body:
+      type: object
+      title: Coupon info
+      properties:
+        name:
+          type: string
+          description: A label for the coupon - this is seen by your customers
+        amount:
+          type: string
+          description: |
+            The integer decimal amount, or percentage that the coupon will deduct.
+
+            For `discount_type=percentage`, `10` would mean 10%
+
+            For `discount_type=fixed_amount`, `10` would mean $0.10 or £0.10 etc
+        discount_type:
+          type: string
+          description: |
+            The type of discount the coupon gives
+
+            Either: 'fixed_amount' or 'percentage'
+        all_new_customers:
+          type: boolean
+          description: Set to true if you want the coupon to apply to all new customers automatically
+        expires_at:
+          type: string
+          description: The ISO8601 timestamp when the coupon expires. If not set, the coupon will never expire
+      required:
+        - name
+        - amount
+        - discount_type
+
+    promocode_create:
+      type: object
+      description: ""
+      properties:
+        promocode:
+          "$ref": "#/components/schemas/promocode_create_body"
+    promocode_create_body:
+      type: object
+      title: Promocode info
+      properties:
+        code:
+          type: string
+          description: |
+            The code the customer can use to redeem the promocode, they enter this code when booking.
+
+            The code is case-insensitive and must be unique
+        minimum_booking_value:
+          type: integer
+          description: |
+            The minimum booking value the Promocode can be used for.
+
+            If attempted for a booking below this value, the Coupon will not be applied
+        limit_to_customer_id:
+          type: integer
+          description: |
+            The customer ID the Promocode can only be used for.
+
+            If the customer ID is not set, the Promocode can be used for any customer
+        redemption_limit:
+          type: integer
+          description: |
+            The number of times the Promocode can be redeemed in total, 0 or null means unlimited.
+
+            If the limit is reached, the Promocode will be able to be applied
+
     unprocessable_error:
       type: object
       properties:
@@ -996,7 +1345,7 @@ components:
         message:
           type: string
           description: Error message
-          example: "The customer parameters you provided are invalid"
+          example: "The model parameters you provided are invalid"
   examples:
     booking:
       name: Rush
