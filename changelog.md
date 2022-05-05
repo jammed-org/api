@@ -1,5 +1,10 @@
 # Jammed API changelog
 
+## `2.0.3`: 9 April 2022
+
+- Added Customer creation endpoints, allowing Customers to be created via the API
+- Added Customer invitation endpoint, allowing Customers to be created and invited to Jammed via the API
+
 ## `2.0.2`: 22 March 2022
 
 - Added `duration_hours` to bookings: float duration in hours
