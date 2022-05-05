@@ -16,7 +16,7 @@ info:
     Jammed API allows you to integrate with the Jammed system, and automate key events within third-party systems. We are adding endpoints and features as we need them and as studios request them. If there's an endpoint you need, please contact us.
 
     By subscribing to and listening to webhooks your studio can automate sending reminders, automate customer lists and mailing
-    systems, anything you can imagine really.
+    systems, finance and accounting packages, and anything you can imagine really.
 
     # Introduction
     Jammed is powering scheduling and bookings for independent creative spaces, and we're building a new way to connect with them.
@@ -282,9 +282,8 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/customer'
+                type: object
+                $ref: '#/components/schemas/customer'
         "401":
           description: Unauthorized - Invalid API key
         "404":
