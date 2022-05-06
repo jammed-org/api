@@ -1,5 +1,9 @@
 # Jammed API changelog
 
+## `2.0.5`: 6 May 2022
+
+- Allow Coupons to be assigned Customer via API
+
 ## `2.0.4`: 5 May 2022
 
 - Added Coupons and Promocodes API, which allows you to create and manage coupons and promocodes on Jammed

@@ -2,7 +2,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.0.4
+  version: 2.0.5
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -499,6 +499,55 @@ paths:
             type: integer
           example: 123
 
+  /coupons/:coupon_id/assign_to_customer.json:
+    post:
+      tags:
+        - Coupon Endpoints
+      summary: Assign Coupon to Customer
+      description: |
+        Assign a Coupon to a Customer
+
+        Using the Coupon ID and a Customer ID, we can assign a Coupon to a Customer
+
+        This will mean that the Customer will automatically be able to use the Coupon when booking without the use of a promocode
+      operationId: assignPromocode
+      responses:
+        "201":
+          description: Promocode assigned
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/promocode'
+        "401":
+          description: Unauthorized - Invalid API key
+        "422":
+          description: Coupon has already been assigned to this Customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
+      requestBody:
+        description: Assign a Coupon to a Customer
+        required: true
+        content:
+          form-data:
+            schema:
+              $ref: '#/components/schemas/coupon_assign_to_customer'
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+        - name: coupon_id
+          description: Coupon ID to create promocode for
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 123
   /groups.json:
     get:
       tags:
@@ -1338,6 +1387,16 @@ components:
             The minimum booking value the Promocode can be used for.
 
             If attempted for a booking below this value, the Coupon will not be applied
+
+    coupon_assign_to_customer:
+      type: object
+      title: Coupon assignment
+      properties:
+        customer_id:
+          type: integer
+          description: |
+            The Customer's ID to assign the Coupon to
+
 
     unprocessable_error:
       type: object
