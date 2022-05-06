@@ -389,9 +389,8 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/coupon'
+                type: object
+                $ref: '#/components/schemas/coupon'
         "401":
           description: Unauthorized - Invalid API key
         "422":
@@ -428,9 +427,8 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/promocode'
+                type: object
+                $ref: '#/components/schemas/promocode'
         "401":
           description: Unauthorized - Invalid API key
       parameters:
@@ -1223,7 +1221,7 @@ components:
 
             Either: 'fixed_amount' or 'percentage'
         amount:
-          type: string
+          type: integer
           description: |
             The integer decimal amount, or percentage that the coupon will deduct.
 
@@ -1289,6 +1287,14 @@ components:
             For `discount_type=percentage`, `10` would mean 10%
 
             For `discount_type=fixed_amount`, `10` would mean $0.10 or £0.10 etc
+        duration:
+          type: string
+          description: |
+            The duration of the coupon: `once`, `forever`
+
+            If `forever`, the coupon can be used over and over by the same customer
+
+            If `once`, the coupon can only be used once by the same customer
         discount_type:
           type: string
           description: |
@@ -1298,14 +1304,6 @@ components:
         all_new_customers:
           type: boolean
           description: Set to true if you want the coupon to apply to all new customers automatically
-        duration:
-          type: string
-          description: |
-            The duration of the coupon: `once`, `forever`
-
-            If `forever`, the coupon can be used over and over by the same customer
-
-            If `once`, the coupon can only be used once by the same customer
         total_number_of_uses:
           type: integer
           description: The total number of times the coupon can be used
@@ -1314,6 +1312,7 @@ components:
           description: The ISO8601 timestamp when the coupon expires. If not set, the coupon will never expire
       required:
         - name
+        - duration
         - amount
         - discount_type
 
