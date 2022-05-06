@@ -1204,18 +1204,10 @@ components:
             The minimum booking value the Promocode can be used for.
 
             If attempted for a booking below this value, the Coupon will not be applied
-        limit_to_customer_id:
-          type: integer
+        first_time_use_only:
+          type: boolean
           description: |
-            The customer ID the Promocode can only be used for.
-
-            If the customer ID is not set, the Promocode can be used for any customer
-        redemption_limit:
-          type: integer
-          description: |
-            The number of times the Promocode can be redeemed in total, 0 or null means unlimited.
-
-            If the limit is reached, the Promocode will be able to be applied
+            If set to true, the Promocode will only be usable once per customer - applies to logged in customers only
     coupon:
       type: object
       properties:
@@ -1257,6 +1249,20 @@ components:
           type: string
           description: |
             The status of the coupon: `active`, `deleted`, `expired`, `fully used`
+        duration:
+          type: string
+          description: |
+            The duration of the coupon: `once`, `forever`
+
+            If `forever`, the coupon can be used over and over by the same customer
+
+            If `once`, the coupon can only be used once by the same customer
+        total_number_of_uses:
+          type: integer
+          description: The total number of times the coupon can be used
+        number_of_times_used:
+          type: integer
+          description: The number of times the coupon has been used
         promocodes:
           type: array
           description: |
@@ -1292,6 +1298,17 @@ components:
         all_new_customers:
           type: boolean
           description: Set to true if you want the coupon to apply to all new customers automatically
+        duration:
+          type: string
+          description: |
+            The duration of the coupon: `once`, `forever`
+
+            If `forever`, the coupon can be used over and over by the same customer
+
+            If `once`, the coupon can only be used once by the same customer
+        total_number_of_uses:
+          type: integer
+          description: The total number of times the coupon can be used
         expires_at:
           type: string
           description: The ISO8601 timestamp when the coupon expires. If not set, the coupon will never expire
@@ -1322,18 +1339,6 @@ components:
             The minimum booking value the Promocode can be used for.
 
             If attempted for a booking below this value, the Coupon will not be applied
-        limit_to_customer_id:
-          type: integer
-          description: |
-            The customer ID the Promocode can only be used for.
-
-            If the customer ID is not set, the Promocode can be used for any customer
-        redemption_limit:
-          type: integer
-          description: |
-            The number of times the Promocode can be redeemed in total, 0 or null means unlimited.
-
-            If the limit is reached, the Promocode will be able to be applied
 
     unprocessable_error:
       type: object
