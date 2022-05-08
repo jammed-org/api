@@ -414,7 +414,7 @@ paths:
             type: string
           example: "Bearer <api_key>"
 
-  /coupons/:coupon_id/promcodes.json:
+  /coupons/:coupon_id/promocodes.json:
     get:
       tags:
         - Promocode Endpoints
