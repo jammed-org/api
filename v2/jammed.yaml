@@ -188,7 +188,7 @@ paths:
         - Booking Endpoints
       summary: Finished bookings
       description: Returns all finished bookings, ordered by start time
-      operationId: getBookingsStarted
+      operationId: getBookingsFinished
       responses:
         "200":
           description: successful operation
@@ -212,7 +212,7 @@ paths:
     get:
       tags:
         - Customer Endpoints
-      summary: Find all customer
+      summary: Find all customers
       description: Returns all customers
       operationId: getCustomers
       responses:
@@ -281,7 +281,7 @@ paths:
             type: string
           example: "Bearer <api_key>"
 
-  /customers/:id.json:
+  /customers/{id}.json:
     get:
       tags:
         - Customer Endpoints
@@ -294,7 +294,6 @@ paths:
           content:
             application/json:
               schema:
-                type: object
                 $ref: '#/components/schemas/customer'
         "401":
           description: Unauthorized - Invalid API key
@@ -313,7 +312,7 @@ paths:
           schema:
             type: integer
 
-  /coupons/:id.json:
+  /coupons/{id}.json:
     get:
       tags:
         - Coupon Endpoints
@@ -326,7 +325,6 @@ paths:
           content:
             application/json:
               schema:
-                type: object
                 $ref: '#/components/schemas/coupon'
         "401":
           description: Unauthorized - Invalid API key
@@ -389,7 +387,6 @@ paths:
           content:
             application/json:
               schema:
-                type: object
                 $ref: '#/components/schemas/coupon'
         "401":
           description: Unauthorized - Invalid API key
@@ -414,7 +411,7 @@ paths:
             type: string
           example: "Bearer <api_key>"
 
-  /coupons/:coupon_id/promocodes.json:
+  /coupons/{coupon_id}/promocodes.json:
     get:
       tags:
         - Promocode Endpoints
@@ -427,7 +424,6 @@ paths:
           content:
             application/json:
               schema:
-                type: object
                 $ref: '#/components/schemas/promocode'
         "401":
           description: Unauthorized - Invalid API key
@@ -499,7 +495,7 @@ paths:
             type: integer
           example: 123
 
-  /coupons/:coupon_id/assign_to_customer.json:
+  /coupons/{coupon_id}/assign_to_customer.json:
     post:
       tags:
         - Coupon Endpoints
@@ -517,7 +513,6 @@ paths:
           content:
             application/json:
               schema:
-                type: object
                 $ref: '#/components/schemas/promocode'
         "401":
           description: Unauthorized - Invalid API key
@@ -619,7 +614,7 @@ x-webhooks:
               schema:
                 "$ref": "#/components/schemas/booking"
               example:
-                "$ref": "#/components/examples/booking"
+                "$ref": "#/components/examples/booking_example/value"
   booking.updated:
     get:
       summary: booking.updated
@@ -634,7 +629,7 @@ x-webhooks:
               schema:
                 "$ref": "#/components/schemas/booking"
               example:
-                "$ref": "#/components/examples/booking"
+                "$ref": "#/components/examples/booking_example/value"
   booking.cancelled:
     get:
       summary: booking.cancelled
@@ -652,7 +647,7 @@ x-webhooks:
               schema:
                 "$ref": "#/components/schemas/booking"
               example:
-                "$ref": "#/components/examples/booking"
+                "$ref": "#/components/examples/booking_example/value"
   booking.reminder:
     get:
       summary: booking.reminder
@@ -668,10 +663,8 @@ x-webhooks:
           description: Response
           content:
             application/json:
-              schema:
-                "$ref": "#/components/schemas/booking"
               example:
-                "$ref": "#/components/examples/booking"
+                "$ref": "#/components/examples/booking_example/value"
   booking.one_hour_before:
     get:
       summary: booking.one_hour_before
@@ -683,10 +676,8 @@ x-webhooks:
           description: Response
           content:
             application/json:
-              schema:
-                "$ref": "#/components/schemas/booking"
               example:
-                "$ref": "#/components/examples/booking"
+                "$ref": "#/components/examples/booking_example/value"
   booking.started:
     get:
       summary: booking.started
@@ -698,10 +689,8 @@ x-webhooks:
           description: Response
           content:
             application/json:
-              schema:
-                "$ref": "#/components/schemas/booking"
               example:
-                "$ref": "#/components/examples/booking"
+                "$ref": "#/components/examples/booking_example/value"
   booking.finished:
     get:
       summary: booking.finished
@@ -713,10 +702,8 @@ x-webhooks:
           description: Response
           content:
             application/json:
-              schema:
-                "$ref": "#/components/schemas/booking"
               example:
-                "$ref": "#/components/examples/booking"
+                "$ref": "#/components/examples/booking_example/value"
   group.created:
     get:
       summary: group.created
@@ -734,7 +721,7 @@ x-webhooks:
               schema:
                 "$ref": "#/components/schemas/group"
               example:
-                "$ref": "#/components/examples/group"
+                "$ref": "#/components/examples/group_example/value"
   group.updated:
     get:
       summary: group.updated
@@ -749,7 +736,7 @@ x-webhooks:
               schema:
                 "$ref": "#/components/schemas/group"
               example:
-                "$ref": "#/components/examples/group"
+                "$ref": "#/components/examples/group_example/value"
   group.deleted:
     get:
       summary: group.deleted
@@ -764,7 +751,7 @@ x-webhooks:
               schema:
                 "$ref": "#/components/schemas/group"
               example:
-                "$ref": "#/components/examples/group"
+                "$ref": "#/components/examples/group_example/value"
   customer.created:
     get:
       summary: customer.created
@@ -779,9 +766,9 @@ x-webhooks:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/customer"
+                $ref: "#/components/schemas/customer"
               example:
-                "$ref": "#/components/examples/customer"
+                $ref: "#/components/examples/customer_example/value"
   customer.updated:
     get:
       summary: customer.updated
@@ -796,7 +783,7 @@ x-webhooks:
               schema:
                 "$ref": "#/components/schemas/customer"
               example:
-                "$ref": "#/components/examples/customer"
+                "$ref": "#/components/examples/customer_example/value"
   customer.deleted:
     get:
       summary: customer.deleted
@@ -811,7 +798,7 @@ x-webhooks:
               schema:
                 "$ref": "#/components/schemas/customer"
               example:
-                "$ref": "#/components/examples/customer"
+                "$ref": "#/components/examples/customer_example/value"
 components:
   schemas:
     customer_create_body:
@@ -933,13 +920,13 @@ components:
           title: NumberOfMembers
           description: ""
           properties: {}
-      required: []
+      required:
+        - name
       additionalProperties: false
     booking:
       type: object
       properties:
         group:
-          type: object
           "$ref": "#/components/schemas/short_group"
         customer:
           "$ref": "#/components/schemas/short_customer"
@@ -994,7 +981,7 @@ components:
           title: Duration
           description: "The duration of the booking in seconds"
         duration_hours:
-          type: float
+          type: number
           title: DurationHours
           description: "The duration of the booking in hours, e.g. 1pm-2.30pm = `2.5` hours"
         duration_full_hours:
@@ -1089,19 +1076,19 @@ components:
         name:
           type: string
           title: Name
-          description: ""
+          description: "The customers given full name"
         email:
           type: string
           title: Email
-          description: ""
+          description: "The customers email address"
         mobile:
           type: string
           title: Mobile
-          description: ""
+          description: "The customers mobile phone number"
         avatar:
           type: string
           title: Avatar
-          description: ""
+          description: "The customers avatar image URL, if any"
         status:
           type: string
           title: Status
@@ -1119,9 +1106,6 @@ components:
           title: Bands or Groups
           description: ""
           items:
-            type: object
-            title: ""
-            description: ""
             "$ref": "#/components/schemas/short_group"
         signed_up:
           type: boolean
@@ -1188,9 +1172,6 @@ components:
           title: Customers
           description: ""
           items:
-            type: object
-            title: ""
-            description: ""
             "$ref": "#/components/schemas/short_customer"
         regular_bookings:
           type: array
@@ -1314,7 +1295,11 @@ components:
           type: array
           description: |
             The promocodes that are linked to this coupon.
-
+          items:
+            type: object
+            properties:
+              coupon:
+                "$ref": "#/components/schemas/promocode"
     coupon_create:
       type: object
       description: ""
@@ -1410,67 +1395,73 @@ components:
           description: Error message
           example: "The model parameters you provided are invalid"
   examples:
-    booking:
-      name: Rush
-      group_type: band
-      number_of_members: 3
-      customers:
-        - name: Geddy Lee
-          email: geddy22@yahoo.ca
-        - name: Neil Peart
-          email: theprofessor2112@gmail.com
-          mobile: "+447584948502"
-        - name: Alex Lifeson
-          email: alex-lifeson@me.com
-          mobile: "+442072983029"
-      customer_count: 3
-      regular_bookings:
-        - name: Monday 8pm Red Room
-          id: 503
-      regular_bookings_count: 1
-      bookings_count: 61
-      created_at: 1646247874
-      updated_at: 1646247874
-    customer:
-      email: Geddy Lee
-      avatar: https://www.gravatar.com/avatar/02e414a53149473ddd8ed541fac40b6f?d=mp&s=45
-      status: unregistered
-      signed_up: false
-      bands:
-        - name: Rush
-          code: DI3EK30SP
-          number: 3
-          booking_count: 9
-      regular_bookings_count: 1
-      regular_bookings:
-        - name: Geddy Lee (Rush)
-          id: 2112
-      bookings_count: 9
-      last_booking_at: 1643799530
-      created_at: 1643799530
-      updated_at: 1643799530
-    group:
-      name: Rush
-      group_type: band
-      number_of_members: 3
-      customers:
-        - name: Geddy Lee
-          email: geddy22@yahoo.ca
-          mobile: "+447584948502"
-        - name: Neil Peart
-          email: theprofessor2112@gmail.com
-          mobile: "+447584948502"
-        - name: Alex Lifeson
-          email: alex-lifeson@me.com
-          mobile: "+442072983029"
-      customer_count: 3
-      regular_bookings:
-        - name: Geddy Lee (Rush)
-          id: 2112
-      regular_bookings_count: 1
-      bookings_count: 6171
-      created_at: 1646247874
-      updated_at: 1646247874
+    booking_example:
+      value:
+        name: Rush
+        group_type: band
+        number_of_members: 3
+        customers:
+          - name: Geddy Lee
+            email: geddy22@yahoo.ca
+          - name: Neil Peart
+            email: theprofessor2112@gmail.com
+            mobile: "+447584948502"
+          - name: Alex Lifeson
+            email: alex-lifeson@me.com
+            mobile: "+442072983029"
+        customer_count: 3
+        regular_bookings:
+          - name: Monday 8pm Red Room
+            id: 503
+        regular_bookings_count: 1
+        bookings_count: 61
+        created_at: 1646247874
+        updated_at: 1646247874
+
+    customer_example:
+      value:
+        email: Geddy Lee
+        avatar: https://www.gravatar.com/avatar/02e414a53149473ddd8ed541fac40b6f?d=mp&s=45
+        status: unregistered
+        signed_up: false
+        bands:
+          - name: Rush
+            code: DI3EK30SP
+            number: 3
+            booking_count: 9
+        regular_bookings_count: 1
+        regular_bookings:
+          - name: Geddy Lee (Rush)
+            id: 2112
+        bookings_count: 9
+        last_booking_at: 1643799530
+        created_at: 1643799530
+        updated_at: 1643799530
+
+    group_example:
+      value:
+        name: Rush
+        group_type: band
+        number_of_members: 3
+        customers:
+          - name: Geddy Lee
+            email: geddy22@yahoo.ca
+            mobile: "+447584948502"
+          - name: Neil Peart
+            email: theprofessor2112@gmail.com
+            mobile: "+447584948502"
+          - name: Alex Lifeson
+            email: alex-lifeson@me.com
+            mobile: "+442072983029"
+        customer_count: 3
+        regular_bookings:
+          - name: Geddy Lee (Rush)
+            id: 2112
+        regular_bookings_count: 1
+        bookings_count: 6171
+        created_at: 1646247874
+        updated_at: 1646247874
+
   securitySchemes:
     apiKey:
       type: apiKey
