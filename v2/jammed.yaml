@@ -808,18 +808,15 @@ components:
         name:
           type: string
           title: Name
-          description: ""
-          properties: {}
+          description: "The customers given full name"
         email:
           type: string
           title: Email
-          description: ""
-          properties: {}
+          description: "The customers email address"
         mobile:
           type: string
           title: Mobile
-          description: ""
-          properties: {}
+          description: "The customers mobile phone number"
         reminders_opt_in:
           type: boolean
           title: Reminders opt-in
@@ -856,11 +853,27 @@ components:
         name:
           type: string
           title: Name
-          description: ""
+          description: "The name of the room"
         code:
           type: string
           title: Code
-          description: ""
+          description: "The code of the room - used internally by Jammed"
+      required:
+        - name
+        - code
+      additionalProperties: false
+    short_extra:
+      type: object
+      title: Basic extra info
+      properties:
+        name:
+          type: string
+          title: Name
+          description: "The name of the extra"
+        category:
+          type: string
+          title: Category
+          description: "The category of the extra"
       required:
         - name
       additionalProperties: false
@@ -872,22 +885,22 @@ components:
         name:
           type: string
           title: Name
-          description: ""
+          description: "The customers given full name"
           properties: {}
         email:
           type: string
           title: Email
-          description: ""
+          description: "The customers email address"
           properties: {}
         mobile:
           type: string
           title: Mobile
-          description: ""
+          description: "The customers mobile phone number"
           properties: {}
         avatar:
           type: string
           title: Avatar
-          description: ""
+          description: "The customers avatar image URL, if any"
           properties: {}
         reminders_opt_in:
           type: boolean
@@ -899,6 +912,7 @@ components:
           description: "Whether this customer wants to be on the mailing list"
       required:
         - name
+        - email
       additionalProperties: false
     short_group:
       type: object
@@ -908,20 +922,18 @@ components:
         name:
           type: string
           title: Name
-          description: ""
-          properties: {}
+          description: "The name of the group"
         code:
           type: string
           title: Code
-          description: ""
-          properties: {}
+          description: "The code of the group - used internally by Jammed"
         number_of_members:
           type: integer
           title: NumberOfMembers
-          description: ""
-          properties: {}
+          description: "The number of members in the group"
       required:
         - name
+        - code
       additionalProperties: false
     booking:
       type: object
@@ -932,10 +944,16 @@ components:
           "$ref": "#/components/schemas/short_customer"
         room:
           "$ref": "#/components/schemas/short_room"
+        extras:
+          type: array
+          title: Extras
+          description: "The addons/extras added to the booking"
+          items:
+            "$ref": "#/components/schemas/short_extra"
         code:
           type: string
           title: Code
-          description: ""
+          description: "The code of the booking - seen by customers on the booking page"
         id:
           type: string
           title: id
@@ -951,23 +969,23 @@ components:
         price:
           type: integer
           title: Price
-          description: ""
+          description: "The price of the booking time only in cents/pence/units"
         price_currency:
           type: string
           title: PriceCurrency
-          description: ""
+          description: "The currency of the price"
         recording:
           type: boolean
           title: Recording
-          description: ""
+          description: "Whether the room has been marked as a recording"
         regular:
           type: boolean
           title: Regular
-          description: ""
+          description: "Whether the booking is a regular booking"
         title:
           type: string
           title: Title
-          description: ""
+          description: "The title of the booking - this is generated from the customer and group names"
         start_at:
           type: integer
           title: StartAt
@@ -988,14 +1006,20 @@ components:
           type: integer
           title: DurationFullHours
           description: "The duration of the booking in hours, rounded up to each full hour, e.g. 1pm-2.30pm = `3` hours"
-        number_expected:
-          type: integer
-          title: NumberExpected
-          description: ""
+        dates:
+          type: array
+          title: Dates
+          description: "The dates that the booking is part of in local time - given as strings YYYYMMDD format"
+          items:
+            type: string
+        timezone:
+          type: string
+          title: Timezone
+          description: "The timezone of the booking"
         has_amount_due:
           type: boolean
           title: HasAmountDue
-          description: ""
+          description: "Whether the booking still has an amount due"
         remaining_amount:
           type: integer
           title: RemainingAmount
@@ -1003,22 +1027,26 @@ components:
         taken_by:
           type: string
           title: TakenBy
-          description: ""
+          description: "The name of the staff member who took the booking - if null, the booking was made by the customer themselves"
     room:
       type: object
       properties:
         id:
           type: string
           title: id
+          description: "Same as code"
         code:
           type: string
           title: Code
+          description: "The code of the room - used internally by Jammed"
         name:
           type: string
           title: Name
+          description: "The name of the room"
         description:
           type: string
           title: Description
+          description: "The description of the room - you can set this in the admin interface"
         space_for:
           type: integer
           title: SpaceFor
@@ -1042,6 +1070,18 @@ components:
           type: boolean
           title: Active
           description: "Whether the room is active for Jammed online bookings"
+        prices_set:
+          type: integer
+          title: PricesSet
+          description: "The count of prices set for the room"
+        price_to:
+          type: string
+          title: PriceTo
+          description: "The maximum price for the room"
+        price_from:
+          type: string
+          title: PriceFrom
+          description: "The minimum price for the room"
         images:
           type: array
           title: Images
@@ -1057,22 +1097,14 @@ components:
           type: object
           title: Data
           description: "The hidden data of the room - can be set and used by back-end systems"
-        prices_set:
-          type: integer
-          title: PricesSet
-          description: "The count of prices set for the room"
-        price_to:
-          type: string
-          title: PriceTo
-          description: "The maximum price for the room"
-        price_from:
-          type: string
-          title: PriceFrom
-          description: "The minimum price for the room"
 
     customer:
       type: object
       properties:
+        id:
+          type: integer
+          title: ID
+          description: "Use to identify the customer in other API calls"
         name:
           type: string
           title: Name
@@ -1089,10 +1121,14 @@ components:
           type: string
           title: Avatar
           description: "The customers avatar image URL, if any"
+        credit_balance:
+          type: integer
+          title: CreditBalance
+          description: "The customers current credit balance in cents/pence/units"
         status:
           type: string
           title: Status
-          description: ""
+          $ref: "#/components/schemas/customer_statuses"
         reminders_opt_in:
           type: boolean
           title: Reminders opt-in
@@ -1101,82 +1137,106 @@ components:
           type: boolean
           title: Mailing list opt-in
           description: "Whether this customer wants to be on the mailing list"
+        signed_up:
+          type: boolean
+          title: SignedUp
+          description: "Whether the customer has signed up"
+        signed_up_at:
+          type: integer
+          title: SignedUpAt
+          description: "Unix timestamp from epoch - when the customer signed up"
+        regular_bookings_count:
+          type: integer
+          title: RegularBookingsCount
+          description: "The number of regular bookings the customer has made"
+        bookings_count:
+          type: integer
+          title: BookingsCount
+          description: "The number of bookings the customer has made"
+        created_at:
+          type: integer
+          title: CreatedAt
+          description: "Unix timestamp from epoch - when the customer was created"
+        updated_at:
+          type: integer
+          title: UpdatedAt
+          description: "Unix timestamp from epoch - when the customer was last updated"
+        last_booking_at:
+          type: integer
+          title: LastBookingAt
+          description: "Unix timestamp from epoch - when the customer last booked"
+        regular_bookings:
+          type: array
+          title: RegularBookings
+          description: "The customer's regular bookings"
+          items:
+            type: object
+            title: ""
+            description: ""
+            properties:
+              name:
+                type: string
+                title: Name
+                description: ""
+              id:
+                type: integer
+                title: Id
+                description: ""
         bands:
           type: array
           title: Bands or Groups
           description: ""
           items:
             "$ref": "#/components/schemas/short_group"
-        signed_up:
-          type: boolean
-          title: SignedUp
-          description: ""
-        signed_up_at:
-          type: integer
-          title: SignedUpAt
-          description: ""
-        regular_bookings_count:
-          type: integer
-          title: RegularBookingsCount
-          description: ""
-        regular_bookings:
-          type: array
-          title: RegularBookings
-          description: ""
-          items:
-            type: object
-            title: ""
-            description: ""
-            properties:
-              name:
-                type: string
-                title: Name
-                description: ""
-              id:
-                type: integer
-                title: Id
-                description: ""
-        bookings_count:
-          type: integer
-          title: BookingsCount
-          description: ""
-        created_at:
-          type: integer
-          title: CreatedAt
-          description: ""
-        updated_at:
-          type: integer
-          title: UpdatedAt
-          description: ""
-        last_booking_at:
-          type: integer
-          title: LastBookingAt
-          description: ""
     group:
       type: object
       properties:
         name:
           type: string
           title: Name
-          description: ""
+          description: "The name of the group"
         group_type:
           type: string
           title: GroupType
-          description: ""
+          description: "The type of the group - e.g. band"
         number_of_members:
           type: integer
           title: NumberOfMembers
-          description: ""
+          description: "The number of members in the group"
+        customer_count:
+          type: integer
+          title: CustomerCount
+          description: "The number of customers assigned to the group"
+        regular_bookings_count:
+          type: integer
+          title: RegularBookingsCount
+          description: "The number of regular bookings the group has"
+        bookings_count:
+          type: integer
+          title: BookingsCount
+          description: "The number of bookings the group has"
+        created_at:
+          type: integer
+          title: CreatedAt
+          description: "Unix timestamp from epoch - when the group was created"
+        updated_at:
+          type: integer
+          title: UpdatedAt
+          description: "Unix timestamp from epoch - when the group was last updated"
+        last_booking_at:
+          type: integer
+          title: LastBookingAt
+          description: "Unix timestamp from epoch - when the group last booked"
         customers:
           type: array
           title: Customers
-          description: ""
+          description: "The customers assigned to the group"
           items:
             "$ref": "#/components/schemas/short_customer"
         regular_bookings:
           type: array
           title: RegularBookings
-          description: ""
+          description: "The group's regular bookings"
           items:
             type: object
             title: ""
@@ -1185,35 +1245,11 @@ components:
               name:
                 type: string
                 title: Name
-                description: ""
+                description: "The name of the regular booking"
               id:
                 type: integer
                 title: Id
-                description: ""
-        customer_count:
-          type: integer
-          title: CustomerCount
-          description: ""
-        regular_bookings_count:
-          type: integer
-          title: RegularBookingsCount
-          description: ""
-        bookings_count:
-          type: integer
-          title: BookingsCount
-          description: ""
-        created_at:
-          type: integer
-          title: CreatedAt
-          description: ""
-        updated_at:
-          type: integer
-          title: UpdatedAt
-          description: ""
-        last_booking_at:
-          type: integer
-          title: LastBookingAt
-          description: ""
+                description: "The ID of the regular booking"
 
     promocode:
       type: object
@@ -1394,6 +1430,16 @@ components:
           type: string
           description: Error message
           example: "The model parameters you provided are invalid"
+
+    customer_statuses:
+      type: string
+      enum:
+        - unregistered
+        - invited
+        - registered
+        - banned
+        - behind_payment
+
   examples:
     booking_example:
       value:
