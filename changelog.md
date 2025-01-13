@@ -1,5 +1,15 @@
 # Jammed API changelog
 
+## `2.0.6`: 13 January 2025
+
+Just a few attribute additions to the API, no breaking changes
+
+- Added `cancelled`, `online_booking` boolean to bookings
+- Added `approved_at` and `rejected_at` timestamps to bookings
+- Added `activity_name` string to bookings
+- Added `status` enum to customers
+- Added `credit_balance` integer to customers
+
 ## `2.0.5`: 6 May 2022
 
 - Allow Coupons to be assigned Customer via API

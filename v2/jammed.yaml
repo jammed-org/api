@@ -2,7 +2,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.0.5
+  version: 2.0.6
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -10,7 +10,7 @@ info:
     email: api@jammed.app
     url: https://support.jammedapp.com
   x-logo:
-    url: "https://jammed.app/static/assets/logo/fill.svg"
+    url: "https://fileshare.jammedapp.com/Profile%20Images/Artboard%205.png"
     altText: Jammed logo
   description: |
     Jammed API allows you to integrate with the Jammed system, and automate key events within third-party systems. We are adding endpoints and features as we need them and as studios request them. If there's an endpoint you need, please contact us.
@@ -958,6 +958,18 @@ components:
           type: string
           title: id
           description: "Same as code"
+        recording:
+          type: boolean
+          title: Recording
+          description: "Whether the room has been marked as a recording"
+        regular:
+          type: boolean
+          title: Regular
+          description: "Whether the booking is part of a regular booking"
+        online_booking:
+          type: boolean
+          title: OnlineBooking
+          description: "Whether the booking was made online by the customer"
         created_at:
           type: integer
           title: CreatedAt
@@ -966,6 +978,14 @@ components:
           type: integer
           title: UpdatedAt
           description: "Unix timestamp from epoch"
+        approved_at:
+          type: integer
+          title: ApprovedAt
+          description: "Unix timestamp from epoch - when the booking was approved (if approved)"
+        rejected_at:
+          type: integer
+          title: RejectedAt
+          description: "Unix timestamp from epoch - when the booking was rejected (if rejected)"
         price:
           type: integer
           title: Price
@@ -974,14 +994,6 @@ components:
           type: string
           title: PriceCurrency
           description: "The currency of the price"
-        recording:
-          type: boolean
-          title: Recording
-          description: "Whether the room has been marked as a recording"
-        regular:
-          type: boolean
-          title: Regular
-          description: "Whether the booking is a regular booking"
         title:
           type: string
           title: Title
@@ -1006,6 +1018,10 @@ components:
           type: integer
           title: DurationFullHours
           description: "The duration of the booking in hours, rounded up to each full hour, e.g. 1pm-2.30pm = `3` hours"
+        activity_name:
+          type: string
+          title: ActivityName
+          description: "The name of the activity the booking is part of - e.g. 'Rehearsal'"
         dates:
           type: array
           title: Dates
@@ -1023,7 +1039,11 @@ components:
         remaining_amount:
           type: integer
           title: RemainingAmount
-          description: ""
+          description: "The remaining amount due for the booking"
+        cancelled:
+          type: boolean
+          title: Cancelled
+          description: "Whether the booking has been cancelled"
         taken_by:
           type: string
           title: TakenBy
@@ -1124,10 +1144,8 @@ components:
         credit_balance:
           type: integer
           title: CreditBalance
-          description: "The customers current credit balance in cents/pence/units"
+          description: "The customers current credit balance in cents/pence/units\n\nThis cannot be changed via the API"
         status:
-          type: string
-          title: Status
           $ref: "#/components/schemas/customer_statuses"
         reminders_opt_in:
           type: boolean
@@ -1433,12 +1451,21 @@ components:
 
     customer_statuses:
       type: string
+      title: CustomerStatus
       enum:
         - unregistered
         - invited
         - registered
         - banned
         - behind_payment
+      description: |
+        The status of the customer
+
+        `unregistered`: The customer has booked but not registered an account
+        `invited`: The customer has been invited to register an account
+        `registered`: The customer has registered an account
+        `banned`: The customer has been marked as banned from booking (and will not be able to book)
+        `behind_payment`: The customer has been marked as behind on payments (and will not be able to book)
 
   examples:
     booking_example:
