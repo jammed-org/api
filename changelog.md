@@ -1,5 +1,12 @@
 # Jammed API changelog
 
+## `2.0.7`: 14 March 2025
+
+More booking fields added to the API:
+
+- Added `custom_answers` booking responses
+- Added `source_data` for how and where the booking came to be made (online/app/staff/regular etc)
+
 ## `2.0.6`: 13 January 2025
 
 Just a few attribute additions to the API, no breaking changes

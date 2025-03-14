@@ -935,6 +935,21 @@ components:
         - name
         - code
       additionalProperties: false
+    booking_custom_answer:
+      type: object
+      properties:
+        question_id:
+          type: integer
+          title: QuestionId
+          description: "The ID of the question that was asked"
+        name:
+          type: string
+          title: Name
+          description: "The name of the question"
+        response:
+          type: string
+          title: Response
+          description: "The response/answer to the question"
     booking:
       type: object
       properties:
@@ -950,6 +965,29 @@ components:
           description: "The addons/extras added to the booking"
           items:
             "$ref": "#/components/schemas/short_extra"
+        custom_answers:
+          type: array
+          title: Custom Answers
+          description: "The responses to custom questions added to the booking"
+          items:
+            "$ref": "#/components/schemas/booking_custom_answer"
+        source_data:
+          type: object
+          title: Source Data
+          description: "The source metadata of the booking, how and where the booking was made"
+          properties:
+            source:
+              type: string
+              title: Source
+              description: "The source of the booking: app, online, regular_booking etc."
+            platform:
+              type: string
+              title: Platform
+              description: "The platform where the booking was made: booking_form, dashboard, staff_section, calendar, app etc."
+            referrer:
+              type: string
+              title: Referrer
+              description: "The referrer - the URL of the booking page"
         code:
           type: string
           title: Code
