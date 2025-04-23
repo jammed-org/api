@@ -4,4 +4,4 @@ This is the documentation for the Jammed API. It is a RESTful API and Webhook AP
 
 ## [Visit the API docs](https://api.jammedapp.com) to get started.
 
-Copyright © 2022 Jammed Bookings Ltd.
+Copyright © 2025 Jammed Bookings Ltd.
