@@ -1,5 +1,9 @@
 # Jammed API changelog
 
+## `2.0.8`: 23 April 2025
+
+- Added `booking.abandoned` webhook that triggers when a customer abandons their booking during checkout
+
 ## `2.0.7`: 14 March 2025
 
 More booking fields added to the API:

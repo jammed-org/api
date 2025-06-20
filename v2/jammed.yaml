@@ -704,6 +704,21 @@ x-webhooks:
             application/json:
               example:
                 "$ref": "#/components/examples/booking_example/value"
+  booking.abandoned:
+    get:
+      summary: booking.abandoned
+      description: Triggered when a customer abandons their booking during the checkout process and does not complete the booking. This booking is automatically cancelled by Jammed, but this hook allows you to connect a custom workflow to this event.
+      tags:
+        - Booking Webhooks
+      responses:
+        "200":
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/booking"
+              example:
+                "$ref": "#/components/examples/booking_example/value"
   group.created:
     get:
       summary: group.created
