@@ -1,5 +1,11 @@
 # Jammed API changelog
 
+## `2.0.9`: 24 February 2026
+
+- Added `POST /bookings.json` endpoint for creating bookings via the API (uses "make booking as an admin" flow)
+- Added `GET /bookings/{code}.json` endpoint for fetching a single booking by code
+- Documented booking creation request body schema including `booking_details`, `customer_details`, `band_details`, `extra_ids`, and `customer_id` for existing customers
+
 ## `2.0.8`: 23 April 2025
 
 - Added `booking.abandoned` webhook that triggers when a customer abandons their booking during checkout

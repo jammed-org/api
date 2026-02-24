@@ -2,7 +2,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.0.6
+  version: 2.0.9
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -129,6 +129,86 @@ paths:
           schema:
             type: string
           example: "Bearer <api_key>"
+    post:
+      tags:
+        - Booking Endpoints
+      summary: Create a booking
+      description: |
+        Create a new booking on Jammed as an admin.
+
+        This creates a booking in the same way as a staff member would from the admin dashboard.
+
+        You must provide **booking_details** with at least a `start_at`, `end_at`, `room_id`, and `price`.
+
+        For the customer, you can either:
+        - Provide a `customer_id` to book for an existing customer
+        - Provide `customer_details` with `name` and `email` to create a new customer inline
+
+        Optionally provide `band_details` with a `name` to associate a group/band, and `extra_ids` to add extras to the booking.
+
+        The booking is created with source `manually_added` and platform `api_v2`.
+      operationId: createBooking
+      responses:
+        "201":
+          description: Booking created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/booking'
+        "401":
+          description: Unauthorized - Invalid API key
+        "422":
+          description: Unprocessable - the booking parameters you provided are invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
+      requestBody:
+        description: Create a new booking in Jammed
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/booking_create'
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+
+  /bookings/{code}.json:
+    get:
+      tags:
+        - Booking Endpoints
+      summary: Find a booking by code
+      description: Returns booking with the given code
+      operationId: getBooking
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/booking'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - Booking was not found
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The booking code
 
   /bookings/cancelled.json:
     get:
@@ -1489,6 +1569,121 @@ components:
           description: |
             The Customer's ID to assign the Coupon to
 
+
+    booking_create:
+      type: object
+      description: ""
+      properties:
+        booking:
+          $ref: '#/components/schemas/booking_create_body'
+
+    booking_create_body:
+      type: object
+      title: Booking info
+      properties:
+        booking_details:
+          $ref: '#/components/schemas/booking_create_details'
+        customer_id:
+          type: integer
+          title: Customer ID
+          description: |
+            The ID of an existing customer to make the booking for.
+
+            If provided, `customer_details` is not required.
+        customer_details:
+          $ref: '#/components/schemas/booking_create_customer_details'
+        band_details:
+          $ref: '#/components/schemas/booking_create_band_details'
+        band_code:
+          type: string
+          title: Band code
+          description: "The code of an existing band/group to associate with the booking"
+        extra_ids:
+          type: array
+          title: Extra IDs
+          description: "Array of extra IDs to add to the booking"
+          items:
+            type: integer
+        is_recording:
+          type: boolean
+          title: Is recording
+          description: "Whether this booking is a recording session"
+        number_expected:
+          type: integer
+          title: Number expected
+          description: "The number of people expected for the booking"
+        additional_notes:
+          type: string
+          title: Additional notes
+          description: "Any additional notes for the booking"
+        send_email:
+          type: boolean
+          title: Send email
+          description: "Whether to send a confirmation email to the customer. Defaults to true"
+      required:
+        - booking_details
+
+    booking_create_details:
+      type: object
+      title: Booking time details
+      properties:
+        start_at:
+          type: string
+          title: Start at
+          description: "The start time of the booking in ISO8601 format"
+          example: "2026-03-01T10:00:00Z"
+        end_at:
+          type: string
+          title: End at
+          description: "The end time of the booking in ISO8601 format"
+          example: "2026-03-01T14:00:00Z"
+        room_id:
+          type: integer
+          title: Room ID
+          description: "The ID of the room to book"
+        price:
+          type: integer
+          title: Price
+          description: "The price of the booking in cents/pence/units"
+          example: 6000
+      required:
+        - start_at
+        - end_at
+        - room_id
+        - price
+
+    booking_create_customer_details:
+      type: object
+      title: New customer details
+      description: "Provide these if creating a booking for a new customer (instead of using customer_id)"
+      properties:
+        name:
+          type: string
+          title: Name
+          description: "The customer's full name"
+        email:
+          type: string
+          title: Email
+          description: "The customer's email address"
+        mobile:
+          type: string
+          title: Mobile
+          description: "The customer's mobile phone number"
+      required:
+        - name
+        - email
+
+    booking_create_band_details:
+      type: object
+      title: Band/group details
+      description: "Provide to create or associate a band/group with the booking"
+      properties:
+        name:
+          type: string
+          title: Name
+          description: "The name of the band/group"
+      required:
+        - name
 
     unprocessable_error:
       type: object
