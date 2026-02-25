@@ -109,7 +109,7 @@ paths:
       tags:
         - Booking Endpoints
       summary: All bookings
-      description: Returns all bookings, ordered by creation date
+      description: Returns all non-cancelled bookings, ordered by creation date descending. Supports pagination.
       operationId: getBookings
       responses:
         "200":
@@ -215,7 +215,7 @@ paths:
       tags:
         - Booking Endpoints
       summary: Cancelled bookings
-      description: Returns all cancelled bookings, ordered by cancellation date
+      description: Returns all cancelled bookings, ordered by cancellation date descending. Supports pagination.
       operationId: getBookingsCancelled
       responses:
         "200":
@@ -241,7 +241,7 @@ paths:
       tags:
         - Booking Endpoints
       summary: Started bookings
-      description: Returns all started bookings, ordered by start time
+      description: Returns all upcoming bookings (starting in the future), ordered by start time descending. Supports pagination.
       operationId: getBookingsStarted
       responses:
         "200":
@@ -267,7 +267,7 @@ paths:
       tags:
         - Booking Endpoints
       summary: Finished bookings
-      description: Returns all finished bookings, ordered by start time
+      description: Returns all bookings that have not yet ended, ordered by start time descending. Supports pagination.
       operationId: getBookingsFinished
       responses:
         "200":
@@ -288,6 +288,83 @@ paths:
             type: string
           example: "Bearer <api_key>"
 
+  /bookings/reminder.json:
+    get:
+      tags:
+        - Booking Endpoints
+      summary: Reminder bookings
+      description: Returns all bookings starting 24 hours or more from now, ordered by start time descending. Matches the reminder webhook window.
+      operationId: getBookingsReminder
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/booking'
+        "401":
+          description: Unauthorized - Invalid API key
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+
+  /bookings/one_hour_before.json:
+    get:
+      tags:
+        - Booking Endpoints
+      summary: One hour before bookings
+      description: Returns all bookings starting 1 hour or more from now, ordered by start time descending. Matches the one_hour_before webhook window.
+      operationId: getBookingsOneHourBefore
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/booking'
+        "401":
+          description: Unauthorized - Invalid API key
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+
+  /bookings/updated.json:
+    get:
+      tags:
+        - Booking Endpoints
+      summary: Updated bookings
+      description: Returns all non-cancelled bookings, ordered by last updated date descending. Useful for polling for recently changed bookings.
+      operationId: getBookingsUpdated
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/booking'
+        "401":
+          description: Unauthorized - Invalid API key
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
   /customers.json:
     get:
       tags:
