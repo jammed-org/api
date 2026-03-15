@@ -2,7 +2,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.0.9
+  version: 2.0.10
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -209,6 +209,57 @@ paths:
           schema:
             type: string
           description: The booking code
+    patch:
+      tags:
+        - Booking Endpoints
+      summary: Update a booking
+      description: |
+        Update an existing booking as an admin.
+
+        This uses the same booking update flow as staff members would from the admin dashboard.
+
+        You can update various booking details including time, room, pricing, customer information,
+        and other booking attributes.
+
+        The booking is identified by its code (same as the GET endpoint).
+      operationId: updateBooking
+      responses:
+        "200":
+          description: Booking updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/booking'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - Booking was not found
+        "422":
+          description: Unprocessable - the booking parameters you provided are invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
+      requestBody:
+        description: Update booking details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/booking_update'
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The booking code
 
   /bookings/cancelled.json:
     get:
@@ -365,6 +416,178 @@ paths:
           schema:
             type: string
           example: "Bearer <api_key>"
+
+  /bookings/{code}/transactions.json:
+    get:
+      tags:
+        - Booking Endpoints
+      summary: List booking transactions
+      description: |
+        Returns all money log transactions for the specified booking, ordered by most recent first.
+
+        This includes payments, refunds, credit notes, and other financial transactions
+        associated with the booking.
+      operationId: getBookingTransactions
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/money_log'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - Booking was not found
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The booking code
+    post:
+      tags:
+        - Booking Endpoints
+      summary: Create a transaction for a booking
+      description: |
+        Create a new transaction (money log entry) for the specified booking.
+
+        This creates a credit note transaction with the specified amount and description.
+        The transaction will be associated with the booking and its customer.
+
+        All amounts should be provided as positive integers in the smallest currency unit
+        (cents/pence) - e.g., £10.50 should be provided as 1050.
+      operationId: createBookingTransaction
+      responses:
+        "201":
+          description: Transaction created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/money_log'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - Booking was not found
+        "422":
+          description: Unprocessable - the transaction parameters you provided are invalid
+      requestBody:
+        description: Create a new transaction for the booking
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/transaction_create'
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The booking code
+
+  /bookings/{code}/studio_notes.json:
+    get:
+      tags:
+        - Booking Endpoints
+      summary: Get booking studio notes
+      description: |
+        Returns the studio notes for the specified booking.
+
+        Studio notes are internal notes that studios can add to bookings for their own reference.
+        These are not visible to customers.
+      operationId: getBookingStudioNotes
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  studio_notes:
+                    type: string
+                    description: The studio notes text
+                    nullable: true
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - Booking was not found
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The booking code
+    patch:
+      tags:
+        - Booking Endpoints
+      summary: Update booking studio notes
+      description: |
+        Update the studio notes for the specified booking.
+
+        Studio notes are internal notes that studios can add to bookings for their own reference.
+        These are not visible to customers.
+      operationId: updateBookingStudioNotes
+      responses:
+        "200":
+          description: Studio notes updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  studio_notes:
+                    type: string
+                    description: The updated studio notes text
+                    nullable: true
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - Booking was not found
+      requestBody:
+        description: Update studio notes for the booking
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/studio_notes_update'
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer <api_key>"
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The booking code
+
   /customers.json:
     get:
       tags:
@@ -1791,6 +2014,110 @@ components:
         `registered`: The customer has registered an account
         `banned`: The customer has been marked as banned from booking (and will not be able to book)
         `behind_payment`: The customer has been marked as behind on payments (and will not be able to book)
+
+    booking_update:
+      type: object
+      description: Booking update parameters
+      properties:
+        booking:
+          type: object
+          properties:
+            start_at:
+              type: string
+              format: date-time
+              description: Start time of the booking
+            end_at:
+              type: string
+              format: date-time
+              description: End time of the booking
+            room_id:
+              type: integer
+              description: ID of the room for the booking
+            price:
+              type: integer
+              description: Price of the booking in cents/pence
+            additional_notes:
+              type: string
+              description: Additional notes for the booking
+            studio_notes:
+              type: string
+              description: Internal studio notes
+            number_expected:
+              type: integer
+              description: Expected number of attendees
+
+    transaction_create:
+      type: object
+      description: Transaction creation parameters
+      properties:
+        transaction:
+          type: object
+          properties:
+            amount:
+              type: integer
+              description: Transaction amount in cents/pence (must be positive)
+            description:
+              type: string
+              description: Description of the transaction
+            manual_type:
+              type: string
+              description: Type of manual transaction
+              enum: [card, cash, bank_transfer, other]
+              default: card
+          required:
+            - amount
+            - description
+
+    studio_notes_update:
+      type: object
+      description: Studio notes update parameters
+      properties:
+        booking:
+          type: object
+          properties:
+            studio_notes:
+              type: string
+              description: Internal studio notes (visible only to studio staff)
+
+    money_log:
+      type: object
+      description: A financial transaction record
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the money log entry
+        source:
+          type: string
+          description: The source/type of the transaction
+        amount:
+          type: integer
+          description: Transaction amount in cents/pence
+        currency_code:
+          type: string
+          description: Currency code (e.g., GBP, USD, EUR)
+        created_at:
+          type: integer
+          description: Unix timestamp when the transaction was created
+        display_amount:
+          type: string
+          description: Formatted amount with currency symbol
+        refund:
+          type: boolean
+          description: Whether this transaction is a refund
+        success:
+          type: boolean
+          description: Whether the transaction was successful
+        title:
+          type: string
+          description: Display title for the transaction
+        description:
+          type: string
+          description: Description of the transaction (for credit notes)
+          nullable: true
+        manual_type:
+          type: string
+          description: Type of manual transaction (for credit notes)
+          nullable: true
 
   examples:
     booking_example:

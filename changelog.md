@@ -1,5 +1,14 @@
 # Jammed API changelog
 
+## `2.0.10`: 15 March 2026
+
+- Added `PATCH /bookings/{code}.json` endpoint for updating existing bookings via the API (uses admin booking update flow)
+- Added `GET /bookings/{code}/transactions.json` endpoint for retrieving all financial transactions for a booking
+- Added `POST /bookings/{code}/transactions.json` endpoint for creating new transactions (credit notes) on bookings
+- Added `GET /bookings/{code}/studio_notes.json` endpoint for retrieving internal studio notes for a booking
+- Added `PATCH /bookings/{code}/studio_notes.json` endpoint for updating internal studio notes on bookings
+- Documented new money log transaction schema with transaction details, refund status, and display formatting
+
 ## `2.0.9`: 24 February 2026
 
 - Added `POST /bookings.json` endpoint for creating bookings via the API (uses "make booking as an admin" flow)
