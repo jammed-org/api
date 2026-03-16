@@ -1,5 +1,16 @@
 # Jammed API changelog
 
+## `2.1.0`: 16 March 2026
+
+- **Added sorting and ordering support** to `GET /bookings.json` (getBookings) endpoint
+- New query parameters:
+  - `sort_by`: Field to sort by (`created_at`, `updated_at`, `start_at`, `end_at`, `customer_name`, `room_name`)
+  - `sort_order`: Sort order (`asc` or `desc`)
+  - `page`: Page number for pagination
+  - `per_page`: Number of items per page (1-100, default 25)
+- **Backward compatible**: Existing API calls continue to work unchanged (defaults to `created_at desc`)
+- Enhanced API documentation with comprehensive parameter descriptions and examples
+
 ## `2.0.10`: 15 March 2026
 
 - Added `PATCH /bookings/{code}.json` endpoint for updating existing bookings via the API (uses admin booking update flow)
