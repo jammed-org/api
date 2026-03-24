@@ -2,7 +2,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.1.0
+  version: 2.2.0
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -47,6 +47,17 @@ x-tagGroups:
       - Room Endpoints
       - Coupon Endpoints
       - Promocode Endpoints
+  - name: ePOS Endpoints
+    tags:
+      - Dashboard Endpoints
+      - Booking Management Endpoints
+      - Customer Management Endpoints
+      - Pricing Endpoints
+      - Extra Endpoints
+      - Terminal Endpoints
+      - Notification Endpoints
+      - Blocked Time Endpoints
+      - Reporting Endpoints
   - name: Webhooks
     tags:
       - Booking Webhooks
@@ -60,6 +71,10 @@ x-tagGroups:
       - room_model
       - coupon_model
       - promocode_model
+      - notification_model
+      - blocked_time_model
+      - extra_model
+      - dashboard_booking_model
 tags:
   - name: Booking Webhooks
     description: Events that happen with a booking
@@ -75,6 +90,24 @@ tags:
     description: Polling API for groups
   - name: Room Endpoints
     description: Polling API for rooms
+  - name: Dashboard Endpoints
+    description: Composite endpoint for ePOS home screen
+  - name: Booking Management Endpoints
+    description: ePOS booking management operations (cancel, approve, refund, etc.)
+  - name: Customer Management Endpoints
+    description: ePOS customer management (search, credit balance, status, etc.)
+  - name: Pricing Endpoints
+    description: Real-time pricing and availability calculations
+  - name: Extra Endpoints
+    description: Equipment and add-on items
+  - name: Terminal Endpoints
+    description: Card terminal and payment device operations
+  - name: Notification Endpoints
+    description: Staff notifications
+  - name: Blocked Time Endpoints
+    description: Room schedule blocking
+  - name: Reporting Endpoints
+    description: Transaction summaries and money ledger
   - name: booking_model
     x-displayName: Booking Model
     description: |
@@ -99,6 +132,22 @@ tags:
     x-displayName: Promocode Model
     description: |
       <SchemaDefinition schemaRef="#/components/schemas/promocode" />
+  - name: notification_model
+    x-displayName: Notification Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/notification" />
+  - name: blocked_time_model
+    x-displayName: Blocked Time Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/blocked_time" />
+  - name: extra_model
+    x-displayName: Extra Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/extra" />
+  - name: dashboard_booking_model
+    x-displayName: Dashboard Booking Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/dashboard_booking" />
 servers:
   - url: https://api.jammed.app/api/v2/
     description: Jammed API endpoint
@@ -1239,6 +1288,1414 @@ x-webhooks:
                 "$ref": "#/components/schemas/customer"
               example:
                 "$ref": "#/components/examples/customer_example/value"
+
+  # ===== ePOS ENDPOINTS =====
+
+  # --- Dashboard ---
+  /dashboard:
+    get:
+      tags:
+        - Dashboard Endpoints
+      summary: Dashboard composite data
+      description: |
+        Returns rooms, today's bookings, blocked times, opening hours, and timezone in a single call.
+        Powers the ePOS home screen. Accepts optional `from` and `to` date parameters for a date range,
+        or a single `date` parameter. Defaults to today.
+      operationId: getDashboard
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Single date (defaults to today)
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Start of date range
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date
+          description: End of date range
+      responses:
+        "200":
+          description: Dashboard data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rooms:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/room'
+                  bookings:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/dashboard_booking'
+                  blocked_times:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/blocked_time'
+                  opening_hours:
+                    type: object
+                  timezone:
+                    type: string
+
+  # --- Booking Management ---
+  /bookings/{code}:
+    delete:
+      tags:
+        - Booking Management Endpoints
+      summary: Cancel a booking
+      description: Soft-deletes (cancels) a booking. Optionally sends cancellation email.
+      operationId: cancelBooking
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+        - name: send_email
+          in: query
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: Booking cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+        "404":
+          description: Booking not found
+
+  /bookings/{code}/uncancel:
+    patch:
+      tags:
+        - Booking Management Endpoints
+      summary: Uncancel a booking
+      description: Restores a previously cancelled booking.
+      operationId: uncancelBooking
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      responses:
+        "200":
+          description: Booking restored
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/booking'
+        "404":
+          description: Booking not found
+
+  /bookings/search:
+    get:
+      tags:
+        - Booking Management Endpoints
+      summary: Search bookings
+      description: Search bookings by customer name, email, mobile, band name, or booking code. Supports status filtering.
+      operationId: searchBookings
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: q
+          in: query
+          schema:
+            type: string
+          description: Search query
+        - name: status_filter
+          in: query
+          schema:
+            type: string
+            enum: [active, cancelled, cancelled_and_active]
+          description: Filter by booking status
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/perPage'
+      responses:
+        "200":
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/booking'
+
+  /bookings/by_dates:
+    get:
+      tags:
+        - Booking Management Endpoints
+      summary: Bookings by date range
+      description: Returns bookings for a date range, optimized for calendar/schedule display.
+      operationId: bookingsByDates
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Bookings for date range
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/dashboard_booking'
+
+  /bookings/awaiting_approval:
+    get:
+      tags:
+        - Booking Management Endpoints
+      summary: Bookings awaiting approval
+      description: List bookings pending manager approval.
+      operationId: bookingsAwaitingApproval
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/perPage'
+      responses:
+        "200":
+          description: Pending bookings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/booking'
+
+  /bookings/{code}/approve:
+    post:
+      tags:
+        - Booking Management Endpoints
+      summary: Approve a booking
+      description: Approve a booking that is awaiting approval.
+      operationId: approveBooking
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      responses:
+        "200":
+          description: Booking approved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/booking'
+
+  /bookings/{code}/reject:
+    post:
+      tags:
+        - Booking Management Endpoints
+      summary: Reject a booking
+      description: Reject a booking that is awaiting approval.
+      operationId: rejectBooking
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+        - name: made_by_user_id
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Booking rejected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/booking'
+
+  /bookings/{code}/pdf:
+    get:
+      tags:
+        - Booking Management Endpoints
+      summary: Generate booking PDF
+      description: Generate a receipt/confirmation PDF for the booking.
+      operationId: bookingPdf
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      responses:
+        "200":
+          description: PDF file
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+
+  /bookings/{code}/resend_confirmation:
+    post:
+      tags:
+        - Booking Management Endpoints
+      summary: Resend confirmation email
+      description: Re-send the booking confirmation email to the customer.
+      operationId: resendConfirmation
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      responses:
+        "200":
+          description: Email sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /bookings/{code}/add_credit_note:
+    patch:
+      tags:
+        - Booking Management Endpoints
+      summary: Add credit note
+      description: Apply a manual credit note to a booking (cash, card, or other payment).
+      operationId: addCreditNote
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                price:
+                  type: string
+                  description: Amount in minor currency units (e.g. pence)
+                description:
+                  type: string
+                manual_type:
+                  type: string
+                  enum: [cash, card, other]
+              required:
+                - price
+      responses:
+        "200":
+          description: Credit note added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /bookings/{code}/delete_credit_note:
+    delete:
+      tags:
+        - Booking Management Endpoints
+      summary: Delete credit note
+      description: Remove a credit note from a booking.
+      operationId: deleteCreditNote
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+        - name: credit_note_id
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Credit note removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /bookings/{code}/refund_transaction:
+    post:
+      tags:
+        - Booking Management Endpoints
+      summary: Refund a transaction
+      description: Refund a specific payment transaction on a booking (Stripe, Square, or Jammed Pay).
+      operationId: refundTransaction
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+        - name: transaction_id
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Transaction refunded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /bookings/{code}/refunds:
+    post:
+      tags:
+        - Booking Management Endpoints
+      summary: Full refund
+      description: Cancel and refund all payments on a booking.
+      operationId: fullRefund
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                send_email:
+                  type: boolean
+                refund_reason:
+                  type: string
+      responses:
+        "200":
+          description: Booking refunded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /bookings/{code}/credit_payments:
+    post:
+      tags:
+        - Booking Management Endpoints
+      summary: Apply credit balance
+      description: Pay a booking using the customer's credit balance.
+      operationId: applyCreditPayment
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      responses:
+        "200":
+          description: Credit applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /bookings/{code}/credit_balances:
+    post:
+      tags:
+        - Booking Management Endpoints
+      summary: Credit to customer balance
+      description: Credit the booking amount to the customer's balance.
+      operationId: creditToCustomerBalance
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                credit_amount:
+                  type: integer
+                send_email:
+                  type: boolean
+      responses:
+        "200":
+          description: Booking credited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /bookings/{code}/notes:
+    patch:
+      tags:
+        - Booking Management Endpoints
+      summary: Update booking notes
+      description: Update internal staff notes and colour override for a booking.
+      operationId: updateBookingNotes
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                booking:
+                  type: object
+                  properties:
+                    studio_notes:
+                      type: string
+                    block_colour_override:
+                      type: string
+      responses:
+        "200":
+          description: Notes updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/booking'
+
+  /bookings/{code}/notifications:
+    get:
+      tags:
+        - Booking Management Endpoints
+      summary: Booking notifications
+      description: View notification history for a booking.
+      operationId: bookingNotifications
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      responses:
+        "200":
+          description: Notifications list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /bookings/{code}/payment_requests:
+    post:
+      tags:
+        - Booking Management Endpoints
+      summary: Send payment request
+      description: Create and send a payment link to the customer.
+      operationId: createPaymentRequest
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                price:
+                  type: string
+                  description: Amount in minor currency units
+              required:
+                - price
+      responses:
+        "200":
+          description: Payment request sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /bookings/{code}/payment_requests/{id}/charge:
+    post:
+      tags:
+        - Booking Management Endpoints
+      summary: Charge saved card
+      description: Create a payment request and immediately charge the customer's saved card.
+      operationId: chargePaymentRequest
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                price:
+                  type: string
+                use_payment_method:
+                  type: string
+      responses:
+        "200":
+          description: Payment taken
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /bookings/{code}/payment_requests/{id}/mark_as_paid:
+    post:
+      tags:
+        - Booking Management Endpoints
+      summary: Mark payment as paid
+      description: Record that a manual payment has been received.
+      operationId: markPaymentAsPaid
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Marked as paid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /bookings/{code}/payment_requests/{id}/cancel:
+    post:
+      tags:
+        - Booking Management Endpoints
+      summary: Cancel payment request
+      description: Cancel an open payment request.
+      operationId: cancelPaymentRequest
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Payment request cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /bookings/{code}/settlement_supported:
+    get:
+      tags:
+        - Booking Management Endpoints
+      summary: Check settlement support
+      description: Check if the booking's customer can be charged remotely (has saved payment methods).
+      operationId: settlementSupported
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - $ref: '#/components/parameters/bookingCode'
+      responses:
+        "200":
+          description: Settlement check result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  settlement_supported:
+                    type: boolean
+                  payment_methods:
+                    type: array
+                    items:
+                      type: object
+
+  # --- Customer Management ---
+  /customers/{id}:
+    put:
+      tags:
+        - Customer Management Endpoints
+      summary: Update customer
+      description: Update an existing customer's details.
+      operationId: updateCustomer
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer:
+                  $ref: '#/components/schemas/customer_create_body'
+      responses:
+        "200":
+          description: Customer updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer'
+
+  /customers/search:
+    get:
+      tags:
+        - Customer Management Endpoints
+      summary: Search customers
+      description: Autocomplete search by name, email, mobile, or band name. Returns top 10 results by booking count.
+      operationId: searchCustomers
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query (min 1 character)
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: Matching customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/short_customer'
+
+  /customers/{id}/notes:
+    patch:
+      tags:
+        - Customer Management Endpoints
+      summary: Update customer notes
+      description: Add or update internal staff notes about a customer.
+      operationId: updateCustomerNotes
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer:
+                  type: object
+                  properties:
+                    notes:
+                      type: string
+      responses:
+        "200":
+          description: Notes updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer'
+
+  /customers/{id}/bookings:
+    get:
+      tags:
+        - Customer Management Endpoints
+      summary: Customer bookings
+      description: List a customer's completed, non-cancelled bookings.
+      operationId: customerBookings
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/perPage'
+      responses:
+        "200":
+          description: Customer's bookings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/booking'
+
+  /customers/{id}/credit_balance:
+    get:
+      tags:
+        - Customer Management Endpoints
+      summary: Get credit balance
+      description: View the customer's current credit balance.
+      operationId: getCustomerCreditBalance
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Credit balance
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  credit_balance:
+                    type: integer
+    patch:
+      tags:
+        - Customer Management Endpoints
+      summary: Update credit balance
+      description: Adjust the customer's credit balance. Creates a credit movement record.
+      operationId: updateCustomerCreditBalance
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer:
+                  type: object
+                  properties:
+                    credit_balance:
+                      type: integer
+                      description: New credit balance in minor currency units
+      responses:
+        "200":
+          description: Balance updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  credit_balance:
+                    type: integer
+
+  /customers/{id}/credit_movements:
+    get:
+      tags:
+        - Customer Management Endpoints
+      summary: Credit movements
+      description: View credit transaction history for a customer.
+      operationId: customerCreditMovements
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/perPage'
+      responses:
+        "200":
+          description: Credit movements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/credit_movement'
+
+  /customers/{id}/status:
+    get:
+      tags:
+        - Customer Management Endpoints
+      summary: Customer status
+      description: Check if a customer is banned or behind on payment.
+      operationId: customerStatus
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Customer status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  status:
+                    type: string
+                  banned:
+                    type: boolean
+                  behind_payment:
+                    type: boolean
+                  status_reason_text:
+                    type: string
+
+  /customers/{id}/payment_methods:
+    get:
+      tags:
+        - Customer Management Endpoints
+      summary: Payment methods
+      description: List a customer's saved payment methods (for remote charging).
+      operationId: customerPaymentMethods
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Payment methods
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  # --- Pricing ---
+  /booking_price:
+    post:
+      tags:
+        - Pricing Endpoints
+      summary: Calculate booking price
+      description: |
+        Real-time price calculation with extras, tax, and staff costs.
+        Provide either a `booking_code` to calculate from an existing booking,
+        or `price.hours` and `price.price` for a custom calculation.
+      operationId: calculateBookingPrice
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                booking_price:
+                  type: object
+                  properties:
+                    booking_code:
+                      type: string
+                    price:
+                      type: object
+                      properties:
+                        hours:
+                          type: string
+                        days:
+                          type: string
+                        price:
+                          type: string
+                    extras:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          quantity:
+                            type: integer
+                    staff_ids:
+                      type: array
+                      items:
+                        type: integer
+      responses:
+        "200":
+          description: Price breakdown
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hours:
+                    type: number
+                  days:
+                    type: integer
+                  time_cost:
+                    type: integer
+                  extras:
+                    type: array
+                    items:
+                      type: object
+                  extras_total:
+                    type: integer
+                  staff_total:
+                    type: integer
+                  subtotal:
+                    type: integer
+                  tax_total:
+                    type: integer
+                  total:
+                    type: integer
+
+  /slot_projection:
+    post:
+      tags:
+        - Pricing Endpoints
+      summary: Project time slot
+      description: Preview cost and check conflicts for a time slot.
+      operationId: slotProjection
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                projection_params:
+                  type: object
+                  properties:
+                    start_time:
+                      type: string
+                    end_time:
+                      type: string
+                    date:
+                      type: string
+                      format: date
+                    start_at:
+                      type: string
+                    end_at:
+                      type: string
+                    room_id:
+                      type: integer
+                    room_code:
+                      type: string
+                    booking_code:
+                      type: string
+      responses:
+        "200":
+          description: Slot projection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cost:
+                    type: integer
+                  hours:
+                    type: number
+                  days:
+                    type: integer
+                  overlapping_bookings:
+                    type: array
+                    items:
+                      type: object
+                  explanation:
+                    type: string
+
+  # --- Extras ---
+  /extras:
+    get:
+      tags:
+        - Extra Endpoints
+      summary: List extras
+      description: All available add-on items with pricing.
+      operationId: listExtras
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+      responses:
+        "200":
+          description: Extras list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/extra'
+
+  /extras/{id}:
+    get:
+      tags:
+        - Extra Endpoints
+      summary: Show extra
+      description: Single extra with stock and pricing detail.
+      operationId: showExtra
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Extra detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/extra'
+
+  # --- Rooms (show) ---
+  /rooms/{id}:
+    get:
+      tags:
+        - Room Endpoints
+      summary: Show room
+      description: Room detail with images, pricing, and capacity.
+      operationId: showRoom
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Room detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/room'
+
+  # --- Terminals ---
+  /terminals:
+    get:
+      tags:
+        - Terminal Endpoints
+      summary: List terminals
+      description: Get available Stripe or Square terminal devices based on studio configuration.
+      operationId: listTerminals
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+      responses:
+        "200":
+          description: Terminal list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /terminal_payments:
+    post:
+      tags:
+        - Terminal Endpoints
+      summary: Start terminal payment
+      description: Send a payment to a physical card reader (Stripe or Square).
+      operationId: startTerminalPayment
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payment:
+                  type: object
+                  properties:
+                    booking_code:
+                      type: string
+                    amount:
+                      type: integer
+                    device_id:
+                      type: string
+                    payment_type:
+                      type: string
+                    uuid:
+                      type: string
+                  required:
+                    - booking_code
+                    - amount
+                    - device_id
+      responses:
+        "200":
+          description: Payment sent to terminal
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: object
+
+  /device_code:
+    post:
+      tags:
+        - Terminal Endpoints
+      summary: Get device pairing code
+      description: Get a Square terminal setup/pairing code.
+      operationId: getDeviceCode
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+      responses:
+        "200":
+          description: Device code
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  device_code:
+                    type: object
+
+  # --- Notifications ---
+  /notifications:
+    get:
+      tags:
+        - Notification Endpoints
+      summary: List notifications
+      description: Recent notifications from the last 7 days.
+      operationId: listNotifications
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+      responses:
+        "200":
+          description: Notifications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/notification'
+
+  /notifications/{id}/read:
+    post:
+      tags:
+        - Notification Endpoints
+      summary: Mark as read
+      operationId: markNotificationRead
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Marked as read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /notifications/{id}/archive:
+    post:
+      tags:
+        - Notification Endpoints
+      summary: Archive notification
+      operationId: archiveNotification
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Archived
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  /notifications/clear:
+    post:
+      tags:
+        - Notification Endpoints
+      summary: Clear all notifications
+      operationId: clearNotifications
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+      responses:
+        "200":
+          description: All notifications cleared
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  # --- Blocked Times ---
+  /blocked_times:
+    get:
+      tags:
+        - Blocked Time Endpoints
+      summary: List blocked times
+      description: Get all future schedule blocks.
+      operationId: listBlockedTimes
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+      responses:
+        "200":
+          description: Blocked times
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/blocked_time'
+    post:
+      tags:
+        - Blocked Time Endpoints
+      summary: Create blocked time
+      description: Block a room/time slot for maintenance, private events, etc.
+      operationId: createBlockedTime
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                blocked_time:
+                  type: object
+                  properties:
+                    room_id:
+                      type: integer
+                    start_at:
+                      type: string
+                      format: date-time
+                    end_at:
+                      type: string
+                      format: date-time
+                    reason:
+                      type: string
+                  required:
+                    - room_id
+                    - start_at
+                    - end_at
+      responses:
+        "201":
+          description: Blocked time created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/blocked_time'
+
+  /blocked_times/{id}:
+    patch:
+      tags:
+        - Blocked Time Endpoints
+      summary: Update blocked time
+      operationId: updateBlockedTime
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                blocked_time:
+                  type: object
+                  properties:
+                    room_id:
+                      type: integer
+                    start_at:
+                      type: string
+                      format: date-time
+                    end_at:
+                      type: string
+                      format: date-time
+                    reason:
+                      type: string
+      responses:
+        "200":
+          description: Blocked time updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/blocked_time'
+    delete:
+      tags:
+        - Blocked Time Endpoints
+      summary: Delete blocked time
+      operationId: deleteBlockedTime
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Blocked time deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+
+  # --- Reporting ---
+  /recent_transactions:
+    get:
+      tags:
+        - Reporting Endpoints
+      summary: Recent transactions
+      description: Today's and yesterday's transaction totals by payment method (Stripe, Square, manual cash/card/other).
+      operationId: recentTransactions
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+      responses:
+        "200":
+          description: Transaction summaries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  today:
+                    $ref: '#/components/schemas/transaction_summary'
+                  yesterday:
+                    $ref: '#/components/schemas/transaction_summary'
+
+  /money_ledger:
+    get:
+      tags:
+        - Reporting Endpoints
+      summary: Money ledger
+      description: Searchable transaction history with pagination.
+      operationId: moneyLedger
+      parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: q
+          in: query
+          schema:
+            type: string
+          description: Search query (source, transaction ID, booking code, customer name/email)
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/perPage'
+      responses:
+        "200":
+          description: Money logs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/money_ledger_entry'
+
 components:
   schemas:
     customer_create_body:
@@ -2231,6 +3688,287 @@ components:
         bookings_count: 6171
         created_at: 1646247874
         updated_at: 1646247874
+
+    # ePOS schemas
+    notification:
+      type: object
+      title: Notification
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        body:
+          type: string
+        severity:
+          type: string
+          enum: [normal, high]
+        label:
+          type: string
+        read:
+          type: boolean
+        created_at:
+          type: integer
+          description: Unix timestamp
+        read_at:
+          type: integer
+          description: Unix timestamp (null if unread)
+
+    blocked_time:
+      type: object
+      title: Blocked Time
+      properties:
+        id:
+          type: integer
+        room_id:
+          type: integer
+        reason:
+          type: string
+        start_at:
+          type: integer
+          description: Unix timestamp
+        end_at:
+          type: integer
+          description: Unix timestamp
+        start_time:
+          type: string
+          description: "Format: YYYY-MM-DD HH:MM"
+        end_time:
+          type: string
+          description: "Format: YYYY-MM-DD HH:MM"
+        room:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            code:
+              type: string
+
+    extra:
+      type: object
+      title: Extra
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+        code:
+          type: string
+        category:
+          type: string
+        available:
+          type: boolean
+        can_add_multiple_quantity:
+          type: boolean
+        track_stock:
+          type: boolean
+        price_per_use:
+          type: integer
+        price_per_hour:
+          type: integer
+        price_per_daily:
+          type: integer
+        price_per_weekly:
+          type: integer
+
+    dashboard_booking:
+      type: object
+      title: Dashboard Booking
+      description: Lightweight booking representation for dashboard/schedule views
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+        is_recording:
+          type: boolean
+        session_name:
+          type: string
+        block_colour_override:
+          type: string
+        studio_notes:
+          type: string
+        additional_notes:
+          type: string
+        number_expected:
+          type: integer
+        room:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            code:
+              type: string
+        start_at:
+          type: integer
+        end_at:
+          type: integer
+        start_time:
+          type: string
+        end_time:
+          type: string
+        title:
+          type: string
+        band_name:
+          type: string
+        has_amount_due:
+          type: boolean
+        amount_due:
+          type: integer
+        regular:
+          type: boolean
+        incomplete:
+          type: boolean
+        cancelled:
+          type: boolean
+        customer:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            email:
+              type: string
+        extras_summary:
+          type: string
+
+    credit_movement:
+      type: object
+      title: Credit Movement
+      properties:
+        id:
+          type: integer
+        amount:
+          type: integer
+        source:
+          type: string
+        created_at:
+          type: integer
+        booking:
+          type: object
+          properties:
+            id:
+              type: integer
+            code:
+              type: string
+        made_by:
+          type: string
+
+    money_ledger_entry:
+      type: object
+      title: Money Ledger Entry
+      properties:
+        id:
+          type: integer
+        source:
+          type: string
+        amount:
+          type: integer
+        currency_code:
+          type: string
+        transaction_id:
+          type: string
+        created_at:
+          type: integer
+        source_data:
+          type: object
+        booking:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+        customer:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+
+    transaction_summary:
+      type: object
+      title: Transaction Summary
+      properties:
+        date:
+          type: string
+        stripe:
+          type: integer
+        stripe_refunds:
+          type: integer
+        square:
+          type: integer
+        square_refunds:
+          type: integer
+        square_terminal:
+          type: integer
+        square_terminal_refunds:
+          type: integer
+        manual_total:
+          type: integer
+        manual_cash:
+          type: integer
+        manual_card:
+          type: integer
+        manual_other:
+          type: integer
+        total_taken:
+          type: integer
+        total_refunded:
+          type: integer
+        total:
+          type: integer
+
+    status_response:
+      type: object
+      title: Status Response
+      properties:
+        status:
+          type: string
+          enum: [ok, error]
+        message:
+          type: string
+
+  parameters:
+    authHeader:
+      name: Authorization
+      in: header
+      required: true
+      schema:
+        type: string
+      example: "Bearer <api_key>"
+    bookingCode:
+      name: code
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Booking code
+    page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    perPage:
+      name: per_page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
 
   securitySchemes:
     apiKey:
