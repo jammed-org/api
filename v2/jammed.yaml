@@ -1298,7 +1298,7 @@ x-webhooks:
         - Dashboard Endpoints
       summary: Dashboard composite data
       description: |
-        Returns rooms, today's bookings, blocked times, opening hours, and timezone in a single call.
+        Returns rooms, today's bookings, blocked times, opening time, slot length, and timezone in a single call.
         Powers the ePOS home screen. Accepts optional `from` and `to` date parameters for a date range,
         or a single `date` parameter. Defaults to today.
       operationId: getDashboard
@@ -1342,8 +1342,12 @@ x-webhooks:
                     type: array
                     items:
                       $ref: '#/components/schemas/blocked_time'
-                  opening_hours:
-                    type: object
+                  opening_time:
+                    type: integer
+                    description: Opening time in seconds from midnight (e.g. 32400 = 9am)
+                  slot_length:
+                    type: integer
+                    description: Slot length in seconds (e.g. 3600 = 1 hour)
                   timezone:
                     type: string
 
@@ -1571,8 +1575,8 @@ x-webhooks:
               type: object
               properties:
                 price:
-                  type: string
-                  description: Amount in minor currency units (e.g. pence)
+                  type: integer
+                  description: Amount in minor currency units (pence/cents). Must be an integer.
                 description:
                   type: string
                 manual_type:
@@ -1778,8 +1782,8 @@ x-webhooks:
               type: object
               properties:
                 price:
-                  type: string
-                  description: Amount in minor currency units
+                  type: integer
+                  description: Amount in minor currency units (pence/cents). Must be an integer.
               required:
                 - price
       responses:
@@ -1790,31 +1794,30 @@ x-webhooks:
               schema:
                 $ref: '#/components/schemas/status_response'
 
-  /bookings/{code}/payment_requests/{id}/charge:
+  /bookings/{code}/payment_requests/charge:
     post:
       tags:
         - Booking Management Endpoints
       summary: Charge saved card
-      description: Create a payment request and immediately charge the customer's saved card.
+      description: Create a payment request and immediately charge the customer's saved card. This is a collection action — it creates a new payment request and settles it in one step.
       operationId: chargePaymentRequest
       parameters:
         - $ref: '#/components/parameters/authHeader'
         - $ref: '#/components/parameters/bookingCode'
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
       requestBody:
+        required: true
         content:
           application/json:
             schema:
               type: object
               properties:
                 price:
-                  type: string
+                  type: integer
+                  description: Amount in minor currency units (pence/cents). Must be an integer.
                 use_payment_method:
                   type: string
+              required:
+                - price
       responses:
         "200":
           description: Payment taken
