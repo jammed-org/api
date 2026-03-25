@@ -7,7 +7,7 @@
 This release adds all the V2 API endpoints needed to power the Jammed ePOS app for front-of-house studio staff.
 
 ### New resources
-- **Dashboard**: `GET /dashboard` — composite endpoint returning rooms, bookings, blocked times, and opening hours in one call
+- **Dashboard**: `GET /dashboard` — composite endpoint returning rooms, bookings, blocked times, opening time, slot length, and timezone in one call
 - **Extras**: `GET /extras`, `GET /extras/{id}` — equipment and add-on items with pricing
 - **Terminals**: `GET /terminals`, `POST /terminal_payments`, `POST /device_code` — Stripe/Square card reader operations
 - **Notifications**: `GET /notifications`, `POST /notifications/{id}/read`, `POST /notifications/{id}/archive`, `POST /notifications/clear`
