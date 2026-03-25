@@ -1,0 +1,40 @@
+name: Update Postman Collection
+
+on:
+  push:
+    paths:
+      - 'v2/jammed.yaml'
+    branches:
+      - main
+      - 'claude/**'
+      - 'feature/**'
+
+jobs:
+  generate-postman:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install openapi-to-postmanv2
+        run: npm install -g openapi-to-postmanv2
+
+      - name: Generate Postman collection
+        run: openapi2postmanv2 -s v2/jammed.yaml -o v2/jammed-postman-collection.json -p
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git diff --quiet v2/jammed-postman-collection.json && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push updated collection
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add v2/jammed-postman-collection.json
+          git commit -m "Auto-update Postman collection from OpenAPI spec"
+          git push
