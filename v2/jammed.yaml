@@ -42,21 +42,15 @@ x-tagGroups:
   tags:
   - Booking Endpoints
   - Customer Endpoints
-  - Group Endpoints
   - Room Endpoints
-  - Coupon Endpoints
-  - Promocode Endpoints
-- name: ePOS Endpoints
-  tags:
-  - Dashboard Endpoints
-  - Booking Management Endpoints
-  - Customer Management Endpoints
-  - Pricing Endpoints
   - Extra Endpoints
   - Terminal Endpoints
   - Notification Endpoints
   - Blocked Time Endpoints
   - Reporting Endpoints
+  - Group Endpoints
+  - Coupon Endpoints
+  - Promocode Endpoints
 - name: Webhooks
   tags:
   - Booking Webhooks
@@ -70,10 +64,6 @@ x-tagGroups:
   - room_model
   - coupon_model
   - promocode_model
-  - notification_model
-  - blocked_time_model
-  - extra_model
-  - dashboard_booking_model
 tags:
 - name: Booking Webhooks
   description: Events that happen with a booking
@@ -89,24 +79,6 @@ tags:
   description: Polling API for groups
 - name: Room Endpoints
   description: Polling API for rooms
-- name: Dashboard Endpoints
-  description: Composite endpoint for ePOS home screen
-- name: Booking Management Endpoints
-  description: ePOS booking management operations (cancel, approve, refund, etc.)
-- name: Customer Management Endpoints
-  description: ePOS customer management (search, credit balance, status, etc.)
-- name: Pricing Endpoints
-  description: Real-time pricing and availability calculations
-- name: Extra Endpoints
-  description: Equipment and add-on items
-- name: Terminal Endpoints
-  description: Card terminal and payment device operations
-- name: Notification Endpoints
-  description: Staff notifications
-- name: Blocked Time Endpoints
-  description: Room schedule blocking
-- name: Reporting Endpoints
-  description: Transaction summaries and money ledger
 - name: booking_model
   x-displayName: Booking Model
   description: |
@@ -131,22 +103,6 @@ tags:
   x-displayName: Promocode Model
   description: |
     <SchemaDefinition schemaRef="#/components/schemas/promocode" />
-- name: notification_model
-  x-displayName: Notification Model
-  description: |
-    <SchemaDefinition schemaRef="#/components/schemas/notification" />
-- name: blocked_time_model
-  x-displayName: Blocked Time Model
-  description: |
-    <SchemaDefinition schemaRef="#/components/schemas/blocked_time" />
-- name: extra_model
-  x-displayName: Extra Model
-  description: |
-    <SchemaDefinition schemaRef="#/components/schemas/extra" />
-- name: dashboard_booking_model
-  x-displayName: Dashboard Booking Model
-  description: |
-    <SchemaDefinition schemaRef="#/components/schemas/dashboard_booking" />
 servers:
 - url: https://api.jammed.app/api/v2/
   description: Jammed API endpoint
@@ -1075,7 +1031,7 @@ paths:
   /dashboard:
     get:
       tags:
-      - Dashboard Endpoints
+      - Booking Endpoints
       summary: Dashboard composite data
       description: |
         Returns rooms, today's bookings, blocked times, opening time, slot length, and timezone in a single call.
@@ -1132,10 +1088,11 @@ paths:
                     type: string
 
   # --- Booking Management ---
+      x-epos: true
   /bookings/{code}:
     delete:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Cancel a booking
       description: Soft-deletes (cancels) a booking. Optionally sends cancellation email.
       operationId: cancelBooking
@@ -1156,10 +1113,11 @@ paths:
         "404":
           description: Booking not found
 
+      x-epos: true
   /bookings/{code}/uncancel:
     patch:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Uncancel a booking
       description: Restores a previously cancelled booking.
       operationId: uncancelBooking
@@ -1176,10 +1134,11 @@ paths:
         "404":
           description: Booking not found
 
+      x-epos: true
   /bookings/search:
     get:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Search bookings
       description: Search bookings by customer name, email, mobile, band name, or booking code. Supports status 
         filtering.
@@ -1209,10 +1168,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/booking'
 
+      x-epos: true
   /bookings/by_dates:
     get:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Bookings by date range
       description: Returns bookings for a date range, optimized for calendar/schedule display.
       operationId: bookingsByDates
@@ -1240,10 +1200,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/dashboard_booking'
 
+      x-epos: true
   /bookings/awaiting_approval:
     get:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Bookings awaiting approval
       description: List bookings pending manager approval.
       operationId: bookingsAwaitingApproval
@@ -1261,10 +1222,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/booking'
 
+      x-epos: true
   /bookings/{code}/approve:
     post:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Approve a booking
       description: Approve a booking that is awaiting approval.
       operationId: approveBooking
@@ -1279,10 +1241,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/booking'
 
+      x-epos: true
   /bookings/{code}/reject:
     post:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Reject a booking
       description: Reject a booking that is awaiting approval.
       operationId: rejectBooking
@@ -1301,10 +1264,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/booking'
 
+      x-epos: true
   /bookings/{code}/pdf:
     get:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Generate booking PDF
       description: Generate a receipt/confirmation PDF for the booking.
       operationId: bookingPdf
@@ -1320,10 +1284,11 @@ paths:
                 type: string
                 format: binary
 
+      x-epos: true
   /bookings/{code}/resend_confirmation:
     post:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Resend confirmation email
       description: Re-send the booking confirmation email to the customer.
       operationId: resendConfirmation
@@ -1338,10 +1303,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /bookings/{code}/add_credit_note:
     patch:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Add credit note
       description: Apply a manual credit note to a booking (cash, card, or other payment).
       operationId: addCreditNote
@@ -1373,10 +1339,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /bookings/{code}/delete_credit_note:
     delete:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Delete credit note
       description: Remove a credit note from a booking.
       operationId: deleteCreditNote
@@ -1396,10 +1363,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /bookings/{code}/refund_transaction:
     post:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Refund a transaction
       description: Refund a specific payment transaction on a booking (Stripe, Square, or Jammed Pay).
       operationId: refundTransaction
@@ -1419,10 +1387,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /bookings/{code}/refunds:
     post:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Full refund
       description: Cancel and refund all payments on a booking.
       operationId: fullRefund
@@ -1447,10 +1416,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /bookings/{code}/credit_payments:
     post:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Apply credit balance
       description: Pay a booking using the customer's credit balance.
       operationId: applyCreditPayment
@@ -1465,10 +1435,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /bookings/{code}/credit_balances:
     post:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Credit to customer balance
       description: Credit the booking amount to the customer's balance.
       operationId: creditToCustomerBalance
@@ -1493,10 +1464,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /bookings/{code}/notes:
     patch:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Update booking notes
       description: Update internal staff notes and colour override for a booking.
       operationId: updateBookingNotes
@@ -1525,10 +1497,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/booking'
 
+      x-epos: true
   /bookings/{code}/notifications:
     get:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Booking notifications
       description: View notification history for a booking.
       operationId: bookingNotifications
@@ -1545,10 +1518,11 @@ paths:
                 items:
                   type: object
 
+      x-epos: true
   /bookings/{code}/payment_requests:
     post:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Send payment request
       description: Create and send a payment link to the customer.
       operationId: createPaymentRequest
@@ -1575,10 +1549,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /bookings/{code}/payment_requests/charge:
     post:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Charge saved card
       description: Create a payment request and immediately charge the customer's saved card. This is a collection 
         action — it creates a new payment request and settles it in one step.
@@ -1608,10 +1583,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /bookings/{code}/payment_requests/{id}/mark_as_paid:
     post:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Mark payment as paid
       description: Record that a manual payment has been received.
       operationId: markPaymentAsPaid
@@ -1631,10 +1607,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /bookings/{code}/payment_requests/{id}/cancel:
     post:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Cancel payment request
       description: Cancel an open payment request.
       operationId: cancelPaymentRequest
@@ -1654,10 +1631,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /bookings/{code}/settlement_supported:
     get:
       tags:
-      - Booking Management Endpoints
+      - Booking Endpoints
       summary: Check settlement support
       description: Check if the booking's customer can be charged remotely (has saved payment methods).
       operationId: settlementSupported
@@ -1680,10 +1658,11 @@ paths:
                       type: object
 
   # --- Customer Management ---
+      x-epos: true
   /customers/{id}:
     put:
       tags:
-      - Customer Management Endpoints
+      - Customer Endpoints
       summary: Update customer
       description: Update an existing customer's details.
       operationId: updateCustomer
@@ -1711,10 +1690,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/customer'
 
+      x-epos: true
   /customers/search:
     get:
       tags:
-      - Customer Management Endpoints
+      - Customer Endpoints
       summary: Search customers
       description: Autocomplete search by name, email, mobile, or band name. Returns top 10 results by booking count.
       operationId: searchCustomers
@@ -1741,10 +1721,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/short_customer'
 
+      x-epos: true
   /customers/{id}/notes:
     patch:
       tags:
-      - Customer Management Endpoints
+      - Customer Endpoints
       summary: Update customer notes
       description: Add or update internal staff notes about a customer.
       operationId: updateCustomerNotes
@@ -1774,10 +1755,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/customer'
 
+      x-epos: true
   /customers/{id}/bookings:
     get:
       tags:
-      - Customer Management Endpoints
+      - Customer Endpoints
       summary: Customer bookings
       description: List a customer's completed, non-cancelled bookings.
       operationId: customerBookings
@@ -1800,10 +1782,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/booking'
 
+      x-epos: true
   /customers/{id}/credit_balance:
     get:
       tags:
-      - Customer Management Endpoints
+      - Customer Endpoints
       summary: Get credit balance
       description: View the customer's current credit balance.
       operationId: getCustomerCreditBalance
@@ -1826,9 +1809,10 @@ paths:
                     type: integer
                   credit_balance:
                     type: integer
+      x-epos: true
     patch:
       tags:
-      - Customer Management Endpoints
+      - Customer Endpoints
       summary: Update credit balance
       description: Adjust the customer's credit balance. Creates a credit movement record.
       operationId: updateCustomerCreditBalance
@@ -1865,10 +1849,11 @@ paths:
                   credit_balance:
                     type: integer
 
+      x-epos: true
   /customers/{id}/credit_movements:
     get:
       tags:
-      - Customer Management Endpoints
+      - Customer Endpoints
       summary: Credit movements
       description: View credit transaction history for a customer.
       operationId: customerCreditMovements
@@ -1891,10 +1876,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/credit_movement'
 
+      x-epos: true
   /customers/{id}/status:
     get:
       tags:
-      - Customer Management Endpoints
+      - Customer Endpoints
       summary: Customer status
       description: Check if a customer is banned or behind on payment.
       operationId: customerStatus
@@ -1924,10 +1910,11 @@ paths:
                   status_reason_text:
                     type: string
 
+      x-epos: true
   /customers/{id}/payment_methods:
     get:
       tags:
-      - Customer Management Endpoints
+      - Customer Endpoints
       summary: Payment methods
       description: List a customer's saved payment methods (for remote charging).
       operationId: customerPaymentMethods
@@ -1949,10 +1936,11 @@ paths:
                   type: object
 
   # --- Pricing ---
+      x-epos: true
   /booking_price:
     post:
       tags:
-      - Pricing Endpoints
+      - Booking Endpoints
       summary: Calculate booking price
       description: |
         Real-time price calculation with extras, tax, and staff costs.
@@ -2024,10 +2012,11 @@ paths:
                   total:
                     type: integer
 
+      x-epos: true
   /slot_projection:
     post:
       tags:
-      - Pricing Endpoints
+      - Booking Endpoints
       summary: Project time slot
       description: Preview cost and check conflicts for a time slot.
       operationId: slotProjection
@@ -2082,6 +2071,7 @@ paths:
                     type: string
 
   # --- Extras ---
+      x-epos: true
   /extras:
     get:
       tags:
@@ -2101,6 +2091,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/extra'
 
+      x-epos: true
   /extras/{id}:
     get:
       tags:
@@ -2124,6 +2115,7 @@ paths:
                 $ref: '#/components/schemas/extra'
 
   # --- Rooms (show) ---
+      x-epos: true
   /rooms/{id}:
     get:
       tags:
@@ -2166,6 +2158,7 @@ paths:
                 items:
                   type: object
 
+      x-epos: true
   /terminal_payments:
     post:
       tags:
@@ -2214,6 +2207,7 @@ paths:
                   data:
                     type: object
 
+      x-epos: true
   /device_code:
     post:
       tags:
@@ -2237,6 +2231,7 @@ paths:
                     type: object
 
   # --- Notifications ---
+      x-epos: true
   /notifications:
     get:
       tags:
@@ -2256,6 +2251,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/notification'
 
+      x-epos: true
   /notifications/{id}/read:
     post:
       tags:
@@ -2277,6 +2273,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /notifications/{id}/archive:
     post:
       tags:
@@ -2298,6 +2295,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/status_response'
 
+      x-epos: true
   /notifications/clear:
     post:
       tags:
@@ -2315,6 +2313,7 @@ paths:
                 $ref: '#/components/schemas/status_response'
 
   # --- Blocked Times ---
+      x-epos: true
   /blocked_times:
     get:
       tags:
@@ -2333,6 +2332,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/blocked_time'
+      x-epos: true
     post:
       tags:
       - Blocked Time Endpoints
@@ -2373,6 +2373,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/blocked_time'
 
+      x-epos: true
   /blocked_times/{id}:
     patch:
       tags:
@@ -2412,6 +2413,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/blocked_time'
+      x-epos: true
     delete:
       tags:
       - Blocked Time Endpoints
@@ -2433,6 +2435,7 @@ paths:
                 $ref: '#/components/schemas/status_response'
 
   # --- Reporting ---
+      x-epos: true
   /recent_transactions:
     get:
       tags:
@@ -2456,6 +2459,7 @@ paths:
                   yesterday:
                     $ref: '#/components/schemas/transaction_summary'
 
+      x-epos: true
   /money_ledger:
     get:
       tags:
@@ -2482,6 +2486,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/money_ledger_entry'
 
+      x-epos: true
 x-webhooks:
   booking.created:
     get:
