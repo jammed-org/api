@@ -3669,8 +3669,9 @@ components:
           type: integer
     dashboard_booking:
       type: object
-      title: Dashboard Booking
-      description: Lightweight booking representation for dashboard/schedule views
+      title: DashboardBooking
+      description: 'A booking as returned by the dashboard endpoint. Note: this format differs significantly from the full
+        booking schema.'
       properties:
         id:
           type: integer
@@ -3678,60 +3679,74 @@ components:
           type: string
         name:
           type: string
-        is_recording:
-          type: boolean
-        session_name:
-          type: string
-        block_colour_override:
-          type: string
-        studio_notes:
-          type: string
-        additional_notes:
-          type: string
-        number_expected:
-          type: integer
-        room:
-          type: object
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-            code:
-              type: string
-        start_at:
-          type: integer
-        end_at:
-          type: integer
-        start_time:
-          type: string
-        end_time:
-          type: string
+          description: Customer name
         title:
           type: string
+          description: Display title, e.g. "John Doe (The Beatles)"
         band_name:
           type: string
+          description: Band/group name, empty string if none
+        is_recording:
+          type: boolean
+          nullable: true
+        session_name:
+          type: string
+          nullable: true
+        block_colour_override:
+          type: string
+          nullable: true
+          description: Hex colour override for the booking block
+        studio_notes:
+          type: string
+          nullable: true
+        additional_notes:
+          type: string
+          nullable: true
+        number_expected:
+          type: integer
+          nullable: true
+        start:
+          type: string
+          description: Start datetime as "YYYY-MM-DD HH:mm"
+          example: 2026-03-24 11:41
+        end:
+          type: string
+          description: End datetime as "YYYY-MM-DD HH:mm"
+          example: 2026-03-24 12:41
+        split:
+          type: string
+          description: Room code — use to match against rooms[].code
+        room_name:
+          type: string
+          description: Room display name
         has_amount_due:
           type: boolean
         amount_due:
-          type: integer
+          type: string
+          description: Formatted currency string e.g. "£1.00"
+        payments_recieved:
+          type: boolean
+          description: 'Whether any payments have been received (note: API uses this spelling)'
         regular:
           type: boolean
         incomplete:
           type: boolean
-        cancelled:
+        show_studio_notes:
           type: boolean
-        customer:
-          type: object
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-            email:
-              type: string
         extras_summary:
+          type: array
+          items:
+            type: string
+          description: Array of extra item descriptions (empty array if none)
+        link:
           type: string
+          description: Admin link path e.g. "/admin/bookings/R9XT9J1JFX"
+        type:
+          type: string
+          description: '"booking" or "blocked"'
+        class:
+          type: string
+          description: CSS class for the booking block e.g. "room-l3j5nwp8"
     credit_movement:
       type: object
       title: Credit Movement
