@@ -1,5 +1,55 @@
 # Jammed API changelog
 
+## `2.2.0`: 24 March 2026
+
+**ePOS API — 51 new endpoints for point-of-sale operations**
+
+This release adds all the V2 API endpoints needed to power the Jammed ePOS app for front-of-house studio staff.
+
+### New resources
+- **Dashboard**: `GET /dashboard` — composite endpoint returning rooms, bookings, blocked times, opening time, slot length, and timezone in one call
+- **Extras**: `GET /extras`, `GET /extras/{id}` — equipment and add-on items with pricing
+- **Notifications**: `GET /notifications`, `POST /notifications/{id}/read`, `POST /notifications/{id}/archive`, `POST /notifications/clear`
+- **Blocked Times**: Full CRUD — `GET /blocked_times`, `POST /blocked_times`, `PATCH /blocked_times/{id}`, `DELETE /blocked_times/{id}`
+- **Reporting**: `GET /recent_transactions`, `GET /money_ledger`
+
+### Booking management extensions
+- `DELETE /bookings/{code}` — cancel a booking
+- `PATCH /bookings/{code}/uncancel` — restore cancelled booking
+- `GET /bookings/search` — search by customer, room, date, code, status
+- `GET /bookings/by_dates` — bookings for a date range (schedule view)
+- `GET /bookings/awaiting_approval` — pending approval queue
+- `POST /bookings/{code}/approve` and `POST /bookings/{code}/reject`
+- `GET /bookings/{code}/pdf` — generate receipt PDF
+- `POST /bookings/{code}/resend_confirmation`
+- `POST /bookings/{code}/credit_notes`, `DELETE /bookings/{code}/credit_notes/{id}` — RESTful credit note management
+- `POST /bookings/{code}/refund_transaction`, `POST /bookings/{code}/refunds`
+- `POST /bookings/{code}/credit_payments`, `POST /bookings/{code}/credit_balances`
+- `PATCH /bookings/{code}/notes` — staff notes and colour override
+- `GET /bookings/{code}/notifications`
+- Payment requests: create, charge, mark_as_paid, cancel
+- `GET /bookings/{code}/settlement_supported`
+
+### Customer management extensions
+- `PUT /customers/{id}` — update customer details
+- `GET /customers/search` — autocomplete search
+- `PATCH /customers/{id}/notes`
+- `GET/PATCH /customers/{id}/credit_balance`
+- `GET /customers/{id}/credit_movements`
+- `GET /customers/{id}/bookings`
+- `GET /customers/{id}/status`
+- `GET /customers/{id}/payment_methods`
+
+### Pricing & availability
+- `POST /booking_price` — real-time price calculation with extras, tax, staff
+- `POST /slot_projection` — preview cost and check conflicts
+
+### Rooms
+- `GET /rooms/{id}` — room detail (extends existing index)
+
+### New schemas
+- `notification`, `blocked_time`, `extra`, `dashboard_booking`, `credit_movement`, `money_ledger_entry`, `transaction_summary`, `status_response`
+
 ## `2.1.0`: 16 March 2026
 
 - **Added sorting and ordering support** to `GET /bookings.json` (getBookings) endpoint
