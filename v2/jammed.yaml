@@ -1303,66 +1303,6 @@ paths:
                 $ref: '#/components/schemas/status_response'
 
       x-epos: true
-  /bookings/{code}/add_credit_note:
-    patch:
-      tags:
-      - Booking Endpoints
-      summary: Add credit note
-      description: Apply a manual credit note to a booking (cash, card, or other payment).
-      operationId: addCreditNote
-      parameters:
-      - $ref: '#/components/parameters/authHeader'
-      - $ref: '#/components/parameters/bookingCode'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                price:
-                  type: integer
-                  description: Amount in minor currency units (pence/cents). Must be an integer.
-                description:
-                  type: string
-                manual_type:
-                  type: string
-                  enum: [cash, card, other]
-              required:
-              - price
-      responses:
-        "200":
-          description: Credit note added
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/status_response'
-
-      x-epos: true
-  /bookings/{code}/delete_credit_note:
-    delete:
-      tags:
-      - Booking Endpoints
-      summary: Delete credit note
-      description: Remove a credit note from a booking.
-      operationId: deleteCreditNote
-      parameters:
-      - $ref: '#/components/parameters/authHeader'
-      - $ref: '#/components/parameters/bookingCode'
-      - name: credit_note_id
-        in: query
-        required: true
-        schema:
-          type: integer
-      responses:
-        "200":
-          description: Credit note removed
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/status_response'
-
-      x-epos: true
   /bookings/{code}/refund_transaction:
     post:
       tags:
@@ -2393,6 +2333,70 @@ paths:
                   $ref: '#/components/schemas/money_ledger_entry'
 
       x-epos: true
+  /bookings/{code}/credit_notes:
+    post:
+      tags:
+      - Booking Endpoints
+      x-epos: true
+      summary: Create credit note
+      description: Apply a manual credit note to a booking (cash, card, or other payment).
+      operationId: createCreditNote
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - $ref: '#/components/parameters/bookingCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                price:
+                  type: integer
+                  description: Amount in minor currency units (pence/cents). Must be an integer.
+                description:
+                  type: string
+                manual_type:
+                  type: string
+                  enum:
+                  - cash
+                  - card
+                  - other
+              required:
+              - price
+      responses:
+        '200':
+          description: Credit note created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+  /bookings/{code}/credit_notes/{id}:
+    delete:
+      tags:
+      - Booking Endpoints
+      x-epos: true
+      summary: Delete credit note
+      description: Remove a credit note from a booking.
+      operationId: deleteCreditNote
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - $ref: '#/components/parameters/bookingCode'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Credit note (MoneyLog) ID
+      responses:
+        '200':
+          description: Credit note removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+        '404':
+          description: Credit note or booking not found
 x-webhooks:
   booking.created:
     get:

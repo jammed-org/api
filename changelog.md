@@ -22,7 +22,7 @@ This release adds all the V2 API endpoints needed to power the Jammed ePOS app f
 - `POST /bookings/{code}/approve` and `POST /bookings/{code}/reject`
 - `GET /bookings/{code}/pdf` — generate receipt PDF
 - `POST /bookings/{code}/resend_confirmation`
-- `PATCH /bookings/{code}/add_credit_note`, `DELETE /bookings/{code}/delete_credit_note`
+- `POST /bookings/{code}/credit_notes`, `DELETE /bookings/{code}/credit_notes/{id}` — RESTful credit note management
 - `POST /bookings/{code}/refund_transaction`, `POST /bookings/{code}/refunds`
 - `POST /bookings/{code}/credit_payments`, `POST /bookings/{code}/credit_balances`
 - `PATCH /bookings/{code}/notes` — staff notes and colour override
