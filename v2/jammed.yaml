@@ -9,34 +9,52 @@ info:
     email: api@jammed.app
     url: https://support.jammed.app
   x-logo:
-    url: "https://fileshare.jammedapp.com/Profile%20Images/Artboard%205.png"
+    url: https://fileshare.jammedapp.com/Profile%20Images/Artboard%205.png
     altText: Jammed logo
-  description: |
-    Jammed API allows you to integrate with the Jammed system, and automate key events within third-party systems. We are adding endpoints and features as we need them and as studios request them. If there's an endpoint you need, please contact us.
+  description: 'Jammed API allows you to integrate with the Jammed system, and automate key events within third-party systems.
+    We are adding endpoints and features as we need them and as studios request them. If there''s an endpoint you need, please
+    contact us.
+
 
     By subscribing to and listening to webhooks your studio can automate sending reminders, automate customer lists and mailing
+
     systems, finance and accounting packages, and anything you can imagine really.
 
+
     # Introduction
-    Jammed is powering scheduling and bookings for independent creative spaces, and we're building a new way to connect with them.
+
+    Jammed is powering scheduling and bookings for independent creative spaces, and we''re building a new way to connect with
+    them.
+
     You can read more about [Jammed on the support pages](https://support.jammedapp.com).
+
 
     Jammed offers webhooks and a polling API, so you can integrate how ever you like with the system.
 
+
     You can also see the version history and roadmap for the [Jammed API on the public Github project](https://github.com/jammed-org/api).
 
+
     # Authentication
+
     You authenticate with the API using an API key - this is found in the website settings of the admin section.
+
 
     Issue this header with all requests to the API or it will return a `401 Unauthorized` error.
 
+
     <SecurityDefinitions />
 
+
     # Getting started
-    To get started, you'll need to create a Jammed account and create a studio account.
 
-    Once you have setup your studio, head the to Website Setting page and press the 'Enable webhooks' button. From there, you can set the webhook URLs you want Jammed to send to.
+    To get started, you''ll need to create a Jammed account and create a studio account.
 
+
+    Once you have setup your studio, head the to Website Setting page and press the ''Enable webhooks'' button. From there,
+    you can set the webhook URLs you want Jammed to send to.
+
+    '
 x-tagGroups:
 - name: Endpoints
   tags:
@@ -80,32 +98,37 @@ tags:
   description: Polling API for rooms
 - name: booking_model
   x-displayName: Booking Model
-  description: |
-    <SchemaDefinition schemaRef="#/components/schemas/booking" />
+  description: '<SchemaDefinition schemaRef="#/components/schemas/booking" />
+
+    '
 - name: customer_model
   x-displayName: Customer Model
-  description: |
-    <SchemaDefinition schemaRef="#/components/schemas/customer" />
+  description: '<SchemaDefinition schemaRef="#/components/schemas/customer" />
+
+    '
 - name: group_model
   x-displayName: Group Model
-  description: |
-    <SchemaDefinition schemaRef="#/components/schemas/group" />
+  description: '<SchemaDefinition schemaRef="#/components/schemas/group" />
+
+    '
 - name: room_model
   x-displayName: Room Model
-  description: |
-    <SchemaDefinition schemaRef="#/components/schemas/room" />
+  description: '<SchemaDefinition schemaRef="#/components/schemas/room" />
+
+    '
 - name: coupon_model
   x-displayName: Coupon Model
-  description: |
-    <SchemaDefinition schemaRef="#/components/schemas/coupon" />
+  description: '<SchemaDefinition schemaRef="#/components/schemas/coupon" />
+
+    '
 - name: promocode_model
   x-displayName: Promocode Model
-  description: |
-    <SchemaDefinition schemaRef="#/components/schemas/promocode" />
+  description: '<SchemaDefinition schemaRef="#/components/schemas/promocode" />
+
+    '
 servers:
 - url: https://api.jammed.app/api/v2/
   description: Jammed API endpoint
-
 paths:
   /bookings.json:
     get:
@@ -115,7 +138,7 @@ paths:
       description: Returns all non-cancelled bookings with optional sorting and pagination support.
       operationId: getBookings
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -123,7 +146,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/booking'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -131,7 +154,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: sort_by
         in: query
         required: false
@@ -146,7 +169,7 @@ paths:
           - customer_name
           - room_name
           default: created_at
-        example: "created_at"
+        example: created_at
       - name: sort_order
         in: query
         required: false
@@ -157,7 +180,7 @@ paths:
           - asc
           - desc
           default: desc
-        example: "desc"
+        example: desc
       - name: page
         in: query
         required: false
@@ -181,31 +204,39 @@ paths:
       tags:
       - Booking Endpoints
       summary: Create a booking
-      description: |
-        Create a new booking on Jammed as an admin.
+      description: 'Create a new booking on Jammed as an admin.
+
 
         This creates a booking in the same way as a staff member would from the admin dashboard.
 
+
         You must provide **booking_details** with at least a `start_at`, `end_at`, `room_id`, and `price`.
 
+
         For the customer, you can either:
+
         - Provide a `customer_id` to book for an existing customer
+
         - Provide `customer_details` with `name` and `email` to create a new customer inline
+
 
         Optionally provide `band_details` with a `name` to associate a group/band, and `extra_ids` to add extras to the booking.
 
+
         The booking is created with source `manually_added` and platform `api_v2`.
+
+        '
       operationId: createBooking
       responses:
-        "201":
+        '201':
           description: Booking created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/booking'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "422":
+        '422':
           description: Unprocessable - the booking parameters you provided are invalid
           content:
             application/json:
@@ -224,8 +255,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
-
+        example: Bearer <api_key>
   /bookings/{code}.json:
     get:
       tags:
@@ -234,15 +264,15 @@ paths:
       description: Returns booking with the given code
       operationId: getBooking
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/booking'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "404":
+        '404':
           description: Not found - Booking was not found
       parameters:
       - name: Authorization
@@ -250,7 +280,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: code
         in: path
         required: true
@@ -261,28 +291,33 @@ paths:
       tags:
       - Booking Endpoints
       summary: Update a booking
-      description: |
-        Update an existing booking as an admin.
+      description: 'Update an existing booking as an admin.
+
 
         This uses the same booking update flow as staff members would from the admin dashboard.
 
+
         You can update various booking details including time, room, pricing, customer information,
+
         and other booking attributes.
 
+
         The booking is identified by its code (same as the GET endpoint).
+
+        '
       operationId: updateBooking
       responses:
-        "200":
+        '200':
           description: Booking updated successfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/booking'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "404":
+        '404':
           description: Not found - Booking was not found
-        "422":
+        '422':
           description: Unprocessable - the booking parameters you provided are invalid
           content:
             application/json:
@@ -301,14 +336,13 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: code
         in: path
         required: true
         schema:
           type: string
         description: The booking code
-
   /bookings/cancelled.json:
     get:
       tags:
@@ -317,7 +351,7 @@ paths:
       description: Returns all cancelled bookings, ordered by cancellation date descending. Supports pagination.
       operationId: getBookingsCancelled
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -325,7 +359,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/booking'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -333,18 +367,16 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
-
+        example: Bearer <api_key>
   /bookings/started.json:
     get:
       tags:
       - Booking Endpoints
       summary: Started bookings
-      description: Returns all upcoming bookings (starting in the future), ordered by start time descending. Supports 
-        pagination.
+      description: Returns all upcoming bookings (starting in the future), ordered by start time descending. Supports pagination.
       operationId: getBookingsStarted
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -352,7 +384,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/booking'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -360,8 +392,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
-
+        example: Bearer <api_key>
   /bookings/finished.json:
     get:
       tags:
@@ -370,7 +401,7 @@ paths:
       description: Returns all bookings that have not yet ended, ordered by start time descending. Supports pagination.
       operationId: getBookingsFinished
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -378,7 +409,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/booking'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -386,18 +417,17 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
-
+        example: Bearer <api_key>
   /bookings/reminder.json:
     get:
       tags:
       - Booking Endpoints
       summary: Reminder bookings
-      description: Returns all bookings starting 24 hours or more from now, ordered by start time descending. Matches 
-        the reminder webhook window.
+      description: Returns all bookings starting 24 hours or more from now, ordered by start time descending. Matches the
+        reminder webhook window.
       operationId: getBookingsReminder
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -405,7 +435,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/booking'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -413,18 +443,17 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
-
+        example: Bearer <api_key>
   /bookings/one_hour_before.json:
     get:
       tags:
       - Booking Endpoints
       summary: One hour before bookings
-      description: Returns all bookings starting 1 hour or more from now, ordered by start time descending. Matches the 
-        one_hour_before webhook window.
+      description: Returns all bookings starting 1 hour or more from now, ordered by start time descending. Matches the one_hour_before
+        webhook window.
       operationId: getBookingsOneHourBefore
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -432,7 +461,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/booking'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -440,18 +469,17 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
-
+        example: Bearer <api_key>
   /bookings/updated.json:
     get:
       tags:
       - Booking Endpoints
       summary: Updated bookings
-      description: Returns all non-cancelled bookings, ordered by last updated date descending. Useful for polling for 
-        recently changed bookings.
+      description: Returns all non-cancelled bookings, ordered by last updated date descending. Useful for polling for recently
+        changed bookings.
       operationId: getBookingsUpdated
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -459,7 +487,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/booking'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -467,21 +495,23 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
-
+        example: Bearer <api_key>
   /bookings/{code}/transactions.json:
     get:
       tags:
       - Booking Endpoints
       summary: List booking transactions
-      description: |
-        Returns all money log transactions for the specified booking, ordered by most recent first.
+      description: 'Returns all money log transactions for the specified booking, ordered by most recent first.
+
 
         This includes payments, refunds, credit notes, and other financial transactions
+
         associated with the booking.
+
+        '
       operationId: getBookingTransactions
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -489,9 +519,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/money_log'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "404":
+        '404':
           description: Not found - Booking was not found
       parameters:
       - name: Authorization
@@ -499,7 +529,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: code
         in: path
         required: true
@@ -510,27 +540,32 @@ paths:
       tags:
       - Booking Endpoints
       summary: Create a transaction for a booking
-      description: |
-        Create a new transaction (money log entry) for the specified booking.
+      description: 'Create a new transaction (money log entry) for the specified booking.
+
 
         This creates a credit note transaction with the specified amount and description.
+
         The transaction will be associated with the booking and its customer.
 
+
         All amounts should be provided as positive integers in the smallest currency unit
+
         (cents/pence) - e.g., £10.50 should be provided as 1050.
+
+        '
       operationId: createBookingTransaction
       responses:
-        "201":
+        '201':
           description: Transaction created successfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/money_log'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "404":
+        '404':
           description: Not found - Booking was not found
-        "422":
+        '422':
           description: Unprocessable - the transaction parameters you provided are invalid
       requestBody:
         description: Create a new transaction for the booking
@@ -545,27 +580,29 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: code
         in: path
         required: true
         schema:
           type: string
         description: The booking code
-
   /bookings/{code}/studio_notes.json:
     get:
       tags:
       - Booking Endpoints
       summary: Get booking studio notes
-      description: |
-        Returns the studio notes for the specified booking.
+      description: 'Returns the studio notes for the specified booking.
+
 
         Studio notes are internal notes that studios can add to bookings for their own reference.
+
         These are not visible to customers.
+
+        '
       operationId: getBookingStudioNotes
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -576,9 +613,9 @@ paths:
                     type: string
                     description: The studio notes text
                     nullable: true
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "404":
+        '404':
           description: Not found - Booking was not found
       parameters:
       - name: Authorization
@@ -586,7 +623,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: code
         in: path
         required: true
@@ -597,14 +634,17 @@ paths:
       tags:
       - Booking Endpoints
       summary: Update booking studio notes
-      description: |
-        Update the studio notes for the specified booking.
+      description: 'Update the studio notes for the specified booking.
+
 
         Studio notes are internal notes that studios can add to bookings for their own reference.
+
         These are not visible to customers.
+
+        '
       operationId: updateBookingStudioNotes
       responses:
-        "200":
+        '200':
           description: Studio notes updated successfully
           content:
             application/json:
@@ -615,9 +655,9 @@ paths:
                     type: string
                     description: The updated studio notes text
                     nullable: true
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "404":
+        '404':
           description: Not found - Booking was not found
       requestBody:
         description: Update studio notes for the booking
@@ -632,14 +672,13 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: code
         in: path
         required: true
         schema:
           type: string
         description: The booking code
-
   /customers.json:
     get:
       tags:
@@ -648,7 +687,7 @@ paths:
       description: Returns all customers
       operationId: getCustomers
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -656,7 +695,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/customer'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -664,24 +703,32 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
     post:
       tags:
       - Customer Endpoints
       summary: Create a customer
-      description: |
-        Create a new customer on Jammed.
+      description: 'Create a new customer on Jammed.
+
 
         With a new customer, you must at least provide an **name** and **email address**.
 
-        You can also issue `actions` to the endpoint, to create and invite the customer to set a password - Jammed will then send them an email from your account with a link to set their password.
 
-        You can't create a customer with an email address that already exists as a registered customer on Jammed. You can create a customer with an email address that already exists, so long as the customer is not yet registered on Jammed.
+        You can also issue `actions` to the endpoint, to create and invite the customer to set a password - Jammed will then
+        send them an email from your account with a link to set their password.
 
-        **Jammed API doesn't accept passwords for customer creation process** - they must be set by the customer themselves in the invitation process to verify the email and to improve security.
+
+        You can''t create a customer with an email address that already exists as a registered customer on Jammed. You can
+        create a customer with an email address that already exists, so long as the customer is not yet registered on Jammed.
+
+
+        **Jammed API doesn''t accept passwords for customer creation process** - they must be set by the customer themselves
+        in the invitation process to verify the email and to improve security.
+
+        '
       operationId: createCustomer
       responses:
-        "201":
+        '201':
           description: Customer created
           content:
             application/json:
@@ -689,15 +736,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/customer'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "422":
+        '422':
           description: Unprocessable - the customer parameters you provided are invalid
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/unprocessable_error'
-
       requestBody:
         description: Create a new customer in Jammed
         required: true
@@ -711,8 +757,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
-
+        example: Bearer <api_key>
   /customers/{id}.json:
     get:
       tags:
@@ -721,15 +766,15 @@ paths:
       description: Returns customer with the given ID
       operationId: getCustomer
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/customer'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "404":
+        '404':
           description: Not found - Customer was not found
       parameters:
       - name: Authorization
@@ -737,13 +782,12 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: id
         in: path
         required: true
         schema:
           type: integer
-
   /coupons/{id}.json:
     get:
       tags:
@@ -752,15 +796,15 @@ paths:
       description: Returns coupon with the given ID
       operationId: getCoupon
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/coupon'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "404":
+        '404':
           description: Not found - Coupon was not found
       parameters:
       - name: Authorization
@@ -768,13 +812,12 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: id
         in: path
         required: true
         schema:
           type: integer
-
   /coupons.json:
     get:
       tags:
@@ -783,7 +826,7 @@ paths:
       description: Returns all coupons
       operationId: getCoupons
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -791,7 +834,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/coupon'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -799,30 +842,35 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
     post:
       tags:
       - Coupon Endpoints
       summary: Create a coupon
-      description: |
-        Create a new coupon on Jammed.
+      description: 'Create a new coupon on Jammed.
+
 
         With a new coupon, you must at least provide an **name**, **amount** and **discount_type**.
 
+
         `discount type` is either `fixed_amount`, or `percentage` - and `amount` is in pence/cents or whole pencentage points.
 
-        Once created, a Coupon can be used by staff members only on a booking. To allow customers to use the Coupon, you need to generate Promocode for the Coupon.
+
+        Once created, a Coupon can be used by staff members only on a booking. To allow customers to use the Coupon, you need
+        to generate Promocode for the Coupon.
+
+        '
       operationId: createCoupon
       responses:
-        "201":
+        '201':
           description: Coupon created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/coupon'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "422":
+        '422':
           description: Unprocessable - the coupon parameters you provided are invalid
           content:
             application/json:
@@ -841,8 +889,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
-
+        example: Bearer <api_key>
   /coupons/{coupon_id}/promocodes.json:
     get:
       tags:
@@ -851,13 +898,13 @@ paths:
       description: Returns all promocodes
       operationId: getPromocodes
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/promocode'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -865,7 +912,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: coupon_id
         description: Coupon ID to list the promocodes for
         in: path
@@ -877,19 +924,25 @@ paths:
       tags:
       - Promocode Endpoints
       summary: Create a promocode
-      description: |
-        Create a promocode for a coupon
+      description: 'Create a promocode for a coupon
 
-        You can provide the API with a **code**, but if you don't we'll generate one for you.
+
+        You can provide the API with a **code**, but if you don''t we''ll generate one for you.
+
 
         You can just `POST` an empty body to create a promocode for a coupon with a generated code.
 
-        With promocodes you can specify minimum booking values, redemptions limits, limit only to one customer, and limit one use per customer.
+
+        With promocodes you can specify minimum booking values, redemptions limits, limit only to one customer, and limit
+        one use per customer.
+
 
         Once created, a Promocode can be used to apply the Coupon to a booking via the customer booking form
+
+        '
       operationId: createPromocode
       responses:
-        "201":
+        '201':
           description: Promocode created
           content:
             application/json:
@@ -897,9 +950,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/promocode'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "422":
+        '422':
           description: Unprocessable - the promocode parameters you provided are invalid
           content:
             application/json:
@@ -918,7 +971,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: coupon_id
         description: Coupon ID to create promocode for
         in: path
@@ -926,29 +979,31 @@ paths:
         schema:
           type: integer
         example: 123
-
   /coupons/{coupon_id}/assign_to_customer.json:
     post:
       tags:
       - Coupon Endpoints
       summary: Assign Coupon to Customer
-      description: |
-        Assign a Coupon to a Customer
+      description: 'Assign a Coupon to a Customer
+
 
         Using the Coupon ID and a Customer ID, we can assign a Coupon to a Customer
 
+
         This will mean that the Customer will automatically be able to use the Coupon when booking without the use of a promocode
+
+        '
       operationId: assignPromocode
       responses:
-        "201":
+        '201':
           description: Promocode assigned
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/promocode'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
-        "422":
+        '422':
           description: Coupon has already been assigned to this Customer
           content:
             application/json:
@@ -967,7 +1022,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
+        example: Bearer <api_key>
       - name: coupon_id
         description: Coupon ID to create promocode for
         in: path
@@ -983,7 +1038,7 @@ paths:
       description: Returns all groups
       operationId: getGroups
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -991,7 +1046,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/group'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -999,8 +1054,7 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
-
+        example: Bearer <api_key>
   /rooms.json:
     get:
       tags:
@@ -1009,7 +1063,7 @@ paths:
       description: Returns all rooms
       operationId: getRooms
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1017,7 +1071,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/room'
-        "401":
+        '401':
           description: Unauthorized - Invalid API key
       parameters:
       - name: Authorization
@@ -1025,17 +1079,19 @@ paths:
         required: true
         schema:
           type: string
-        example: "Bearer <api_key>"
-
+        example: Bearer <api_key>
   /dashboard:
     get:
       tags:
       - Booking Endpoints
       summary: Dashboard composite data
-      description: |
-        Returns rooms, today's bookings, blocked times, opening time, slot length, and timezone in a single call.
+      description: 'Returns rooms, today''s bookings, blocked times, opening time, slot length, and timezone in a single call.
+
         Powers the ePOS home screen. Accepts optional `from` and `to` date parameters for a date range,
+
         or a single `date` parameter. Defaults to today.
+
+        '
       operationId: getDashboard
       parameters:
       - $ref: '#/components/parameters/authHeader'
@@ -1058,7 +1114,7 @@ paths:
           format: date
         description: End of date range
       responses:
-        "200":
+        '200':
           description: Dashboard data
           content:
             application/json:
@@ -1085,8 +1141,6 @@ paths:
                     description: Slot length in seconds (e.g. 3600 = 1 hour)
                   timezone:
                     type: string
-
-  # --- Booking Management ---
       x-epos: true
   /bookings/{code}:
     delete:
@@ -1103,15 +1157,14 @@ paths:
         schema:
           type: boolean
       responses:
-        "200":
+        '200':
           description: Booking cancelled
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-        "404":
+        '404':
           description: Booking not found
-
       x-epos: true
   /bookings/{code}/uncancel:
     patch:
@@ -1124,23 +1177,21 @@ paths:
       - $ref: '#/components/parameters/authHeader'
       - $ref: '#/components/parameters/bookingCode'
       responses:
-        "200":
+        '200':
           description: Booking restored
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/booking'
-        "404":
+        '404':
           description: Booking not found
-
       x-epos: true
   /bookings/search:
     get:
       tags:
       - Booking Endpoints
       summary: Search bookings
-      description: Search bookings by customer name, email, mobile, band name, or booking code. Supports status 
-        filtering.
+      description: Search bookings by customer name, email, mobile, band name, or booking code. Supports status filtering.
       operationId: searchBookings
       parameters:
       - $ref: '#/components/parameters/authHeader'
@@ -1153,12 +1204,15 @@ paths:
         in: query
         schema:
           type: string
-          enum: [active, cancelled, cancelled_and_active]
+          enum:
+          - active
+          - cancelled
+          - cancelled_and_active
         description: Filter by booking status
       - $ref: '#/components/parameters/page'
       - $ref: '#/components/parameters/perPage'
       responses:
-        "200":
+        '200':
           description: Search results
           content:
             application/json:
@@ -1166,7 +1220,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/booking'
-
       x-epos: true
   /bookings/by_dates:
     get:
@@ -1190,7 +1243,7 @@ paths:
           type: string
           format: date
       responses:
-        "200":
+        '200':
           description: Bookings for date range
           content:
             application/json:
@@ -1198,7 +1251,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/dashboard_booking'
-
       x-epos: true
   /bookings/awaiting_approval:
     get:
@@ -1212,7 +1264,7 @@ paths:
       - $ref: '#/components/parameters/page'
       - $ref: '#/components/parameters/perPage'
       responses:
-        "200":
+        '200':
           description: Pending bookings
           content:
             application/json:
@@ -1220,7 +1272,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/booking'
-
       x-epos: true
   /bookings/{code}/approve:
     post:
@@ -1233,13 +1284,12 @@ paths:
       - $ref: '#/components/parameters/authHeader'
       - $ref: '#/components/parameters/bookingCode'
       responses:
-        "200":
+        '200':
           description: Booking approved
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/booking'
-
       x-epos: true
   /bookings/{code}/reject:
     post:
@@ -1256,13 +1306,12 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Booking rejected
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/booking'
-
       x-epos: true
   /bookings/{code}/pdf:
     get:
@@ -1275,14 +1324,13 @@ paths:
       - $ref: '#/components/parameters/authHeader'
       - $ref: '#/components/parameters/bookingCode'
       responses:
-        "200":
+        '200':
           description: PDF file
           content:
             application/pdf:
               schema:
                 type: string
                 format: binary
-
       x-epos: true
   /bookings/{code}/resend_confirmation:
     post:
@@ -1295,13 +1343,12 @@ paths:
       - $ref: '#/components/parameters/authHeader'
       - $ref: '#/components/parameters/bookingCode'
       responses:
-        "200":
+        '200':
           description: Email sent
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
       x-epos: true
   /bookings/{code}/refund_transaction:
     post:
@@ -1319,13 +1366,12 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Transaction refunded
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
       x-epos: true
   /bookings/{code}/refunds:
     post:
@@ -1348,13 +1394,12 @@ paths:
                 refund_reason:
                   type: string
       responses:
-        "200":
+        '200':
           description: Booking refunded
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
       x-epos: true
   /bookings/{code}/credit_payments:
     post:
@@ -1367,13 +1412,12 @@ paths:
       - $ref: '#/components/parameters/authHeader'
       - $ref: '#/components/parameters/bookingCode'
       responses:
-        "200":
+        '200':
           description: Credit applied
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
       x-epos: true
   /bookings/{code}/credit_balances:
     post:
@@ -1396,13 +1440,12 @@ paths:
                 send_email:
                   type: boolean
       responses:
-        "200":
+        '200':
           description: Booking credited
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
       x-epos: true
   /bookings/{code}/notes:
     patch:
@@ -1429,13 +1472,12 @@ paths:
                     block_colour_override:
                       type: string
       responses:
-        "200":
+        '200':
           description: Notes updated
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/booking'
-
       x-epos: true
   /bookings/{code}/notifications:
     get:
@@ -1448,7 +1490,7 @@ paths:
       - $ref: '#/components/parameters/authHeader'
       - $ref: '#/components/parameters/bookingCode'
       responses:
-        "200":
+        '200':
           description: Notifications list
           content:
             application/json:
@@ -1456,7 +1498,6 @@ paths:
                 type: array
                 items:
                   type: object
-
       x-epos: true
   /bookings/{code}/payment_requests:
     post:
@@ -1481,21 +1522,20 @@ paths:
               required:
               - price
       responses:
-        "200":
+        '200':
           description: Payment request sent
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
       x-epos: true
   /bookings/{code}/payment_requests/charge:
     post:
       tags:
       - Booking Endpoints
       summary: Charge saved card
-      description: Create a payment request and immediately charge the customer's saved card. This is a collection 
-        action — it creates a new payment request and settles it in one step.
+      description: Create a payment request and immediately charge the customer's saved card. This is a collection action
+        — it creates a new payment request and settles it in one step.
       operationId: chargePaymentRequest
       parameters:
       - $ref: '#/components/parameters/authHeader'
@@ -1515,13 +1555,12 @@ paths:
               required:
               - price
       responses:
-        "200":
+        '200':
           description: Payment taken
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
       x-epos: true
   /bookings/{code}/payment_requests/{id}/mark_as_paid:
     post:
@@ -1539,13 +1578,12 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Marked as paid
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
       x-epos: true
   /bookings/{code}/payment_requests/{id}/cancel:
     post:
@@ -1563,13 +1601,12 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Payment request cancelled
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
       x-epos: true
   /bookings/{code}/settlement_supported:
     get:
@@ -1582,7 +1619,7 @@ paths:
       - $ref: '#/components/parameters/authHeader'
       - $ref: '#/components/parameters/bookingCode'
       responses:
-        "200":
+        '200':
           description: Settlement check result
           content:
             application/json:
@@ -1595,8 +1632,6 @@ paths:
                     type: array
                     items:
                       type: object
-
-  # --- Customer Management ---
       x-epos: true
   /customers/{id}:
     put:
@@ -1622,13 +1657,12 @@ paths:
                 customer:
                   $ref: '#/components/schemas/customer_create_body'
       responses:
-        "200":
+        '200':
           description: Customer updated
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/customer'
-
       x-epos: true
   /customers/search:
     get:
@@ -1651,7 +1685,7 @@ paths:
           type: integer
           default: 10
       responses:
-        "200":
+        '200':
           description: Matching customers
           content:
             application/json:
@@ -1659,7 +1693,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/short_customer'
-
       x-epos: true
   /customers/{id}/notes:
     patch:
@@ -1687,13 +1720,12 @@ paths:
                     notes:
                       type: string
       responses:
-        "200":
+        '200':
           description: Notes updated
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/customer'
-
       x-epos: true
   /customers/{id}/bookings:
     get:
@@ -1712,7 +1744,7 @@ paths:
       - $ref: '#/components/parameters/page'
       - $ref: '#/components/parameters/perPage'
       responses:
-        "200":
+        '200':
           description: Customer's bookings
           content:
             application/json:
@@ -1720,7 +1752,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/booking'
-
       x-epos: true
   /customers/{id}/credit_balance:
     get:
@@ -1737,7 +1768,7 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Credit balance
           content:
             application/json:
@@ -1776,7 +1807,7 @@ paths:
                       type: integer
                       description: New credit balance in minor currency units
       responses:
-        "200":
+        '200':
           description: Balance updated
           content:
             application/json:
@@ -1787,7 +1818,6 @@ paths:
                     type: integer
                   credit_balance:
                     type: integer
-
       x-epos: true
   /customers/{id}/credit_movements:
     get:
@@ -1806,7 +1836,7 @@ paths:
       - $ref: '#/components/parameters/page'
       - $ref: '#/components/parameters/perPage'
       responses:
-        "200":
+        '200':
           description: Credit movements
           content:
             application/json:
@@ -1814,7 +1844,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/credit_movement'
-
       x-epos: true
   /customers/{id}/status:
     get:
@@ -1831,7 +1860,7 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Customer status
           content:
             application/json:
@@ -1848,7 +1877,6 @@ paths:
                     type: boolean
                   status_reason_text:
                     type: string
-
       x-epos: true
   /customers/{id}/payment_methods:
     get:
@@ -1865,7 +1893,7 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Payment methods
           content:
             application/json:
@@ -1873,18 +1901,19 @@ paths:
                 type: array
                 items:
                   type: object
-
-  # --- Pricing ---
       x-epos: true
   /booking_price:
     post:
       tags:
       - Booking Endpoints
       summary: Calculate booking price
-      description: |
-        Real-time price calculation with extras, tax, and staff costs.
+      description: 'Real-time price calculation with extras, tax, and staff costs.
+
         Provide either a `booking_code` to calculate from an existing booking,
+
         or `price.hours` and `price.price` for a custom calculation.
+
+        '
       operationId: calculateBookingPrice
       parameters:
       - $ref: '#/components/parameters/authHeader'
@@ -1923,7 +1952,7 @@ paths:
                       items:
                         type: integer
       responses:
-        "200":
+        '200':
           description: Price breakdown
           content:
             application/json:
@@ -1950,7 +1979,6 @@ paths:
                     type: integer
                   total:
                     type: integer
-
       x-epos: true
   /slot_projection:
     post:
@@ -1989,7 +2017,7 @@ paths:
                     booking_code:
                       type: string
       responses:
-        "200":
+        '200':
           description: Slot projection
           content:
             application/json:
@@ -2008,8 +2036,6 @@ paths:
                       type: object
                   explanation:
                     type: string
-
-  # --- Extras ---
       x-epos: true
   /extras:
     get:
@@ -2021,7 +2047,7 @@ paths:
       parameters:
       - $ref: '#/components/parameters/authHeader'
       responses:
-        "200":
+        '200':
           description: Extras list
           content:
             application/json:
@@ -2029,7 +2055,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/extra'
-
       x-epos: true
   /extras/{id}:
     get:
@@ -2046,14 +2071,12 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Extra detail
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/extra'
-
-  # --- Rooms (show) ---
       x-epos: true
   /rooms/{id}:
     get:
@@ -2070,14 +2093,12 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Room detail
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/room'
-
-  # --- Terminals ---
   /notifications:
     get:
       tags:
@@ -2088,7 +2109,7 @@ paths:
       parameters:
       - $ref: '#/components/parameters/authHeader'
       responses:
-        "200":
+        '200':
           description: Notifications
           content:
             application/json:
@@ -2096,7 +2117,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/notification'
-
       x-epos: true
   /notifications/{id}/read:
     post:
@@ -2112,13 +2132,12 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Marked as read
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
       x-epos: true
   /notifications/{id}/archive:
     post:
@@ -2134,13 +2153,12 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Archived
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
       x-epos: true
   /notifications/clear:
     post:
@@ -2151,14 +2169,12 @@ paths:
       parameters:
       - $ref: '#/components/parameters/authHeader'
       responses:
-        "200":
+        '200':
           description: All notifications cleared
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
-  # --- Blocked Times ---
       x-epos: true
   /blocked_times:
     get:
@@ -2170,7 +2186,7 @@ paths:
       parameters:
       - $ref: '#/components/parameters/authHeader'
       responses:
-        "200":
+        '200':
           description: Blocked times
           content:
             application/json:
@@ -2212,13 +2228,12 @@ paths:
                   - start_at
                   - end_at
       responses:
-        "201":
+        '201':
           description: Blocked time created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/blocked_time'
-
       x-epos: true
   /blocked_times/{id}:
     patch:
@@ -2253,7 +2268,7 @@ paths:
                     reason:
                       type: string
       responses:
-        "200":
+        '200':
           description: Blocked time updated
           content:
             application/json:
@@ -2273,27 +2288,24 @@ paths:
         schema:
           type: integer
       responses:
-        "200":
+        '200':
           description: Blocked time deleted
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/status_response'
-
-  # --- Reporting ---
       x-epos: true
   /recent_transactions:
     get:
       tags:
       - Reporting Endpoints
       summary: Recent transactions
-      description: Today's and yesterday's transaction totals by payment method (Stripe, Square, manual 
-        cash/card/other).
+      description: Today's and yesterday's transaction totals by payment method (Stripe, Square, manual cash/card/other).
       operationId: recentTransactions
       parameters:
       - $ref: '#/components/parameters/authHeader'
       responses:
-        "200":
+        '200':
           description: Transaction summaries
           content:
             application/json:
@@ -2304,7 +2316,6 @@ paths:
                     $ref: '#/components/schemas/transaction_summary'
                   yesterday:
                     $ref: '#/components/schemas/transaction_summary'
-
       x-epos: true
   /money_ledger:
     get:
@@ -2323,7 +2334,7 @@ paths:
       - $ref: '#/components/parameters/page'
       - $ref: '#/components/parameters/perPage'
       responses:
-        "200":
+        '200':
           description: Money logs
           content:
             application/json:
@@ -2331,7 +2342,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/money_ledger_entry'
-
       x-epos: true
   /bookings/{code}/credit_notes:
     post:
@@ -2401,20 +2411,19 @@ x-webhooks:
   booking.created:
     get:
       summary: booking.created
-      description: Made when a Jammed booking is made by a customer online, or made by an admin user. Use the taken_by 
-        parameter to distinguish. When taken online, taken_by=online - otherwise it is the name of the admin user that 
-        took the booking.
+      description: Made when a Jammed booking is made by a customer online, or made by an admin user. Use the taken_by parameter
+        to distinguish. When taken online, taken_by=online - otherwise it is the name of the admin user that took the booking.
       tags:
       - Booking Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/booking"
+                $ref: '#/components/schemas/booking'
               example:
-                "$ref": "#/components/examples/booking_example/value"
+                $ref: '#/components/examples/booking_example/value'
   booking.updated:
     get:
       summary: booking.updated
@@ -2422,45 +2431,45 @@ x-webhooks:
       tags:
       - Booking Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/booking"
+                $ref: '#/components/schemas/booking'
               example:
-                "$ref": "#/components/examples/booking_example/value"
+                $ref: '#/components/examples/booking_example/value'
   booking.cancelled:
     get:
       summary: booking.cancelled
-      description: Triggered when a booking is cancelled by a customer or by a staff member. Cancellations will free up 
-        this time to other customers wishing to book the same time.
+      description: Triggered when a booking is cancelled by a customer or by a staff member. Cancellations will free up this
+        time to other customers wishing to book the same time.
       tags:
       - Booking Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/booking"
+                $ref: '#/components/schemas/booking'
               example:
-                "$ref": "#/components/examples/booking_example/value"
+                $ref: '#/components/examples/booking_example/value'
   booking.reminder:
     get:
       summary: booking.reminder
-      description: Booking reminders in Jammed are customisable, but by default are triggered 24 hours prior to the 
-        start of the booking. An email is sent to the user, but this event exists so you can also hook in other 
-        integrations at this point
+      description: Booking reminders in Jammed are customisable, but by default are triggered 24 hours prior to the start
+        of the booking. An email is sent to the user, but this event exists so you can also hook in other integrations at
+        this point
       tags:
       - Booking Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               example:
-                "$ref": "#/components/examples/booking_example/value"
+                $ref: '#/components/examples/booking_example/value'
   booking.one_hour_before:
     get:
       summary: booking.one_hour_before
@@ -2468,12 +2477,12 @@ x-webhooks:
       tags:
       - Booking Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               example:
-                "$ref": "#/components/examples/booking_example/value"
+                $ref: '#/components/examples/booking_example/value'
   booking.started:
     get:
       summary: booking.started
@@ -2481,12 +2490,12 @@ x-webhooks:
       tags:
       - Booking Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               example:
-                "$ref": "#/components/examples/booking_example/value"
+                $ref: '#/components/examples/booking_example/value'
   booking.finished:
     get:
       summary: booking.finished
@@ -2494,45 +2503,45 @@ x-webhooks:
       tags:
       - Booking Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               example:
-                "$ref": "#/components/examples/booking_example/value"
+                $ref: '#/components/examples/booking_example/value'
   booking.abandoned:
     get:
       summary: booking.abandoned
-      description: Triggered when a customer abandons their booking during the checkout process and does not complete 
-        the booking. This booking is automatically cancelled by Jammed, but this hook allows you to connect a custom 
-        workflow to this event.
+      description: Triggered when a customer abandons their booking during the checkout process and does not complete the
+        booking. This booking is automatically cancelled by Jammed, but this hook allows you to connect a custom workflow
+        to this event.
       tags:
       - Booking Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/booking"
+                $ref: '#/components/schemas/booking'
               example:
-                "$ref": "#/components/examples/booking_example/value"
+                $ref: '#/components/examples/booking_example/value'
   group.created:
     get:
       summary: group.created
-      description: Trigger when a group is made on Jammed (also known as bands). It can be manually made in the admin 
-        interface, or made at booking time if the group is new
+      description: Trigger when a group is made on Jammed (also known as bands). It can be manually made in the admin interface,
+        or made at booking time if the group is new
       tags:
       - Group Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/group"
+                $ref: '#/components/schemas/group'
               example:
-                "$ref": "#/components/examples/group_example/value"
+                $ref: '#/components/examples/group_example/value'
   group.updated:
     get:
       summary: group.updated
@@ -2540,14 +2549,14 @@ x-webhooks:
       tags:
       - Group Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/group"
+                $ref: '#/components/schemas/group'
               example:
-                "$ref": "#/components/examples/group_example/value"
+                $ref: '#/components/examples/group_example/value'
   group.deleted:
     get:
       summary: group.deleted
@@ -2555,30 +2564,30 @@ x-webhooks:
       tags:
       - Group Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/group"
+                $ref: '#/components/schemas/group'
               example:
-                "$ref": "#/components/examples/group_example/value"
+                $ref: '#/components/examples/group_example/value'
   customer.created:
     get:
       summary: customer.created
-      description: Trigger when a customer is made on Jammed. It can be manually made in the admin interface, or made at
-        booking time if the customer is new
+      description: Trigger when a customer is made on Jammed. It can be manually made in the admin interface, or made at booking
+        time if the customer is new
       tags:
       - Customer Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/customer"
+                $ref: '#/components/schemas/customer'
               example:
-                $ref: "#/components/examples/customer_example/value"
+                $ref: '#/components/examples/customer_example/value'
   customer.updated:
     get:
       summary: customer.updated
@@ -2586,14 +2595,14 @@ x-webhooks:
       tags:
       - Customer Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/customer"
+                $ref: '#/components/schemas/customer'
               example:
-                "$ref": "#/components/examples/customer_example/value"
+                $ref: '#/components/examples/customer_example/value'
   customer.deleted:
     get:
       summary: customer.deleted
@@ -2601,18 +2610,14 @@ x-webhooks:
       tags:
       - Customer Webhooks
       responses:
-        "200":
+        '200':
           description: Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/customer"
+                $ref: '#/components/schemas/customer'
               example:
-                "$ref": "#/components/examples/customer_example/value"
-
-  # ===== ePOS ENDPOINTS =====
-
-  # --- Dashboard ---
+                $ref: '#/components/examples/customer_example/value'
 components:
   schemas:
     customer_create_body:
@@ -2622,23 +2627,23 @@ components:
         name:
           type: string
           title: Name
-          description: "The customers given full name"
+          description: The customers given full name
         email:
           type: string
           title: Email
-          description: "The customers email address"
+          description: The customers email address
         mobile:
           type: string
           title: Mobile
-          description: "The customers mobile phone number"
+          description: The customers mobile phone number
         reminders_opt_in:
           type: boolean
           title: Reminders opt-in
-          description: "Whether this customer wants to receive reminders"
+          description: Whether this customer wants to receive reminders
         mailing_list_opt_in:
           type: boolean
           title: Mailing list opt-in
-          description: "Whether this customer wants to be on the mailing list"
+          description: Whether this customer wants to be on the mailing list
       required:
       - name
       - email
@@ -2649,18 +2654,16 @@ components:
         invite:
           type: boolean
           title: Invite
-          description: Invite this customer to set a password on Jammed. An email will be sent to them and the invite 
-            code will last 2 days
-
+          description: Invite this customer to set a password on Jammed. An email will be sent to them and the invite code
+            will last 2 days
     customer_create:
       type: object
-      description: ""
+      description: ''
       properties:
         customer:
-          "$ref": "#/components/schemas/customer_create_body"
+          $ref: '#/components/schemas/customer_create_body'
         actions:
-          "$ref": "#/components/schemas/customer_create_actions"
-
+          $ref: '#/components/schemas/customer_create_actions'
     short_room:
       type: object
       title: Basic room info
@@ -2668,11 +2671,11 @@ components:
         name:
           type: string
           title: Name
-          description: "The name of the room"
+          description: The name of the room
         code:
           type: string
           title: Code
-          description: "The code of the room - used internally by Jammed"
+          description: The code of the room - used internally by Jammed
       required:
       - name
       - code
@@ -2684,47 +2687,47 @@ components:
         name:
           type: string
           title: Name
-          description: "The name of the extra"
+          description: The name of the extra
         category:
           type: string
           title: Category
-          description: "The category of the extra"
+          description: The category of the extra
       required:
       - name
       additionalProperties: false
     short_customer:
       type: object
       title: Basic customer info
-      description: ""
+      description: ''
       properties:
         name:
           type: string
           title: Name
-          description: "The customers given full name"
+          description: The customers given full name
           properties: {}
         email:
           type: string
           title: Email
-          description: "The customers email address"
+          description: The customers email address
           properties: {}
         mobile:
           type: string
           title: Mobile
-          description: "The customers mobile phone number"
+          description: The customers mobile phone number
           properties: {}
         avatar:
           type: string
           title: Avatar
-          description: "The customers avatar image URL, if any"
+          description: The customers avatar image URL, if any
           properties: {}
         reminders_opt_in:
           type: boolean
           title: Reminders opt-in
-          description: "Whether this customer wants to receive reminders"
+          description: Whether this customer wants to receive reminders
         mailing_list_opt_in:
           type: boolean
           title: Mailing list opt-in
-          description: "Whether this customer wants to be on the mailing list"
+          description: Whether this customer wants to be on the mailing list
       required:
       - name
       - email
@@ -2732,20 +2735,29 @@ components:
     short_group:
       type: object
       title: Basic group info
-      description: ""
+      description: ''
       properties:
         name:
           type: string
           title: Name
-          description: "The name of the group"
+          description: The name of the group
         code:
           type: string
           title: Code
-          description: "The code of the group - used internally by Jammed"
+          description: The code of the group - used internally by Jammed
         number_of_members:
           type: integer
           title: NumberOfMembers
-          description: "The number of members in the group"
+          description: The number of members in the group (only present in full group responses)
+        number:
+          type: integer
+          title: Number
+          description: The number of members in the group (present in customer band responses)
+          nullable: true
+        booking_count:
+          type: integer
+          title: BookingCount
+          description: The number of bookings for this group
       required:
       - name
       - code
@@ -2756,374 +2768,377 @@ components:
         question_id:
           type: integer
           title: QuestionId
-          description: "The ID of the question that was asked"
+          description: The ID of the question that was asked
         name:
           type: string
           title: Name
-          description: "The name of the question"
+          description: The name of the question
         response:
           type: string
           title: Response
-          description: "The response/answer to the question"
+          description: The response/answer to the question
     booking:
       type: object
       properties:
         group:
-          "$ref": "#/components/schemas/short_group"
+          $ref: '#/components/schemas/short_group'
         customer:
-          "$ref": "#/components/schemas/short_customer"
+          $ref: '#/components/schemas/short_customer'
         room:
-          "$ref": "#/components/schemas/short_room"
+          $ref: '#/components/schemas/short_room'
         extras:
           type: array
           title: Extras
-          description: "The addons/extras added to the booking"
+          description: The addons/extras added to the booking
           items:
-            "$ref": "#/components/schemas/short_extra"
+            $ref: '#/components/schemas/short_extra'
         custom_answers:
           type: array
           title: Custom Answers
-          description: "The responses to custom questions added to the booking"
+          description: The responses to custom questions added to the booking
           items:
-            "$ref": "#/components/schemas/booking_custom_answer"
+            $ref: '#/components/schemas/booking_custom_answer'
         source_data:
           type: object
           title: Source Data
-          description: "The source metadata of the booking, how and where the booking was made"
+          description: The source metadata of the booking, how and where the booking was made
           properties:
             source:
               type: string
               title: Source
-              description: "The source of the booking: app, online, regular_booking etc."
+              description: 'The source of the booking: app, online, regular_booking etc.'
             platform:
               type: string
               title: Platform
-              description: "The platform where the booking was made: booking_form, dashboard, staff_section, calendar, app
-                etc."
+              description: 'The platform where the booking was made: booking_form, dashboard, staff_section, calendar, app
+                etc.'
             referrer:
               type: string
               title: Referrer
-              description: "The referrer - the URL of the booking page"
+              description: The referrer - the URL of the booking page
         code:
           type: string
           title: Code
-          description: "The code of the booking - seen by customers on the booking page"
+          description: The code of the booking - seen by customers on the booking page
         id:
           type: string
           title: id
-          description: "Same as code"
+          description: Same as code
         recording:
           type: boolean
           title: Recording
-          description: "Whether the room has been marked as a recording"
+          description: Whether the room has been marked as a recording
         regular:
           type: boolean
           title: Regular
-          description: "Whether the booking is part of a regular booking"
+          description: Whether the booking is part of a regular booking
         online_booking:
           type: boolean
           title: OnlineBooking
-          description: "Whether the booking was made online by the customer"
+          description: Whether the booking was made online by the customer
         created_at:
           type: integer
           title: CreatedAt
-          description: "Unix timestamp from epoch"
+          description: Unix timestamp from epoch
         updated_at:
           type: integer
           title: UpdatedAt
-          description: "Unix timestamp from epoch"
+          description: Unix timestamp from epoch
         approved_at:
           type: integer
           title: ApprovedAt
-          description: "Unix timestamp from epoch - when the booking was approved (if approved)"
+          description: Unix timestamp from epoch - when the booking was approved (if approved)
         rejected_at:
           type: integer
           title: RejectedAt
-          description: "Unix timestamp from epoch - when the booking was rejected (if rejected)"
+          description: Unix timestamp from epoch - when the booking was rejected (if rejected)
         price:
           type: integer
           title: Price
-          description: "The price of the booking time only in cents/pence/units"
+          description: The price of the booking time only in cents/pence/units
         price_currency:
           type: string
           title: PriceCurrency
-          description: "The currency of the price"
+          description: The currency of the price
         title:
           type: string
           title: Title
-          description: "The title of the booking - this is generated from the customer and group names"
+          description: The title of the booking - this is generated from the customer and group names
         start_at:
           type: integer
           title: StartAt
-          description: "Unix timestamp from epoch"
+          description: Unix timestamp from epoch
         end_at:
           type: integer
           title: EndAt
-          description: "Unix timestamp from epoch"
+          description: Unix timestamp from epoch
         duration:
           type: integer
           title: Duration
-          description: "The duration of the booking in seconds"
+          description: The duration of the booking in seconds
         duration_hours:
           type: number
           title: DurationHours
-          description: "The duration of the booking in hours, e.g. 1pm-2.30pm = `2.5` hours"
+          description: The duration of the booking in hours, e.g. 1pm-2.30pm = `2.5` hours
         duration_full_hours:
           type: integer
           title: DurationFullHours
-          description: "The duration of the booking in hours, rounded up to each full hour, e.g. 1pm-2.30pm = `3` hours"
+          description: The duration of the booking in hours, rounded up to each full hour, e.g. 1pm-2.30pm = `3` hours
         activity_name:
           type: string
           title: ActivityName
-          description: "The name of the activity the booking is part of - e.g. 'Rehearsal'"
+          description: The name of the activity the booking is part of - e.g. 'Rehearsal'
         dates:
           type: array
           title: Dates
-          description: "The dates that the booking is part of in local time - given as strings YYYYMMDD format"
+          description: The dates that the booking is part of in local time - given as strings YYYYMMDD format
           items:
             type: string
         timezone:
           type: string
           title: Timezone
-          description: "The timezone of the booking"
+          description: The timezone of the booking
         has_amount_due:
           type: boolean
           title: HasAmountDue
-          description: "Whether the booking still has an amount due"
+          description: Whether the booking still has an amount due
         remaining_amount:
           type: integer
           title: RemainingAmount
-          description: "The remaining amount due for the booking"
+          description: The remaining amount due for the booking
         cancelled:
           type: boolean
           title: Cancelled
-          description: "Whether the booking has been cancelled"
+          description: Whether the booking has been cancelled
         taken_by:
           type: string
           title: TakenBy
-          description: "The name of the staff member who took the booking - if null, the booking was made by the customer
-            themselves"
+          description: The name of the staff member who took the booking - if null, the booking was made by the customer themselves
     room:
       type: object
       properties:
         id:
-          type: string
+          type: integer
           title: id
-          description: "Same as code"
+          description: The unique numeric ID of the room
         code:
           type: string
           title: Code
-          description: "The code of the room - used internally by Jammed"
+          description: The code of the room - used internally by Jammed
         name:
           type: string
           title: Name
-          description: "The name of the room"
+          description: The name of the room
         description:
           type: string
           title: Description
-          description: "The description of the room - you can set this in the admin interface"
+          description: The description of the room - you can set this in the admin interface
         space_for:
           type: integer
           title: SpaceFor
-          description: "The capacity of the room"
+          description: The capacity of the room
         order:
           type: integer
           title: Order
         twenty_four_hour_booking:
           type: boolean
           title: TwentyFourHourBooking
-          description: "Whether the room can be booked 24 hours a day"
+          description: Whether the room can be booked 24 hours a day
         space_type:
           type: string
           title: SpaceType
-          description: "The type of space the room is"
+          description: The type of space the room is
         hex_colour:
           type: string
           title: HexColour
-          description: "The hex colour of the room on the dashboard"
+          description: The hex colour of the room on the dashboard
         active:
           type: boolean
           title: Active
-          description: "Whether the room is active for Jammed online bookings"
+          description: Whether the room is active for Jammed online bookings
         prices_set:
           type: integer
           title: PricesSet
-          description: "The count of prices set for the room"
+          description: The count of prices set for the room
         price_to:
           type: string
           title: PriceTo
-          description: "The maximum price for the room"
+          description: The maximum price for the room
         price_from:
           type: string
           title: PriceFrom
-          description: "The minimum price for the room"
+          description: The minimum price for the room
         images:
           type: array
           title: Images
-          description: "The images of the room"
+          description: The images of the room
           items:
             type: object
             properties:
               original:
                 type: string
                 title: original
-                description: "Image URL"
+                description: Image URL
         data:
           type: object
           title: Data
-          description: "The hidden data of the room - can be set and used by back-end systems"
-
+          description: The hidden data of the room - can be set and used by back-end systems
     customer:
       type: object
       properties:
         id:
           type: integer
           title: ID
-          description: "Use to identify the customer in other API calls"
+          description: Use to identify the customer in other API calls
         name:
           type: string
           title: Name
-          description: "The customers given full name"
+          description: The customers given full name
         email:
           type: string
           title: Email
-          description: "The customers email address"
+          description: The customers email address
         mobile:
           type: string
           title: Mobile
-          description: "The customers mobile phone number"
+          description: The customers mobile phone number
         avatar:
           type: string
           title: Avatar
-          description: "The customers avatar image URL, if any"
+          description: The customers avatar image URL, if any
         credit_balance:
           type: integer
           title: CreditBalance
-          description: "The customers current credit balance in cents/pence/units\n\nThis cannot be changed via the API"
+          description: 'The customers current credit balance in cents/pence/units
+
+
+            This cannot be changed via the API'
         status:
-          $ref: "#/components/schemas/customer_statuses"
+          $ref: '#/components/schemas/customer_statuses'
         reminders_opt_in:
           type: boolean
           title: Reminders opt-in
-          description: "Whether this customer wants to receive reminders"
+          description: Whether this customer wants to receive reminders
         mailing_list_opt_in:
           type: boolean
           title: Mailing list opt-in
-          description: "Whether this customer wants to be on the mailing list"
+          description: Whether this customer wants to be on the mailing list
         signed_up:
           type: boolean
           title: SignedUp
-          description: "Whether the customer has signed up"
+          description: Whether the customer has signed up
         signed_up_at:
           type: integer
           title: SignedUpAt
-          description: "Unix timestamp from epoch - when the customer signed up"
+          description: Unix timestamp from epoch - when the customer signed up
         regular_bookings_count:
-          type: integer
           title: RegularBookingsCount
-          description: "The number of regular bookings the customer has made"
+          description: 'The number of regular bookings the customer has made. Note: may return boolean `false` instead of
+            `0` when the customer has no regular bookings.'
+          oneOf:
+          - type: integer
+          - type: boolean
         bookings_count:
           type: integer
           title: BookingsCount
-          description: "The number of bookings the customer has made"
+          description: The number of bookings the customer has made
         created_at:
           type: integer
           title: CreatedAt
-          description: "Unix timestamp from epoch - when the customer was created"
+          description: Unix timestamp from epoch - when the customer was created
         updated_at:
           type: integer
           title: UpdatedAt
-          description: "Unix timestamp from epoch - when the customer was last updated"
+          description: Unix timestamp from epoch - when the customer was last updated
         last_booking_at:
           type: integer
           title: LastBookingAt
-          description: "Unix timestamp from epoch - when the customer last booked"
+          description: Unix timestamp from epoch - when the customer last booked
         regular_bookings:
           type: array
           title: RegularBookings
-          description: "The customer's regular bookings"
+          description: The customer's regular bookings
           items:
             type: object
-            title: ""
-            description: ""
+            title: ''
+            description: ''
             properties:
               name:
                 type: string
                 title: Name
-                description: ""
+                description: ''
               id:
                 type: integer
                 title: Id
-                description: ""
+                description: ''
         bands:
           type: array
           title: Bands or Groups
-          description: ""
+          description: ''
           items:
-            "$ref": "#/components/schemas/short_group"
+            $ref: '#/components/schemas/short_group'
     group:
       type: object
       properties:
         name:
           type: string
           title: Name
-          description: "The name of the group"
+          description: The name of the group
         group_type:
           type: string
           title: GroupType
-          description: "The type of the group - e.g. band"
+          description: The type of the group - e.g. band
         number_of_members:
           type: integer
           title: NumberOfMembers
-          description: "The number of members in the group"
+          description: The number of members in the group
         customer_count:
           type: integer
           title: CustomerCount
-          description: "The number of customers assigned to the group"
+          description: The number of customers assigned to the group
         regular_bookings_count:
           type: integer
           title: RegularBookingsCount
-          description: "The number of regular bookings the group has"
+          description: The number of regular bookings the group has
         bookings_count:
           type: integer
           title: BookingsCount
-          description: "The number of bookings the group has"
+          description: The number of bookings the group has
         created_at:
           type: integer
           title: CreatedAt
-          description: "Unix timestamp from epoch - when the group was created"
+          description: Unix timestamp from epoch - when the group was created
         updated_at:
           type: integer
           title: UpdatedAt
-          description: "Unix timestamp from epoch - when the group was last updated"
+          description: Unix timestamp from epoch - when the group was last updated
         last_booking_at:
           type: integer
           title: LastBookingAt
-          description: "Unix timestamp from epoch - when the group last booked"
+          description: Unix timestamp from epoch - when the group last booked
         customers:
           type: array
           title: Customers
-          description: "The customers assigned to the group"
+          description: The customers assigned to the group
           items:
-            "$ref": "#/components/schemas/short_customer"
+            $ref: '#/components/schemas/short_customer'
         regular_bookings:
           type: array
           title: RegularBookings
-          description: "The group's regular bookings"
+          description: The group's regular bookings
           items:
             type: object
-            title: ""
-            description: ""
+            title: ''
+            description: ''
             properties:
               name:
                 type: string
                 title: Name
-                description: "The name of the regular booking"
+                description: The name of the regular booking
               id:
                 type: integer
                 title: Id
-                description: "The ID of the regular booking"
-
+                description: The ID of the regular booking
     promocode:
       type: object
       properties:
@@ -3131,20 +3146,26 @@ components:
           type: integer
         code:
           type: string
-          description: |
-            The code the customer can use to redeem the promocode, they enter this code when booking.
+          description: 'The code the customer can use to redeem the promocode, they enter this code when booking.
+
 
             The code is case-insensitive and must be unique
+
+            '
         minimum_booking_value:
           type: integer
-          description: |
-            The minimum booking value the Promocode can be used for.
+          description: 'The minimum booking value the Promocode can be used for.
+
 
             If attempted for a booking below this value, the Coupon will not be applied
+
+            '
         first_time_use_only:
           type: boolean
-          description: |
-            If set to true, the Promocode will only be usable once per customer - applies to logged in customers only
+          description: 'If set to true, the Promocode will only be usable once per customer - applies to logged in customers
+            only
+
+            '
     coupon:
       type: object
       properties:
@@ -3155,18 +3176,23 @@ components:
           description: A label for the coupon - this is seen by your customers
         discount_type:
           type: string
-          description: |
-            The type of discount the coupon gives
+          description: 'The type of discount the coupon gives
 
-            Either: 'fixed_amount' or 'percentage'
+
+            Either: ''fixed_amount'' or ''percentage''
+
+            '
         amount:
           type: integer
-          description: |
-            The integer decimal amount, or percentage that the coupon will deduct.
+          description: 'The integer decimal amount, or percentage that the coupon will deduct.
+
 
             For `discount_type=percentage`, `10` would mean 10%
 
+
             For `discount_type=fixed_amount`, `10` would mean $0.10 or £0.10 etc
+
+            '
         all_new_customers:
           type: boolean
           description: Set to true if you want the coupon to apply to all new customers automatically
@@ -3184,16 +3210,20 @@ components:
           description: Is set as true if the coupon has expired
         status:
           type: string
-          description: |
-            The status of the coupon: `active`, `deleted`, `expired`, `fully used`
+          description: 'The status of the coupon: `active`, `deleted`, `expired`, `fully used`
+
+            '
         duration:
           type: string
-          description: |
-            The duration of the coupon: `once`, `forever`
+          description: 'The duration of the coupon: `once`, `forever`
+
 
             If `forever`, the coupon can be used over and over by the same customer
 
+
             If `once`, the coupon can only be used once by the same customer
+
+            '
         total_number_of_uses:
           type: integer
           description: The total number of times the coupon can be used
@@ -3202,19 +3232,20 @@ components:
           description: The number of times the coupon has been used
         promocodes:
           type: array
-          description: |
-            The promocodes that are linked to this coupon.
+          description: 'The promocodes that are linked to this coupon.
+
+            '
           items:
             type: object
             properties:
               coupon:
-                "$ref": "#/components/schemas/promocode"
+                $ref: '#/components/schemas/promocode'
     coupon_create:
       type: object
-      description: ""
+      description: ''
       properties:
         coupon:
-          "$ref": "#/components/schemas/coupon_create_body"
+          $ref: '#/components/schemas/coupon_create_body'
     coupon_create_body:
       type: object
       title: Coupon info
@@ -3224,26 +3255,34 @@ components:
           description: A label for the coupon - this is seen by your customers
         amount:
           type: string
-          description: |
-            The integer decimal amount, or percentage that the coupon will deduct.
+          description: 'The integer decimal amount, or percentage that the coupon will deduct.
+
 
             For `discount_type=percentage`, `10` would mean 10%
 
+
             For `discount_type=fixed_amount`, `10` would mean $0.10 or £0.10 etc
+
+            '
         duration:
           type: string
-          description: |
-            The duration of the coupon: `once`, `forever`
+          description: 'The duration of the coupon: `once`, `forever`
+
 
             If `forever`, the coupon can be used over and over by the same customer
 
+
             If `once`, the coupon can only be used once by the same customer
+
+            '
         discount_type:
           type: string
-          description: |
-            The type of discount the coupon gives
+          description: 'The type of discount the coupon gives
 
-            Either: 'fixed_amount' or 'percentage'
+
+            Either: ''fixed_amount'' or ''percentage''
+
+            '
         all_new_customers:
           type: boolean
           description: Set to true if you want the coupon to apply to all new customers automatically
@@ -3258,47 +3297,47 @@ components:
       - duration
       - amount
       - discount_type
-
     promocode_create:
       type: object
-      description: ""
+      description: ''
       properties:
         promocode:
-          "$ref": "#/components/schemas/promocode_create_body"
+          $ref: '#/components/schemas/promocode_create_body'
     promocode_create_body:
       type: object
       title: Promocode info
       properties:
         code:
           type: string
-          description: |
-            The code the customer can use to redeem the promocode, they enter this code when booking.
+          description: 'The code the customer can use to redeem the promocode, they enter this code when booking.
+
 
             The code is case-insensitive and must be unique
+
+            '
         minimum_booking_value:
           type: integer
-          description: |
-            The minimum booking value the Promocode can be used for.
+          description: 'The minimum booking value the Promocode can be used for.
+
 
             If attempted for a booking below this value, the Coupon will not be applied
 
+            '
     coupon_assign_to_customer:
       type: object
       title: Coupon assignment
       properties:
         customer_id:
           type: integer
-          description: |
-            The Customer's ID to assign the Coupon to
+          description: 'The Customer''s ID to assign the Coupon to
 
-
+            '
     booking_create:
       type: object
-      description: ""
+      description: ''
       properties:
         booking:
           $ref: '#/components/schemas/booking_create_body'
-
     booking_create_body:
       type: object
       title: Booking info
@@ -3308,10 +3347,12 @@ components:
         customer_id:
           type: integer
           title: Customer ID
-          description: |
-            The ID of an existing customer to make the booking for.
+          description: 'The ID of an existing customer to make the booking for.
+
 
             If provided, `customer_details` is not required.
+
+            '
         customer_details:
           $ref: '#/components/schemas/booking_create_customer_details'
         band_details:
@@ -3319,32 +3360,31 @@ components:
         band_code:
           type: string
           title: Band code
-          description: "The code of an existing band/group to associate with the booking"
+          description: The code of an existing band/group to associate with the booking
         extra_ids:
           type: array
           title: Extra IDs
-          description: "Array of extra IDs to add to the booking"
+          description: Array of extra IDs to add to the booking
           items:
             type: integer
         is_recording:
           type: boolean
           title: Is recording
-          description: "Whether this booking is a recording session"
+          description: Whether this booking is a recording session
         number_expected:
           type: integer
           title: Number expected
-          description: "The number of people expected for the booking"
+          description: The number of people expected for the booking
         additional_notes:
           type: string
           title: Additional notes
-          description: "Any additional notes for the booking"
+          description: Any additional notes for the booking
         send_email:
           type: boolean
           title: Send email
-          description: "Whether to send a confirmation email to the customer. Defaults to true"
+          description: Whether to send a confirmation email to the customer. Defaults to true
       required:
       - booking_details
-
     booking_create_details:
       type: object
       title: Booking time details
@@ -3352,73 +3392,69 @@ components:
         start_at:
           type: string
           title: Start at
-          description: "The start time of the booking in ISO8601 format"
-          example: "2026-03-01T10:00:00Z"
+          description: The start time of the booking in ISO8601 format
+          example: '2026-03-01T10:00:00Z'
         end_at:
           type: string
           title: End at
-          description: "The end time of the booking in ISO8601 format"
-          example: "2026-03-01T14:00:00Z"
+          description: The end time of the booking in ISO8601 format
+          example: '2026-03-01T14:00:00Z'
         room_id:
           type: integer
           title: Room ID
-          description: "The ID of the room to book"
+          description: The ID of the room to book
         price:
           type: integer
           title: Price
-          description: "The price of the booking in cents/pence/units"
+          description: The price of the booking in cents/pence/units
           example: 6000
       required:
       - start_at
       - end_at
       - room_id
       - price
-
     booking_create_customer_details:
       type: object
       title: New customer details
-      description: "Provide these if creating a booking for a new customer (instead of using customer_id)"
+      description: Provide these if creating a booking for a new customer (instead of using customer_id)
       properties:
         name:
           type: string
           title: Name
-          description: "The customer's full name"
+          description: The customer's full name
         email:
           type: string
           title: Email
-          description: "The customer's email address"
+          description: The customer's email address
         mobile:
           type: string
           title: Mobile
-          description: "The customer's mobile phone number"
+          description: The customer's mobile phone number
       required:
       - name
       - email
-
     booking_create_band_details:
       type: object
       title: Band/group details
-      description: "Provide to create or associate a band/group with the booking"
+      description: Provide to create or associate a band/group with the booking
       properties:
         name:
           type: string
           title: Name
-          description: "The name of the band/group"
+          description: The name of the band/group
       required:
       - name
-
     unprocessable_error:
       type: object
       properties:
         status:
           type: string
           description: Error status
-          example: "error"
+          example: error
         message:
           type: string
           description: Error message
-          example: "The model parameters you provided are invalid"
-
+          example: The model parameters you provided are invalid
     customer_statuses:
       type: string
       title: CustomerStatus
@@ -3428,15 +3464,20 @@ components:
       - registered
       - banned
       - behind_payment
-      description: |
-        The status of the customer
+      description: 'The status of the customer
+
 
         `unregistered`: The customer has booked but not registered an account
+
         `invited`: The customer has been invited to register an account
+
         `registered`: The customer has registered an account
+
         `banned`: The customer has been marked as banned from booking (and will not be able to book)
+
         `behind_payment`: The customer has been marked as behind on payments (and will not be able to book)
 
+        '
     booking_update:
       type: object
       description: Booking update parameters
@@ -3467,7 +3508,6 @@ components:
             number_expected:
               type: integer
               description: Expected number of attendees
-
     transaction_create:
       type: object
       description: Transaction creation parameters
@@ -3484,12 +3524,15 @@ components:
             manual_type:
               type: string
               description: Type of manual transaction
-              enum: [card, cash, bank_transfer, other]
+              enum:
+              - card
+              - cash
+              - bank_transfer
+              - other
               default: card
           required:
           - amount
           - description
-
     studio_notes_update:
       type: object
       description: Studio notes update parameters
@@ -3500,7 +3543,6 @@ components:
             studio_notes:
               type: string
               description: Internal studio notes (visible only to studio staff)
-
     money_log:
       type: object
       description: A financial transaction record
@@ -3540,7 +3582,6 @@ components:
           type: string
           description: Type of manual transaction (for credit notes)
           nullable: true
-
     notification:
       type: object
       title: Notification
@@ -3553,7 +3594,9 @@ components:
           type: string
         severity:
           type: string
-          enum: [normal, high]
+          enum:
+          - normal
+          - high
         label:
           type: string
         read:
@@ -3564,7 +3607,6 @@ components:
         read_at:
           type: integer
           description: Unix timestamp (null if unread)
-
           nullable: true
     blocked_time:
       type: object
@@ -3584,10 +3626,10 @@ components:
           description: Unix timestamp
         start_time:
           type: string
-          description: "Format: YYYY-MM-DD HH:MM"
+          description: 'Format: YYYY-MM-DD HH:MM'
         end_time:
           type: string
-          description: "Format: YYYY-MM-DD HH:MM"
+          description: 'Format: YYYY-MM-DD HH:MM'
         room:
           type: object
           properties:
@@ -3597,7 +3639,6 @@ components:
               type: string
             code:
               type: string
-
     extra:
       type: object
       title: Extra
@@ -3626,7 +3667,6 @@ components:
           type: integer
         price_per_weekly:
           type: integer
-
     dashboard_booking:
       type: object
       title: Dashboard Booking
@@ -3692,7 +3732,6 @@ components:
               type: string
         extras_summary:
           type: string
-
     credit_movement:
       type: object
       title: Credit Movement
@@ -3714,7 +3753,6 @@ components:
               type: string
         made_by:
           type: string
-
     money_ledger_entry:
       type: object
       title: Money Ledger Entry
@@ -3747,7 +3785,6 @@ components:
               type: integer
             name:
               type: string
-
     transaction_summary:
       type: object
       title: Transaction Summary
@@ -3780,17 +3817,17 @@ components:
           type: integer
         total:
           type: integer
-
     status_response:
       type: object
       title: Status Response
       properties:
         status:
           type: string
-          enum: [ok, error]
+          enum:
+          - ok
+          - error
         message:
           type: string
-
   examples:
     booking_example:
       value:
@@ -3802,10 +3839,10 @@ components:
           email: geddy22@yahoo.ca
         - name: Neil Peart
           email: theprofessor2112@gmail.com
-          mobile: "+447584948502"
+          mobile: '+447584948502'
         - name: Alex Lifeson
           email: alex-lifeson@me.com
-          mobile: "+442072983029"
+          mobile: '+442072983029'
         customer_count: 3
         regular_bookings:
         - name: Monday 8pm Red Room
@@ -3814,7 +3851,6 @@ components:
         bookings_count: 61
         created_at: 1646247874
         updated_at: 1646247874
-
     customer_example:
       value:
         email: Geddy Lee
@@ -3834,7 +3870,6 @@ components:
         last_booking_at: 1643799530
         created_at: 1643799530
         updated_at: 1643799530
-
     group_example:
       value:
         name: Rush
@@ -3843,13 +3878,13 @@ components:
         customers:
         - name: Geddy Lee
           email: geddy22@yahoo.ca
-          mobile: "+447584948502"
+          mobile: '+447584948502'
         - name: Neil Peart
           email: theprofessor2112@gmail.com
-          mobile: "+447584948502"
+          mobile: '+447584948502'
         - name: Alex Lifeson
           email: alex-lifeson@me.com
-          mobile: "+442072983029"
+          mobile: '+442072983029'
         customer_count: 3
         regular_bookings:
         - name: Geddy Lee (Rush)
@@ -3858,8 +3893,6 @@ components:
         bookings_count: 6171
         created_at: 1646247874
         updated_at: 1646247874
-
-    # ePOS schemas
   parameters:
     authHeader:
       name: Authorization
@@ -3867,7 +3900,7 @@ components:
       required: true
       schema:
         type: string
-      example: "Bearer <api_key>"
+      example: Bearer <api_key>
     bookingCode:
       name: code
       in: path
@@ -3890,11 +3923,11 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-
   securitySchemes:
     apiKey:
       type: apiKey
-      name: "Authorization: 'Bearer <api-key>'"
+      name: 'Authorization: ''Bearer <api-key>'''
       in: header
-      description: |
-        Issue a http header with the key 'Authorization' and value 'Bearer api_key'
+      description: 'Issue a http header with the key ''Authorization'' and value ''Bearer api_key''
+
+        '
