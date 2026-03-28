@@ -50,6 +50,7 @@ x-tagGroups:
   - Group Endpoints
   - Coupon Endpoints
   - Promocode Endpoints
+  - Studio Endpoints
 - name: Webhooks
   tags:
   - Booking Webhooks
@@ -102,6 +103,8 @@ tags:
   x-displayName: Promocode Model
   description: |
     <SchemaDefinition schemaRef="#/components/schemas/promocode" />
+- name: Studio Endpoints
+  description: Studio configuration and feature discovery
 servers:
 - url: https://api.jammed.app/api/v2/
   description: Jammed API endpoint
@@ -1026,6 +1029,156 @@ paths:
         schema:
           type: string
         example: "Bearer <api_key>"
+
+  /studio.json:
+    get:
+      tags:
+      - Studio Endpoints
+      summary: Studio configuration
+      description: |
+        Returns studio branding, feature toggles, usage flags, payment setup, wordings, and plan info.
+        Designed to be called on app launch and cached client-side (recommended: 1 hour).
+      operationId: getStudio
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      responses:
+        "200":
+          description: Studio configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  studio:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Studio display name
+                      slug:
+                        type: string
+                        description: Studio subdomain identifier
+                      url:
+                        type: string
+                        description: Studio's default Jammed URL
+                      logo:
+                        type: object
+                        properties:
+                          default:
+                            type: string
+                            nullable: true
+                            description: Cropped logo URL
+                          square:
+                            type: string
+                            nullable: true
+                            description: Square (512x512) logo URL
+                          app:
+                            type: string
+                            nullable: true
+                            description: App-sized (100x100) logo URL
+                      timezone:
+                        type: string
+                        description: IANA timezone (e.g. Europe/London)
+                      currency_code:
+                        type: string
+                        description: ISO 4217 currency code (e.g. GBP)
+                      currency_symbol:
+                        type: string
+                        description: Currency symbol (e.g. £)
+                      country_code:
+                        type: string
+                        description: ISO country code (e.g. GB)
+                      opening_time:
+                        type: integer
+                        description: Opening time in seconds from midnight (e.g. 32400 = 9am)
+                      closing_time:
+                        type: integer
+                        description: Closing time in seconds from midnight (e.g. 82800 = 11pm)
+                      slot_length:
+                        type: integer
+                        description: Booking slot length in seconds (e.g. 1800 = 30min)
+                      tax_rate:
+                        type: number
+                        description: Tax rate percentage (e.g. 20.0), 0 if none configured
+                      rooms_count:
+                        type: integer
+                        description: Total number of rooms
+                  features:
+                    type: object
+                    description: System-wide feature toggles
+                    properties:
+                      bands_and_groups:
+                        type: boolean
+                      bookable_staff:
+                        type: boolean
+                      approval_required:
+                        type: boolean
+                      enquiries:
+                        type: boolean
+                      memberships:
+                        type: boolean
+                      smart_lock_provider:
+                        type: string
+                        nullable: true
+                        description: Smart lock provider name, or null if not configured
+                  wordings:
+                    type: object
+                    description: Custom terminology for the studio
+                    properties:
+                      customer:
+                        type: string
+                        description: What the studio calls customers (default 'customer')
+                      group:
+                        type: string
+                        description: What the studio calls groups (default 'group')
+                      room:
+                        type: string
+                        description: What the studio calls rooms (default 'room')
+                  usage:
+                    type: object
+                    description: Subsystem usage flags — true if the studio has data in that subsystem
+                    properties:
+                      extras:
+                        type: boolean
+                      recording_sessions:
+                        type: boolean
+                      audio_uploads:
+                        type: boolean
+                      custom_questions:
+                        type: boolean
+                      regular_bookings:
+                        type: boolean
+                      coupons:
+                        type: boolean
+                      credit_balance:
+                        type: boolean
+                      multi_location:
+                        type: boolean
+                      locations:
+                        type: boolean
+                  payments:
+                    type: object
+                    properties:
+                      stripe_connected:
+                        type: boolean
+                      square_connected:
+                        type: boolean
+                      square_terminal:
+                        type: boolean
+                      manual_payments:
+                        type: boolean
+                        description: True when no online payment gateway is configured
+                  plan:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        nullable: true
+                        description: Plan name (e.g. 'standard')
+                      max_rooms:
+                        type: integer
+                        nullable: true
+                        description: Maximum rooms allowed on the plan
 
   /dashboard:
     get:
