@@ -2808,10 +2808,6 @@ components:
           type: string
           nullable: true
           description: Detailed description of the event
-        link:
-          type: string
-          nullable: true
-          description: Related URL for the event
       required:
       - title
       - timestamp
