@@ -1611,6 +1611,32 @@ paths:
                   type: object
 
       x-epos: true
+  /bookings/{code}/history.json:
+    get:
+      tags:
+      - Booking Endpoints
+      summary: Booking history
+      description: |
+        Returns a chronological timeline of all activity on a booking,
+        sorted ascending by time. Includes transactions, notifications,
+        status changes, price changes, coupon redemptions, and more.
+      operationId: getBookingHistory
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - $ref: '#/components/parameters/bookingCode'
+      responses:
+        "200":
+          description: History timeline
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/booking_history_entry'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - Booking was not found
   /bookings/{code}/payment_requests:
     post:
       tags:
@@ -2768,6 +2794,23 @@ x-webhooks:
   # --- Dashboard ---
 components:
   schemas:
+    booking_history_entry:
+      type: object
+      title: Booking history entry
+      properties:
+        title:
+          type: string
+          description: Short description of the event
+        timestamp:
+          type: integer
+          description: Unix epoch timestamp of the event
+        description:
+          type: string
+          nullable: true
+          description: Detailed description of the event
+      required:
+      - title
+      - timestamp
     customer_create_body:
       type: object
       title: Customer info
