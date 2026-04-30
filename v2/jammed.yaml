@@ -3272,6 +3272,52 @@ components:
           description: ""
           items:
             "$ref": "#/components/schemas/short_group"
+        address:
+          title: Address
+          description: "The customer's billing address. May be null if no address has been set."
+          nullable: true
+          oneOf:
+          - "$ref": "#/components/schemas/customer_billing_address"
+          - type: "null"
+    customer_billing_address:
+      type: object
+      title: Customer billing address
+      description: "The customer's billing address details"
+      properties:
+        company:
+          type: string
+          title: Company
+          description: "Company name"
+          nullable: true
+        address_1:
+          type: string
+          title: Address line 1
+          nullable: true
+        address_2:
+          type: string
+          title: Address line 2
+          nullable: true
+        town:
+          type: string
+          title: Town
+          nullable: true
+        state:
+          type: string
+          title: State
+          nullable: true
+        postcode:
+          type: string
+          title: Postcode
+          nullable: true
+        country:
+          type: string
+          title: Country
+          nullable: true
+        formatted_address:
+          type: string
+          title: Formatted address
+          description: "The full address formatted as a single string"
+          nullable: true
     group:
       type: object
       properties:
