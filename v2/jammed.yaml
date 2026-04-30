@@ -2893,6 +2893,10 @@ components:
       title: Basic customer info
       description: ""
       properties:
+        id:
+          type: integer
+          title: ID
+          description: "Use to identify the customer in other API calls"
         name:
           type: string
           title: Name
