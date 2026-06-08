@@ -1,5 +1,15 @@
 # Jammed API changelog
 
+## `2.2.1`: 8 June 2026
+
+**Documented the customer billing address**
+
+The `customer` schema now documents the `address` object that the API already returns on `GET /customers`, `GET /customers/{id}`, and the `customer.created` / `customer.updated` webhooks.
+
+- New `customer_billing_address` schema with `company`, `address_1`, `address_2`, `town`, `state`, `postcode`, `country` (ISO 3166-1 alpha-2), and a `formatted_address` convenience string (the full address as a single comma-separated line, with the country name expanded).
+- `address` is `null` when the customer has not provided a billing address.
+- No breaking changes — this documents an existing response field.
+
 ## `2.2.0`: 24 March 2026
 
 **ePOS API — 51 new endpoints for point-of-sale operations**

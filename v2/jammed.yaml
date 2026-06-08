@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.2.0
+  version: 2.2.1
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -3268,6 +3268,56 @@ components:
           description: ""
           items:
             "$ref": "#/components/schemas/short_group"
+        address:
+          "$ref": "#/components/schemas/customer_billing_address"
+    customer_billing_address:
+      type: object
+      title: Customer billing address
+      description: |
+        The customer's billing address, as captured during checkout.
+
+        This is `null` when the customer has not provided a billing address.
+      properties:
+        company:
+          type: string
+          nullable: true
+          title: Company
+          description: "The company name on the billing address, if any"
+        address_1:
+          type: string
+          nullable: true
+          title: Address line 1
+          description: "The first line of the billing address"
+        address_2:
+          type: string
+          nullable: true
+          title: Address line 2
+          description: "The second line of the billing address, if any"
+        town:
+          type: string
+          nullable: true
+          title: Town/City
+          description: "The town or city of the billing address"
+        state:
+          type: string
+          nullable: true
+          title: State/County
+          description: "The state, county or region of the billing address, if any"
+        postcode:
+          type: string
+          nullable: true
+          title: Postcode/ZIP
+          description: "The postal or ZIP code of the billing address"
+        country:
+          type: string
+          nullable: true
+          title: Country
+          description: "The ISO 3166-1 alpha-2 country code of the billing address, e.g. `GB` or `US`"
+        formatted_address:
+          type: string
+          nullable: true
+          title: Formatted address
+          description: "The full billing address as a single comma-separated string, with the country name expanded (e.g. `United States of America`)"
     group:
       type: object
       properties:
@@ -4055,6 +4105,15 @@ components:
         last_booking_at: 1643799530
         created_at: 1643799530
         updated_at: 1643799530
+        address:
+          company: Rush
+          address_1: 2112 Tom Sawyer Avenue
+          address_2: Studio B
+          town: Toronto
+          state: ON
+          postcode: M5V 2T6
+          country: CA
+          formatted_address: 2112 Tom Sawyer Avenue, Studio B, Toronto, ON, M5V 2T6, Canada
 
     group_example:
       value:
