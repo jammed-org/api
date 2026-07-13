@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.2.1
+  version: 2.3.0
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -1874,6 +1874,44 @@ paths:
                 $ref: '#/components/schemas/customer'
 
       x-epos: true
+  /customers/{id}/invite:
+    post:
+      tags:
+      - Customer Endpoints
+      summary: Invite an existing customer
+      description: |
+        Send a registration invitation to an existing customer who has not yet created their account.
+
+        Jammed emails the customer a link to set their password, exactly as if they had been created with the `invite` action on `POST /customers.json` - but without creating a duplicate customer record. Use this when the customer already exists (for example, they've already made a booking) and you want them to register.
+
+        On success, the customer's `status` becomes `invited`. The invitation link is valid for 2 days - after it expires, calling this endpoint again issues a fresh invitation.
+
+        Returns a `422` error if the customer has already registered an account, or if they already have a valid (unexpired) invitation. Returns a `404` if the customer does not exist or has been deleted.
+      operationId: inviteCustomer
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Invitation sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - Customer was not found
+        "422":
+          description: Unprocessable - the customer has already registered, or already has a valid invite
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
   /customers/{id}/bookings:
     get:
       tags:

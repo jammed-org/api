@@ -1,5 +1,19 @@
 # Jammed API changelog
 
+## `2.3.0`: 11 July 2026
+
+**Invite an existing customer to register**
+
+New endpoint: `POST /customers/{id}/invite` — send a registration invitation to an existing customer who hasn't created their account yet.
+
+Previously the only way to trigger an invitation through the API was the `invite` action on `POST /customers.json`, which creates a *new* customer — so there was no way to invite someone who already exists (for example, a customer who has already made a booking) without producing a duplicate record.
+
+- Sends the customer an email with a link to set their password, and their `status` becomes `invited`.
+- Invitation links are valid for 2 days; once expired, calling the endpoint again issues a fresh invitation.
+- Returns `422` if the customer has already registered, or still has a valid (unexpired) invitation outstanding.
+- Returns `404` if the customer does not exist or has been deleted.
+- Requires the `customers.write` scope when using OAuth tokens (API-key auth is unaffected).
+
 ## `2.2.1`: 8 June 2026
 
 **Documented the customer billing address**
