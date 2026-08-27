@@ -2,15 +2,14 @@
 
 ## `2.4.0`: 27 August 2026
 
-**Two new checkout webhooks: `booking.proceeding_to_payment` and `booking.abandoned_cart`**
+**New checkout webhook: `booking.proceeding_to_payment`**
 
-Between "a booking was made" and "a booking was paid for" there was nothing to listen to, so an integration could not tell that a customer had reached the checkout page, and could not distinguish a checkout that was never started from one that was started and dropped. Two new booking webhooks close that gap.
+Between "a booking was made" and "a booking was paid for" there was nothing to listen to, so an integration could not tell that a customer had reached the checkout page. This webhook closes that gap.
 
-- `booking.proceeding_to_payment` fires the moment a booking that has to be paid for is sent to the hosted checkout page. It does not wait for the payment: a booking that sends it goes on to send either `booking.payment` or `booking.abandoned_cart`. Bookings that skip checkout entirely (free bookings, unpaid reservations, pay on arrival) never send it.
-- `booking.abandoned_cart` fires when a booking that reached checkout is never paid for and Jammed cancels it, releasing the time back to other customers. It is only sent for bookings that previously sent `booking.proceeding_to_payment`.
-- `booking.abandoned_cart` is sent in addition to the existing events, not instead of them. A booking that is abandoned at checkout still sends `booking.abandoned`, and still sends `booking.cancelled` wherever that event already applied.
-- Both carry the standard `booking` payload, so existing booking mappings work unchanged.
-- No breaking changes: existing webhooks fire exactly as before.
+- `booking.proceeding_to_payment` fires the moment a booking that has to be paid for is sent to the hosted checkout page. It does not wait for the payment, so pair it with `booking.payment` to find out whether the checkout was completed.
+- Bookings that skip checkout entirely (free bookings, unpaid reservations, pay on arrival) never send it.
+- It carries the standard `booking` payload, so existing booking mappings work unchanged.
+- No breaking changes: existing webhooks fire exactly as before. A booking abandoned at checkout still sends `booking.abandoned` as it always has.
 
 ## `2.3.0`: 11 July 2026
 
