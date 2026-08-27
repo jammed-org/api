@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.3.0
+  version: 2.4.0
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -2723,6 +2723,24 @@ x-webhooks:
       description: Triggered when a customer abandons their booking during the checkout process and does not complete 
         the booking. This booking is automatically cancelled by Jammed, but this hook allows you to connect a custom 
         workflow to this event.
+      tags:
+      - Booking Webhooks
+      responses:
+        "200":
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/booking"
+              example:
+                "$ref": "#/components/examples/booking_example/value"
+  booking.proceeding_to_payment:
+    get:
+      summary: booking.proceeding_to_payment
+      description: Triggered as soon as a booking that has to be paid for is sent to the hosted checkout page. It 
+        fires immediately and does not wait for the payment to be taken, so pair it with booking.payment to find out 
+        whether the checkout was completed. Bookings that skip checkout, such as free bookings, unpaid 
+        reservations and pay on arrival, never send this event.
       tags:
       - Booking Webhooks
       responses:
