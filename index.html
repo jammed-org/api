@@ -1,65 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB" data-spec="v2/jammed.yaml">
   <head>
-    <title>Jammed API</title>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="dns-prefetch" href="https://jammed-fonts.b-cdn.net">
-    <link rel="preconnect" href="https://jammed-fonts.b-cdn.net" crossorigin>
-
-    <style>
-      @font-face {
-        font-family: 'Moret Extrabold';
-        src: url(https://jammed-fonts.b-cdn.net/Moret-Extrabold.ttf) format("truetype");
-      }
-
-      @font-face {
-        font-family: 'Balboa Light';
-        src: url(https://jammed-fonts.b-cdn.net/Balboa-Light.ttf) format("truetype");
-      }
-    </style>
+    <title>Jammed API</title>
+    <meta name="description" content="Jammed API and webhook docs: bookings, customers, rooms and more for creative spaces.">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" type="image/png" href="viewer/img/app-icon.png">
+    <link rel="preload" href="viewer/fonts/Oswald-Variable.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="viewer/fonts/Alegreya-Variable.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="viewer/styles.css">
   </head>
   <body>
-    <div id="redoc-container"></div>
-    <script src="https://cdn.jsdelivr.net/npm/redoc@latest/bundles/redoc.standalone.js"> </script>
-    <script type="text/javascript">
-    (function() {
-      Redoc.init(
-        "/v2/jammed.yaml",
-        {
-          "disableSearch": true,
-          "theme": {
-            "colors": {
-              "primary": {
-                "main": "rgba(239, 76, 64, 1)",
-                "light": "#fbd0cd",
-                "dark": "#8a140c",
-                "contrastText": "#000"
-              },
-              "text": {
-                "primary": "rgba(0, 0, 0, 1)",
-                "secondary": "#4d4d4d"
-              }
-            },
-            "typography": {
-              "links": {
-                "color": "rgba(124, 185, 239, 1)",
-                "visited": "rgba(124, 185, 239, 1)",
-                "hover": "#d7eafa"
-              },
-              "fontSize": "16px",
-              "fontFamily": "Balboa Light, sans-serif",
-              "headings": {
-                "fontFamily": "Moret Extrabold, serif",
-              }
-            },
-            "menu": {
-              "backgroundColor": "rgba(255, 255, 255, 1)"
-            }
-          }
-        },
-        document.getElementById('redoc-container'));
-    })();
-    </script>
+    <header class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar"><i class="fa-solid fa-bars"></i></button>
+      <a class="brand" href="#" aria-label="Jammed API home">
+        <img src="viewer/img/jammed-fill.svg" alt="Jammed">
+        <span class="brand-tag">API</span>
+      </a>
+      <span class="version-pill" id="version"></span>
+      <span class="topbar-spacer"></span>
+      <nav class="topbar-links" aria-label="Resources">
+        <a href="https://support.jammed.app" class="hide-sm"><i class="fa-solid fa-life-ring"></i>Support</a>
+        <a href="https://github.com/jammed-org/api"><i class="fa-brands fa-github"></i><span class="hide-sm">GitHub</span></a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar" aria-label="API reference">
+        <div class="search">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="search" type="search" placeholder="Search endpoints" autocomplete="off" spellcheck="false" aria-label="Search endpoints">
+            <kbd>/</kbd>
+          </div>
+        </div>
+        <nav class="nav" id="nav"></nav>
+        <div class="sidebar-foot">
+          <a href="v2/jammed.yaml" download><i class="fa-solid fa-file-code"></i>OpenAPI</a>
+          <a href="v2/jammed-postman-collection.json" download><i class="fa-solid fa-paper-plane"></i>Postman</a>
+          <a href="mailto:api@jammed.app" id="contact-link"><i class="fa-solid fa-envelope"></i>Contact</a>
+        </div>
+      </aside>
+      <div class="scrim" id="scrim"></div>
+
+      <div class="content" id="content">
+        <div class="state">
+          <div>
+            <div class="loader"><i class="fa-solid fa-bolt"></i></div>
+            <h2>Loading the API</h2>
+            <p>Tuning up — won’t be a sec.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="viewer/vendor/js-yaml.min.js"></script>
+    <script src="viewer/vendor/marked.min.js"></script>
+    <script src="viewer/app.js"></script>
   </body>
 </html>
