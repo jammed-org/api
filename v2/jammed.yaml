@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.4.0
+  version: 2.5.0
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -46,6 +46,7 @@ x-tagGroups:
   - Extra Endpoints
   - Notification Endpoints
   - Blocked Time Endpoints
+  - Booking Anchor Endpoints
   - Reporting Endpoints
   - Group Endpoints
   - Coupon Endpoints
@@ -79,6 +80,13 @@ tags:
   description: Polling API for groups
 - name: Room Endpoints
   description: Polling API for rooms
+- name: Booking Anchor Endpoints
+  description: |
+    A booking anchor marks time that is already taken in a room. When sticky bookings are on, only the slots immediately before and after an anchor stay bookable for that day.
+
+    Jammed creates `auto` anchors from bookings, admins add `manual` ones in the admin, and anchors created through this API always have the source `api`. Anchors cannot be edited through the API: delete the anchor and create a new one instead.
+
+    These endpoints return a `422` error unless sticky bookings are turned on for the studio or for at least one room. OAuth tokens must belong to an admin; staff accounts get a `403`.
 - name: booking_model
   x-displayName: Booking Model
   description: |
@@ -2499,6 +2507,155 @@ paths:
 
   # --- Reporting ---
       x-epos: true
+  /booking_anchors:
+    get:
+      tags:
+      - Booking Anchor Endpoints
+      summary: List booking anchors
+      description: |
+        List booking anchors, ordered by date, start time and room. Without a `date` only today's and future anchors are returned; pass a `date` to reach a past day.
+
+        Results are paginated, with the totals in the `jammed-total-count`, `jammed-page-count`, `jammed-next-page` and `jammed-prev-page` response headers.
+
+        Requires the `bookings.read` scope when using OAuth tokens.
+      operationId: listBookingAnchors
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: date
+        in: query
+        description: Only anchors on this day (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: room_id
+        in: query
+        description: Only anchors in this room
+        schema:
+          type: integer
+      - name: time
+        in: query
+        description: Only anchors starting at this time of day (HH:MM), in the studio's timezone
+        schema:
+          type: string
+          example: "10:00"
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/perPage'
+      responses:
+        "200":
+          description: Booking anchors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/booking_anchor'
+        "400":
+          description: Bad request - the `date` could not be parsed
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token lacks the scope, or does not belong to an admin
+        "422":
+          description: Unprocessable - sticky bookings are not turned on
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
+    post:
+      tags:
+      - Booking Anchor Endpoints
+      summary: Create booking anchor
+      description: |
+        Anchor a span of time in a room so only the slots immediately before and after it stay bookable that day. Takes the same fields as the admin form: a room and a start and end time.
+
+        The anchor's `date` and `duration` are worked out from `start_at` and `end_at`, and its `source` is always `api`. Times without a UTC offset are read in the studio's timezone.
+
+        Requires the `bookings.write` scope when using OAuth tokens.
+      operationId: createBookingAnchor
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                booking_anchor:
+                  type: object
+                  properties:
+                    room_id:
+                      type: integer
+                    start_at:
+                      type: string
+                      format: date-time
+                      example: "2026-11-02T10:00:00"
+                    end_at:
+                      type: string
+                      format: date-time
+                      description: Must be after `start_at`
+                      example: "2026-11-02T13:00:00"
+                  required:
+                  - room_id
+                  - start_at
+                  - end_at
+      responses:
+        "201":
+          description: Booking anchor created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/booking_anchor'
+        "400":
+          description: Bad request - the `booking_anchor` key is missing
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token lacks the scope, or does not belong to an admin
+        "422":
+          description: Unprocessable - the room does not exist, the times are missing or backwards, or sticky bookings are not turned on
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
+  /booking_anchors/{id}:
+    delete:
+      tags:
+      - Booking Anchor Endpoints
+      summary: Delete booking anchor
+      description: |
+        Delete any booking anchor, whatever its source. Deleting an `auto` anchor reopens that day for its room, but Jammed recreates it the next time it syncs anchors from that booking (for example when the booking changes), as it does in the admin.
+
+        There is no update endpoint: to move an anchor, delete it and create a new one.
+
+        Requires the `bookings.write` scope when using OAuth tokens.
+      operationId: deleteBookingAnchor
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Booking anchor deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token lacks the scope, or does not belong to an admin
+        "404":
+          description: Not found - the booking anchor does not exist
+        "422":
+          description: Unprocessable - sticky bookings are not turned on
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
   /recent_transactions:
     get:
       tags:
@@ -3905,6 +4062,52 @@ components:
         end_time:
           type: string
           description: "Format: YYYY-MM-DD HH:MM"
+        room:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            code:
+              type: string
+
+    booking_anchor:
+      type: object
+      title: Booking Anchor
+      properties:
+        id:
+          type: integer
+        room_id:
+          type: integer
+        date:
+          type: string
+          format: date
+          description: The day the anchor applies to, in the studio's timezone
+        start_at:
+          type: integer
+          description: Unix timestamp
+        end_at:
+          type: integer
+          description: Unix timestamp
+        start_time:
+          type: string
+          description: "Format: YYYY-MM-DD HH:MM, in the studio's timezone"
+        end_time:
+          type: string
+          description: "Format: YYYY-MM-DD HH:MM, in the studio's timezone"
+        duration:
+          type: integer
+          nullable: true
+          description: Length in seconds that a slot has to match when sticky bookings match durations
+        source:
+          type: string
+          enum: [auto, manual, api]
+          description: "`auto` anchors come from a booking, `manual` ones were added in the admin, and `api` ones through this API"
+        booking_code:
+          type: string
+          nullable: true
+          description: Code of the booking an `auto` anchor was created from
         room:
           type: object
           properties:
