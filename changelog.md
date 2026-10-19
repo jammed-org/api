@@ -1,5 +1,18 @@
 # Jammed API changelog
 
+## `2.5.0`: 16 October 2026
+
+**Booking anchor endpoints**
+
+Booking anchors mark time that is already taken in a room, so that with sticky bookings on only the slots immediately before and after stay bookable. Integrations can now manage them the same way admins do in Booking Settings.
+
+- `GET /booking_anchors` lists anchors (today onwards by default), filterable by `date`, `room_id` and start `time`, and paginated with the usual `jammed-*` headers.
+- `POST /booking_anchors` creates an anchor from a `room_id`, `start_at` and `end_at`, the same fields as the admin form. Its `date` and `duration` are worked out for you, and its `source` is always `api`, which the admin shows as "API".
+- `DELETE /booking_anchors/{id}` deletes any anchor, whatever its source.
+- There is deliberately no update endpoint: delete the anchor and create a new one.
+- All three return `422` unless sticky bookings are turned on for the studio or a room.
+- OAuth tokens need `bookings.read` to list and `bookings.write` to create or delete, and must belong to an admin; staff accounts get a `403`. API-key auth is unaffected.
+
 ## `2.4.0`: 27 August 2026
 
 **New checkout webhook: `booking.proceeding_to_payment`**
