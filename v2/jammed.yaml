@@ -291,8 +291,10 @@ paths:
 
         Only send what you want to change: since API 2.6.0 every field you leave out keeps its current value,
         including the time, room, price, customer, group, extras, assigned staff and studio notes. Times, room
-        and price go inside `booking_details`. Sending `extras` or `staff_ids` replaces the whole list, so an
-        empty `staff_ids` removes all assigned staff.
+        and price go inside `booking_details`. The price is never recalculated: moving, resizing or re-rooming a
+        booking keeps its current price unless you also send `price`. Sending only some of `date`, `start_time`
+        and `end_time` keeps the others. Sending `extras` or `staff_ids` replaces the whole list, so an empty
+        list removes them all.
 
         The booking is identified by its code (same as the GET endpoint).
       operationId: updateBooking
