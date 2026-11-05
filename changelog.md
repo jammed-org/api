@@ -1,6 +1,20 @@
 # Jammed API changelog
 
-## `2.6.0`: 5 November 2026
+## `2.6.0`: 3 November 2026
+
+**Partial booking updates, email lookups and fixes for integrations**
+
+- `PATCH /bookings/{code}.json` is now a partial update. Any field you leave out keeps its current value, including the time, room, price, customer, group, extras, assigned staff and studio notes. Before, leaving out `booking_details` failed the request and leaving out extras, staff or notes cleared them. Sending `extras` or `staff_ids` still replaces the whole list, and an empty list clears it. The price is never recalculated, so send `price` when moving or resizing a booking should change it. The request schema is corrected too: it had documented the time, room and price at the top level of `booking`, where they were ignored, instead of inside `booking_details`.
+- `GET /customers.json` takes an `email` parameter to look a customer up by their exact email address, ignoring case. Deleted customers never match. `GET /customers/search` is still there for partial matches, but it truncates emails, so use `email` for exact lookups.
+- `GET /bookings.json` now honours `sort_order`, as documented. It used to read only an undocumented `sort_direction` (still accepted), so the order was always descending. `sort_by=updated_at` now works as documented.
+- Fixed `GET /bookings/search` answering every query with the results of whichever search had been cached first while the bookings were unchanged.
+- Fixed `GET /coupons/{coupon_id}/promocodes.json` sometimes returning another coupon's promo codes.
+
+**Documented existing endpoints and webhooks**
+
+- Export endpoints: `GET /exports`, `GET /exports/{id}` and `GET /exports/{id}/download`, for monthly exports a studio admin has opened to API access.
+- Webhooks that were already being sent but were not documented: `booking.payment`, `export.ready`, `enquiry.created`, `enquiry.approved` and `enquiry.rejected`, with new `export` and `enquiry` schemas.
+- No breaking changes, apart from omitted update fields now being kept instead of cleared.
 
 **Let customers cancel from your own app**
 
