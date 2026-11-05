@@ -40,19 +40,25 @@ info:
 x-tagGroups:
 - name: Endpoints
   tags:
-  - Booking Endpoints
-  - Customer Endpoints
-  - Room Endpoints
-  - Extra Endpoints
-  - Notification Endpoints
-  - Blocked Time Endpoints
-  - Booking Anchor Endpoints
-  - Reporting Endpoints
-  - Group Endpoints
-  - Coupon Endpoints
-  - Promocode Endpoints
-  - Studio Endpoints
-  - Export Endpoints
+  - Booking - Core
+  - Booking - Search & Feeds
+  - Booking - Approvals
+  - Booking - Payments
+  - Booking - Refunds & Credit
+  - Booking - Notes
+  - Booking - Pricing
+  - Booking - Anchors
+  - Customer
+  - Room
+  - Extra
+  - Notification
+  - Blocked Time
+  - Reporting
+  - Group
+  - Coupon
+  - Promocode
+  - Studio
+  - Export
 - name: Webhooks
   tags:
   - Booking Webhooks
@@ -69,6 +75,46 @@ x-tagGroups:
   - coupon_model
   - promocode_model
 tags:
+- name: Booking - Core
+  description: Create, find, update, cancel and uncancel bookings, plus confirmation emails, PDFs, history and notifications for a booking
+- name: Booking - Search & Feeds
+  description: Search bookings, list them by date range, and poll feeds of bookings that have changed state (cancelled, started, finished, reminders, updated)
+- name: Booking - Approvals
+  description: Bookings that need a studio admin to approve or reject them
+- name: Booking - Payments
+  description: Transactions on a booking, payment requests, and charging a customer's saved card
+- name: Booking - Refunds & Credit
+  description: Refunds, credit notes, and moving money between a booking and the customer's credit balance
+- name: Booking - Notes
+  description: Customer-facing booking notes and private studio notes
+- name: Booking - Pricing
+  description: Calculate the price of a booking and preview a time slot before creating it
+- name: Booking - Anchors
+  description: |
+    A booking anchor marks time that is already taken in a room. When sticky bookings are on, only the slots immediately before and after an anchor stay bookable for that day.
+
+    Jammed creates `auto` anchors from bookings, admins add `manual` ones in the admin, and anchors created through this API always have the source `api`. Anchors cannot be edited through the API: delete the anchor and create a new one instead.
+
+    These endpoints return a `422` error unless sticky bookings are turned on for the studio or for at least one room. OAuth tokens must belong to an admin; staff accounts get a `403`.
+- name: Customer
+  description: Polling API for customers
+- name: Room
+  description: Polling API for rooms
+- name: Extra
+- name: Notification
+- name: Blocked Time
+- name: Reporting
+- name: Group
+  description: Polling API for groups
+- name: Coupon
+- name: Promocode
+- name: Studio
+  description: Studio configuration and feature discovery
+- name: Export
+  description: |
+    Monthly exports that a studio admin has opened to API access (Exports page, "API access"). One-off exports are never available here.
+
+    OAuth tokens must belong to an admin; staff accounts get a `403`. Every download is recorded in the export's audit log.
 - name: Booking Webhooks
   description: Events that happen with a booking
 - name: Customer Webhooks
@@ -79,26 +125,6 @@ tags:
   description: Events that happen with an enquiry, a request to book that a studio admin approves or rejects
 - name: Export Webhooks
   description: Events that happen with a monthly export
-- name: Booking Endpoints
-  description: Polling API for bookings
-- name: Customer Endpoints
-  description: Polling API for customers
-- name: Group Endpoints
-  description: Polling API for groups
-- name: Room Endpoints
-  description: Polling API for rooms
-- name: Export Endpoints
-  description: |
-    Monthly exports that a studio admin has opened to API access (Exports page, "API access"). One-off exports are never available here.
-
-    OAuth tokens must belong to an admin; staff accounts get a `403`. Every download is recorded in the export's audit log.
-- name: Booking Anchor Endpoints
-  description: |
-    A booking anchor marks time that is already taken in a room. When sticky bookings are on, only the slots immediately before and after an anchor stay bookable for that day.
-
-    Jammed creates `auto` anchors from bookings, admins add `manual` ones in the admin, and anchors created through this API always have the source `api`. Anchors cannot be edited through the API: delete the anchor and create a new one instead.
-
-    These endpoints return a `422` error unless sticky bookings are turned on for the studio or for at least one room. OAuth tokens must belong to an admin; staff accounts get a `403`.
 - name: booking_model
   x-displayName: Booking Model
   description: |
@@ -123,8 +149,6 @@ tags:
   x-displayName: Promocode Model
   description: |
     <SchemaDefinition schemaRef="#/components/schemas/promocode" />
-- name: Studio Endpoints
-  description: Studio configuration and feature discovery
 servers:
 - url: https://api.jammed.app/api/v2/
   description: Jammed API endpoint
@@ -133,7 +157,7 @@ paths:
   /bookings.json:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Core
       summary: All bookings
       description: Returns all non-cancelled bookings with optional sorting and pagination support.
       operationId: getBookings
@@ -202,7 +226,7 @@ paths:
         example: 25
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Core
       summary: Create a booking
       description: |
         Create a new booking on Jammed as an admin.
@@ -252,7 +276,7 @@ paths:
   /bookings/{code}.json:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Core
       summary: Find a booking by code
       description: |
         Returns booking with the given code.
@@ -298,7 +322,7 @@ paths:
         description: Set to `cancellation_link` to add a pre-validated cancellation link to the response
     patch:
       tags:
-      - Booking Endpoints
+      - Booking - Core
       summary: Update a booking
       description: |
         Update an existing booking as an admin.
@@ -355,7 +379,7 @@ paths:
   /bookings/cancelled.json:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Search & Feeds
       summary: Cancelled bookings
       description: Returns all cancelled bookings, ordered by cancellation date descending. Supports pagination.
       operationId: getBookingsCancelled
@@ -381,7 +405,7 @@ paths:
   /bookings/started.json:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Search & Feeds
       summary: Started bookings
       description: Returns all upcoming bookings (starting in the future), ordered by start time descending. Supports 
         pagination.
@@ -408,7 +432,7 @@ paths:
   /bookings/finished.json:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Search & Feeds
       summary: Finished bookings
       description: Returns all bookings that have not yet ended, ordered by start time descending. Supports pagination.
       operationId: getBookingsFinished
@@ -434,7 +458,7 @@ paths:
   /bookings/reminder.json:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Search & Feeds
       summary: Reminder bookings
       description: Returns all bookings starting 24 hours or more from now, ordered by start time descending. Matches 
         the reminder webhook window.
@@ -461,7 +485,7 @@ paths:
   /bookings/one_hour_before.json:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Search & Feeds
       summary: One hour before bookings
       description: Returns all bookings starting 1 hour or more from now, ordered by start time descending. Matches the 
         one_hour_before webhook window.
@@ -488,7 +512,7 @@ paths:
   /bookings/updated.json:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Search & Feeds
       summary: Updated bookings
       description: Returns all non-cancelled bookings, ordered by last updated date descending. Useful for polling for 
         recently changed bookings.
@@ -515,7 +539,7 @@ paths:
   /bookings/{code}/transactions.json:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Payments
       summary: List booking transactions
       description: |
         Returns all money log transactions for the specified booking, ordered by most recent first.
@@ -551,7 +575,7 @@ paths:
         description: The booking code
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Payments
       summary: Create a transaction for a booking
       description: |
         Create a new transaction (money log entry) for the specified booking.
@@ -599,7 +623,7 @@ paths:
   /bookings/{code}/studio_notes.json:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Notes
       summary: Get booking studio notes
       description: |
         Returns the studio notes for the specified booking.
@@ -638,7 +662,7 @@ paths:
         description: The booking code
     patch:
       tags:
-      - Booking Endpoints
+      - Booking - Notes
       summary: Update booking studio notes
       description: |
         Update the studio notes for the specified booking.
@@ -686,7 +710,7 @@ paths:
   /customers.json:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Find all customers
       description: |
         Returns all customers, newest first.
@@ -722,7 +746,7 @@ paths:
       - $ref: '#/components/parameters/perPage'
     post:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Create a customer
       description: |
         Create a new customer on Jammed.
@@ -771,7 +795,7 @@ paths:
   /customers/{id}.json:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Find a customer by ID
       description: Returns customer with the given ID
       operationId: getCustomer
@@ -802,7 +826,7 @@ paths:
   /coupons/{id}.json:
     get:
       tags:
-      - Coupon Endpoints
+      - Coupon
       summary: Find a coupon by ID
       description: Returns coupon with the given ID
       operationId: getCoupon
@@ -833,7 +857,7 @@ paths:
   /coupons.json:
     get:
       tags:
-      - Coupon Endpoints
+      - Coupon
       summary: Find all coupons
       description: Returns all coupons
       operationId: getCoupons
@@ -857,7 +881,7 @@ paths:
         example: "Bearer <api_key>"
     post:
       tags:
-      - Coupon Endpoints
+      - Coupon
       summary: Create a coupon
       description: |
         Create a new coupon on Jammed.
@@ -901,7 +925,7 @@ paths:
   /coupons/{coupon_id}/promocodes.json:
     get:
       tags:
-      - Promocode Endpoints
+      - Promocode
       summary: Find all promocodes
       description: Returns all promocodes
       operationId: getPromocodes
@@ -930,7 +954,7 @@ paths:
         example: 123
     post:
       tags:
-      - Promocode Endpoints
+      - Promocode
       summary: Create a promocode
       description: |
         Create a promocode for a coupon
@@ -985,7 +1009,7 @@ paths:
   /coupons/{coupon_id}/assign_to_customer.json:
     post:
       tags:
-      - Coupon Endpoints
+      - Coupon
       summary: Assign Coupon to Customer
       description: |
         Assign a Coupon to a Customer
@@ -1033,7 +1057,7 @@ paths:
   /groups.json:
     get:
       tags:
-      - Group Endpoints
+      - Group
       summary: Find all groups
       description: Returns all groups
       operationId: getGroups
@@ -1059,7 +1083,7 @@ paths:
   /rooms.json:
     get:
       tags:
-      - Room Endpoints
+      - Room
       summary: Find all rooms
       description: Returns all rooms
       operationId: getRooms
@@ -1085,7 +1109,7 @@ paths:
   /studio.json:
     get:
       tags:
-      - Studio Endpoints
+      - Studio
       summary: Studio configuration
       description: |
         Returns studio branding, feature toggles, usage flags, payment setup, wordings, and plan info.
@@ -1235,7 +1259,7 @@ paths:
   /dashboard:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Search & Feeds
       summary: Dashboard composite data
       description: |
         Returns rooms, today's bookings, blocked times, opening time, slot length, and timezone in a single call.
@@ -1296,7 +1320,7 @@ paths:
   /bookings/{code}:
     delete:
       tags:
-      - Booking Endpoints
+      - Booking - Core
       summary: Cancel a booking
       description: Soft-deletes (cancels) a booking. Optionally sends cancellation email.
       operationId: cancelBooking
@@ -1321,7 +1345,7 @@ paths:
   /bookings/{code}/uncancel:
     patch:
       tags:
-      - Booking Endpoints
+      - Booking - Core
       summary: Uncancel a booking
       description: Restores a previously cancelled booking.
       operationId: uncancelBooking
@@ -1342,7 +1366,7 @@ paths:
   /bookings/search:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Search & Feeds
       summary: Search bookings
       description: Search bookings by customer name, email, mobile, band name, or booking code. Supports status 
         filtering.
@@ -1376,7 +1400,7 @@ paths:
   /bookings/by_dates:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Search & Feeds
       summary: Bookings by date range
       description: Returns bookings for a date range, optimized for calendar/schedule display.
       operationId: bookingsByDates
@@ -1408,7 +1432,7 @@ paths:
   /bookings/awaiting_approval:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Approvals
       summary: Bookings awaiting approval
       description: List bookings pending manager approval.
       operationId: bookingsAwaitingApproval
@@ -1430,7 +1454,7 @@ paths:
   /bookings/{code}/approve:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Approvals
       summary: Approve a booking
       description: Approve a booking that is awaiting approval.
       operationId: approveBooking
@@ -1449,7 +1473,7 @@ paths:
   /bookings/{code}/reject:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Approvals
       summary: Reject a booking
       description: Reject a booking that is awaiting approval.
       operationId: rejectBooking
@@ -1472,7 +1496,7 @@ paths:
   /bookings/{code}/pdf:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Core
       summary: Generate booking PDF
       description: Generate a receipt/confirmation PDF for the booking.
       operationId: bookingPdf
@@ -1492,7 +1516,7 @@ paths:
   /bookings/{code}/resend_confirmation:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Core
       summary: Resend confirmation email
       description: Re-send the booking confirmation email to the customer.
       operationId: resendConfirmation
@@ -1511,7 +1535,7 @@ paths:
   /bookings/{code}/cancellation_email:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Core
       summary: Send the cancellation email
       description: |
         Emails the customer a link to cancel their booking. This is the same email the customer gets when they press
@@ -1547,7 +1571,7 @@ paths:
   /bookings/{code}/refund_transaction:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Refunds & Credit
       summary: Refund a transaction
       description: Refund a specific payment transaction on a booking (Stripe, Square, or Jammed Pay).
       operationId: refundTransaction
@@ -1571,7 +1595,7 @@ paths:
   /bookings/{code}/refunds:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Refunds & Credit
       summary: Full refund
       description: Cancel and refund all payments on a booking.
       operationId: fullRefund
@@ -1600,7 +1624,7 @@ paths:
   /bookings/{code}/credit_payments:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Refunds & Credit
       summary: Apply credit balance
       description: Pay a booking using the customer's credit balance.
       operationId: applyCreditPayment
@@ -1619,7 +1643,7 @@ paths:
   /bookings/{code}/credit_balances:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Refunds & Credit
       summary: Credit to customer balance
       description: Credit the booking amount to the customer's balance.
       operationId: creditToCustomerBalance
@@ -1648,7 +1672,7 @@ paths:
   /bookings/{code}/notes:
     patch:
       tags:
-      - Booking Endpoints
+      - Booking - Notes
       summary: Update booking notes
       description: Update internal staff notes and colour override for a booking.
       operationId: updateBookingNotes
@@ -1681,7 +1705,7 @@ paths:
   /bookings/{code}/notifications:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Core
       summary: Booking notifications
       description: View notification history for a booking.
       operationId: bookingNotifications
@@ -1702,7 +1726,7 @@ paths:
   /bookings/{code}/history.json:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Core
       summary: Booking history
       description: |
         Returns a chronological timeline of all activity on a booking,
@@ -1728,7 +1752,7 @@ paths:
   /bookings/{code}/payment_requests:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Payments
       summary: Send payment request
       description: Create and send a payment link to the customer.
       operationId: createPaymentRequest
@@ -1759,7 +1783,7 @@ paths:
   /bookings/{code}/payment_requests/charge:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Payments
       summary: Charge saved card
       description: Create a payment request and immediately charge the customer's saved card. This is a collection 
         action — it creates a new payment request and settles it in one step.
@@ -1793,7 +1817,7 @@ paths:
   /bookings/{code}/payment_requests/{id}/mark_as_paid:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Payments
       summary: Mark payment as paid
       description: Record that a manual payment has been received.
       operationId: markPaymentAsPaid
@@ -1817,7 +1841,7 @@ paths:
   /bookings/{code}/payment_requests/{id}/cancel:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Payments
       summary: Cancel payment request
       description: Cancel an open payment request.
       operationId: cancelPaymentRequest
@@ -1841,7 +1865,7 @@ paths:
   /bookings/{code}/settlement_supported:
     get:
       tags:
-      - Booking Endpoints
+      - Booking - Payments
       summary: Check settlement support
       description: Check if the booking's customer can be charged remotely (has saved payment methods).
       operationId: settlementSupported
@@ -1868,7 +1892,7 @@ paths:
   /customers/{id}:
     put:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Update customer
       description: Update an existing customer's details.
       operationId: updateCustomer
@@ -1900,7 +1924,7 @@ paths:
   /customers/search:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Search customers
       description: Autocomplete search by name, email, mobile, or band name. Returns top 10 results by booking count.
       operationId: searchCustomers
@@ -1931,7 +1955,7 @@ paths:
   /customers/{id}/notes:
     patch:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Update customer notes
       description: Add or update internal staff notes about a customer.
       operationId: updateCustomerNotes
@@ -1965,7 +1989,7 @@ paths:
   /customers/{id}/invite:
     post:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Invite an existing customer
       description: |
         Send a registration invitation to an existing customer who has not yet created their account.
@@ -2003,7 +2027,7 @@ paths:
   /customers/{id}/bookings:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Customer bookings
       description: List a customer's completed, non-cancelled bookings.
       operationId: customerBookings
@@ -2030,7 +2054,7 @@ paths:
   /customers/{id}/credit_balance:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Get credit balance
       description: View the customer's current credit balance.
       operationId: getCustomerCreditBalance
@@ -2056,7 +2080,7 @@ paths:
       x-epos: true
     patch:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Update credit balance
       description: Adjust the customer's credit balance. Creates a credit movement record.
       operationId: updateCustomerCreditBalance
@@ -2097,7 +2121,7 @@ paths:
   /customers/{id}/credit_movements:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Credit movements
       description: View credit transaction history for a customer.
       operationId: customerCreditMovements
@@ -2124,7 +2148,7 @@ paths:
   /customers/{id}/status:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Customer status
       description: Check if a customer is banned or behind on payment.
       operationId: customerStatus
@@ -2158,7 +2182,7 @@ paths:
   /customers/{id}/payment_methods:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Payment methods
       description: List a customer's saved payment methods (for remote charging).
       operationId: customerPaymentMethods
@@ -2184,7 +2208,7 @@ paths:
   /booking_price:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Pricing
       summary: Calculate booking price
       description: |
         Real-time price calculation with extras, tax, and staff costs.
@@ -2260,7 +2284,7 @@ paths:
   /slot_projection:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Pricing
       summary: Project time slot
       description: Preview cost and check conflicts for a time slot.
       operationId: slotProjection
@@ -2319,7 +2343,7 @@ paths:
   /extras:
     get:
       tags:
-      - Extra Endpoints
+      - Extra
       summary: List extras
       description: All available add-on items with pricing.
       operationId: listExtras
@@ -2339,7 +2363,7 @@ paths:
   /extras/{id}:
     get:
       tags:
-      - Extra Endpoints
+      - Extra
       summary: Show extra
       description: Single extra with stock and pricing detail.
       operationId: showExtra
@@ -2363,7 +2387,7 @@ paths:
   /rooms/{id}:
     get:
       tags:
-      - Room Endpoints
+      - Room
       summary: Show room
       description: Room detail with images, pricing, and capacity.
       operationId: showRoom
@@ -2386,7 +2410,7 @@ paths:
   /notifications:
     get:
       tags:
-      - Notification Endpoints
+      - Notification
       summary: List notifications
       description: Recent notifications from the last 7 days.
       operationId: listNotifications
@@ -2406,7 +2430,7 @@ paths:
   /notifications/{id}/read:
     post:
       tags:
-      - Notification Endpoints
+      - Notification
       summary: Mark as read
       operationId: markNotificationRead
       parameters:
@@ -2428,7 +2452,7 @@ paths:
   /notifications/{id}/archive:
     post:
       tags:
-      - Notification Endpoints
+      - Notification
       summary: Archive notification
       operationId: archiveNotification
       parameters:
@@ -2450,7 +2474,7 @@ paths:
   /notifications/clear:
     post:
       tags:
-      - Notification Endpoints
+      - Notification
       summary: Clear all notifications
       operationId: clearNotifications
       parameters:
@@ -2468,7 +2492,7 @@ paths:
   /blocked_times:
     get:
       tags:
-      - Blocked Time Endpoints
+      - Blocked Time
       summary: List blocked times
       description: Get all future schedule blocks.
       operationId: listBlockedTimes
@@ -2486,7 +2510,7 @@ paths:
       x-epos: true
     post:
       tags:
-      - Blocked Time Endpoints
+      - Blocked Time
       summary: Create blocked time
       description: Block a room/time slot for maintenance, private events, etc.
       operationId: createBlockedTime
@@ -2528,7 +2552,7 @@ paths:
   /blocked_times/{id}:
     patch:
       tags:
-      - Blocked Time Endpoints
+      - Blocked Time
       summary: Update blocked time
       operationId: updateBlockedTime
       parameters:
@@ -2567,7 +2591,7 @@ paths:
       x-epos: true
     delete:
       tags:
-      - Blocked Time Endpoints
+      - Blocked Time
       summary: Delete blocked time
       operationId: deleteBlockedTime
       parameters:
@@ -2590,7 +2614,7 @@ paths:
   /booking_anchors:
     get:
       tags:
-      - Booking Anchor Endpoints
+      - Booking - Anchors
       summary: List booking anchors
       description: |
         List booking anchors, ordered by date, start time and room. Without a `date` only today's and future anchors are returned; pass a `date` to reach a past day.
@@ -2643,7 +2667,7 @@ paths:
                 $ref: '#/components/schemas/unprocessable_error'
     post:
       tags:
-      - Booking Anchor Endpoints
+      - Booking - Anchors
       summary: Create booking anchor
       description: |
         Anchor a span of time in a room so only the slots immediately before and after it stay bookable that day. Takes the same fields as the admin form: a room and a start and end time.
@@ -2701,7 +2725,7 @@ paths:
   /booking_anchors/{id}:
     delete:
       tags:
-      - Booking Anchor Endpoints
+      - Booking - Anchors
       summary: Delete booking anchor
       description: |
         Delete any booking anchor, whatever its source. Deleting an `auto` anchor reopens that day for its room, but Jammed recreates it the next time it syncs anchors from that booking (for example when the booking changes), as it does in the admin.
@@ -2739,7 +2763,7 @@ paths:
   /recent_transactions:
     get:
       tags:
-      - Reporting Endpoints
+      - Reporting
       summary: Recent transactions
       description: Today's and yesterday's transaction totals by payment method (Stripe, Square, manual 
         cash/card/other).
@@ -2763,7 +2787,7 @@ paths:
   /money_ledger:
     get:
       tags:
-      - Reporting Endpoints
+      - Reporting
       summary: Money ledger
       description: Searchable transaction history with pagination.
       operationId: moneyLedger
@@ -2790,7 +2814,7 @@ paths:
   /bookings/{code}/credit_notes:
     post:
       tags:
-      - Booking Endpoints
+      - Booking - Refunds & Credit
       x-epos: true
       summary: Create credit note
       description: Apply a manual credit note to a booking (cash, card, or other payment).
@@ -2828,7 +2852,7 @@ paths:
   /bookings/{code}/credit_notes/{id}:
     delete:
       tags:
-      - Booking Endpoints
+      - Booking - Refunds & Credit
       x-epos: true
       summary: Delete credit note
       description: Remove a credit note from a booking.
@@ -2854,7 +2878,7 @@ paths:
   /exports:
     get:
       tags:
-      - Export Endpoints
+      - Export
       summary: List exports
       description: Lists the monthly exports that are open to API access, oldest first. Check `ready` before downloading.
       operationId: listExports
@@ -2876,7 +2900,7 @@ paths:
   /exports/{id}:
     get:
       tags:
-      - Export Endpoints
+      - Export
       summary: Get an export
       operationId: getExport
       parameters:
@@ -2902,7 +2926,7 @@ paths:
   /exports/{id}/download:
     get:
       tags:
-      - Export Endpoints
+      - Export
       summary: Download an export
       description: |
         Streams the export file: an `.xlsx` spreadsheet, or a `.zip` of PDFs for receipt exports. The download is recorded in the export's audit log.

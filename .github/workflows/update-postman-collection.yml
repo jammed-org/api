@@ -23,7 +23,12 @@ jobs:
         run: npm install -g openapi-to-postmanv2
 
       - name: Generate Postman collection
-        run: openapi2postmanv2 -s v2/jammed.yaml -o v2/jammed-postman-collection.json -p
+        # Group requests into folders by tag (matching the docs menu) rather than by URL path.
+        # Webhook and model tags have no requests, so drop the empty folders they produce.
+        run: |
+          openapi2postmanv2 -s v2/jammed.yaml -o v2/jammed-postman-collection.json -p -O folderStrategy=Tags
+          jq '.item |= map(select((.item // []) | length > 0))' v2/jammed-postman-collection.json > collection.tmp.json
+          mv collection.tmp.json v2/jammed-postman-collection.json
 
       - name: Check for changes
         id: diff
