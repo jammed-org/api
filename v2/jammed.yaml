@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.5.0
+  version: 2.6.0
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -52,11 +52,14 @@ x-tagGroups:
   - Coupon Endpoints
   - Promocode Endpoints
   - Studio Endpoints
+  - Export Endpoints
 - name: Webhooks
   tags:
   - Booking Webhooks
   - Customer Webhooks
-  - Booking Webhooks
+  - Group Webhooks
+  - Enquiry Webhooks
+  - Export Webhooks
 - name: Models
   tags:
   - booking_model
@@ -72,6 +75,10 @@ tags:
   description: Events that happen with a customer
 - name: Group Webhooks
   description: Events that happen with a group/band
+- name: Enquiry Webhooks
+  description: Events that happen with an enquiry, a request to book that a studio admin approves or rejects
+- name: Export Webhooks
+  description: Events that happen with a monthly export
 - name: Booking Endpoints
   description: Polling API for bookings
 - name: Customer Endpoints
@@ -80,6 +87,11 @@ tags:
   description: Polling API for groups
 - name: Room Endpoints
   description: Polling API for rooms
+- name: Export Endpoints
+  description: |
+    Monthly exports that a studio admin has opened to API access (Exports page, "API access"). One-off exports are never available here.
+
+    OAuth tokens must belong to an admin; staff accounts get a `403`. Every download is recorded in the export's audit log.
 - name: Booking Anchor Endpoints
   description: |
     A booking anchor marks time that is already taken in a room. When sticky bookings are on, only the slots immediately before and after an anchor stay bookable for that day.
@@ -277,8 +289,12 @@ paths:
 
         This uses the same booking update flow as staff members would from the admin dashboard.
 
-        You can update various booking details including time, room, pricing, customer information,
-        and other booking attributes.
+        Only send what you want to change: since API 2.6.0 every field you leave out keeps its current value,
+        including the time, room, price, customer, group, extras, assigned staff and studio notes. Times, room
+        and price go inside `booking_details`. The price is never recalculated: moving, resizing or re-rooming a
+        booking keeps its current price unless you also send `price`. Sending only some of `date`, `start_time`
+        and `end_time` keeps the others. Sending `extras` or `staff_ids` replaces the whole list, so an empty
+        list removes them all.
 
         The booking is identified by its code (same as the GET endpoint).
       operationId: updateBooking
@@ -656,7 +672,10 @@ paths:
       tags:
       - Customer Endpoints
       summary: Find all customers
-      description: Returns all customers
+      description: |
+        Returns all customers, newest first.
+
+        Pass `email` to look one customer up by their exact email address (ignoring case and surrounding spaces). Deleted customers never match an email lookup.
       operationId: getCustomers
       responses:
         "200":
@@ -676,6 +695,15 @@ paths:
         schema:
           type: string
         example: "Bearer <api_key>"
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Only the non-deleted customer with this exact email address
+        example: geddy@rush.com
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/perPage'
     post:
       tags:
       - Customer Endpoints
@@ -2771,6 +2799,89 @@ paths:
                 $ref: '#/components/schemas/status_response'
         '404':
           description: Credit note or booking not found
+  /exports:
+    get:
+      tags:
+      - Export Endpoints
+      summary: List exports
+      description: Lists the monthly exports that are open to API access, oldest first. Check `ready` before downloading.
+      operationId: listExports
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      responses:
+        "200":
+          description: Exports
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/export'
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token does not belong to an admin
+  /exports/{id}:
+    get:
+      tags:
+      - Export Endpoints
+      summary: Get an export
+      operationId: getExport
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Export
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/export'
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token does not belong to an admin
+        "404":
+          description: Not found - no export with API access has this id
+  /exports/{id}/download:
+    get:
+      tags:
+      - Export Endpoints
+      summary: Download an export
+      description: |
+        Streams the export file: an `.xlsx` spreadsheet, or a `.zip` of PDFs for receipt exports. The download is recorded in the export's audit log.
+      operationId: downloadExport
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: The export file
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token does not belong to an admin
+        "404":
+          description: Not found - no export with API access has this id
+        "409":
+          description: Conflict - the file is still being generated; try again shortly
 x-webhooks:
   booking.created:
     get:
@@ -3002,11 +3113,184 @@ x-webhooks:
               example:
                 "$ref": "#/components/examples/customer_example/value"
 
+  booking.payment:
+    get:
+      summary: booking.payment
+      description: Triggered when a customer pays for a booking online through Stripe, Square or Jammed Pay checkout.
+      tags:
+      - Booking Webhooks
+      responses:
+        "200":
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/booking"
+              example:
+                "$ref": "#/components/examples/booking_example/value"
+  enquiry.created:
+    get:
+      summary: enquiry.created
+      description: Triggered when a customer sends an enquiry, a request to book that a studio admin has to approve or reject.
+      tags:
+      - Enquiry Webhooks
+      responses:
+        "200":
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/enquiry"
+  enquiry.approved:
+    get:
+      summary: enquiry.approved
+      description: Triggered when a studio admin approves an enquiry.
+      tags:
+      - Enquiry Webhooks
+      responses:
+        "200":
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/enquiry"
+  enquiry.rejected:
+    get:
+      summary: enquiry.rejected
+      description: Triggered when a studio admin rejects an enquiry.
+      tags:
+      - Enquiry Webhooks
+      responses:
+        "200":
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/enquiry"
+  export.ready:
+    get:
+      summary: export.ready
+      description: Triggered when a monthly export that is open to API access finishes generating. The payload carries the export's details, never its data; download the file from `GET /exports/{id}/download`. Nothing is sent for one-off exports.
+      tags:
+      - Export Webhooks
+      responses:
+        "200":
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/export"
+
   # ===== ePOS ENDPOINTS =====
 
   # --- Dashboard ---
 components:
   schemas:
+    export:
+      type: object
+      title: Export
+      properties:
+        id:
+          type: integer
+        export_type:
+          type: string
+          enum: [bookings, customers, payments, extras, booking_sales, payment_requests, coupon_redemptions, receipt_pdfs]
+        from_date:
+          type: string
+          format: date-time
+        to_date:
+          type: string
+          format: date-time
+        exported_at:
+          type: string
+          format: date-time
+          nullable: true
+        content_type:
+          type: string
+          example: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+        ready:
+          type: boolean
+          description: Whether the file can be downloaded yet
+        filename:
+          type: string
+          nullable: true
+          example: the_rehearsal_rooms_bookings_20261101010004.xlsx
+        byte_size:
+          type: integer
+          nullable: true
+    enquiry:
+      type: object
+      title: Enquiry
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        status:
+          type: string
+          enum: [pending, approved, rejected]
+        room:
+          type: object
+          nullable: true
+          properties:
+            name:
+              type: string
+            code:
+              type: string
+        activity:
+          type: object
+          nullable: true
+          properties:
+            name:
+              type: string
+        customer:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            email:
+              type: string
+        number_expected:
+          type: integer
+          nullable: true
+        duration:
+          type: string
+          nullable: true
+          description: The length of time asked for, as the customer entered it
+        budget:
+          type: string
+          nullable: true
+          description: The customer's budget, as they entered it
+        notes:
+          type: string
+          nullable: true
+        regular_booking:
+          type: boolean
+          nullable: true
+          description: Whether the customer is asking for a regular, repeating booking
+        start_at:
+          type: integer
+          nullable: true
+          description: Unix timestamp of the requested start
+        approved_at:
+          type: integer
+          nullable: true
+        rejected_at:
+          type: integer
+          nullable: true
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
     booking_history_entry:
       type: object
       title: Booking history entry
@@ -3913,34 +4197,107 @@ components:
 
     booking_update:
       type: object
-      description: Booking update parameters
+      description: Booking update parameters. Every field is optional; anything left out keeps its current value.
       properties:
         booking:
           type: object
           properties:
-            start_at:
-              type: string
-              format: date-time
-              description: Start time of the booking
-            end_at:
-              type: string
-              format: date-time
-              description: End time of the booking
-            room_id:
+            booking_details:
+              type: object
+              description: The booking's time, room and price. Send either `start_at`/`end_at`, or `date` with `start_time`/`end_time`.
+              properties:
+                start_at:
+                  type: string
+                  format: date-time
+                  description: Start time of the booking
+                end_at:
+                  type: string
+                  format: date-time
+                  description: End time of the booking
+                date:
+                  type: string
+                  format: date
+                  description: The day of the booking, used with `start_time` and `end_time`
+                start_time:
+                  type: string
+                  example: "10:00"
+                  description: Start time of day, in the studio's timezone
+                end_time:
+                  type: string
+                  example: "13:00"
+                  description: End time of day, in the studio's timezone. A time before 3am ends on the next day.
+                room_id:
+                  type: integer
+                  description: ID of the room for the booking
+                price:
+                  type: integer
+                  description: Price of the booking in cents/pence
+                session:
+                  type: string
+                  description: Name of the booking session, for studios that sell sessions
+            customer_id:
               type: integer
-              description: ID of the room for the booking
-            price:
-              type: integer
-              description: Price of the booking in cents/pence
-            additional_notes:
+              description: Move the booking to this existing customer
+            customer_details:
+              type: object
+              description: Move the booking to the customer with these details, creating them if they do not exist. Ignored when `customer_id` is sent.
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                mobile:
+                  type: string
+            band_code:
               type: string
-              description: Additional notes for the booking
+              description: Move the booking to this existing group/band
+            band_details:
+              type: object
+              description: Move the booking to a group/band with this name, creating it if needed. Ignored when `band_code` is sent.
+              properties:
+                name:
+                  type: string
+            extras:
+              type: array
+              description: Replaces the booking's extras
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  quantity:
+                    type: integer
+            staff_ids:
+              type: array
+              description: Replaces the staff assigned to the booking. An empty list removes them all.
+              items:
+                type: integer
             studio_notes:
               type: string
               description: Internal studio notes
             number_expected:
               type: integer
               description: Expected number of attendees
+            is_recording:
+              type: boolean
+            send_email:
+              type: boolean
+              description: Email the customer the updated booking. Defaults to false.
+            mark_as_paid:
+              type: boolean
+              description: Record the remaining balance as paid
+            use_customer_credits:
+              type: boolean
+              description: Pay what is owed from the customer's credit balance
+            made_by_user_id:
+              type: integer
+              description: The staff member recorded as making the change
+      example:
+        booking:
+          booking_details:
+            start_at: "2026-11-10T10:00:00Z"
+            end_at: "2026-11-10T12:00:00Z"
+          number_expected: 4
 
     transaction_create:
       type: object
