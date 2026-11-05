@@ -47,18 +47,18 @@ x-tagGroups:
   - Booking - Refunds & Credit
   - Booking - Notes
   - Booking - Pricing
-  - Customer Endpoints
-  - Room Endpoints
-  - Extra Endpoints
-  - Notification Endpoints
-  - Blocked Time Endpoints
-  - Booking Anchor Endpoints
-  - Reporting Endpoints
-  - Group Endpoints
-  - Coupon Endpoints
-  - Promocode Endpoints
-  - Studio Endpoints
-  - Export Endpoints
+  - Booking - Anchors
+  - Customer
+  - Room
+  - Extra
+  - Notification
+  - Blocked Time
+  - Reporting
+  - Group
+  - Coupon
+  - Promocode
+  - Studio
+  - Export
 - name: Webhooks
   tags:
   - Booking Webhooks
@@ -89,28 +89,28 @@ tags:
   description: Customer-facing booking notes and private studio notes
 - name: Booking - Pricing
   description: Calculate the price of a booking and preview a time slot before creating it
-- name: Customer Endpoints
-  description: Polling API for customers
-- name: Room Endpoints
-  description: Polling API for rooms
-- name: Extra Endpoints
-- name: Notification Endpoints
-- name: Blocked Time Endpoints
-- name: Booking Anchor Endpoints
+- name: Booking - Anchors
   description: |
     A booking anchor marks time that is already taken in a room. When sticky bookings are on, only the slots immediately before and after an anchor stay bookable for that day.
 
     Jammed creates `auto` anchors from bookings, admins add `manual` ones in the admin, and anchors created through this API always have the source `api`. Anchors cannot be edited through the API: delete the anchor and create a new one instead.
 
     These endpoints return a `422` error unless sticky bookings are turned on for the studio or for at least one room. OAuth tokens must belong to an admin; staff accounts get a `403`.
-- name: Reporting Endpoints
-- name: Group Endpoints
+- name: Customer
+  description: Polling API for customers
+- name: Room
+  description: Polling API for rooms
+- name: Extra
+- name: Notification
+- name: Blocked Time
+- name: Reporting
+- name: Group
   description: Polling API for groups
-- name: Coupon Endpoints
-- name: Promocode Endpoints
-- name: Studio Endpoints
+- name: Coupon
+- name: Promocode
+- name: Studio
   description: Studio configuration and feature discovery
-- name: Export Endpoints
+- name: Export
   description: |
     Monthly exports that a studio admin has opened to API access (Exports page, "API access"). One-off exports are never available here.
 
@@ -710,7 +710,7 @@ paths:
   /customers.json:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Find all customers
       description: |
         Returns all customers, newest first.
@@ -746,7 +746,7 @@ paths:
       - $ref: '#/components/parameters/perPage'
     post:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Create a customer
       description: |
         Create a new customer on Jammed.
@@ -795,7 +795,7 @@ paths:
   /customers/{id}.json:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Find a customer by ID
       description: Returns customer with the given ID
       operationId: getCustomer
@@ -826,7 +826,7 @@ paths:
   /coupons/{id}.json:
     get:
       tags:
-      - Coupon Endpoints
+      - Coupon
       summary: Find a coupon by ID
       description: Returns coupon with the given ID
       operationId: getCoupon
@@ -857,7 +857,7 @@ paths:
   /coupons.json:
     get:
       tags:
-      - Coupon Endpoints
+      - Coupon
       summary: Find all coupons
       description: Returns all coupons
       operationId: getCoupons
@@ -881,7 +881,7 @@ paths:
         example: "Bearer <api_key>"
     post:
       tags:
-      - Coupon Endpoints
+      - Coupon
       summary: Create a coupon
       description: |
         Create a new coupon on Jammed.
@@ -925,7 +925,7 @@ paths:
   /coupons/{coupon_id}/promocodes.json:
     get:
       tags:
-      - Promocode Endpoints
+      - Promocode
       summary: Find all promocodes
       description: Returns all promocodes
       operationId: getPromocodes
@@ -954,7 +954,7 @@ paths:
         example: 123
     post:
       tags:
-      - Promocode Endpoints
+      - Promocode
       summary: Create a promocode
       description: |
         Create a promocode for a coupon
@@ -1009,7 +1009,7 @@ paths:
   /coupons/{coupon_id}/assign_to_customer.json:
     post:
       tags:
-      - Coupon Endpoints
+      - Coupon
       summary: Assign Coupon to Customer
       description: |
         Assign a Coupon to a Customer
@@ -1057,7 +1057,7 @@ paths:
   /groups.json:
     get:
       tags:
-      - Group Endpoints
+      - Group
       summary: Find all groups
       description: Returns all groups
       operationId: getGroups
@@ -1083,7 +1083,7 @@ paths:
   /rooms.json:
     get:
       tags:
-      - Room Endpoints
+      - Room
       summary: Find all rooms
       description: Returns all rooms
       operationId: getRooms
@@ -1109,7 +1109,7 @@ paths:
   /studio.json:
     get:
       tags:
-      - Studio Endpoints
+      - Studio
       summary: Studio configuration
       description: |
         Returns studio branding, feature toggles, usage flags, payment setup, wordings, and plan info.
@@ -1892,7 +1892,7 @@ paths:
   /customers/{id}:
     put:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Update customer
       description: Update an existing customer's details.
       operationId: updateCustomer
@@ -1924,7 +1924,7 @@ paths:
   /customers/search:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Search customers
       description: Autocomplete search by name, email, mobile, or band name. Returns top 10 results by booking count.
       operationId: searchCustomers
@@ -1955,7 +1955,7 @@ paths:
   /customers/{id}/notes:
     patch:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Update customer notes
       description: Add or update internal staff notes about a customer.
       operationId: updateCustomerNotes
@@ -1989,7 +1989,7 @@ paths:
   /customers/{id}/invite:
     post:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Invite an existing customer
       description: |
         Send a registration invitation to an existing customer who has not yet created their account.
@@ -2027,7 +2027,7 @@ paths:
   /customers/{id}/bookings:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Customer bookings
       description: List a customer's completed, non-cancelled bookings.
       operationId: customerBookings
@@ -2054,7 +2054,7 @@ paths:
   /customers/{id}/credit_balance:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Get credit balance
       description: View the customer's current credit balance.
       operationId: getCustomerCreditBalance
@@ -2080,7 +2080,7 @@ paths:
       x-epos: true
     patch:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Update credit balance
       description: Adjust the customer's credit balance. Creates a credit movement record.
       operationId: updateCustomerCreditBalance
@@ -2121,7 +2121,7 @@ paths:
   /customers/{id}/credit_movements:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Credit movements
       description: View credit transaction history for a customer.
       operationId: customerCreditMovements
@@ -2148,7 +2148,7 @@ paths:
   /customers/{id}/status:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Customer status
       description: Check if a customer is banned or behind on payment.
       operationId: customerStatus
@@ -2182,7 +2182,7 @@ paths:
   /customers/{id}/payment_methods:
     get:
       tags:
-      - Customer Endpoints
+      - Customer
       summary: Payment methods
       description: List a customer's saved payment methods (for remote charging).
       operationId: customerPaymentMethods
@@ -2343,7 +2343,7 @@ paths:
   /extras:
     get:
       tags:
-      - Extra Endpoints
+      - Extra
       summary: List extras
       description: All available add-on items with pricing.
       operationId: listExtras
@@ -2363,7 +2363,7 @@ paths:
   /extras/{id}:
     get:
       tags:
-      - Extra Endpoints
+      - Extra
       summary: Show extra
       description: Single extra with stock and pricing detail.
       operationId: showExtra
@@ -2387,7 +2387,7 @@ paths:
   /rooms/{id}:
     get:
       tags:
-      - Room Endpoints
+      - Room
       summary: Show room
       description: Room detail with images, pricing, and capacity.
       operationId: showRoom
@@ -2410,7 +2410,7 @@ paths:
   /notifications:
     get:
       tags:
-      - Notification Endpoints
+      - Notification
       summary: List notifications
       description: Recent notifications from the last 7 days.
       operationId: listNotifications
@@ -2430,7 +2430,7 @@ paths:
   /notifications/{id}/read:
     post:
       tags:
-      - Notification Endpoints
+      - Notification
       summary: Mark as read
       operationId: markNotificationRead
       parameters:
@@ -2452,7 +2452,7 @@ paths:
   /notifications/{id}/archive:
     post:
       tags:
-      - Notification Endpoints
+      - Notification
       summary: Archive notification
       operationId: archiveNotification
       parameters:
@@ -2474,7 +2474,7 @@ paths:
   /notifications/clear:
     post:
       tags:
-      - Notification Endpoints
+      - Notification
       summary: Clear all notifications
       operationId: clearNotifications
       parameters:
@@ -2492,7 +2492,7 @@ paths:
   /blocked_times:
     get:
       tags:
-      - Blocked Time Endpoints
+      - Blocked Time
       summary: List blocked times
       description: Get all future schedule blocks.
       operationId: listBlockedTimes
@@ -2510,7 +2510,7 @@ paths:
       x-epos: true
     post:
       tags:
-      - Blocked Time Endpoints
+      - Blocked Time
       summary: Create blocked time
       description: Block a room/time slot for maintenance, private events, etc.
       operationId: createBlockedTime
@@ -2552,7 +2552,7 @@ paths:
   /blocked_times/{id}:
     patch:
       tags:
-      - Blocked Time Endpoints
+      - Blocked Time
       summary: Update blocked time
       operationId: updateBlockedTime
       parameters:
@@ -2591,7 +2591,7 @@ paths:
       x-epos: true
     delete:
       tags:
-      - Blocked Time Endpoints
+      - Blocked Time
       summary: Delete blocked time
       operationId: deleteBlockedTime
       parameters:
@@ -2614,7 +2614,7 @@ paths:
   /booking_anchors:
     get:
       tags:
-      - Booking Anchor Endpoints
+      - Booking - Anchors
       summary: List booking anchors
       description: |
         List booking anchors, ordered by date, start time and room. Without a `date` only today's and future anchors are returned; pass a `date` to reach a past day.
@@ -2667,7 +2667,7 @@ paths:
                 $ref: '#/components/schemas/unprocessable_error'
     post:
       tags:
-      - Booking Anchor Endpoints
+      - Booking - Anchors
       summary: Create booking anchor
       description: |
         Anchor a span of time in a room so only the slots immediately before and after it stay bookable that day. Takes the same fields as the admin form: a room and a start and end time.
@@ -2725,7 +2725,7 @@ paths:
   /booking_anchors/{id}:
     delete:
       tags:
-      - Booking Anchor Endpoints
+      - Booking - Anchors
       summary: Delete booking anchor
       description: |
         Delete any booking anchor, whatever its source. Deleting an `auto` anchor reopens that day for its room, but Jammed recreates it the next time it syncs anchors from that booking (for example when the booking changes), as it does in the admin.
@@ -2763,7 +2763,7 @@ paths:
   /recent_transactions:
     get:
       tags:
-      - Reporting Endpoints
+      - Reporting
       summary: Recent transactions
       description: Today's and yesterday's transaction totals by payment method (Stripe, Square, manual 
         cash/card/other).
@@ -2787,7 +2787,7 @@ paths:
   /money_ledger:
     get:
       tags:
-      - Reporting Endpoints
+      - Reporting
       summary: Money ledger
       description: Searchable transaction history with pagination.
       operationId: moneyLedger
@@ -2878,7 +2878,7 @@ paths:
   /exports:
     get:
       tags:
-      - Export Endpoints
+      - Export
       summary: List exports
       description: Lists the monthly exports that are open to API access, oldest first. Check `ready` before downloading.
       operationId: listExports
@@ -2900,7 +2900,7 @@ paths:
   /exports/{id}:
     get:
       tags:
-      - Export Endpoints
+      - Export
       summary: Get an export
       operationId: getExport
       parameters:
@@ -2926,7 +2926,7 @@ paths:
   /exports/{id}/download:
     get:
       tags:
-      - Export Endpoints
+      - Export
       summary: Download an export
       description: |
         Streams the export file: an `.xlsx` spreadsheet, or a `.zip` of PDFs for receipt exports. The download is recorded in the export's audit log.
