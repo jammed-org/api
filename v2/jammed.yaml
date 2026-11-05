@@ -254,7 +254,13 @@ paths:
       tags:
       - Booking Endpoints
       summary: Find a booking by code
-      description: Returns booking with the given code
+      description: |
+        Returns booking with the given code.
+
+        Pass `include=cancellation_link` to also get `cancellation_link`: a pre-validated link that takes the customer
+        straight to the step where they confirm cancelling, without the usual email check. It is valid for 30 minutes and
+        lets whoever holds it cancel the booking as the customer, so only hand it to the customer. Each request mints a
+        fresh link and is never answered with `304 Not Modified`. OAuth tokens need `bookings.write` to ask for it.
       operationId: getBooking
       responses:
         "200":
@@ -265,6 +271,8 @@ paths:
                 $ref: '#/components/schemas/booking'
         "401":
           description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - `include=cancellation_link` was asked for by an OAuth token without `bookings.write`
         "404":
           description: Not found - Booking was not found
       parameters:
@@ -280,6 +288,14 @@ paths:
         schema:
           type: string
         description: The booking code
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - cancellation_link
+        description: Set to `cancellation_link` to add a pre-validated cancellation link to the response
     patch:
       tags:
       - Booking Endpoints
@@ -1492,6 +1508,42 @@ paths:
                 $ref: '#/components/schemas/status_response'
 
       x-epos: true
+  /bookings/{code}/cancellation_email:
+    post:
+      tags:
+      - Booking Endpoints
+      summary: Send the cancellation email
+      description: |
+        Emails the customer a link to cancel their booking. This is the same email the customer gets when they press
+        the cancel button on their booking page: the link in it is valid for 30 minutes and takes them to the step
+        where they confirm cancelling. Any refund or credit follows the studio's cancellation policy.
+
+        OAuth tokens need `bookings.write`.
+      operationId: sendCancellationEmail
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - $ref: '#/components/parameters/bookingCode'
+      responses:
+        "200":
+          description: Email sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status_response'
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token lacks `bookings.write`
+        "404":
+          description: Not found - Booking was not found
+        "422":
+          description: |
+            Unprocessable - the customer can no longer cancel this booking (it is unpaid, already cancelled, rejected or
+            past the cancellation cut-off), or the email cannot be sent to them
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
   /bookings/{code}/refund_transaction:
     post:
       tags:
@@ -3604,6 +3656,22 @@ components:
           type: boolean
           title: Cancelled
           description: "Whether the booking has been cancelled"
+        cancellation_link:
+          type: object
+          nullable: true
+          title: CancellationLink
+          description: |
+            Only present when `GET /bookings/{code}` is called with `include=cancellation_link`. `null` when the customer
+            can no longer cancel the booking.
+          properties:
+            url:
+              type: string
+              description: Pre-validated link to the step where the customer confirms cancelling
+              example: "https://studio.jammed.app/reserved?booking=ABC123&hash=...&validation=..."
+            expires_at:
+              type: integer
+              description: Unix timestamp when the link stops working (30 minutes after the request)
+              example: 1762352400
         taken_by:
           type: string
           title: TakenBy
