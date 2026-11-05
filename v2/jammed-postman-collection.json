@@ -5,7 +5,7 @@
       "description": "Create, find, update, cancel and uncancel bookings, plus confirmation emails, PDFs, history and notifications for a booking",
       "item": [
         {
-          "id": "820846b5-b9ee-45ff-9a67-8bddc99a3299",
+          "id": "fffc4eb5-58b7-4817-9ab4-f06436084761",
           "name": "All bookings",
           "request": {
             "name": "All bookings",
@@ -72,7 +72,7 @@
           },
           "response": [
             {
-              "id": "c0861eea-b3b2-4f73-8ff3-8d848e7bc04c",
+              "id": "a92b7e46-85f4-488a-8189-5a8396213a5b",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -144,7 +144,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "1ef46e3e-c516-481c-bcaf-d2097d02656e",
+              "id": "e2d0036f-6503-4b25-a13a-7527d5c5bd1a",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -210,7 +210,7 @@
           }
         },
         {
-          "id": "53c23882-e27b-49d9-ac7f-0d55ac0b1b61",
+          "id": "f661ee72-d423-44f1-b2b7-1d97a7559b94",
           "name": "Create a booking",
           "request": {
             "name": "Create a booking",
@@ -253,7 +253,7 @@
           },
           "response": [
             {
-              "id": "7b2345c6-27aa-4f0f-ae81-ae538b65fc3b",
+              "id": "63d9b39f-9ef4-40ff-b818-d7dc34634bb9",
               "name": "Booking created",
               "originalRequest": {
                 "url": {
@@ -301,7 +301,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "708d8462-c84d-4f3e-9730-5a9352812005",
+              "id": "5fbeab71-b08c-4698-8046-8a8e21efc0fc",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -339,7 +339,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "2427081a-42b2-439c-b745-db07b8d3219b",
+              "id": "8cd65688-a275-493d-8a9f-1bfd34fae399",
               "name": "Unprocessable - the booking parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -393,7 +393,7 @@
           }
         },
         {
-          "id": "6f5fbd43-1de5-4622-a688-cd203eaf40e3",
+          "id": "241703cc-bc8e-4297-89f1-3e7a3734b88c",
           "name": "Find a booking by code",
           "request": {
             "name": "Find a booking by code",
@@ -434,7 +434,7 @@
           },
           "response": [
             {
-              "id": "7a413430-e2a4-4c97-a0f6-873621db2fd5",
+              "id": "fb1649e5-1a6d-40f3-909f-4f679818d8ed",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -480,7 +480,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "096b20cf-95c3-4a3e-8a69-e996a45298c1",
+              "id": "848b1110-0c7e-4a27-b72f-4ee7b01256bb",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -514,7 +514,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "80eeed93-31af-4e4c-afe9-b780a9701c84",
+              "id": "c157ae0c-7c0b-445b-9744-e9649751f344",
               "name": "Forbidden - `include=cancellation_link` was asked for by an OAuth token without `bookings.write`",
               "originalRequest": {
                 "url": {
@@ -548,7 +548,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f862af63-540e-4d86-a8dd-a639b48766f6",
+              "id": "01f42353-681f-47a5-ae5d-275d24790ee3",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -588,7 +588,7 @@
           }
         },
         {
-          "id": "717d4faf-91c0-41d4-b79e-6dcc7219915a",
+          "id": "1bd40407-2535-4888-80c0-3c4d4fee1c68",
           "name": "Update a booking",
           "request": {
             "name": "Update a booking",
@@ -632,7 +632,7 @@
           },
           "response": [
             {
-              "id": "c4ca789a-a06d-40a7-8499-b0509fd4e406",
+              "id": "e1102cf4-9fc3-4193-b88f-819caad68eef",
               "name": "Booking updated successfully",
               "originalRequest": {
                 "url": {
@@ -681,7 +681,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "33a38cff-3bc5-4820-a01c-a76cbf993bbc",
+              "id": "40fc6a8d-6627-4144-a946-ff78bd34cf63",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -720,7 +720,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "ebd82f8e-e35d-48b0-b0a1-f5090f27d553",
+              "id": "4e61134d-562d-4122-8894-1dca3e7908fb",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -759,7 +759,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "7045ce96-55b9-4273-9e61-a51eb5dd7e7b",
+              "id": "d69c5d4f-fd24-4162-9404-636dc52f849e",
               "name": "Unprocessable - the booking parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -814,7 +814,7 @@
           }
         },
         {
-          "id": "a942b5bd-4048-4954-bc3c-95418dcdfde4",
+          "id": "19dcf0aa-6242-4ba4-bf5d-3d8a8adfcafc",
           "name": "Cancel a booking",
           "request": {
             "name": "Cancel a booking",
@@ -866,7 +866,7 @@
           },
           "response": [
             {
-              "id": "efd9e71b-a926-4f5c-afa1-68b563b5eba8",
+              "id": "0c1d7c97-7837-44c5-96ca-0de588643d35",
               "name": "Booking cancelled",
               "originalRequest": {
                 "url": {
@@ -918,12 +918,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "84344290-b46c-40d6-8d58-7469e2260920",
+              "id": "9980bf7c-1d9f-4883-a9d0-c8571f189f0e",
               "name": "Booking not found",
               "originalRequest": {
                 "url": {
@@ -974,7 +974,7 @@
           }
         },
         {
-          "id": "d60706b8-9d82-4e5b-b7f9-95a547eae49a",
+          "id": "ef235ddf-3175-44a6-8ce9-1b340d6222fb",
           "name": "Uncancel a booking",
           "request": {
             "name": "Uncancel a booking",
@@ -1017,7 +1017,7 @@
           },
           "response": [
             {
-              "id": "f14b78bf-c95e-44f9-928f-3b6b550d3420",
+              "id": "3ec383c7-3767-4714-8945-43e8c81c714c",
               "name": "Booking restored",
               "originalRequest": {
                 "url": {
@@ -1065,7 +1065,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "ac1300bf-f780-41c0-ab8d-dd98cf846de6",
+              "id": "58d946e2-c3b3-4119-9725-fa3c44ac59fd",
               "name": "Booking not found",
               "originalRequest": {
                 "url": {
@@ -1107,7 +1107,7 @@
           }
         },
         {
-          "id": "eda58ca0-c66a-4941-be90-d06af7343aa6",
+          "id": "b4915d65-2353-42f7-a27c-7a1e965a3cfb",
           "name": "Generate booking PDF",
           "request": {
             "name": "Generate booking PDF",
@@ -1150,7 +1150,7 @@
           },
           "response": [
             {
-              "id": "14ca15d2-d802-4810-b7d5-769ab4355e96",
+              "id": "62fe0c75-f433-43e2-9142-15136a0cf38f",
               "name": "PDF file",
               "originalRequest": {
                 "url": {
@@ -1204,7 +1204,7 @@
           }
         },
         {
-          "id": "d3d54ba1-25f3-403c-9cc7-c371d34db9c3",
+          "id": "3be9a24a-f554-4eb2-b28f-d117939fae76",
           "name": "Resend confirmation email",
           "request": {
             "name": "Resend confirmation email",
@@ -1247,7 +1247,7 @@
           },
           "response": [
             {
-              "id": "ba97d3d8-5f1a-4026-9900-98cad65cf5bd",
+              "id": "2cc42360-d314-4a46-b996-bedf6aaeb0d8",
               "name": "Email sent",
               "originalRequest": {
                 "url": {
@@ -1290,7 +1290,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -1301,7 +1301,7 @@
           }
         },
         {
-          "id": "2c435a69-76b7-4a36-840e-20482aefcd8f",
+          "id": "f40283a6-eeac-40db-9257-05e612d5c486",
           "name": "Send the cancellation email",
           "request": {
             "name": "Send the cancellation email",
@@ -1344,7 +1344,7 @@
           },
           "response": [
             {
-              "id": "9da7313c-3c5f-44a9-bcbb-a11cff069715",
+              "id": "2bcf677b-1a40-4452-a383-9bef380d2b82",
               "name": "Email sent",
               "originalRequest": {
                 "url": {
@@ -1387,12 +1387,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "429013f8-090b-4b5e-bd36-7a6f4a98fca5",
+              "id": "6dbc0d19-a773-41bc-b1ae-aeec9793f2af",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -1428,7 +1428,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "667190a2-62a6-4327-9508-9dae1e6c2be0",
+              "id": "97dad6ab-9b57-4ce1-9830-829de4d61126",
               "name": "Forbidden - the OAuth token lacks `bookings.write`",
               "originalRequest": {
                 "url": {
@@ -1464,7 +1464,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "eed9b327-2133-46da-ac25-463acc44a1ff",
+              "id": "d5800787-f492-4561-9af6-241c5d065688",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -1500,7 +1500,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "bd3ebdc5-37d8-4f3a-956a-60693314e164",
+              "id": "2c5033d9-9a8b-49d2-ad7f-775ef5910090",
               "name": "Unprocessable - the customer can no longer cancel this booking (it is unpaid, already cancelled, rejected or\npast the cancellation cut-off), or the email cannot be sent to them",
               "originalRequest": {
                 "url": {
@@ -1554,7 +1554,7 @@
           }
         },
         {
-          "id": "7a60ce3c-9c9c-4833-add5-c4073a863919",
+          "id": "2ac75bfe-f3e7-4554-abfd-d45395181ecc",
           "name": "Booking notifications",
           "request": {
             "name": "Booking notifications",
@@ -1597,7 +1597,7 @@
           },
           "response": [
             {
-              "id": "493c3439-e212-485f-b7de-e4dc23c857c4",
+              "id": "073c0666-b753-4b47-b497-90572adbd303",
               "name": "Notifications list",
               "originalRequest": {
                 "url": {
@@ -1651,7 +1651,7 @@
           }
         },
         {
-          "id": "db5e92e5-e548-48c2-aa80-03d58dc940bf",
+          "id": "9ffbe839-bc2a-440e-bde6-03d21e4f5c40",
           "name": "Booking history",
           "request": {
             "name": "Booking history",
@@ -1694,7 +1694,7 @@
           },
           "response": [
             {
-              "id": "2aff33d7-710c-4bcc-b7f6-feef58596e83",
+              "id": "96c8667b-4215-46df-b3e5-bd900bdf44c1",
               "name": "History timeline",
               "originalRequest": {
                 "url": {
@@ -1742,7 +1742,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "f7a114b7-7ded-4751-8db0-f3b3ba68a20e",
+              "id": "1b3ded3c-3532-48df-82bf-1ae8138f3519",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -1778,7 +1778,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "29c1062f-1f90-4ba5-9e63-bbe1f4ff7d4b",
+              "id": "a3b9842a-b093-4343-906a-2d3c72102c3c",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -1826,7 +1826,7 @@
       "description": "Search bookings, list them by date range, and poll feeds of bookings that have changed state (cancelled, started, finished, reminders, updated)",
       "item": [
         {
-          "id": "ea7395af-8b2b-499e-b41e-7af085b1380f",
+          "id": "1a7517c0-8323-4e3c-80c0-e01e7c4ca27b",
           "name": "Cancelled bookings",
           "request": {
             "name": "Cancelled bookings",
@@ -1857,7 +1857,7 @@
           },
           "response": [
             {
-              "id": "879be0dc-e43a-46ce-b0e0-d864032e51c1",
+              "id": "78281537-d7df-4e19-9857-5214ab884b8e",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -1893,7 +1893,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "d221a400-10bc-49b4-af65-3226c77cb5de",
+              "id": "b7e50b58-7abd-4520-9aa4-802074f8044f",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -1923,7 +1923,7 @@
           }
         },
         {
-          "id": "7dad6113-efa1-4d06-9fe8-fe9dc88ff04d",
+          "id": "91076f54-c4a0-438d-81de-730ff945d30f",
           "name": "Started bookings",
           "request": {
             "name": "Started bookings",
@@ -1954,7 +1954,7 @@
           },
           "response": [
             {
-              "id": "97b4f301-f8b7-4427-9e5f-30a67aa23354",
+              "id": "fd3ba55d-4217-4b25-ac99-c1c47dd4b539",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -1990,7 +1990,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "ffc61553-f01b-45e3-960c-8acc309ebb2c",
+              "id": "ee134058-9a51-46fc-a868-72d6608a8fef",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -2020,7 +2020,7 @@
           }
         },
         {
-          "id": "fafdd3a1-aa09-4e55-986b-feca7c9fd926",
+          "id": "2709ed66-3522-48ca-b290-c1cc488110b5",
           "name": "Finished bookings",
           "request": {
             "name": "Finished bookings",
@@ -2051,7 +2051,7 @@
           },
           "response": [
             {
-              "id": "1584415e-0fb0-461e-93a3-bc7486ab7f94",
+              "id": "a6daf5b6-1b35-4e9d-80ae-815ca4acd5d2",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -2087,7 +2087,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "91094c6a-b17f-43a3-b6c2-7ecddd2e0c9e",
+              "id": "309cf5ba-dc71-4a20-a528-77679425cd7b",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -2117,7 +2117,7 @@
           }
         },
         {
-          "id": "64eed9c3-d3e4-45ab-86b6-be0055cab90a",
+          "id": "e7b56e8b-b75e-4363-87cd-884733121fe3",
           "name": "Reminder bookings",
           "request": {
             "name": "Reminder bookings",
@@ -2148,7 +2148,7 @@
           },
           "response": [
             {
-              "id": "83b568d6-4d4a-4c08-bcc2-51187a6ce848",
+              "id": "7ba65e3b-6858-4df9-80da-cb2e078aa10d",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -2184,7 +2184,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "4a59bd07-77c1-48a0-8a12-7616e9f8b19e",
+              "id": "bcf5355c-5507-4fd0-ac2c-3f3859c12807",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -2214,7 +2214,7 @@
           }
         },
         {
-          "id": "bfe0bd19-a037-4e87-aba8-5d8b79c7e81c",
+          "id": "9be80848-37f4-46f1-95e7-15ab30e419f9",
           "name": "One hour before bookings",
           "request": {
             "name": "One hour before bookings",
@@ -2245,7 +2245,7 @@
           },
           "response": [
             {
-              "id": "e8d810a1-68ca-43cd-a93b-083ed0871092",
+              "id": "237c2e29-2e86-4215-85b1-283dbdaa9370",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -2281,7 +2281,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "76e974f7-1faa-4e9a-bc57-8f924831fb0c",
+              "id": "e730b0b8-cfb1-483b-bef2-8009261757bf",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -2311,7 +2311,7 @@
           }
         },
         {
-          "id": "8f63f801-ff50-44fb-8f4e-2f7ee1dd795c",
+          "id": "cb46ef42-12d6-4d62-88c6-b3f22ab492bf",
           "name": "Updated bookings",
           "request": {
             "name": "Updated bookings",
@@ -2342,7 +2342,7 @@
           },
           "response": [
             {
-              "id": "cc730cf5-dcd9-45aa-9552-712b4cdf49cf",
+              "id": "6e139130-4d0c-4669-b4e3-7ed896d7a4c2",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -2378,7 +2378,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "0384b92a-ce57-4bdc-a7f2-3af00ffb2ca2",
+              "id": "df93f5a4-c42b-4e67-8c2b-c219e4b5a07a",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -2408,7 +2408,7 @@
           }
         },
         {
-          "id": "2964f86a-2baf-4ecd-aae8-01cf2f48a908",
+          "id": "2ec01c31-3de0-4661-a2bc-eb5d23e62349",
           "name": "Dashboard composite data",
           "request": {
             "name": "Dashboard composite data",
@@ -2466,7 +2466,7 @@
           },
           "response": [
             {
-              "id": "afc84a53-61cc-4bfb-acb5-3f9ada1e2366",
+              "id": "c8b16eba-cde0-4c33-9201-1f05be4a5ced",
               "name": "Dashboard data",
               "originalRequest": {
                 "url": {
@@ -2535,7 +2535,7 @@
           }
         },
         {
-          "id": "19c59bf8-9f8e-4dfd-b1a5-a4ce8bc11377",
+          "id": "6855d7bf-58cc-496b-9705-2f2b65312121",
           "name": "Search bookings",
           "request": {
             "name": "Search bookings",
@@ -2568,7 +2568,7 @@
                     "type": "text/plain"
                   },
                   "key": "status_filter",
-                  "value": "cancelled_and_active"
+                  "value": "active"
                 },
                 {
                   "disabled": false,
@@ -2603,7 +2603,7 @@
           },
           "response": [
             {
-              "id": "439daa5f-cf04-443c-b458-1a109289248b",
+              "id": "32b0e8a2-17a2-4869-b96a-340d6f18b53a",
               "name": "Search results",
               "originalRequest": {
                 "url": {
@@ -2631,7 +2631,7 @@
                         "type": "text/plain"
                       },
                       "key": "status_filter",
-                      "value": "cancelled_and_active"
+                      "value": "active"
                     },
                     {
                       "disabled": false,
@@ -2682,7 +2682,7 @@
           }
         },
         {
-          "id": "a133d411-3400-4d5a-bbe3-315660ebdf2e",
+          "id": "2f5e2df1-c907-4b5c-a7d7-03699a2aef0d",
           "name": "Bookings by date range",
           "request": {
             "name": "Bookings by date range",
@@ -2732,7 +2732,7 @@
           },
           "response": [
             {
-              "id": "65fb544e-e3d0-4edc-bb83-2ba7a424ad14",
+              "id": "f2d4437b-e162-41dc-9e4a-588d0c057198",
               "name": "Bookings for date range",
               "originalRequest": {
                 "url": {
@@ -2799,7 +2799,7 @@
       "description": "Bookings that need a studio admin to approve or reject them",
       "item": [
         {
-          "id": "f1842b31-9e29-4419-bcfa-36c6c5e0508d",
+          "id": "ad02a340-02fb-4913-8948-f49da01631e7",
           "name": "Bookings awaiting approval",
           "request": {
             "name": "Bookings awaiting approval",
@@ -2849,7 +2849,7 @@
           },
           "response": [
             {
-              "id": "ef623cfe-2e35-49e8-8276-fddeb2664b90",
+              "id": "3a48f811-0bdd-4f9f-a69e-d48591271b51",
               "name": "Pending bookings",
               "originalRequest": {
                 "url": {
@@ -2910,7 +2910,7 @@
           }
         },
         {
-          "id": "d5aae7f4-7a01-4811-83c5-3da91f093744",
+          "id": "33cfbf11-837e-490d-878e-083ba2ddc0e3",
           "name": "Approve a booking",
           "request": {
             "name": "Approve a booking",
@@ -2953,7 +2953,7 @@
           },
           "response": [
             {
-              "id": "feeea48d-602f-461d-98fc-842688b9592f",
+              "id": "7fd622fd-fbf8-496b-b335-929efd93bb89",
               "name": "Booking approved",
               "originalRequest": {
                 "url": {
@@ -3007,7 +3007,7 @@
           }
         },
         {
-          "id": "7a284523-2e1b-44ba-94f2-acaedaf93775",
+          "id": "14fb098f-f139-4f98-91ed-c05d8af6b9e9",
           "name": "Reject a booking",
           "request": {
             "name": "Reject a booking",
@@ -3060,7 +3060,7 @@
           },
           "response": [
             {
-              "id": "8bd7d49a-5b2b-4e25-8e7a-8c03de935b7d",
+              "id": "13f40e23-3a9d-4a95-b36c-d043370f0d15",
               "name": "Booking rejected",
               "originalRequest": {
                 "url": {
@@ -3130,7 +3130,7 @@
       "description": "Transactions on a booking, payment requests, and charging a customer's saved card",
       "item": [
         {
-          "id": "5b1f25b2-df4a-4fcc-b757-8a8c5bb39e50",
+          "id": "17b5be49-0691-4bd4-bc36-d7777ca4875a",
           "name": "List booking transactions",
           "request": {
             "name": "List booking transactions",
@@ -3173,7 +3173,7 @@
           },
           "response": [
             {
-              "id": "ee22a05c-98ad-4d7c-b8f8-0ac042e83f10",
+              "id": "1881b82b-17b8-4e63-aa89-96ee9b43efa1",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -3221,7 +3221,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "749f2c9e-0d82-46dd-af8b-2d795b66370b",
+              "id": "631d1792-9826-47e2-a6bb-873d05c83a95",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -3257,7 +3257,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "59f36056-bd8b-4e4e-bc40-09e60d33f5c8",
+              "id": "5cc1f1ae-1c9c-43b9-98d6-4f18d67bd56b",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -3299,7 +3299,7 @@
           }
         },
         {
-          "id": "c94e5e41-d10a-473d-95d3-9cc11f06ed52",
+          "id": "36acbb58-edf4-4739-af65-136d999a71a4",
           "name": "Create a transaction for a booking",
           "request": {
             "name": "Create a transaction for a booking",
@@ -3355,7 +3355,7 @@
           },
           "response": [
             {
-              "id": "b5129cad-1c9b-4020-b534-836b38e3e85c",
+              "id": "680571f4-6fa9-4bb5-98c2-0884de29e50f",
               "name": "Transaction created successfully",
               "originalRequest": {
                 "url": {
@@ -3416,7 +3416,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "bb0afef9-7ac9-429a-8186-f93e0ae7796d",
+              "id": "d7bf2111-beae-44ee-82bc-bb1d66d62bb3",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -3467,7 +3467,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "4d209fdd-c65a-4a79-8209-219c1fb03b18",
+              "id": "3ad7c47a-3f30-42fa-928a-c90794b38364",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -3518,7 +3518,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "50e17d53-5c8a-4c20-806c-2f2bf1fac10f",
+              "id": "1c3b8c84-e8c5-45ff-b207-dee29237e17d",
               "name": "Unprocessable - the transaction parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -3575,7 +3575,7 @@
           }
         },
         {
-          "id": "5a4495aa-225c-4e90-88df-0cf8cb7bcf60",
+          "id": "eb868a70-034d-465d-b8d2-e4242b9d88c9",
           "name": "Send payment request",
           "request": {
             "name": "Send payment request",
@@ -3631,7 +3631,7 @@
           },
           "response": [
             {
-              "id": "4bee5e4b-a3ff-4dd8-8b80-3bea0305d618",
+              "id": "2c4c241f-c0eb-49a6-995f-bdef1772327e",
               "name": "Payment request sent",
               "originalRequest": {
                 "url": {
@@ -3687,7 +3687,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -3698,7 +3698,7 @@
           }
         },
         {
-          "id": "adb32701-b09a-49c9-a946-3a341cafe0f4",
+          "id": "524076ed-1453-4602-8de6-4e8fef1f1b67",
           "name": "Charge saved card",
           "request": {
             "name": "Charge saved card",
@@ -3755,7 +3755,7 @@
           },
           "response": [
             {
-              "id": "9f2e7c90-edb2-4ef0-b0ed-67e339adc80f",
+              "id": "2fb1d317-6adf-4bc3-84cf-5615a17f6073",
               "name": "Payment taken",
               "originalRequest": {
                 "url": {
@@ -3812,7 +3812,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -3823,7 +3823,7 @@
           }
         },
         {
-          "id": "d50461a8-59b9-41aa-a363-3be5cc6c4832",
+          "id": "bcb96094-b407-40bf-9ac3-dfa7d609f84e",
           "name": "Mark payment as paid",
           "request": {
             "name": "Mark payment as paid",
@@ -3878,7 +3878,7 @@
           },
           "response": [
             {
-              "id": "96358314-a75d-4779-936d-00da439d8416",
+              "id": "52e4ad59-f67f-4932-b57b-387f815d6c58",
               "name": "Marked as paid",
               "originalRequest": {
                 "url": {
@@ -3933,7 +3933,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -3944,7 +3944,7 @@
           }
         },
         {
-          "id": "ad7921cc-d3e3-4811-a3a7-3f0751d68d5d",
+          "id": "e7533cbb-2be2-40d0-a99a-448c1f5943b3",
           "name": "Cancel payment request",
           "request": {
             "name": "Cancel payment request",
@@ -3999,7 +3999,7 @@
           },
           "response": [
             {
-              "id": "6237ae5c-b326-433c-8997-499caa18dc93",
+              "id": "e52ff628-5ba2-4259-acdf-04136d5c5277",
               "name": "Payment request cancelled",
               "originalRequest": {
                 "url": {
@@ -4054,7 +4054,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -4065,7 +4065,7 @@
           }
         },
         {
-          "id": "adc2ee0d-9d63-4324-a53a-79e370d2c380",
+          "id": "f1487bb2-d119-440b-b9ab-7592c180466e",
           "name": "Check settlement support",
           "request": {
             "name": "Check settlement support",
@@ -4108,7 +4108,7 @@
           },
           "response": [
             {
-              "id": "056b2c97-3064-4c59-9a6d-c3a24014a4df",
+              "id": "99ee9d8b-217c-4af0-9957-0464a7f539ba",
               "name": "Settlement check result",
               "originalRequest": {
                 "url": {
@@ -4168,7 +4168,7 @@
       "description": "Refunds, credit notes, and moving money between a booking and the customer's credit balance",
       "item": [
         {
-          "id": "0e22247e-b245-4f20-9a27-7d8f126506b8",
+          "id": "483304ad-a3db-49b2-b673-eb3efaa9c919",
           "name": "Refund a transaction",
           "request": {
             "name": "Refund a transaction",
@@ -4221,7 +4221,7 @@
           },
           "response": [
             {
-              "id": "0f3f2913-fecc-4d2a-a875-3c582b057c4e",
+              "id": "c78c959f-e8f0-4800-92fc-16421a1202f7",
               "name": "Transaction refunded",
               "originalRequest": {
                 "url": {
@@ -4274,7 +4274,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -4285,7 +4285,7 @@
           }
         },
         {
-          "id": "9fc3873a-efec-4048-a5a1-7b40fdc00287",
+          "id": "3b610d73-7ea9-41f5-912a-9e292de26826",
           "name": "Full refund",
           "request": {
             "name": "Full refund",
@@ -4341,7 +4341,7 @@
           },
           "response": [
             {
-              "id": "62325dcb-6a78-4edb-9a1a-f470b683fc33",
+              "id": "77ec6dd5-62d6-4fab-a668-48a5a1cc2f8a",
               "name": "Booking refunded",
               "originalRequest": {
                 "url": {
@@ -4397,7 +4397,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -4408,7 +4408,7 @@
           }
         },
         {
-          "id": "fef2b119-1a62-439f-9600-6fe0d6cf01e1",
+          "id": "6274bf91-9a0a-47c8-a12c-90e8aaab629e",
           "name": "Apply credit balance",
           "request": {
             "name": "Apply credit balance",
@@ -4451,7 +4451,7 @@
           },
           "response": [
             {
-              "id": "e6581f57-b5dd-46f2-a786-e0b3be8da57b",
+              "id": "3e72c7cf-95a1-4fb8-be2b-6897478ebad3",
               "name": "Credit applied",
               "originalRequest": {
                 "url": {
@@ -4494,7 +4494,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -4505,7 +4505,7 @@
           }
         },
         {
-          "id": "ad82dd9b-3dba-4da6-88f4-cfd4ed5953ca",
+          "id": "0eb2dacd-ff1f-4243-a91f-808fbb6b456c",
           "name": "Credit to customer balance",
           "request": {
             "name": "Credit to customer balance",
@@ -4561,7 +4561,7 @@
           },
           "response": [
             {
-              "id": "b575ed7f-29a1-4095-b245-8b5047383c66",
+              "id": "a682bcd7-fdd2-48cc-a90d-c885c23ab5de",
               "name": "Booking credited",
               "originalRequest": {
                 "url": {
@@ -4617,7 +4617,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -4628,7 +4628,7 @@
           }
         },
         {
-          "id": "fe8582c6-1ee3-4dfd-9b5f-7fdac0a6ee5d",
+          "id": "89d52705-24c1-40f5-9538-110228a7179b",
           "name": "Create credit note",
           "request": {
             "name": "Create credit note",
@@ -4684,7 +4684,7 @@
           },
           "response": [
             {
-              "id": "d76ddbb4-adad-4d7c-9059-e5f2bb43fe92",
+              "id": "d34e8664-c228-4c93-a55e-744f2cee3b3c",
               "name": "Credit note created",
               "originalRequest": {
                 "url": {
@@ -4740,7 +4740,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -4751,7 +4751,7 @@
           }
         },
         {
-          "id": "aa6ac58f-6b0e-402d-a039-a67afcaa078b",
+          "id": "231df19b-9f0c-451b-9fe6-f6ee9285554d",
           "name": "Delete credit note",
           "request": {
             "name": "Delete credit note",
@@ -4805,7 +4805,7 @@
           },
           "response": [
             {
-              "id": "75f7753f-ba3d-40c0-b134-790b42ea7139",
+              "id": "8681e593-1934-4eac-8d37-698e51300881",
               "name": "Credit note removed",
               "originalRequest": {
                 "url": {
@@ -4859,12 +4859,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "870e976f-2df0-4ee9-840b-743596e1e522",
+              "id": "7dcdff28-ebbb-4b65-aa68-a59d1a52360f",
               "name": "Credit note or booking not found",
               "originalRequest": {
                 "url": {
@@ -4923,7 +4923,7 @@
       "description": "Customer-facing booking notes and private studio notes",
       "item": [
         {
-          "id": "cdc37329-4807-4d40-a895-53cb24bd04a0",
+          "id": "35f08157-2bba-4bc6-826f-a71cf0b064f1",
           "name": "Get booking studio notes",
           "request": {
             "name": "Get booking studio notes",
@@ -4966,7 +4966,7 @@
           },
           "response": [
             {
-              "id": "75522943-3674-4aa3-a3ad-7368c4577bf5",
+              "id": "5f47a293-28ae-43ca-9da0-22e4bb5b9d9f",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -5014,7 +5014,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "833d1a08-1c44-488f-9d2e-a0169e3f725c",
+              "id": "ce984771-8a46-4d19-8e7b-c418ae84ec19",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -5050,7 +5050,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "1aea5dbc-fa41-4f34-8e2b-297355ea9fad",
+              "id": "91ac9670-ed98-4006-a5ae-654dc8ceb220",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -5092,7 +5092,7 @@
           }
         },
         {
-          "id": "3d58cedd-fc70-43ee-afaf-96fc747ecc7d",
+          "id": "dad6634a-5375-4d12-942f-cb8dd02b4cfd",
           "name": "Update booking studio notes",
           "request": {
             "name": "Update booking studio notes",
@@ -5148,7 +5148,7 @@
           },
           "response": [
             {
-              "id": "90735519-86f1-412a-8b5b-f3daf31e8629",
+              "id": "ddd265a3-d684-4a1d-8f66-013696177301",
               "name": "Studio notes updated successfully",
               "originalRequest": {
                 "url": {
@@ -5209,7 +5209,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "dc2c0acd-ee21-42c4-ae58-9a3294f035d4",
+              "id": "1c1bac03-6594-4d8c-8134-2c9e30c514c6",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -5260,7 +5260,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "370de6ce-42ec-4ce2-a911-866ae0561cb2",
+              "id": "ee7d812a-d3a0-40ee-a7b8-a9edd62ea2a8",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -5317,7 +5317,7 @@
           }
         },
         {
-          "id": "8f472cc5-8025-4e08-bf8c-f98504fd5c51",
+          "id": "87e5a6c4-296c-4f04-b65d-9a4fe07ef54b",
           "name": "Update booking notes",
           "request": {
             "name": "Update booking notes",
@@ -5373,7 +5373,7 @@
           },
           "response": [
             {
-              "id": "78d99cdd-4ce2-4340-8cc9-38af41fc4eb5",
+              "id": "d04d8b96-f2ff-496f-9f7f-66d452e848b4",
               "name": "Notes updated",
               "originalRequest": {
                 "url": {
@@ -5446,7 +5446,7 @@
       "description": "Calculate the price of a booking and preview a time slot before creating it",
       "item": [
         {
-          "id": "fe71536f-7aaa-4d15-9948-8e4f49752912",
+          "id": "62ae2ba5-9f28-42cc-8bde-065599fd53f6",
           "name": "Calculate booking price",
           "request": {
             "name": "Calculate booking price",
@@ -5489,7 +5489,7 @@
           },
           "response": [
             {
-              "id": "8043f722-b5fe-483b-9b8f-1d4692e08dc3",
+              "id": "2d9395f0-1bdc-4e39-9e19-9b6763191caf",
               "name": "Price breakdown",
               "originalRequest": {
                 "url": {
@@ -5543,7 +5543,7 @@
           }
         },
         {
-          "id": "62e809bc-d728-463e-afae-1c6b6747de9e",
+          "id": "f6751bd8-a014-4c76-a918-995940762fcf",
           "name": "Project time slot",
           "request": {
             "name": "Project time slot",
@@ -5586,7 +5586,7 @@
           },
           "response": [
             {
-              "id": "06a7e5d7-ae3f-4682-9e47-e9b08f22d7f7",
+              "id": "18f94b5e-612a-4220-9c2f-afdf689bf3a8",
               "name": "Slot projection",
               "originalRequest": {
                 "url": {
@@ -5646,7 +5646,7 @@
       "description": "A booking anchor marks time that is already taken in a room. When sticky bookings are on, only the slots immediately before and after an anchor stay bookable for that day.\n\nJammed creates `auto` anchors from bookings, admins add `manual` ones in the admin, and anchors created through this API always have the source `api`. Anchors cannot be edited through the API: delete the anchor and create a new one instead.\n\nThese endpoints return a `422` error unless sticky bookings are turned on for the studio or for at least one room. OAuth tokens must belong to an admin; staff accounts get a `403`.\n",
       "item": [
         {
-          "id": "14094900-1113-464b-b92b-9873d4316a88",
+          "id": "ddd04bcb-4114-4ab6-b900-e9a0e2dd08bd",
           "name": "List booking anchors",
           "request": {
             "name": "List booking anchors",
@@ -5722,7 +5722,7 @@
           },
           "response": [
             {
-              "id": "5c6c4f7c-fbed-4ea3-b8bc-0281709e5441",
+              "id": "e2cf4a2f-faad-40fb-b8fe-02831dc730f6",
               "name": "Booking anchors",
               "originalRequest": {
                 "url": {
@@ -5798,12 +5798,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"room_id\": \"<integer>\",\n    \"date\": \"<date>\",\n    \"start_at\": \"<integer>\",\n    \"end_at\": \"<integer>\",\n    \"start_time\": \"<string>\",\n    \"end_time\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"source\": \"manual\",\n    \"booking_code\": \"<string>\",\n    \"room\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"room_id\": \"<integer>\",\n    \"date\": \"<date>\",\n    \"start_at\": \"<integer>\",\n    \"end_at\": \"<integer>\",\n    \"start_time\": \"<string>\",\n    \"end_time\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"source\": \"api\",\n    \"booking_code\": \"<string>\",\n    \"room\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\"\n    }\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"room_id\": \"<integer>\",\n    \"date\": \"<date>\",\n    \"start_at\": \"<integer>\",\n    \"end_at\": \"<integer>\",\n    \"start_time\": \"<string>\",\n    \"end_time\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"source\": \"api\",\n    \"booking_code\": \"<string>\",\n    \"room\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"room_id\": \"<integer>\",\n    \"date\": \"<date>\",\n    \"start_at\": \"<integer>\",\n    \"end_at\": \"<integer>\",\n    \"start_time\": \"<string>\",\n    \"end_time\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"source\": \"auto\",\n    \"booking_code\": \"<string>\",\n    \"room\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"code\": \"<string>\"\n    }\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "1d80814f-58b3-43ab-84fc-dcd137c27e4d",
+              "id": "fe33e4a4-ba62-45a5-a87b-d24feb8ff781",
               "name": "Bad request - the `date` could not be parsed",
               "originalRequest": {
                 "url": {
@@ -5872,7 +5872,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c57125cc-a543-4467-8c6e-f62e69b084fe",
+              "id": "d681bb7f-3d33-41b6-a2f4-60247a19ee40",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -5941,7 +5941,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "bcc5b777-fe81-4434-a17c-287207a3e27b",
+              "id": "3ad1c7ef-916f-43c6-bbbf-7ebe017599a9",
               "name": "Forbidden - the OAuth token lacks the scope, or does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -6010,7 +6010,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "e8224a99-101b-43a3-9329-78f0defb3b3d",
+              "id": "cdbbec32-357a-4828-a8fd-bdaa4dfaa243",
               "name": "Unprocessable - sticky bookings are not turned on",
               "originalRequest": {
                 "url": {
@@ -6097,7 +6097,7 @@
           }
         },
         {
-          "id": "15ad7af3-dee2-49df-bd89-2c02c9f83d49",
+          "id": "f98d5aa6-79e2-412c-b61e-dea0fbeb21a1",
           "name": "Create booking anchor",
           "request": {
             "name": "Create booking anchor",
@@ -6140,7 +6140,7 @@
           },
           "response": [
             {
-              "id": "1cff8d77-84c0-4056-a13d-71ac0bbbde7a",
+              "id": "5e9892d3-8e77-482f-bd4a-92aba5f80770",
               "name": "Booking anchor created",
               "originalRequest": {
                 "url": {
@@ -6188,7 +6188,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "1a57038c-52bb-490e-833d-97a195b81a69",
+              "id": "3d80e043-43d1-4b80-a086-5ccd2f3fe77d",
               "name": "Bad request - the `booking_anchor` key is missing",
               "originalRequest": {
                 "url": {
@@ -6226,7 +6226,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "e7bac2a3-2ef6-48d7-b920-33b42e3dc24b",
+              "id": "0f1a2031-113b-48ef-ab83-e662a8d34177",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -6264,7 +6264,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c9c8c0b7-b553-40c7-8c7c-35e4388a8895",
+              "id": "3b2c2524-4a4b-4796-9954-11672b90fde5",
               "name": "Forbidden - the OAuth token lacks the scope, or does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -6302,7 +6302,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "133128d0-b7fb-440c-8798-750bf6ac9245",
+              "id": "52372411-41c1-471f-9fef-2d73b96c2e42",
               "name": "Unprocessable - the room does not exist, the times are missing or backwards, or sticky bookings are not turned on",
               "originalRequest": {
                 "url": {
@@ -6356,7 +6356,7 @@
           }
         },
         {
-          "id": "e953276c-98de-46e8-ab7d-c4bd8cdbb906",
+          "id": "022c0630-8a14-414a-8f1d-7342309f961a",
           "name": "Delete booking anchor",
           "request": {
             "name": "Delete booking anchor",
@@ -6398,7 +6398,7 @@
           },
           "response": [
             {
-              "id": "5d7c45a1-7c2d-4931-8ab8-33da90bd6e68",
+              "id": "40fbac72-f220-48fb-8a19-8519dee0819b",
               "name": "Booking anchor deleted",
               "originalRequest": {
                 "url": {
@@ -6440,12 +6440,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "54e46377-4701-4267-8515-74aa79b52e41",
+              "id": "d314246a-3c57-45fd-bddd-538d92161e04",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -6480,7 +6480,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "905dafe1-f81d-4512-a77d-f175ed21d549",
+              "id": "8ea9c7e9-1004-4eae-84ce-d20f309ad3b7",
               "name": "Forbidden - the OAuth token lacks the scope, or does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -6515,7 +6515,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "fb3d9f14-9a64-4ac2-9eea-f9dbfa0542c2",
+              "id": "6697e879-a700-48aa-8958-1ab8deabc9ec",
               "name": "Not found - the booking anchor does not exist",
               "originalRequest": {
                 "url": {
@@ -6550,7 +6550,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "0644bcb8-e898-46ce-8ec5-76673b77066a",
+              "id": "d90f66be-0700-4aa4-b69b-9cf4bb6dfa58",
               "name": "Unprocessable - sticky bookings are not turned on",
               "originalRequest": {
                 "url": {
@@ -6609,7 +6609,7 @@
       "description": "Polling API for customers",
       "item": [
         {
-          "id": "ffd96fc5-8860-402e-af30-23a64e342e94",
+          "id": "20bde698-6bca-453c-b4ca-daf963572d33",
           "name": "Find all customers",
           "request": {
             "name": "Find all customers",
@@ -6667,7 +6667,7 @@
           },
           "response": [
             {
-              "id": "0c08df84-5323-47da-bf8d-c627079c9003",
+              "id": "9b75e22d-9666-4288-bc75-e20c4cb792ab",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -6725,12 +6725,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"unregistered\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"banned\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"registered\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"invited\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c1f8d5e1-e9c9-4d4e-953d-bb3a14f81934",
+              "id": "a58ba69a-7624-4185-a8a4-3ddcbc969a9c",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -6787,7 +6787,7 @@
           }
         },
         {
-          "id": "9a9318ca-3e42-4002-88c0-1f726afd6f58",
+          "id": "9aade512-84bf-403c-99c2-a0a9e225a449",
           "name": "Create a customer",
           "request": {
             "name": "Create a customer",
@@ -6824,7 +6824,7 @@
           },
           "response": [
             {
-              "id": "eba26b9e-e459-4d09-a19e-5711d0542bc4",
+              "id": "bc9b295c-9086-42e2-9c7b-2cffb4ba62ee",
               "name": "Customer created",
               "originalRequest": {
                 "url": {
@@ -6861,12 +6861,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"unregistered\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"banned\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"registered\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"invited\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "62a6e398-d38a-4b74-a03c-a6fa14cec76d",
+              "id": "b065ddd5-6c21-41c9-a9c4-d6414ed02174",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -6898,7 +6898,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "043141b0-effb-49e7-b053-4220a8a95a9c",
+              "id": "e5ae82ec-9f99-463e-976c-6b9880d9c936",
               "name": "Unprocessable - the customer parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -6946,7 +6946,7 @@
           }
         },
         {
-          "id": "0c1a6bf0-983d-4ab9-b1d3-7c8a3f098d03",
+          "id": "990f9233-a88b-446a-8e53-1b493412cadc",
           "name": "Find a customer by ID",
           "request": {
             "name": "Find a customer by ID",
@@ -6977,7 +6977,7 @@
           },
           "response": [
             {
-              "id": "9ad4cb3c-87a8-4e0e-b623-19b4d8b789e5",
+              "id": "0a8fc29b-cc97-46a3-ad47-aba8b1205dd2",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -7008,12 +7008,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"avatar\": \"<string>\",\n  \"credit_balance\": \"<integer>\",\n  \"status\": \"invited\",\n  \"reminders_opt_in\": \"<boolean>\",\n  \"mailing_list_opt_in\": \"<boolean>\",\n  \"signed_up\": \"<boolean>\",\n  \"signed_up_at\": \"<integer>\",\n  \"regular_bookings_count\": \"<integer>\",\n  \"bookings_count\": \"<integer>\",\n  \"created_at\": \"<integer>\",\n  \"updated_at\": \"<integer>\",\n  \"last_booking_at\": \"<integer>\",\n  \"regular_bookings\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    }\n  ],\n  \"bands\": [\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    }\n  ],\n  \"address\": {\n    \"company\": \"<string>\",\n    \"address_1\": \"<string>\",\n    \"address_2\": \"<string>\",\n    \"town\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formatted_address\": \"<string>\"\n  }\n}",
+              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"avatar\": \"<string>\",\n  \"credit_balance\": \"<integer>\",\n  \"status\": \"unregistered\",\n  \"reminders_opt_in\": \"<boolean>\",\n  \"mailing_list_opt_in\": \"<boolean>\",\n  \"signed_up\": \"<boolean>\",\n  \"signed_up_at\": \"<integer>\",\n  \"regular_bookings_count\": \"<integer>\",\n  \"bookings_count\": \"<integer>\",\n  \"created_at\": \"<integer>\",\n  \"updated_at\": \"<integer>\",\n  \"last_booking_at\": \"<integer>\",\n  \"regular_bookings\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    }\n  ],\n  \"bands\": [\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    }\n  ],\n  \"address\": {\n    \"company\": \"<string>\",\n    \"address_1\": \"<string>\",\n    \"address_2\": \"<string>\",\n    \"town\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formatted_address\": \"<string>\"\n  }\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b80e5714-5ddd-4ed6-a338-8887b5029159",
+              "id": "4f1c3bd6-d9ea-4460-b827-71cfe150ccb2",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -7037,7 +7037,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "8f23bcf4-850d-4c41-8949-a4337ad5fc33",
+              "id": "197a0fe4-4538-439a-9daf-e3fd06f44059",
               "name": "Not found - Customer was not found",
               "originalRequest": {
                 "url": {
@@ -7067,7 +7067,7 @@
           }
         },
         {
-          "id": "d8800ece-2a23-4c5d-b01f-2098e13cf106",
+          "id": "1a68832c-eae7-4135-87b2-127e0e03dc1a",
           "name": "Update customer",
           "request": {
             "name": "Update customer",
@@ -7122,7 +7122,7 @@
           },
           "response": [
             {
-              "id": "bad5d423-b8c4-46d2-8005-12b08997124a",
+              "id": "bf000301-acb1-4cc2-9658-1feb6cbff04a",
               "name": "Customer updated",
               "originalRequest": {
                 "url": {
@@ -7177,7 +7177,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"avatar\": \"<string>\",\n  \"credit_balance\": \"<integer>\",\n  \"status\": \"invited\",\n  \"reminders_opt_in\": \"<boolean>\",\n  \"mailing_list_opt_in\": \"<boolean>\",\n  \"signed_up\": \"<boolean>\",\n  \"signed_up_at\": \"<integer>\",\n  \"regular_bookings_count\": \"<integer>\",\n  \"bookings_count\": \"<integer>\",\n  \"created_at\": \"<integer>\",\n  \"updated_at\": \"<integer>\",\n  \"last_booking_at\": \"<integer>\",\n  \"regular_bookings\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    }\n  ],\n  \"bands\": [\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    }\n  ],\n  \"address\": {\n    \"company\": \"<string>\",\n    \"address_1\": \"<string>\",\n    \"address_2\": \"<string>\",\n    \"town\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formatted_address\": \"<string>\"\n  }\n}",
+              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"avatar\": \"<string>\",\n  \"credit_balance\": \"<integer>\",\n  \"status\": \"unregistered\",\n  \"reminders_opt_in\": \"<boolean>\",\n  \"mailing_list_opt_in\": \"<boolean>\",\n  \"signed_up\": \"<boolean>\",\n  \"signed_up_at\": \"<integer>\",\n  \"regular_bookings_count\": \"<integer>\",\n  \"bookings_count\": \"<integer>\",\n  \"created_at\": \"<integer>\",\n  \"updated_at\": \"<integer>\",\n  \"last_booking_at\": \"<integer>\",\n  \"regular_bookings\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    }\n  ],\n  \"bands\": [\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    }\n  ],\n  \"address\": {\n    \"company\": \"<string>\",\n    \"address_1\": \"<string>\",\n    \"address_2\": \"<string>\",\n    \"town\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formatted_address\": \"<string>\"\n  }\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -7188,7 +7188,7 @@
           }
         },
         {
-          "id": "2151d461-a48f-4d07-b4c3-a9e9ee0d870d",
+          "id": "f8e1533a-5205-4b05-8b17-e470ce10ec47",
           "name": "Search customers",
           "request": {
             "name": "Search customers",
@@ -7238,7 +7238,7 @@
           },
           "response": [
             {
-              "id": "fc2580ca-e277-4ec7-b300-4b468d84a033",
+              "id": "72823fe2-8d84-4d85-bff8-46affda8b94a",
               "name": "Matching customers",
               "originalRequest": {
                 "url": {
@@ -7299,7 +7299,7 @@
           }
         },
         {
-          "id": "5dd73e2a-912c-4d91-b228-fc0d89b33a75",
+          "id": "a17aaf17-ca25-419f-b0e0-8a31862852fe",
           "name": "Update customer notes",
           "request": {
             "name": "Update customer notes",
@@ -7355,7 +7355,7 @@
           },
           "response": [
             {
-              "id": "ce3576e7-4ab4-4e58-be8a-cf1087c876a2",
+              "id": "47c43f6d-58a1-4d62-b295-fab192570a08",
               "name": "Notes updated",
               "originalRequest": {
                 "url": {
@@ -7411,7 +7411,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"avatar\": \"<string>\",\n  \"credit_balance\": \"<integer>\",\n  \"status\": \"invited\",\n  \"reminders_opt_in\": \"<boolean>\",\n  \"mailing_list_opt_in\": \"<boolean>\",\n  \"signed_up\": \"<boolean>\",\n  \"signed_up_at\": \"<integer>\",\n  \"regular_bookings_count\": \"<integer>\",\n  \"bookings_count\": \"<integer>\",\n  \"created_at\": \"<integer>\",\n  \"updated_at\": \"<integer>\",\n  \"last_booking_at\": \"<integer>\",\n  \"regular_bookings\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    }\n  ],\n  \"bands\": [\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    }\n  ],\n  \"address\": {\n    \"company\": \"<string>\",\n    \"address_1\": \"<string>\",\n    \"address_2\": \"<string>\",\n    \"town\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formatted_address\": \"<string>\"\n  }\n}",
+              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"avatar\": \"<string>\",\n  \"credit_balance\": \"<integer>\",\n  \"status\": \"unregistered\",\n  \"reminders_opt_in\": \"<boolean>\",\n  \"mailing_list_opt_in\": \"<boolean>\",\n  \"signed_up\": \"<boolean>\",\n  \"signed_up_at\": \"<integer>\",\n  \"regular_bookings_count\": \"<integer>\",\n  \"bookings_count\": \"<integer>\",\n  \"created_at\": \"<integer>\",\n  \"updated_at\": \"<integer>\",\n  \"last_booking_at\": \"<integer>\",\n  \"regular_bookings\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    }\n  ],\n  \"bands\": [\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    }\n  ],\n  \"address\": {\n    \"company\": \"<string>\",\n    \"address_1\": \"<string>\",\n    \"address_2\": \"<string>\",\n    \"town\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formatted_address\": \"<string>\"\n  }\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -7422,7 +7422,7 @@
           }
         },
         {
-          "id": "c869f57d-2c98-4a1c-9381-db8e4f828ecd",
+          "id": "30dc04f8-999f-4dcd-8d78-56fcdfa5ce07",
           "name": "Invite an existing customer",
           "request": {
             "name": "Invite an existing customer",
@@ -7465,7 +7465,7 @@
           },
           "response": [
             {
-              "id": "d322ffc1-01df-4428-8df0-a7d1a47412c9",
+              "id": "ecf73684-fb44-4471-9a1c-05e7922f6556",
               "name": "Invitation sent",
               "originalRequest": {
                 "url": {
@@ -7508,12 +7508,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"avatar\": \"<string>\",\n  \"credit_balance\": \"<integer>\",\n  \"status\": \"invited\",\n  \"reminders_opt_in\": \"<boolean>\",\n  \"mailing_list_opt_in\": \"<boolean>\",\n  \"signed_up\": \"<boolean>\",\n  \"signed_up_at\": \"<integer>\",\n  \"regular_bookings_count\": \"<integer>\",\n  \"bookings_count\": \"<integer>\",\n  \"created_at\": \"<integer>\",\n  \"updated_at\": \"<integer>\",\n  \"last_booking_at\": \"<integer>\",\n  \"regular_bookings\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    }\n  ],\n  \"bands\": [\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    }\n  ],\n  \"address\": {\n    \"company\": \"<string>\",\n    \"address_1\": \"<string>\",\n    \"address_2\": \"<string>\",\n    \"town\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formatted_address\": \"<string>\"\n  }\n}",
+              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"avatar\": \"<string>\",\n  \"credit_balance\": \"<integer>\",\n  \"status\": \"unregistered\",\n  \"reminders_opt_in\": \"<boolean>\",\n  \"mailing_list_opt_in\": \"<boolean>\",\n  \"signed_up\": \"<boolean>\",\n  \"signed_up_at\": \"<integer>\",\n  \"regular_bookings_count\": \"<integer>\",\n  \"bookings_count\": \"<integer>\",\n  \"created_at\": \"<integer>\",\n  \"updated_at\": \"<integer>\",\n  \"last_booking_at\": \"<integer>\",\n  \"regular_bookings\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    }\n  ],\n  \"bands\": [\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"code\": \"<string>\",\n      \"number_of_members\": \"<integer>\",\n      \"number\": \"<integer>\",\n      \"booking_count\": \"<integer>\"\n    }\n  ],\n  \"address\": {\n    \"company\": \"<string>\",\n    \"address_1\": \"<string>\",\n    \"address_2\": \"<string>\",\n    \"town\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formatted_address\": \"<string>\"\n  }\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "784c87cb-5091-4031-aa4a-12105f872337",
+              "id": "e39e4d12-a59e-4c89-b2f2-7b6378082cf9",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -7549,7 +7549,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c287bbe9-2e00-47de-b1ba-ac1369ad3a34",
+              "id": "7dc73179-d713-4374-bc78-b04fe4c1b9f9",
               "name": "Not found - Customer was not found",
               "originalRequest": {
                 "url": {
@@ -7585,7 +7585,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "6e5f287d-b00b-4712-8cef-9e5355054f68",
+              "id": "fecb4aad-e92e-4b2c-93b3-9acc004329a6",
               "name": "Unprocessable - the customer has already registered, or already has a valid invite",
               "originalRequest": {
                 "url": {
@@ -7639,7 +7639,7 @@
           }
         },
         {
-          "id": "fec5f5a7-5a81-4de2-9266-98441dc101cf",
+          "id": "b8565955-ea4f-47c4-a6a7-64269a9b60a4",
           "name": "Customer bookings",
           "request": {
             "name": "Customer bookings",
@@ -7701,7 +7701,7 @@
           },
           "response": [
             {
-              "id": "d742c7c1-2948-4f2d-8ead-6cbc2ed79209",
+              "id": "62ee27a9-1bf3-480e-a7dc-8da02e490441",
               "name": "Customer's bookings",
               "originalRequest": {
                 "url": {
@@ -7774,7 +7774,7 @@
           }
         },
         {
-          "id": "e3f695cf-4738-4ec9-921f-7f84d49723f2",
+          "id": "dd685c14-f2f0-4de4-993d-92e894df4bfe",
           "name": "Get credit balance",
           "request": {
             "name": "Get credit balance",
@@ -7817,7 +7817,7 @@
           },
           "response": [
             {
-              "id": "61157e4c-f667-4272-9780-373ea8937568",
+              "id": "08ed7a82-4fc8-4d70-b96f-0b8f439360ec",
               "name": "Credit balance",
               "originalRequest": {
                 "url": {
@@ -7871,7 +7871,7 @@
           }
         },
         {
-          "id": "b47e0c07-c4a5-427c-b821-d9bf247a4d6e",
+          "id": "781a1a96-a917-4d35-90b6-ca169bd97178",
           "name": "Update credit balance",
           "request": {
             "name": "Update credit balance",
@@ -7927,7 +7927,7 @@
           },
           "response": [
             {
-              "id": "b62314c3-588b-4f27-b62d-f883e7824f8e",
+              "id": "4b50e7c1-8190-4b44-a596-d5c8164c3d62",
               "name": "Balance updated",
               "originalRequest": {
                 "url": {
@@ -7994,7 +7994,7 @@
           }
         },
         {
-          "id": "67592e3e-b1b9-431e-8fcd-539ad9917c72",
+          "id": "fc83269b-afb8-451a-b6d7-05fbbdcc5ac7",
           "name": "Credit movements",
           "request": {
             "name": "Credit movements",
@@ -8056,7 +8056,7 @@
           },
           "response": [
             {
-              "id": "243c90e0-d2f7-42a0-9501-097b1bd9a53d",
+              "id": "9d7aecf4-983d-4404-9b4d-5550cd9a1eb5",
               "name": "Credit movements",
               "originalRequest": {
                 "url": {
@@ -8129,7 +8129,7 @@
           }
         },
         {
-          "id": "e6a025e0-bb93-444c-84da-1a77674477b6",
+          "id": "0d890ce8-6498-47b1-8309-42127d94867c",
           "name": "Customer status",
           "request": {
             "name": "Customer status",
@@ -8172,7 +8172,7 @@
           },
           "response": [
             {
-              "id": "6ea2c7d9-59d6-4e03-bf5c-f488cea969ff",
+              "id": "0095db19-dd30-4a9a-ab1b-92cd32c722de",
               "name": "Customer status",
               "originalRequest": {
                 "url": {
@@ -8226,7 +8226,7 @@
           }
         },
         {
-          "id": "7077c910-798c-44e4-8c27-f521d6662319",
+          "id": "994a1791-0923-4d5a-b975-f123de5611e9",
           "name": "Payment methods",
           "request": {
             "name": "Payment methods",
@@ -8269,7 +8269,7 @@
           },
           "response": [
             {
-              "id": "8d0582eb-eaf7-4ed6-96df-c4e92269d0b1",
+              "id": "9666ac83-24d6-4b5d-b6a4-3ff2ea634a37",
               "name": "Payment methods",
               "originalRequest": {
                 "url": {
@@ -8329,7 +8329,7 @@
       "description": "Polling API for rooms",
       "item": [
         {
-          "id": "93af6140-81fa-487c-8737-489510024223",
+          "id": "26b9d1ae-1eb2-426f-84f1-d5f31bc97d03",
           "name": "Find all rooms",
           "request": {
             "name": "Find all rooms",
@@ -8359,7 +8359,7 @@
           },
           "response": [
             {
-              "id": "7d98f7f8-2b97-48ce-86cc-2e6533723986",
+              "id": "a94bbaeb-2a3b-4f70-85cc-3488956407f7",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -8394,7 +8394,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "df95cfe5-e7a8-406b-81a1-f506e1578c19",
+              "id": "5d7938ab-80d9-4097-9925-18a85407f7a6",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -8423,7 +8423,7 @@
           }
         },
         {
-          "id": "9899a95b-2d46-45d0-8e96-36dd4561e747",
+          "id": "95d31d80-3783-46db-8b69-ea4e4faf506c",
           "name": "Show room",
           "request": {
             "name": "Show room",
@@ -8465,7 +8465,7 @@
           },
           "response": [
             {
-              "id": "757c03fd-baee-4513-b391-ab6c67448ae3",
+              "id": "7ca1ac93-d0c6-4c95-b637-abd79794432e",
               "name": "Room detail",
               "originalRequest": {
                 "url": {
@@ -8524,7 +8524,7 @@
       "description": "",
       "item": [
         {
-          "id": "82e3a549-e440-4385-b182-3116aa8778b5",
+          "id": "f62474bf-013e-4c13-9cc8-cbbaf655d373",
           "name": "List extras",
           "request": {
             "name": "List extras",
@@ -8554,7 +8554,7 @@
           },
           "response": [
             {
-              "id": "23633b56-4c1c-4c38-89e3-ec4ee42cbfb1",
+              "id": "7d743179-ed4a-437e-b882-a26ef7d64ac6",
               "name": "Extras list",
               "originalRequest": {
                 "url": {
@@ -8595,7 +8595,7 @@
           }
         },
         {
-          "id": "6a83f4fd-7b7d-4dcf-bcbf-57d86526f0b1",
+          "id": "60043c6c-a9cd-4998-b309-29751408c82e",
           "name": "Show extra",
           "request": {
             "name": "Show extra",
@@ -8637,7 +8637,7 @@
           },
           "response": [
             {
-              "id": "4d18fcb2-4036-409e-925a-2727c5bd147f",
+              "id": "f19f9fcf-bcb0-44a9-b386-da3a36ed8669",
               "name": "Extra detail",
               "originalRequest": {
                 "url": {
@@ -8696,7 +8696,7 @@
       "description": "",
       "item": [
         {
-          "id": "445bf9fd-05de-4c53-8855-06344dd8b2db",
+          "id": "a86fd17d-8e13-46f0-8cbd-c7842cc581c7",
           "name": "List notifications",
           "request": {
             "name": "List notifications",
@@ -8726,7 +8726,7 @@
           },
           "response": [
             {
-              "id": "012f2270-b85e-4d1d-a505-e35559eeffa0",
+              "id": "fd115279-4754-491f-b8c7-f1b9e0de4fd8",
               "name": "Notifications",
               "originalRequest": {
                 "url": {
@@ -8756,7 +8756,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"severity\": \"normal\",\n    \"label\": \"<string>\",\n    \"read\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"read_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"severity\": \"normal\",\n    \"label\": \"<string>\",\n    \"read\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"read_at\": \"<integer>\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"severity\": \"high\",\n    \"label\": \"<string>\",\n    \"read\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"read_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"severity\": \"normal\",\n    \"label\": \"<string>\",\n    \"read\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"read_at\": \"<integer>\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -8767,7 +8767,7 @@
           }
         },
         {
-          "id": "c9519bfd-62ff-41fe-8542-025eebcc0d15",
+          "id": "ac1526be-777c-4a18-9b19-9baa61d5504a",
           "name": "Mark as read",
           "request": {
             "name": "Mark as read",
@@ -8807,7 +8807,7 @@
           },
           "response": [
             {
-              "id": "79e4df8b-9e77-45b1-bd74-ee6f2224fa52",
+              "id": "e80a63c5-861f-42b7-aad1-5df149bbabea",
               "name": "Marked as read",
               "originalRequest": {
                 "url": {
@@ -8850,7 +8850,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -8861,7 +8861,7 @@
           }
         },
         {
-          "id": "c2ca49b3-2349-44b1-b802-481dcbe67f4d",
+          "id": "de4a3bef-8709-4e90-a248-884152fbbb10",
           "name": "Archive notification",
           "request": {
             "name": "Archive notification",
@@ -8901,7 +8901,7 @@
           },
           "response": [
             {
-              "id": "3c78efee-a450-4a0b-b68d-f211b0d7338e",
+              "id": "dd63fddc-88ab-4f7f-8889-93be42f5d80b",
               "name": "Archived",
               "originalRequest": {
                 "url": {
@@ -8944,7 +8944,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -8955,7 +8955,7 @@
           }
         },
         {
-          "id": "9121e997-b117-4999-945f-39e57edc3c97",
+          "id": "5078141b-25dd-4740-94ed-5aaab8fd6cd0",
           "name": "Clear all notifications",
           "request": {
             "name": "Clear all notifications",
@@ -8983,7 +8983,7 @@
           },
           "response": [
             {
-              "id": "ca914656-ccb9-4e65-9c79-911245d5d0e7",
+              "id": "56e44e15-e22b-4d80-b35a-8d8bff8ded76",
               "name": "All notifications cleared",
               "originalRequest": {
                 "url": {
@@ -9014,7 +9014,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -9031,7 +9031,7 @@
       "description": "",
       "item": [
         {
-          "id": "a9364000-a35e-47f7-9592-e727659e0995",
+          "id": "fe27c992-0fd7-4bbd-a142-8c8a8ab094e0",
           "name": "List blocked times",
           "request": {
             "name": "List blocked times",
@@ -9061,7 +9061,7 @@
           },
           "response": [
             {
-              "id": "16837e1b-b844-4015-a71e-a96bf7c198ad",
+              "id": "e7675508-9531-441b-9f83-8992bf3900f7",
               "name": "Blocked times",
               "originalRequest": {
                 "url": {
@@ -9102,7 +9102,7 @@
           }
         },
         {
-          "id": "009d573a-3b2b-4713-be59-77a644b967d7",
+          "id": "70256e05-8d20-4620-8d85-4e1c99507604",
           "name": "Create blocked time",
           "request": {
             "name": "Create blocked time",
@@ -9145,7 +9145,7 @@
           },
           "response": [
             {
-              "id": "1586a022-2c47-4f69-b0ac-b67204a211ff",
+              "id": "6d9a0bad-3e37-4d5e-94ad-749bfc3ca50c",
               "name": "Blocked time created",
               "originalRequest": {
                 "url": {
@@ -9199,7 +9199,7 @@
           }
         },
         {
-          "id": "fc6a8fe7-4cc9-406e-a2e4-eb05cd9f65d8",
+          "id": "dabb9a03-2faf-49a6-81c9-7caeb82c3d93",
           "name": "Update blocked time",
           "request": {
             "name": "Update blocked time",
@@ -9251,7 +9251,7 @@
           },
           "response": [
             {
-              "id": "7cfc99b4-f405-4d85-82d6-fd3e48e97ed4",
+              "id": "2aeeb47b-242b-4923-975f-2479891a9a0d",
               "name": "Blocked time updated",
               "originalRequest": {
                 "url": {
@@ -9317,7 +9317,7 @@
           }
         },
         {
-          "id": "a7ae6b13-3bdc-438f-acaa-7ad22f2368b3",
+          "id": "de23569e-8671-448c-b812-b17fd9254ef9",
           "name": "Delete blocked time",
           "request": {
             "name": "Delete blocked time",
@@ -9356,7 +9356,7 @@
           },
           "response": [
             {
-              "id": "581569f5-0882-4bdb-829f-59e34135ba92",
+              "id": "c5bcb1f6-4a68-4201-ac77-34f2cf844e79",
               "name": "Blocked time deleted",
               "originalRequest": {
                 "url": {
@@ -9398,7 +9398,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"status\": \"error\",\n  \"message\": \"<string>\"\n}",
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"<string>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -9415,7 +9415,7 @@
       "description": "",
       "item": [
         {
-          "id": "8a364ddc-d916-4555-8c16-bdc02dca424b",
+          "id": "a19ba82e-82af-426a-bd06-00af9a12deb6",
           "name": "Recent transactions",
           "request": {
             "name": "Recent transactions",
@@ -9445,7 +9445,7 @@
           },
           "response": [
             {
-              "id": "8272a7af-3af6-419d-aee1-bd79c73612c2",
+              "id": "f995e404-10e9-4c18-a8ae-2bec6febe759",
               "name": "Transaction summaries",
               "originalRequest": {
                 "url": {
@@ -9486,7 +9486,7 @@
           }
         },
         {
-          "id": "79e1d853-7da4-42fb-8979-c74011291c6d",
+          "id": "62ddced7-7ab1-4167-b30d-e78f2d4bb843",
           "name": "Money ledger",
           "request": {
             "name": "Money ledger",
@@ -9544,7 +9544,7 @@
           },
           "response": [
             {
-              "id": "678ba47f-dc1b-40af-8491-134977e181c2",
+              "id": "40a19d48-05b1-401b-a4ef-786addc400d1",
               "name": "Money logs",
               "originalRequest": {
                 "url": {
@@ -9619,7 +9619,7 @@
       "description": "Polling API for groups",
       "item": [
         {
-          "id": "fbfd2c5f-c2b4-4da5-9d6b-2f2ef14395a0",
+          "id": "5e696e60-65f2-49ba-aa82-5e5131a9c995",
           "name": "Find all groups",
           "request": {
             "name": "Find all groups",
@@ -9649,7 +9649,7 @@
           },
           "response": [
             {
-              "id": "2d112efd-fd63-4560-a4fc-df18e4ddadfa",
+              "id": "7e389489-b551-4e31-b691-2b5cfde3519a",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -9684,7 +9684,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "5991417d-2666-4be1-b169-4401a880c7da",
+              "id": "17e9b924-6a14-4697-a8ec-6ca0f947293e",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -9719,7 +9719,7 @@
       "description": "",
       "item": [
         {
-          "id": "e4078098-7c7c-47d0-9a30-bfd07cd60dc6",
+          "id": "127bf272-ed32-4d73-a7f7-ba61bf77b781",
           "name": "Find a coupon by ID",
           "request": {
             "name": "Find a coupon by ID",
@@ -9750,7 +9750,7 @@
           },
           "response": [
             {
-              "id": "4a3c6f1a-34f5-43b7-8ca9-3bfcba537d73",
+              "id": "510ab954-9be5-43b7-acf1-1b03c502a6da",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -9786,7 +9786,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c9067819-9745-47d0-bddf-70ea8b6b73a3",
+              "id": "91cd8709-e9bf-4a36-ab0b-f030d9848ea8",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -9810,7 +9810,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "dd6fd978-55da-41a0-95ec-d7ef779c7f2e",
+              "id": "2d3728d2-a1dd-4e6b-b017-9011b2e70136",
               "name": "Not found - Coupon was not found",
               "originalRequest": {
                 "url": {
@@ -9840,7 +9840,7 @@
           }
         },
         {
-          "id": "5cf8e4b7-fa15-4bf4-b02e-e77fc5f34cb0",
+          "id": "68ac6702-b947-4e23-90cc-1531511065e5",
           "name": "Find all coupons",
           "request": {
             "name": "Find all coupons",
@@ -9870,7 +9870,7 @@
           },
           "response": [
             {
-              "id": "0447a4c8-4d7c-493e-97c4-8f2ace7638de",
+              "id": "c72f6464-ab1a-4bae-af22-e60d7a595cd3",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -9905,7 +9905,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "e91c8930-a1c8-4881-9632-48db7a4df004",
+              "id": "e375556f-e58b-46d6-9919-aece161188a4",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -9934,7 +9934,7 @@
           }
         },
         {
-          "id": "35e5312d-9bc5-4d41-ac6b-cd9e5ccb1a71",
+          "id": "849689df-1500-4947-911f-0a30e3551306",
           "name": "Create a coupon",
           "request": {
             "name": "Create a coupon",
@@ -9971,7 +9971,7 @@
           },
           "response": [
             {
-              "id": "3c170f64-9040-44b1-b76e-7541bfdfb88f",
+              "id": "f386afcc-4bef-4401-8b26-277b8559bfbc",
               "name": "Coupon created",
               "originalRequest": {
                 "url": {
@@ -10013,7 +10013,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "ab822520-9c97-40ef-80fc-3cb6070dfc1b",
+              "id": "27d33d62-80f5-4bc5-8051-ef0689efc1c6",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10045,7 +10045,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f54c0b07-9a11-4389-8f9b-c92ed0e67fc6",
+              "id": "5763ad89-d3c2-48db-b9d6-ec391da85cb4",
               "name": "Unprocessable - the coupon parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -10093,7 +10093,7 @@
           }
         },
         {
-          "id": "3da79c71-5aa1-47f2-b591-df589ce2437a",
+          "id": "0d168c96-651c-47a2-b31a-d3a129e8dd79",
           "name": "Assign Coupon to Customer",
           "request": {
             "name": "Assign Coupon to Customer",
@@ -10143,7 +10143,7 @@
           },
           "response": [
             {
-              "id": "42ed875d-d81c-4fb5-a1f6-c6ba967d63a8",
+              "id": "34194ee4-919b-4718-87f6-35f5da3ca97e",
               "name": "Promocode assigned",
               "originalRequest": {
                 "url": {
@@ -10198,7 +10198,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "73907150-437c-4dfe-a6a5-733fc9c296c0",
+              "id": "0d9c790b-de8f-4631-8b80-e5b29cc6f5e0",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10243,7 +10243,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "bb5bf614-cef1-4ea7-87bf-e5c5c4c89700",
+              "id": "0982ec4a-0b07-421c-af86-5c6f4ad180d6",
               "name": "Coupon has already been assigned to this Customer",
               "originalRequest": {
                 "url": {
@@ -10310,7 +10310,7 @@
       "description": "",
       "item": [
         {
-          "id": "258d779e-335a-4a7c-aa1a-620702f7d000",
+          "id": "12618c18-1416-4785-bac5-c8477ef7ddf4",
           "name": "Find all promocodes",
           "request": {
             "name": "Find all promocodes",
@@ -10353,7 +10353,7 @@
           },
           "response": [
             {
-              "id": "9795b64e-f12e-4017-826c-c5f488eae26c",
+              "id": "f538e0a7-9692-4ad3-a5f9-520d9e792dbc",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -10401,7 +10401,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "84a3e306-17f1-48f4-9b80-e6554d0eba62",
+              "id": "98a86607-0579-4d42-9da1-8cec7953b2d4",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10443,7 +10443,7 @@
           }
         },
         {
-          "id": "5d372347-a118-4dcc-9780-e9df414663db",
+          "id": "3544be4b-969a-4d80-94b6-58178cf010a4",
           "name": "Create a promocode",
           "request": {
             "name": "Create a promocode",
@@ -10493,7 +10493,7 @@
           },
           "response": [
             {
-              "id": "2a6f8fc2-acdb-4244-b090-92122ea6ac91",
+              "id": "5cb6cd22-942f-42ce-ad26-5ba662a93923",
               "name": "Promocode created",
               "originalRequest": {
                 "url": {
@@ -10548,7 +10548,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "3ead140c-2aeb-4614-be97-199547be36fb",
+              "id": "e0f57e7b-b1fa-4c47-86e7-d59a728cfcf8",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10593,7 +10593,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "be0230c7-22f8-43e4-ab02-ed3173a6ce6c",
+              "id": "654e2644-0ec6-4853-aa76-da0e0606bf7d",
               "name": "Unprocessable - the promocode parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -10660,7 +10660,7 @@
       "description": "Studio configuration and feature discovery",
       "item": [
         {
-          "id": "5b091420-ab9c-4f5e-9e8d-ee59a600e3a1",
+          "id": "2fa40cf1-fae7-468a-b874-6868ab9b9fa7",
           "name": "Studio configuration",
           "request": {
             "name": "Studio configuration",
@@ -10690,7 +10690,7 @@
           },
           "response": [
             {
-              "id": "ced9cbd6-92dd-455d-8c03-24bc1c746b5b",
+              "id": "1b5a155d-94cc-4a3e-bb42-de91b271543c",
               "name": "Studio configuration",
               "originalRequest": {
                 "url": {
@@ -10737,7 +10737,7 @@
       "description": "Monthly exports that a studio admin has opened to API access (Exports page, \"API access\"). One-off exports are never available here.\n\nOAuth tokens must belong to an admin; staff accounts get a `403`. Every download is recorded in the export's audit log.\n",
       "item": [
         {
-          "id": "104af1a8-1ddd-493c-9de4-0bd3d08bcf67",
+          "id": "96f29dc7-4545-496f-bc36-43e5f5d31b2e",
           "name": "List exports",
           "request": {
             "name": "List exports",
@@ -10767,7 +10767,7 @@
           },
           "response": [
             {
-              "id": "9cfa9599-1e5c-4033-b255-db6f4c96b3ef",
+              "id": "ba4c06cf-9cad-4399-a79c-3bcdbea7b0ca",
               "name": "Exports",
               "originalRequest": {
                 "url": {
@@ -10797,12 +10797,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"export_type\": \"payments\",\n    \"from_date\": \"<dateTime>\",\n    \"to_date\": \"<dateTime>\",\n    \"exported_at\": \"<dateTime>\",\n    \"content_type\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"filename\": \"<string>\",\n    \"byte_size\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"export_type\": \"customers\",\n    \"from_date\": \"<dateTime>\",\n    \"to_date\": \"<dateTime>\",\n    \"exported_at\": \"<dateTime>\",\n    \"content_type\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"filename\": \"<string>\",\n    \"byte_size\": \"<integer>\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"export_type\": \"extras\",\n    \"from_date\": \"<dateTime>\",\n    \"to_date\": \"<dateTime>\",\n    \"exported_at\": \"<dateTime>\",\n    \"content_type\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"filename\": \"<string>\",\n    \"byte_size\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"export_type\": \"booking_sales\",\n    \"from_date\": \"<dateTime>\",\n    \"to_date\": \"<dateTime>\",\n    \"exported_at\": \"<dateTime>\",\n    \"content_type\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"filename\": \"<string>\",\n    \"byte_size\": \"<integer>\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "fad02d12-1fb8-407c-b6b0-ad5b0b2148d0",
+              "id": "e19af418-0d46-47a6-901d-b68489d16890",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10825,7 +10825,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "a7d47d0a-e2a9-4603-ad66-b6c417f1e5c2",
+              "id": "2722b794-b74f-4056-8f98-e663bffc8466",
               "name": "Forbidden - the OAuth token does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -10854,7 +10854,7 @@
           }
         },
         {
-          "id": "91c12c5f-a6f8-403e-be2d-592226f95b37",
+          "id": "87774520-1e30-49b5-979b-1baa83e5488b",
           "name": "Get an export",
           "request": {
             "name": "Get an export",
@@ -10893,7 +10893,7 @@
           },
           "response": [
             {
-              "id": "b0816c93-976d-4334-899a-ccc0a937da8e",
+              "id": "539f71c3-edfb-44ce-b551-de766d8af896",
               "name": "Export",
               "originalRequest": {
                 "url": {
@@ -10940,7 +10940,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c583776a-f657-40d0-8830-ac24ef3b73b2",
+              "id": "4773bcea-f2e7-4a40-b1ad-692507a68cbd",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10975,7 +10975,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "d55d2f5c-7f99-4c82-99e6-d4be403be86d",
+              "id": "7ec96f10-b9d5-4510-bd64-44e0bec38bc2",
               "name": "Forbidden - the OAuth token does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -11010,7 +11010,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "20116651-a6f4-4d99-957f-ce5fc44656c1",
+              "id": "5b6211ef-27e5-48a2-b563-2c5dea90a6cd",
               "name": "Not found - no export with API access has this id",
               "originalRequest": {
                 "url": {
@@ -11051,7 +11051,7 @@
           }
         },
         {
-          "id": "6210f01a-8155-44ce-abbd-58079b9c5525",
+          "id": "3b32abab-0107-4c02-8879-5535d0a09a5b",
           "name": "Download an export",
           "request": {
             "name": "Download an export",
@@ -11094,7 +11094,7 @@
           },
           "response": [
             {
-              "id": "2b0f2c93-549c-4050-8465-dd46ca2e23c6",
+              "id": "515ef7d0-6a14-471e-93b0-b9959b115ad9",
               "name": "The export file",
               "originalRequest": {
                 "url": {
@@ -11142,7 +11142,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "d4959e84-29bb-4ae1-83c3-1c21d05d9950",
+              "id": "158da691-e248-47fb-9fd9-89c2950a0953",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -11178,7 +11178,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "2a961f6a-32fd-4f39-9103-8d5c8fdcd48f",
+              "id": "ee9f66ae-ef98-4397-a760-7c58abf05bcd",
               "name": "Forbidden - the OAuth token does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -11214,7 +11214,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "03614cab-fee2-404b-bf63-4869165fa933",
+              "id": "12ddeffa-8886-4028-afda-5b1fb8ec8a7b",
               "name": "Not found - no export with API access has this id",
               "originalRequest": {
                 "url": {
@@ -11250,7 +11250,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "80700ac8-21d8-40c6-8618-8c25a9a09a43",
+              "id": "6c819da8-e7b9-493b-8341-d16db577718e",
               "name": "Conflict - the file is still being generated; try again shortly",
               "originalRequest": {
                 "url": {
@@ -11310,7 +11310,7 @@
     }
   ],
   "info": {
-    "_postman_id": "215e38e9-7054-4090-9a98-88cc2be1b81d",
+    "_postman_id": "19106402-376e-4a33-a42d-2ff49de7ebd2",
     "name": "Jammed Bookings API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
