@@ -1,5 +1,17 @@
 # Jammed API changelog
 
+## `2.6.0`: 5 November 2026
+
+**Let customers cancel from your own app**
+
+Two ways to help a customer cancel their booking without sending them hunting through their emails.
+
+- `GET /bookings/{code}?include=cancellation_link` adds `cancellation_link` to the booking: a pre-validated link that takes the customer straight to the step where they confirm cancelling. It is valid for 30 minutes and lets whoever holds it cancel as the customer, so only give it to the customer. Each request mints a fresh link and is never answered with `304`. It is `null` when the customer can no longer cancel.
+- `POST /bookings/{code}/cancellation_email` emails the customer the same cancellation link they get from the cancel button on their booking page. It answers `422` when the customer can no longer cancel or the email cannot be sent.
+- Both need `bookings.write` on OAuth tokens. API-key auth is unaffected.
+- Booking lists, other booking endpoints and webhooks never include the link.
+- Refunds and credit follow the studio's cancellation policy, exactly as when the customer cancels from their booking page.
+
 ## `2.5.0`: 16 October 2026
 
 **Booking anchor endpoints**
