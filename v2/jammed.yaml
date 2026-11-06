@@ -57,6 +57,7 @@ x-tagGroups:
   - Group
   - Coupon
   - Promocode
+  - Coupon Redemption
   - Studio
   - Export
 - name: Webhooks
@@ -74,6 +75,7 @@ x-tagGroups:
   - room_model
   - coupon_model
   - promocode_model
+  - coupon_redemption_model
 tags:
 - name: Booking - Core
   description: Create, find, update, cancel and uncancel bookings, plus confirmation emails, PDFs, history and notifications for a booking
@@ -108,6 +110,8 @@ tags:
   description: Polling API for groups
 - name: Coupon
 - name: Promocode
+- name: Coupon Redemption
+  description: Each time a coupon is used on a booking, with or without a promocode, a redemption records it
 - name: Studio
   description: Studio configuration and feature discovery
 - name: Export
@@ -149,6 +153,10 @@ tags:
   x-displayName: Promocode Model
   description: |
     <SchemaDefinition schemaRef="#/components/schemas/promocode" />
+- name: coupon_redemption_model
+  x-displayName: Coupon Redemption Model
+  description: |
+    <SchemaDefinition schemaRef="#/components/schemas/coupon_redemption" />
 servers:
 - url: https://api.jammed.app/api/v2/
   description: Jammed API endpoint
@@ -1054,6 +1062,269 @@ paths:
         schema:
           type: integer
         example: 123
+  /coupons/{coupon_id}/promocodes/{id}.json:
+    get:
+      tags:
+      - Promocode
+      summary: Find a promocode by ID
+      description: |
+        Returns a single promocode of the coupon, with how many times it has been used.
+
+        Requires the `bookings.read` scope when using OAuth tokens.
+      operationId: getPromocode
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: coupon_id
+        description: Coupon ID
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 123
+      - name: id
+        description: Promocode ID
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 456
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promocode'
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token lacks the `bookings.read` scope
+        "404":
+          description: Not found - the coupon or promocode was not found
+
+  /coupons/{coupon_id}/redemptions.json:
+    get:
+      tags:
+      - Coupon Redemption
+      summary: List a coupon's redemptions
+      description: |
+        Every time the coupon was used on a booking, newest first. This includes redemptions made with any of its promocodes, and ones made without a code, such as a coupon a staff member applied or one assigned to the customer.
+
+        Results are paginated, with the totals in the `jammed-total-count`, `jammed-page-count`, `jammed-next-page` and `jammed-prev-page` response headers.
+
+        Redemptions on cancelled bookings are still listed. Check `counted_against_coupon_limit` and `counted_against_promocode_limit` to see whether each one still uses up the coupon or code.
+
+        Requires the `bookings.read` scope when using OAuth tokens.
+      operationId: getCouponRedemptions
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: coupon_id
+        description: Coupon ID
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 123
+      - name: customer_id
+        in: query
+        description: Only redemptions made by this customer
+        schema:
+          type: integer
+      - name: booking_code
+        in: query
+        description: Only the redemption made on this booking
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        description: Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone
+        schema:
+          type: string
+          format: date
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/perPage'
+      responses:
+        "200":
+          description: Coupon redemptions, newest first
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/coupon_redemption'
+        "400":
+          description: Bad request - `from` or `to` could not be parsed
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token lacks the `bookings.read` scope
+        "404":
+          description: Not found - the coupon or promocode was not found
+
+  /coupons/{coupon_id}/redemptions/{id}.json:
+    get:
+      tags:
+      - Coupon Redemption
+      summary: Find a coupon redemption by ID
+      description: |
+        Returns a single redemption of the coupon.
+
+        Requires the `bookings.read` scope when using OAuth tokens.
+      operationId: getCouponRedemption
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: coupon_id
+        description: Coupon ID
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 123
+      - name: id
+        description: Redemption ID
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 789
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/coupon_redemption'
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token lacks the `bookings.read` scope
+        "404":
+          description: Not found - the coupon, promocode or redemption was not found
+
+  /coupons/{coupon_id}/promocodes/{promocode_id}/redemptions.json:
+    get:
+      tags:
+      - Coupon Redemption
+      summary: List a promocode's redemptions
+      description: |
+        Every time a customer used this promocode on a booking, newest first.
+
+        Results are paginated, with the totals in the `jammed-total-count`, `jammed-page-count`, `jammed-next-page` and `jammed-prev-page` response headers.
+
+        Redemptions on cancelled bookings are still listed. Check `counted_against_coupon_limit` and `counted_against_promocode_limit` to see whether each one still uses up the coupon or code.
+
+        Requires the `bookings.read` scope when using OAuth tokens.
+      operationId: getPromocodeRedemptions
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: coupon_id
+        description: Coupon ID
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 123
+      - name: promocode_id
+        description: Promocode ID
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 456
+      - name: customer_id
+        in: query
+        description: Only redemptions made by this customer
+        schema:
+          type: integer
+      - name: booking_code
+        in: query
+        description: Only the redemption made on this booking
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        description: Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone
+        schema:
+          type: string
+          format: date
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/perPage'
+      responses:
+        "200":
+          description: Coupon redemptions, newest first
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/coupon_redemption'
+        "400":
+          description: Bad request - `from` or `to` could not be parsed
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token lacks the `bookings.read` scope
+        "404":
+          description: Not found - the coupon or promocode was not found
+
+  /coupons/{coupon_id}/promocodes/{promocode_id}/redemptions/{id}.json:
+    get:
+      tags:
+      - Coupon Redemption
+      summary: Find a promocode redemption by ID
+      description: |
+        Returns a single redemption made with this promocode.
+
+        Requires the `bookings.read` scope when using OAuth tokens.
+      operationId: getPromocodeRedemption
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: coupon_id
+        description: Coupon ID
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 123
+      - name: promocode_id
+        description: Promocode ID
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 456
+      - name: id
+        description: Redemption ID
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 789
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/coupon_redemption'
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: Forbidden - the OAuth token lacks the `bookings.read` scope
+        "404":
+          description: Not found - the coupon, promocode or redemption was not found
   /groups.json:
     get:
       tags:
@@ -3995,6 +4266,77 @@ components:
           type: boolean
           description: |
             If set to true, the Promocode will only be usable once per customer - applies to logged in customers only
+        redemption_limit:
+          type: integer
+          nullable: true
+          description: How many times the promocode can be used in total. `null` means there is no limit
+        number_of_times_used:
+          type: integer
+          description: |
+            How many times the promocode has been used. A redemption on a booking that was cancelled before it was confirmed no longer counts
+        fully_used:
+          type: boolean
+          description: Is set as true once `number_of_times_used` has reached the `redemption_limit`
+    coupon_redemption:
+      type: object
+      title: Coupon Redemption
+      properties:
+        id:
+          type: integer
+        amount:
+          type: integer
+          description: The discount the coupon took off the booking, in minor currency units (pence/cents)
+        coupon_id:
+          type: integer
+        promocode_id:
+          type: integer
+          nullable: true
+          description: The promocode the customer entered, or `null` when the coupon was applied without one
+        promocode_code:
+          type: string
+          nullable: true
+          description: The code of that promocode
+        created_at:
+          type: string
+          description: The ISO8601 timestamp when the coupon was redeemed
+        booking_cancelled:
+          type: boolean
+          description: Is set as true if the booking has since been cancelled
+        counted_against_coupon_limit:
+          type: boolean
+          description: |
+            Whether this redemption counts towards the coupon's `number_of_times_used` and `total_number_of_uses`. Redemptions on cancelled bookings stop counting, so the customer can use the coupon again
+        counted_against_promocode_limit:
+          type: boolean
+          nullable: true
+          description: |
+            Whether this redemption counts towards the promocode's `number_of_times_used` and `redemption_limit`. A code stays used once its booking was confirmed, even if the booking is cancelled later. `null` when there is no promocode
+        customer:
+          type: object
+          nullable: true
+          description: The customer who redeemed the coupon, or `null` for a booking without a customer
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            email:
+              type: string
+        booking:
+          type: object
+          nullable: true
+          description: A summary of the booking the coupon was used on. Fetch `GET /bookings/{code}` for the rest
+          properties:
+            code:
+              type: string
+            start_at:
+              type: integer
+              description: Unix timestamp
+            end_at:
+              type: integer
+              description: Unix timestamp
+            room_id:
+              type: integer
     coupon:
       type: object
       properties:
@@ -4131,6 +4473,14 @@ components:
             The minimum booking value the Promocode can be used for.
 
             If attempted for a booking below this value, the Coupon will not be applied
+        first_time_use_only:
+          type: boolean
+          description: |
+            If set to true, the Promocode will only be usable once per customer - applies to logged in customers only
+        redemption_limit:
+          type: integer
+          minimum: 1
+          description: How many times the promocode can be used in total. Leave it out for no limit
 
     coupon_assign_to_customer:
       type: object
