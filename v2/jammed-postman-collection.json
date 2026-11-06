@@ -5,7 +5,7 @@
       "description": "Create, find, update, cancel and uncancel bookings, plus confirmation emails, PDFs, history and notifications for a booking",
       "item": [
         {
-          "id": "d68953f0-7638-46cf-bcbe-0e8e56938348",
+          "id": "9f1f87c8-3702-432a-9b4f-cac8ebf37589",
           "name": "All bookings",
           "request": {
             "name": "All bookings",
@@ -72,7 +72,7 @@
           },
           "response": [
             {
-              "id": "1dab7335-ae20-45d2-a5f0-d983930c5294",
+              "id": "acaff464-c080-4f22-8466-8cd3de4edf0b",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -144,7 +144,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b8060766-d82c-4fb9-a2be-41859aad3e36",
+              "id": "9f7f5b28-fe84-4cb5-8bed-4f86f9648ed0",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -210,7 +210,7 @@
           }
         },
         {
-          "id": "4557236a-1004-42e6-acf4-f8bfff207d77",
+          "id": "a57fae98-45c1-4ef8-82ff-235a6c8d1a0d",
           "name": "Create a booking",
           "request": {
             "name": "Create a booking",
@@ -253,7 +253,7 @@
           },
           "response": [
             {
-              "id": "61a1b4d4-07f6-4efb-808b-72fc31025c57",
+              "id": "0ee9ef02-f6a8-4e60-b659-10f294789368",
               "name": "Booking created",
               "originalRequest": {
                 "url": {
@@ -301,7 +301,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "d08d1bb8-2d27-4cdf-9906-576e0c432df9",
+              "id": "db0161c2-ac01-47d3-ac57-c28a23b882fa",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -339,7 +339,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "7c2e7939-e18d-440b-91b4-c40cc91c7c90",
+              "id": "55958f10-ad67-450a-8678-66f725075456",
               "name": "Unprocessable - the booking parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -393,7 +393,7 @@
           }
         },
         {
-          "id": "415356c7-4db1-4724-9aaf-170ac4c3c421",
+          "id": "a091626a-e251-495e-8ce5-74d10e80570c",
           "name": "Find a booking by code",
           "request": {
             "name": "Find a booking by code",
@@ -434,7 +434,7 @@
           },
           "response": [
             {
-              "id": "22de4353-3a35-4914-a21c-caba76ade8da",
+              "id": "20875338-4d54-4bec-9582-8901dc818652",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -480,7 +480,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "aa721d0a-7142-4616-b453-af578709a8b5",
+              "id": "47341720-c414-4322-8581-3272340eaf46",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -514,7 +514,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f9c26bcb-b99f-46b8-affa-3b57b8a12e90",
+              "id": "cb03ef82-9f0c-4900-a069-991e814993d8",
               "name": "Forbidden - `include=cancellation_link` was asked for by an OAuth token without `bookings.write`",
               "originalRequest": {
                 "url": {
@@ -548,7 +548,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "0a54701b-f4da-4516-bb81-d9c07379afd0",
+              "id": "7e7fd08d-a60a-40aa-90fe-1693cf4bae78",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -588,7 +588,7 @@
           }
         },
         {
-          "id": "3845790c-6c5d-4490-a79a-b751ca767440",
+          "id": "55dc32f9-1bbc-499d-a491-583c0c9454d4",
           "name": "Update a booking",
           "request": {
             "name": "Update a booking",
@@ -632,7 +632,7 @@
           },
           "response": [
             {
-              "id": "75aefc3b-f8b2-4633-9d6b-a65147c148c2",
+              "id": "119c9d8f-015f-4500-8acc-d4b9d73a19d4",
               "name": "Booking updated successfully",
               "originalRequest": {
                 "url": {
@@ -681,7 +681,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "a024d542-1296-49e8-a932-b192302652c0",
+              "id": "43542dc7-fdba-4054-b802-793bc9b6096e",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -720,7 +720,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f607b5a4-6587-48ca-8fc5-55490ef6ec3f",
+              "id": "f3188c98-1c41-4ae1-83f8-a4db513bedb9",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -759,7 +759,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "8ad34e33-3d10-47d0-b038-e2dd0e538aab",
+              "id": "18a435ad-2ee9-40ff-b150-29b8015ea27e",
               "name": "Unprocessable - the booking parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -814,7 +814,7 @@
           }
         },
         {
-          "id": "c77c7df1-40d7-4fa8-9b39-279260fc126e",
+          "id": "837e5188-ed60-4fc8-9197-84efa0a4330a",
           "name": "Cancel a booking",
           "request": {
             "name": "Cancel a booking",
@@ -866,7 +866,7 @@
           },
           "response": [
             {
-              "id": "32d2fc1f-078f-4a82-ac4c-5e146689794b",
+              "id": "df89f2a7-749a-42ac-be7b-a711c7c95c96",
               "name": "Booking cancelled",
               "originalRequest": {
                 "url": {
@@ -923,7 +923,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "cfd0346a-7aba-40f3-af94-5afbc1508213",
+              "id": "c139d341-5baf-4351-889c-3792c668140d",
               "name": "Booking not found",
               "originalRequest": {
                 "url": {
@@ -974,7 +974,7 @@
           }
         },
         {
-          "id": "02afb74e-3e0a-42bd-8a37-e06d8343df42",
+          "id": "44c1df5c-2c37-4064-aa60-49c272cf6c45",
           "name": "Uncancel a booking",
           "request": {
             "name": "Uncancel a booking",
@@ -1017,7 +1017,7 @@
           },
           "response": [
             {
-              "id": "bd80e799-8f17-4616-b827-cdad70e6de45",
+              "id": "3bc8d3b4-ae25-4982-812a-bfd7219a9cff",
               "name": "Booking restored",
               "originalRequest": {
                 "url": {
@@ -1065,7 +1065,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "2b74dec1-a460-4a4c-9a0f-94eb021d5684",
+              "id": "8a48c0b1-1e1e-48d0-a56c-1fa1b758a0ef",
               "name": "Booking not found",
               "originalRequest": {
                 "url": {
@@ -1107,7 +1107,7 @@
           }
         },
         {
-          "id": "e909983c-4d2c-4732-a358-092eeadbcb17",
+          "id": "205ba6d4-fcda-4935-9dea-f4d652b3cfa1",
           "name": "Generate booking PDF",
           "request": {
             "name": "Generate booking PDF",
@@ -1150,7 +1150,7 @@
           },
           "response": [
             {
-              "id": "383c145e-daa9-41cf-b6cc-7110bd46e5b9",
+              "id": "976d8aa4-61e5-4be6-bf58-aaa3e34e2785",
               "name": "PDF file",
               "originalRequest": {
                 "url": {
@@ -1204,7 +1204,7 @@
           }
         },
         {
-          "id": "2a102fcc-cc9c-4102-9e54-5ae92743e9c7",
+          "id": "2a0b3130-2e36-428b-910f-cc53f122a6f8",
           "name": "Resend confirmation email",
           "request": {
             "name": "Resend confirmation email",
@@ -1247,7 +1247,7 @@
           },
           "response": [
             {
-              "id": "e3a175af-3514-49fe-ad8b-61c3d705a143",
+              "id": "6a1610b2-2701-4634-bc8e-7d51dcb5e072",
               "name": "Email sent",
               "originalRequest": {
                 "url": {
@@ -1301,7 +1301,7 @@
           }
         },
         {
-          "id": "95b76618-9e29-4157-814d-0e8c52c12d32",
+          "id": "3a2e98e3-372d-462f-99b0-07f480878152",
           "name": "Send the cancellation email",
           "request": {
             "name": "Send the cancellation email",
@@ -1344,7 +1344,7 @@
           },
           "response": [
             {
-              "id": "cf44b72d-5471-47ea-a322-5defdb75a6a6",
+              "id": "3e7e8990-f73f-43fa-a390-b6f8f261473b",
               "name": "Email sent",
               "originalRequest": {
                 "url": {
@@ -1392,7 +1392,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "394d1e9b-af6d-41a9-92c7-44c184e3b3e6",
+              "id": "29df9d87-c35a-427f-8ab4-870e354cc242",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -1428,7 +1428,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f3af5949-a050-40b9-a29e-7b156602be6e",
+              "id": "3dd4af28-dd7f-4ac9-a2cb-7507918e49d0",
               "name": "Forbidden - the OAuth token lacks `bookings.write`",
               "originalRequest": {
                 "url": {
@@ -1464,7 +1464,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "a7bd461c-e718-43ab-ad54-691f6c4d0c5a",
+              "id": "74ab3d1c-af25-43b0-8978-062ec384643a",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -1500,7 +1500,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "0bff2db1-0a84-460e-a674-98bc42a1e5e8",
+              "id": "802429d4-4507-4500-b58e-e76c3c7b6309",
               "name": "Unprocessable - the customer can no longer cancel this booking (it is unpaid, already cancelled, rejected or\npast the cancellation cut-off), or the email cannot be sent to them",
               "originalRequest": {
                 "url": {
@@ -1554,7 +1554,7 @@
           }
         },
         {
-          "id": "88f48355-8f50-4ef2-91fe-38da7a455430",
+          "id": "b4ea747e-7749-4b92-b34f-3444fa101ba1",
           "name": "Booking notifications",
           "request": {
             "name": "Booking notifications",
@@ -1597,7 +1597,7 @@
           },
           "response": [
             {
-              "id": "385af642-209c-485e-bc02-dd688a1e53e0",
+              "id": "5c48bf5d-59f8-4b6b-b55d-b76bd50ba3fb",
               "name": "Notifications list",
               "originalRequest": {
                 "url": {
@@ -1651,7 +1651,7 @@
           }
         },
         {
-          "id": "f7b74309-14b0-4255-8deb-13fff31195bc",
+          "id": "efcbc741-f7ee-44b8-a28a-9fbdc6229a78",
           "name": "Booking history",
           "request": {
             "name": "Booking history",
@@ -1694,7 +1694,7 @@
           },
           "response": [
             {
-              "id": "47b80794-402f-4868-a1fd-0cf30437f4e1",
+              "id": "3b2aedea-dc90-4d33-9dc9-fafef43965ff",
               "name": "History timeline",
               "originalRequest": {
                 "url": {
@@ -1742,7 +1742,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "82487721-1dc4-49dd-8595-b163d47fa33c",
+              "id": "31a1addc-acc6-4c45-afb2-384b46d4fda8",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -1778,7 +1778,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "9514614a-fc90-4917-a9fb-8ca42dbd82ab",
+              "id": "679192b1-9540-4cb7-b90f-d6252ebf2aee",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -1826,7 +1826,7 @@
       "description": "Search bookings, list them by date range, and poll feeds of bookings that have changed state (cancelled, started, finished, reminders, updated)",
       "item": [
         {
-          "id": "74c7b1e4-04a6-4540-a6f1-04943e63d3ff",
+          "id": "cfbd2213-04cc-4b3c-b159-17c42a867cad",
           "name": "Cancelled bookings",
           "request": {
             "name": "Cancelled bookings",
@@ -1857,7 +1857,7 @@
           },
           "response": [
             {
-              "id": "4f3dade1-f1a6-454e-a0d9-a46056e5af23",
+              "id": "34cc2136-017c-4738-b4f0-e4a7e205a7dc",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -1893,7 +1893,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "46158db4-73e5-4caf-9a3a-944d4e0f7886",
+              "id": "3bc1e6af-57e3-4783-9dd1-a8e890950f21",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -1923,7 +1923,7 @@
           }
         },
         {
-          "id": "e8a187c6-ef3a-4cdb-aa2e-26a4ba4dc3ba",
+          "id": "324dcef4-2e9c-42d0-b0b9-62ac1c6f100d",
           "name": "Started bookings",
           "request": {
             "name": "Started bookings",
@@ -1954,7 +1954,7 @@
           },
           "response": [
             {
-              "id": "adfc233f-4b86-4880-87f5-ec96ff9da3cd",
+              "id": "13a7c64f-8893-413e-8ac3-20d9bebcd4da",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -1990,7 +1990,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "59003e62-9868-4f13-98f7-b7a7c6a50e28",
+              "id": "8e5baf98-9c62-4eaf-87f8-b72ba2a4c091",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -2020,7 +2020,7 @@
           }
         },
         {
-          "id": "0d46425d-f581-4f24-8f81-a16b3c12a9b4",
+          "id": "4647179d-142d-4e57-aa3e-de95285d24aa",
           "name": "Finished bookings",
           "request": {
             "name": "Finished bookings",
@@ -2051,7 +2051,7 @@
           },
           "response": [
             {
-              "id": "0e981eb8-ed7c-43b2-84ba-e6299e4825e0",
+              "id": "47a02cfd-9320-4e98-beb7-924533c957fd",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -2087,7 +2087,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "42f2408c-2195-45f2-bbc8-4583f5bf91e6",
+              "id": "c884f87f-2d95-4afe-9a03-0f813896144c",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -2117,7 +2117,7 @@
           }
         },
         {
-          "id": "751e9a58-6cc3-45d0-8b07-617a3c9be763",
+          "id": "6cd8dd7c-d6fa-42db-9746-78db60a06f08",
           "name": "Reminder bookings",
           "request": {
             "name": "Reminder bookings",
@@ -2148,7 +2148,7 @@
           },
           "response": [
             {
-              "id": "24af48cb-9c1f-440c-93ab-4112269f0dfc",
+              "id": "f8c0bc25-7c0a-4cd2-a64c-19670c65bcb9",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -2184,7 +2184,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "eebdda93-d6a2-4149-b5fb-05b7b3eea5e6",
+              "id": "f8f5b3fb-92ee-467d-aa33-ec6ea4d255b6",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -2214,7 +2214,7 @@
           }
         },
         {
-          "id": "9828e86c-799e-491b-91b3-f6127d166e32",
+          "id": "6ce7f979-ff7e-4afd-889b-58a1093bdc4e",
           "name": "One hour before bookings",
           "request": {
             "name": "One hour before bookings",
@@ -2245,7 +2245,7 @@
           },
           "response": [
             {
-              "id": "c24d192b-081a-43e1-8edb-35df5389bf82",
+              "id": "569a55fb-bff8-4046-82cc-904e94d5ab53",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -2281,7 +2281,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "f29b1a4a-efdc-490b-8310-37781da19b83",
+              "id": "1be83920-d630-464c-bcca-0e32f7a1d352",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -2311,7 +2311,7 @@
           }
         },
         {
-          "id": "31934a46-e8bf-48df-8ec4-52c845bebcf0",
+          "id": "71b42a71-989c-450d-b3e3-2f463868957f",
           "name": "Updated bookings",
           "request": {
             "name": "Updated bookings",
@@ -2342,7 +2342,7 @@
           },
           "response": [
             {
-              "id": "5317591a-a142-4a0a-ab09-e69908d8605c",
+              "id": "9d03131c-b951-40a9-93d9-c6a0ac2592a5",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -2378,7 +2378,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "da620855-2cc7-422b-9122-da6365fb3a5b",
+              "id": "5e5be86d-4390-4a9a-8e51-e80c42ed1053",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -2408,7 +2408,7 @@
           }
         },
         {
-          "id": "52125837-5bb9-47d0-b434-1d0c75a59934",
+          "id": "19fcec2f-5537-416e-914a-f9d0c8e7aff6",
           "name": "Dashboard composite data",
           "request": {
             "name": "Dashboard composite data",
@@ -2466,7 +2466,7 @@
           },
           "response": [
             {
-              "id": "468d48fa-ed56-4aa9-8fd1-ff33246f08ca",
+              "id": "38f23b77-0737-4f2d-887c-d78b3bc108b3",
               "name": "Dashboard data",
               "originalRequest": {
                 "url": {
@@ -2535,7 +2535,7 @@
           }
         },
         {
-          "id": "f0b0b9a6-1faa-4b0d-a521-f6602f806ff7",
+          "id": "f0cf71ea-4df6-4dcd-bfc5-c2441f2514ff",
           "name": "Search bookings",
           "request": {
             "name": "Search bookings",
@@ -2568,7 +2568,7 @@
                     "type": "text/plain"
                   },
                   "key": "status_filter",
-                  "value": "cancelled_and_active"
+                  "value": "active"
                 },
                 {
                   "disabled": false,
@@ -2603,7 +2603,7 @@
           },
           "response": [
             {
-              "id": "1cc6b666-a98c-4447-9d92-1eecbabc3b18",
+              "id": "67bd0675-ab93-4371-a1d8-0cfc36cfadea",
               "name": "Search results",
               "originalRequest": {
                 "url": {
@@ -2631,7 +2631,7 @@
                         "type": "text/plain"
                       },
                       "key": "status_filter",
-                      "value": "cancelled_and_active"
+                      "value": "active"
                     },
                     {
                       "disabled": false,
@@ -2682,7 +2682,7 @@
           }
         },
         {
-          "id": "a10d64b9-d125-4e99-bf17-16b05aad5387",
+          "id": "b0011030-81d9-4b3f-ba72-ecc8f47638c2",
           "name": "Bookings by date range",
           "request": {
             "name": "Bookings by date range",
@@ -2732,7 +2732,7 @@
           },
           "response": [
             {
-              "id": "84c2f10b-7595-490e-b443-5b6676bb7529",
+              "id": "58c2fb2a-981a-4b4c-a867-368a05560156",
               "name": "Bookings for date range",
               "originalRequest": {
                 "url": {
@@ -2799,7 +2799,7 @@
       "description": "Bookings that need a studio admin to approve or reject them",
       "item": [
         {
-          "id": "5462794f-fecc-4ac0-b408-095eda66f471",
+          "id": "55eb419b-6f5f-46e8-84ff-8cba410c1dce",
           "name": "Bookings awaiting approval",
           "request": {
             "name": "Bookings awaiting approval",
@@ -2849,7 +2849,7 @@
           },
           "response": [
             {
-              "id": "e9347ce6-4ada-45a7-9984-dd7efcfa7851",
+              "id": "f31e5f9c-e27d-4ec8-ae71-5b36bec73cd0",
               "name": "Pending bookings",
               "originalRequest": {
                 "url": {
@@ -2910,7 +2910,7 @@
           }
         },
         {
-          "id": "e7ee3b78-bf2b-4c9a-af4b-e7a1f52bcaae",
+          "id": "5b0bcacb-8d04-433e-9e1d-44326f9a6234",
           "name": "Approve a booking",
           "request": {
             "name": "Approve a booking",
@@ -2953,7 +2953,7 @@
           },
           "response": [
             {
-              "id": "91426da7-7500-45cd-9378-de1d6caedcbb",
+              "id": "a3096838-4c8e-4463-b583-7493032bf006",
               "name": "Booking approved",
               "originalRequest": {
                 "url": {
@@ -3007,7 +3007,7 @@
           }
         },
         {
-          "id": "deaf15cc-6219-4025-8069-003f83fd593f",
+          "id": "c01b653f-b370-4e1e-8df3-8d0c44df150a",
           "name": "Reject a booking",
           "request": {
             "name": "Reject a booking",
@@ -3060,7 +3060,7 @@
           },
           "response": [
             {
-              "id": "840272ec-e5dd-4835-b041-e84fbefb77f7",
+              "id": "b860a8f1-52af-4c78-bf53-fc7bce94ed13",
               "name": "Booking rejected",
               "originalRequest": {
                 "url": {
@@ -3130,7 +3130,7 @@
       "description": "Transactions on a booking, payment requests, and charging a customer's saved card",
       "item": [
         {
-          "id": "b6163276-a1aa-43d4-9fd7-81474a4f3a2f",
+          "id": "034a8622-7d75-4262-bbcf-40412aeeb584",
           "name": "List booking transactions",
           "request": {
             "name": "List booking transactions",
@@ -3173,7 +3173,7 @@
           },
           "response": [
             {
-              "id": "9b2fcdc9-7f71-4bfb-8881-c68120d3d6a0",
+              "id": "5493ad5d-13ae-4b0a-b5a1-92553375fec4",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -3221,7 +3221,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "7dfa45b7-9b00-4f72-bac6-db5d4261ced0",
+              "id": "dc9bb610-8b0b-4891-a73e-889f0fc9b41a",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -3257,7 +3257,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "13365b39-7bf2-4daa-8766-477538d24daf",
+              "id": "5720e34d-b4ac-43e0-9c42-a59ad0336f33",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -3299,7 +3299,7 @@
           }
         },
         {
-          "id": "a1b3aa6c-9509-496c-bb13-1af11b452eb7",
+          "id": "30271c74-88ef-402a-bcb9-f9420fa54c26",
           "name": "Create a transaction for a booking",
           "request": {
             "name": "Create a transaction for a booking",
@@ -3355,7 +3355,7 @@
           },
           "response": [
             {
-              "id": "02b14927-1600-4146-8859-91145147345f",
+              "id": "4d9e4363-fbb2-460a-9562-622ee127669b",
               "name": "Transaction created successfully",
               "originalRequest": {
                 "url": {
@@ -3416,7 +3416,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "9d68f3cc-8cd5-48b5-8fcd-1bb173247709",
+              "id": "671f5832-5c60-42c4-9d9c-682c039b11a5",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -3467,7 +3467,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "8d71fc55-8dd6-41db-acd3-b983272e66d7",
+              "id": "a72ef9f2-0508-4dee-b17c-4fddaa190bde",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -3518,7 +3518,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "70f2ae32-4b65-446e-bc01-38f185521ca0",
+              "id": "ace181c0-49fa-4758-8258-3ce79bceba94",
               "name": "Unprocessable - the transaction parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -3575,7 +3575,7 @@
           }
         },
         {
-          "id": "658560a1-8247-44ba-89f7-4c76e68d0887",
+          "id": "110b422a-cfc2-4f1f-b745-0e85777ca5c8",
           "name": "Send payment request",
           "request": {
             "name": "Send payment request",
@@ -3631,7 +3631,7 @@
           },
           "response": [
             {
-              "id": "52f23ad5-b16c-4cc4-841d-dba902ccfe20",
+              "id": "95b11d9c-b2d3-42a7-909e-71c45e34dc09",
               "name": "Payment request sent",
               "originalRequest": {
                 "url": {
@@ -3698,7 +3698,7 @@
           }
         },
         {
-          "id": "0e57f784-52e1-4e86-bca0-a009ce5a76e0",
+          "id": "6edd9ee6-b688-4099-a92a-5d541a238788",
           "name": "Charge saved card",
           "request": {
             "name": "Charge saved card",
@@ -3755,7 +3755,7 @@
           },
           "response": [
             {
-              "id": "2977b445-c425-40c8-9a0d-e416247f6413",
+              "id": "43edb114-cc81-4cd1-a71b-012716619757",
               "name": "Payment taken",
               "originalRequest": {
                 "url": {
@@ -3823,7 +3823,7 @@
           }
         },
         {
-          "id": "799aa372-16a5-4474-b7f4-36970602435e",
+          "id": "2ff4d4fd-4cec-43ba-ba3d-766176d0124e",
           "name": "Mark payment as paid",
           "request": {
             "name": "Mark payment as paid",
@@ -3878,7 +3878,7 @@
           },
           "response": [
             {
-              "id": "bc54a6d1-e4c0-46e9-9f9d-ea90cb6d7c90",
+              "id": "b9536ebe-9105-46cd-a13f-7e6d298e50af",
               "name": "Marked as paid",
               "originalRequest": {
                 "url": {
@@ -3944,7 +3944,7 @@
           }
         },
         {
-          "id": "5a6bce46-685b-4090-bc3c-49343c7546d1",
+          "id": "f0fb3c66-9f3b-4fab-bbe3-639bded5243c",
           "name": "Cancel payment request",
           "request": {
             "name": "Cancel payment request",
@@ -3999,7 +3999,7 @@
           },
           "response": [
             {
-              "id": "9c8f91bf-5048-4d11-b08c-8fdce3475bba",
+              "id": "44427ce2-6624-47a3-9cfe-32cd2c10fdb1",
               "name": "Payment request cancelled",
               "originalRequest": {
                 "url": {
@@ -4065,7 +4065,7 @@
           }
         },
         {
-          "id": "0b862c9c-31e7-4908-a2ec-82330d5cad37",
+          "id": "6e9405e7-c8f6-45be-b3f1-9e06f3dac879",
           "name": "Check settlement support",
           "request": {
             "name": "Check settlement support",
@@ -4108,7 +4108,7 @@
           },
           "response": [
             {
-              "id": "c69b887a-9d88-44bc-8f7c-2baf70954f86",
+              "id": "48b00b42-77b1-499f-8bfe-a069e811a0f2",
               "name": "Settlement check result",
               "originalRequest": {
                 "url": {
@@ -4168,7 +4168,7 @@
       "description": "Refunds, credit notes, and moving money between a booking and the customer's credit balance",
       "item": [
         {
-          "id": "bc5ea966-e198-45ce-adbc-2ac734074941",
+          "id": "6c64b772-dec4-470b-a202-c923a3f6fad4",
           "name": "Refund a transaction",
           "request": {
             "name": "Refund a transaction",
@@ -4221,7 +4221,7 @@
           },
           "response": [
             {
-              "id": "63afd208-2734-4544-b013-d4b149b8c151",
+              "id": "c73a33a5-6907-46e8-9e81-206d32457892",
               "name": "Transaction refunded",
               "originalRequest": {
                 "url": {
@@ -4285,7 +4285,7 @@
           }
         },
         {
-          "id": "3ce2ba02-c6bd-4261-9efe-4ff9654d0b3f",
+          "id": "b9c5b5de-32d1-4a61-ab11-372a164cab5b",
           "name": "Full refund",
           "request": {
             "name": "Full refund",
@@ -4341,7 +4341,7 @@
           },
           "response": [
             {
-              "id": "91814507-717e-428c-9d5e-278ffe85c280",
+              "id": "cfe1e2a4-06c8-42a1-b6e5-a8fef73e1b82",
               "name": "Booking refunded",
               "originalRequest": {
                 "url": {
@@ -4408,7 +4408,7 @@
           }
         },
         {
-          "id": "59bae3b9-28b7-403e-a3f4-93b07b3cd3f1",
+          "id": "84535bd4-2169-40c2-b3a3-df284ec480e8",
           "name": "Apply credit balance",
           "request": {
             "name": "Apply credit balance",
@@ -4451,7 +4451,7 @@
           },
           "response": [
             {
-              "id": "82e1921f-a7f3-4536-a692-66aac359c2ff",
+              "id": "b7b97118-d5f8-4216-aa56-c0eeff35b2de",
               "name": "Credit applied",
               "originalRequest": {
                 "url": {
@@ -4505,7 +4505,7 @@
           }
         },
         {
-          "id": "4b939480-8a03-457c-8a66-ea07d2f5c08e",
+          "id": "4e8f9c5b-e207-4f34-843d-dac5b35a7ddb",
           "name": "Credit to customer balance",
           "request": {
             "name": "Credit to customer balance",
@@ -4561,7 +4561,7 @@
           },
           "response": [
             {
-              "id": "ddabb468-6718-46cb-a86a-be80042d32ca",
+              "id": "309e7535-1159-4f51-b068-611160475eb2",
               "name": "Booking credited",
               "originalRequest": {
                 "url": {
@@ -4628,7 +4628,7 @@
           }
         },
         {
-          "id": "4a826f6c-dfea-4354-a081-b3aeeea0942f",
+          "id": "739b2702-5618-42a5-a0b1-2d9cabf46ef1",
           "name": "Create credit note",
           "request": {
             "name": "Create credit note",
@@ -4684,7 +4684,7 @@
           },
           "response": [
             {
-              "id": "bf77ec56-acaf-4607-b81e-878531038ae0",
+              "id": "d72adafd-b191-49d2-b489-dec1f7437187",
               "name": "Credit note created",
               "originalRequest": {
                 "url": {
@@ -4751,7 +4751,7 @@
           }
         },
         {
-          "id": "30437857-25be-492b-80ff-b9e017e7d891",
+          "id": "fd1c27fa-55de-4d75-99e0-246c5d64aed0",
           "name": "Delete credit note",
           "request": {
             "name": "Delete credit note",
@@ -4805,7 +4805,7 @@
           },
           "response": [
             {
-              "id": "9a3d9698-63ee-4e2a-adb8-ab13685ec06b",
+              "id": "f9d74a9d-c892-4351-a700-881324397a3b",
               "name": "Credit note removed",
               "originalRequest": {
                 "url": {
@@ -4864,7 +4864,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b27c5db6-21e3-4ec4-8e17-863a0967c02d",
+              "id": "0ae4e413-3140-4962-b326-8142a40f6743",
               "name": "Credit note or booking not found",
               "originalRequest": {
                 "url": {
@@ -4923,7 +4923,7 @@
       "description": "Customer-facing booking notes and private studio notes",
       "item": [
         {
-          "id": "663e3597-632c-4f7b-aeda-b454129413d8",
+          "id": "e07e0b3f-b088-458d-938a-64737259ac60",
           "name": "Get booking studio notes",
           "request": {
             "name": "Get booking studio notes",
@@ -4966,7 +4966,7 @@
           },
           "response": [
             {
-              "id": "3ed9ff33-0a69-4fec-a60f-754d5c5df5ef",
+              "id": "8390b05e-9520-4b37-ade4-059a349d04b3",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -5014,7 +5014,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "0971bfc6-e6d5-4ea4-bf4c-15f0c56e6c55",
+              "id": "92c9affd-b99d-43f2-99df-72679840afdf",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -5050,7 +5050,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "4f24ab80-1937-469c-8f7e-c3b703a2a3a0",
+              "id": "f66c2b7e-e12b-4093-86e3-15f60a20377f",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -5092,7 +5092,7 @@
           }
         },
         {
-          "id": "44da61e0-9b07-47c8-8ab6-d71910619e7c",
+          "id": "d7c0e64b-2273-4105-bb25-30f6d8674f6e",
           "name": "Update booking studio notes",
           "request": {
             "name": "Update booking studio notes",
@@ -5148,7 +5148,7 @@
           },
           "response": [
             {
-              "id": "7533b0eb-8dfb-4dd1-9511-dc0d3a2968c2",
+              "id": "b78080e7-8f3a-4fa7-8452-52bdb56e663f",
               "name": "Studio notes updated successfully",
               "originalRequest": {
                 "url": {
@@ -5209,7 +5209,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "3d794c32-7c4d-4fab-8fcd-30f2383be899",
+              "id": "ec925349-b9b8-45e0-aaa5-67205bc6c8f4",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -5260,7 +5260,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "4db59d77-273d-4a19-a921-f905307fc925",
+              "id": "f0aebaaf-399d-4d1a-a7dd-d9b90cbc0add",
               "name": "Not found - Booking was not found",
               "originalRequest": {
                 "url": {
@@ -5317,7 +5317,7 @@
           }
         },
         {
-          "id": "70779627-eaf0-4a79-8e9a-9906bce79b9a",
+          "id": "d29aa567-9e75-4f26-a746-00416ddb132e",
           "name": "Update booking notes",
           "request": {
             "name": "Update booking notes",
@@ -5373,7 +5373,7 @@
           },
           "response": [
             {
-              "id": "fc5e0d5a-a043-49c5-b934-76c6f1af3a96",
+              "id": "823e0f81-d623-41f3-a71f-a1feb744a4a2",
               "name": "Notes updated",
               "originalRequest": {
                 "url": {
@@ -5446,7 +5446,7 @@
       "description": "Calculate the price of a booking and preview a time slot before creating it",
       "item": [
         {
-          "id": "45534578-baac-4c87-a2e3-9e985a7f8b8c",
+          "id": "2fe61486-a948-42f3-869e-9db99ff2b9a7",
           "name": "Calculate booking price",
           "request": {
             "name": "Calculate booking price",
@@ -5489,7 +5489,7 @@
           },
           "response": [
             {
-              "id": "4245d09a-e87f-4e6b-806c-396eea029892",
+              "id": "5d4f6522-3071-4c39-8bd6-6762320dc02b",
               "name": "Price breakdown",
               "originalRequest": {
                 "url": {
@@ -5543,7 +5543,7 @@
           }
         },
         {
-          "id": "1d22fba3-2de2-4b0d-8c98-df36d4831814",
+          "id": "c078f666-bbbb-45a6-aa13-095007007857",
           "name": "Project time slot",
           "request": {
             "name": "Project time slot",
@@ -5586,7 +5586,7 @@
           },
           "response": [
             {
-              "id": "8c257bd2-844c-4592-a793-ec281477d691",
+              "id": "db08a54c-da38-4bfc-aabb-f64b7770b78a",
               "name": "Slot projection",
               "originalRequest": {
                 "url": {
@@ -5646,7 +5646,7 @@
       "description": "A booking anchor marks time that is already taken in a room. When sticky bookings are on, only the slots immediately before and after an anchor stay bookable for that day.\n\nJammed creates `auto` anchors from bookings, admins add `manual` ones in the admin, and anchors created through this API always have the source `api`. Anchors cannot be edited through the API: delete the anchor and create a new one instead.\n\nThese endpoints return a `422` error unless sticky bookings are turned on for the studio or for at least one room. OAuth tokens must belong to an admin; staff accounts get a `403`.\n",
       "item": [
         {
-          "id": "555b07a0-cc29-4c42-821f-76568a738718",
+          "id": "a9bebd1d-4c98-4b22-9039-f4787484b285",
           "name": "List booking anchors",
           "request": {
             "name": "List booking anchors",
@@ -5722,7 +5722,7 @@
           },
           "response": [
             {
-              "id": "291e9fc8-0f1d-4e85-a691-4980531da4f6",
+              "id": "c7ffb258-50f9-4f8c-9120-1041f6fd4569",
               "name": "Booking anchors",
               "originalRequest": {
                 "url": {
@@ -5803,7 +5803,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "789df89c-f9aa-4a7b-bdfd-abd617e3d8ea",
+              "id": "5875f59f-3736-4a26-aa35-fdc84ec8c929",
               "name": "Bad request - the `date` could not be parsed",
               "originalRequest": {
                 "url": {
@@ -5872,7 +5872,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c1e98cfb-d21b-4d06-9e17-765afa1e3a36",
+              "id": "23186b3e-bd7c-4834-8d1d-92e59296ac9f",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -5941,7 +5941,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "2272567c-4882-452d-aece-83b89c8e90dc",
+              "id": "7b52894c-a78c-4a06-821d-d669800a6917",
               "name": "Forbidden - the OAuth token lacks the scope, or does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -6010,7 +6010,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "02d4fafe-cb22-4ef4-82e0-78318570bf90",
+              "id": "3137d0db-aa83-4e23-981a-e17cd4fc619c",
               "name": "Unprocessable - sticky bookings are not turned on",
               "originalRequest": {
                 "url": {
@@ -6097,7 +6097,7 @@
           }
         },
         {
-          "id": "11147573-2295-4c6d-bdf9-43f9e8c4d867",
+          "id": "5091b043-c062-459c-a326-e7f96baef65f",
           "name": "Create booking anchor",
           "request": {
             "name": "Create booking anchor",
@@ -6140,7 +6140,7 @@
           },
           "response": [
             {
-              "id": "c8b30bd0-8fb4-4b5c-a236-00d55ebee6da",
+              "id": "d1af756d-9964-47cf-909f-735b7234fbe8",
               "name": "Booking anchor created",
               "originalRequest": {
                 "url": {
@@ -6188,7 +6188,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "4f81363f-070c-4b5f-9a81-7386487a5c3f",
+              "id": "9898ac0b-2e3b-4599-a4dd-e213380a973b",
               "name": "Bad request - the `booking_anchor` key is missing",
               "originalRequest": {
                 "url": {
@@ -6226,7 +6226,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "adf13f3c-2831-4210-9f09-7f0650e509d2",
+              "id": "91784ea6-24e4-4b9c-9cde-96fdcb0ac07e",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -6264,7 +6264,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "839ce708-c361-40a0-8f4c-065eaf9efd3d",
+              "id": "bca8d926-ae1b-426d-9e27-7967d588a748",
               "name": "Forbidden - the OAuth token lacks the scope, or does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -6302,7 +6302,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "2920279f-02f9-43e3-95b0-f766e50c62a9",
+              "id": "f98b2f9f-af7d-4ce6-9930-edafc96a5da0",
               "name": "Unprocessable - the room does not exist, the times are missing or backwards, or sticky bookings are not turned on",
               "originalRequest": {
                 "url": {
@@ -6356,7 +6356,7 @@
           }
         },
         {
-          "id": "c6b348cd-45b3-4a47-9be6-9611792450cc",
+          "id": "26d93281-c3b8-4734-b33f-7b66e3c27630",
           "name": "Delete booking anchor",
           "request": {
             "name": "Delete booking anchor",
@@ -6398,7 +6398,7 @@
           },
           "response": [
             {
-              "id": "2db5a242-558f-45d8-a2b3-6e4d352068bf",
+              "id": "23990ee8-8c19-42de-a9a2-e15e9eadda1a",
               "name": "Booking anchor deleted",
               "originalRequest": {
                 "url": {
@@ -6445,7 +6445,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "d91299b7-d709-40d5-a494-aa1198af6f7b",
+              "id": "a01d9d5d-3526-4c46-8101-436364eab9f3",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -6480,7 +6480,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "a4f788f4-2127-47f0-b7a1-1bf1cfb49e5d",
+              "id": "e9fdf296-bbd0-4939-9a2e-ed18ac90d730",
               "name": "Forbidden - the OAuth token lacks the scope, or does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -6515,7 +6515,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "0dc6c691-b7d4-494d-9076-7f4509ecc070",
+              "id": "da748242-9b93-4a09-a7f9-ceacc7b0155f",
               "name": "Not found - the booking anchor does not exist",
               "originalRequest": {
                 "url": {
@@ -6550,7 +6550,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "44c065b0-ded4-48c1-9602-fa4f2f1a24c2",
+              "id": "b99bc524-2403-4314-a2c6-34156a0abc19",
               "name": "Unprocessable - sticky bookings are not turned on",
               "originalRequest": {
                 "url": {
@@ -6609,7 +6609,7 @@
       "description": "Polling API for customers",
       "item": [
         {
-          "id": "6b67ce48-76ba-4792-bb29-01854083f4df",
+          "id": "ee152873-1975-4859-8744-50e64fb7cebf",
           "name": "Find all customers",
           "request": {
             "name": "Find all customers",
@@ -6667,7 +6667,7 @@
           },
           "response": [
             {
-              "id": "b6aac6d0-a511-4493-9d6f-9cec5098b92c",
+              "id": "296535c1-8071-4780-ad1e-6c0c1c492b6b",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -6725,12 +6725,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"registered\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"behind_payment\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"behind_payment\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"invited\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c2cc963b-ff01-4ba5-9104-fd5d7aab5cb0",
+              "id": "2ffebcfa-317c-4744-bfbf-35160d9e81ca",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -6787,7 +6787,7 @@
           }
         },
         {
-          "id": "a29c8491-5d21-4e74-ba24-6b2d1418dec6",
+          "id": "982bc340-be19-4c93-9f95-f46f8415a04c",
           "name": "Create a customer",
           "request": {
             "name": "Create a customer",
@@ -6824,7 +6824,7 @@
           },
           "response": [
             {
-              "id": "90fce9ea-1895-45d1-897a-dd7f869ba013",
+              "id": "2ce4760a-ccaa-49e4-871d-6fe0a18bdd71",
               "name": "Customer created",
               "originalRequest": {
                 "url": {
@@ -6861,12 +6861,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"registered\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"behind_payment\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"behind_payment\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"mobile\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"credit_balance\": \"<integer>\",\n    \"status\": \"invited\",\n    \"reminders_opt_in\": \"<boolean>\",\n    \"mailing_list_opt_in\": \"<boolean>\",\n    \"signed_up\": \"<boolean>\",\n    \"signed_up_at\": \"<integer>\",\n    \"regular_bookings_count\": \"<integer>\",\n    \"bookings_count\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\",\n    \"last_booking_at\": \"<integer>\",\n    \"regular_bookings\": [\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"id\": \"<integer>\"\n      }\n    ],\n    \"bands\": [\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"code\": \"<string>\",\n        \"number_of_members\": \"<integer>\",\n        \"number\": \"<integer>\",\n        \"booking_count\": \"<integer>\"\n      }\n    ],\n    \"address\": {\n      \"company\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"town\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"formatted_address\": \"<string>\"\n    }\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "61ea5030-0cf9-4334-b201-4dc200820c0f",
+              "id": "9376a735-bb93-40f8-a3a7-33bff60ca225",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -6898,7 +6898,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "326d92de-6d97-4d49-9545-859c59ca4761",
+              "id": "68705bce-185a-461b-9b61-7c327e253120",
               "name": "Unprocessable - the customer parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -6946,7 +6946,7 @@
           }
         },
         {
-          "id": "e6b5269f-ed68-481c-8b30-b349db4ffca2",
+          "id": "94ee0e4e-01c5-453f-b8c6-7d6db36ed7b7",
           "name": "Find a customer by ID",
           "request": {
             "name": "Find a customer by ID",
@@ -6977,7 +6977,7 @@
           },
           "response": [
             {
-              "id": "4135fb49-2e93-49f4-a029-432ccd4a1fb9",
+              "id": "2744f22f-686a-403a-8c1e-0650ec778b72",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -7013,7 +7013,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c5cab164-e1cd-4eac-8f3f-80339296f0ee",
+              "id": "52d1077a-cfef-4897-82ba-5ec2b9f4e94a",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -7037,7 +7037,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "676b6236-cfaf-483b-95de-6d2e21dd7d9d",
+              "id": "d9602941-d276-4b79-8b41-1cd254e4fc28",
               "name": "Not found - Customer was not found",
               "originalRequest": {
                 "url": {
@@ -7067,7 +7067,7 @@
           }
         },
         {
-          "id": "7bebe665-8b1b-4c24-9fe6-644b8ba25c66",
+          "id": "9b0a736a-46e5-495b-9d08-d3c17ba90c08",
           "name": "Update customer",
           "request": {
             "name": "Update customer",
@@ -7122,7 +7122,7 @@
           },
           "response": [
             {
-              "id": "6df5a546-df5a-41ae-8cde-cfaedd4516ae",
+              "id": "9e2ed0cf-ec83-43b7-a956-13d6390439ca",
               "name": "Customer updated",
               "originalRequest": {
                 "url": {
@@ -7188,7 +7188,7 @@
           }
         },
         {
-          "id": "6a2b9e1c-7537-4f1e-892b-4a94720a3c65",
+          "id": "135fc7bb-378d-4b95-8498-d37ba3a0cc24",
           "name": "Search customers",
           "request": {
             "name": "Search customers",
@@ -7238,7 +7238,7 @@
           },
           "response": [
             {
-              "id": "7ec283d8-152c-4570-8705-b4885fcf4247",
+              "id": "9e0cf76a-fec3-457b-8a77-212ba9cebd57",
               "name": "Matching customers",
               "originalRequest": {
                 "url": {
@@ -7299,7 +7299,7 @@
           }
         },
         {
-          "id": "fed2132e-ba2d-48dd-8158-86313a2e2f64",
+          "id": "6cd5d4f0-a90c-4019-bca7-272d77af0ac9",
           "name": "Update customer notes",
           "request": {
             "name": "Update customer notes",
@@ -7355,7 +7355,7 @@
           },
           "response": [
             {
-              "id": "044223fc-32f8-4f3a-a788-9f30324d8457",
+              "id": "3535ef1c-41c2-4b88-8afd-be78d91cea27",
               "name": "Notes updated",
               "originalRequest": {
                 "url": {
@@ -7422,7 +7422,7 @@
           }
         },
         {
-          "id": "77e73a17-7c36-4dd8-a9c3-1ba5a3a79684",
+          "id": "a3614c5f-ad9e-423c-bba2-844855782d1d",
           "name": "Invite an existing customer",
           "request": {
             "name": "Invite an existing customer",
@@ -7465,7 +7465,7 @@
           },
           "response": [
             {
-              "id": "cdb47aca-c197-429f-be48-18cfb4e0b5a4",
+              "id": "bf91f655-014f-47c1-a8f8-7834a3aeb17a",
               "name": "Invitation sent",
               "originalRequest": {
                 "url": {
@@ -7513,7 +7513,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "9a842f0c-cb99-4c17-83a2-31748b1a1dc1",
+              "id": "762c66d2-8bdb-4b5b-9490-9a5ceee42414",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -7549,7 +7549,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "cd596c4a-573c-45bb-8280-ee48d8f4ee0b",
+              "id": "5234bd99-bb7b-429e-aa46-46d2b93716cc",
               "name": "Not found - Customer was not found",
               "originalRequest": {
                 "url": {
@@ -7585,7 +7585,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "86332891-9bcc-4897-b0b2-fed1b7482481",
+              "id": "2bc0af00-a0ce-471e-adf1-1c6f2ef70d44",
               "name": "Unprocessable - the customer has already registered, or already has a valid invite",
               "originalRequest": {
                 "url": {
@@ -7639,7 +7639,7 @@
           }
         },
         {
-          "id": "3ee6546e-13b3-40bf-800d-7e34527cc59a",
+          "id": "45b66208-41eb-4ecc-8410-ade21525581a",
           "name": "Customer bookings",
           "request": {
             "name": "Customer bookings",
@@ -7701,7 +7701,7 @@
           },
           "response": [
             {
-              "id": "13037814-c002-49f8-950f-9d6cb49747ae",
+              "id": "80a38808-8266-4ca3-a36a-97db6d11cad0",
               "name": "Customer's bookings",
               "originalRequest": {
                 "url": {
@@ -7774,7 +7774,7 @@
           }
         },
         {
-          "id": "aa4f64fe-edd7-47b6-8de0-d1c4acba2876",
+          "id": "f72801c5-74aa-49fa-91ad-0f8d1215742e",
           "name": "Get credit balance",
           "request": {
             "name": "Get credit balance",
@@ -7817,7 +7817,7 @@
           },
           "response": [
             {
-              "id": "1d27e089-531b-410a-974d-15a2b9392a64",
+              "id": "6ae1b6a8-0a03-4f60-8c03-f245257180fd",
               "name": "Credit balance",
               "originalRequest": {
                 "url": {
@@ -7871,7 +7871,7 @@
           }
         },
         {
-          "id": "68104eb6-ae27-481b-aff6-d61a4b44f595",
+          "id": "7b7690d9-83eb-4094-a513-3906d9e6f78f",
           "name": "Update credit balance",
           "request": {
             "name": "Update credit balance",
@@ -7927,7 +7927,7 @@
           },
           "response": [
             {
-              "id": "a7bec78a-3b4d-4bbd-861b-7a22dc1cfae6",
+              "id": "c45efaa6-3723-4f12-b8e0-dcb17ae6091e",
               "name": "Balance updated",
               "originalRequest": {
                 "url": {
@@ -7994,7 +7994,7 @@
           }
         },
         {
-          "id": "5accfd6f-4bec-453a-9c75-d16e050c7a97",
+          "id": "4410c9b1-f98d-43d9-9a01-561c2d372299",
           "name": "Credit movements",
           "request": {
             "name": "Credit movements",
@@ -8056,7 +8056,7 @@
           },
           "response": [
             {
-              "id": "02f6efad-84d9-48d2-a53a-c086a9be5881",
+              "id": "62d96075-9b15-4463-bb23-050c00dc8379",
               "name": "Credit movements",
               "originalRequest": {
                 "url": {
@@ -8129,7 +8129,7 @@
           }
         },
         {
-          "id": "752304ed-1a37-45f3-b25f-352c1e02af1b",
+          "id": "77b78867-ae1c-4be4-8707-715ad70d78e7",
           "name": "Customer status",
           "request": {
             "name": "Customer status",
@@ -8172,7 +8172,7 @@
           },
           "response": [
             {
-              "id": "83874434-3bec-4f52-aeff-ec57d3d4c1cb",
+              "id": "bac8be9b-bb36-48d8-9ddc-aa1167d24d54",
               "name": "Customer status",
               "originalRequest": {
                 "url": {
@@ -8226,7 +8226,7 @@
           }
         },
         {
-          "id": "ddff17c8-2f71-4241-a8c8-9dbbfe0c5991",
+          "id": "f879d669-7e66-42c3-a4a4-dec522938dd2",
           "name": "Payment methods",
           "request": {
             "name": "Payment methods",
@@ -8269,7 +8269,7 @@
           },
           "response": [
             {
-              "id": "12cd973a-0e1c-402d-b78a-1371dec6f6a3",
+              "id": "dcffbc53-8568-4f3e-869e-1e06a3f4b40d",
               "name": "Payment methods",
               "originalRequest": {
                 "url": {
@@ -8329,7 +8329,7 @@
       "description": "Polling API for rooms",
       "item": [
         {
-          "id": "725f515a-09a5-42ca-8533-e13ccdb8ee49",
+          "id": "b1a660b5-a189-4b5b-aec7-1967838fec25",
           "name": "Find all rooms",
           "request": {
             "name": "Find all rooms",
@@ -8359,7 +8359,7 @@
           },
           "response": [
             {
-              "id": "afe07348-ee26-4635-89e6-7a743b2c8e3b",
+              "id": "7b22aa87-31be-478a-a0fd-4730c56af8cc",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -8394,7 +8394,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "e04bde14-8c0d-42c5-9e5f-d32bfb535f5d",
+              "id": "e7d3a18d-7cef-4ec0-acb9-d34a75453149",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -8423,7 +8423,7 @@
           }
         },
         {
-          "id": "968c9668-ece9-4029-ae4b-c1dc5937e0e3",
+          "id": "baabc58b-3ecf-4942-8af6-b8dfaa22f013",
           "name": "Show room",
           "request": {
             "name": "Show room",
@@ -8465,7 +8465,7 @@
           },
           "response": [
             {
-              "id": "90dd6d7f-0827-4d3a-8b59-189a52cf1e0d",
+              "id": "b3556d0e-4606-4d19-8cfd-7f1784ac1a62",
               "name": "Room detail",
               "originalRequest": {
                 "url": {
@@ -8524,7 +8524,7 @@
       "description": "",
       "item": [
         {
-          "id": "516fedde-7e08-48cc-9587-e9bfbb0908c6",
+          "id": "e6b95a6d-dcd3-41c8-9433-d94d7889ea65",
           "name": "List extras",
           "request": {
             "name": "List extras",
@@ -8554,7 +8554,7 @@
           },
           "response": [
             {
-              "id": "00baba0b-0283-4fae-b855-d7e61fe4b05a",
+              "id": "33c20fa4-fff5-41a0-82a1-f82cdb0e410e",
               "name": "Extras list",
               "originalRequest": {
                 "url": {
@@ -8595,7 +8595,7 @@
           }
         },
         {
-          "id": "e1db500b-b8e3-4c56-b768-d608db912a85",
+          "id": "aa130cae-2c82-49b0-af63-44a0231c4ef1",
           "name": "Show extra",
           "request": {
             "name": "Show extra",
@@ -8637,7 +8637,7 @@
           },
           "response": [
             {
-              "id": "987d8487-91cb-480f-833d-6e92e373da4a",
+              "id": "73822db7-5803-4983-a7c6-d07db686de4e",
               "name": "Extra detail",
               "originalRequest": {
                 "url": {
@@ -8696,7 +8696,7 @@
       "description": "",
       "item": [
         {
-          "id": "2d5144b9-b816-493f-8d27-40b323a051dd",
+          "id": "8e63a9c9-c010-42bf-bd0c-b563b5024521",
           "name": "List notifications",
           "request": {
             "name": "List notifications",
@@ -8726,7 +8726,7 @@
           },
           "response": [
             {
-              "id": "f7b3db8d-1766-46ef-af06-9e220f9bf88b",
+              "id": "767ef6b2-3d8c-4f5f-96f8-218cdcca9a10",
               "name": "Notifications",
               "originalRequest": {
                 "url": {
@@ -8756,7 +8756,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"severity\": \"high\",\n    \"label\": \"<string>\",\n    \"read\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"read_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"severity\": \"high\",\n    \"label\": \"<string>\",\n    \"read\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"read_at\": \"<integer>\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"severity\": \"high\",\n    \"label\": \"<string>\",\n    \"read\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"read_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"body\": \"<string>\",\n    \"severity\": \"normal\",\n    \"label\": \"<string>\",\n    \"read\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"read_at\": \"<integer>\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -8767,7 +8767,7 @@
           }
         },
         {
-          "id": "e5513a23-8ef8-43e3-a891-afaf430bc528",
+          "id": "fea09c4d-22ca-4d75-9b8d-fc2c1246bb80",
           "name": "Mark as read",
           "request": {
             "name": "Mark as read",
@@ -8807,7 +8807,7 @@
           },
           "response": [
             {
-              "id": "55371912-48f2-4c4a-b464-fc2ffbf0d825",
+              "id": "f9286963-3681-4343-aa25-37b27357db63",
               "name": "Marked as read",
               "originalRequest": {
                 "url": {
@@ -8861,7 +8861,7 @@
           }
         },
         {
-          "id": "a710eb75-9470-47e0-9a55-6059497b2e3a",
+          "id": "760acca7-c6f4-49bb-b220-48d058a4234c",
           "name": "Archive notification",
           "request": {
             "name": "Archive notification",
@@ -8901,7 +8901,7 @@
           },
           "response": [
             {
-              "id": "64379f77-f322-4620-8dd4-6c46400a09dd",
+              "id": "0e20e51d-4636-4843-88d8-172894f8908a",
               "name": "Archived",
               "originalRequest": {
                 "url": {
@@ -8955,7 +8955,7 @@
           }
         },
         {
-          "id": "fc7410eb-7ce9-4628-9749-37e8727a0a75",
+          "id": "4136dc2c-38ea-4c14-91d1-9385dd7aa35c",
           "name": "Clear all notifications",
           "request": {
             "name": "Clear all notifications",
@@ -8983,7 +8983,7 @@
           },
           "response": [
             {
-              "id": "62065783-4e93-4712-90b2-8f22905cc2f4",
+              "id": "3cf7874f-f5f3-4c8b-8225-33a4e4355e9c",
               "name": "All notifications cleared",
               "originalRequest": {
                 "url": {
@@ -9031,7 +9031,7 @@
       "description": "",
       "item": [
         {
-          "id": "89d66d79-34af-463f-9973-8c07605e32f4",
+          "id": "a5a2fbde-a3f8-4920-a0b6-201c6ecb6a1d",
           "name": "List blocked times",
           "request": {
             "name": "List blocked times",
@@ -9061,7 +9061,7 @@
           },
           "response": [
             {
-              "id": "a53e68ba-b7d7-4b83-aff8-39da5d2d748e",
+              "id": "d6c72f98-38b0-417f-9824-c64e166e5d9b",
               "name": "Blocked times",
               "originalRequest": {
                 "url": {
@@ -9102,7 +9102,7 @@
           }
         },
         {
-          "id": "c7ac23c8-7ce1-411c-ad3e-df52724ef12a",
+          "id": "0e4ef1c6-5faa-4857-9827-a2303cf0aeb5",
           "name": "Create blocked time",
           "request": {
             "name": "Create blocked time",
@@ -9145,7 +9145,7 @@
           },
           "response": [
             {
-              "id": "36f32269-1333-4360-b70a-96cca6445133",
+              "id": "81965609-7567-44bf-9168-f2fec871a4ce",
               "name": "Blocked time created",
               "originalRequest": {
                 "url": {
@@ -9199,7 +9199,7 @@
           }
         },
         {
-          "id": "f04832da-9d91-4805-a80f-559ed164b9fc",
+          "id": "c082783a-ae99-48c7-abd0-d12156a29f7b",
           "name": "Update blocked time",
           "request": {
             "name": "Update blocked time",
@@ -9251,7 +9251,7 @@
           },
           "response": [
             {
-              "id": "a9feb747-289f-4ce2-88b7-f247fde8f535",
+              "id": "272d921e-a2c3-435d-8348-30f3b3a09de3",
               "name": "Blocked time updated",
               "originalRequest": {
                 "url": {
@@ -9317,7 +9317,7 @@
           }
         },
         {
-          "id": "30363395-2235-409e-91b2-fa4a537a0dfa",
+          "id": "f5f0731f-db73-44ec-aaf2-68b8af86d3f3",
           "name": "Delete blocked time",
           "request": {
             "name": "Delete blocked time",
@@ -9356,7 +9356,7 @@
           },
           "response": [
             {
-              "id": "ddd81af4-07b4-4289-8ccc-e0079dd38216",
+              "id": "a8c4fd7a-5eca-4fa9-849c-214bc43e501d",
               "name": "Blocked time deleted",
               "originalRequest": {
                 "url": {
@@ -9415,7 +9415,7 @@
       "description": "",
       "item": [
         {
-          "id": "26131102-de09-4ce9-be24-2898a8a6460c",
+          "id": "4bf808eb-e529-4dc2-9c90-e9a00609494e",
           "name": "Recent transactions",
           "request": {
             "name": "Recent transactions",
@@ -9445,7 +9445,7 @@
           },
           "response": [
             {
-              "id": "a70d414f-22c2-4020-af9c-3f8ea55d090d",
+              "id": "e42ccf3d-3936-4107-a9f4-5cb5f37a8a97",
               "name": "Transaction summaries",
               "originalRequest": {
                 "url": {
@@ -9486,7 +9486,7 @@
           }
         },
         {
-          "id": "f9c10482-b61d-452b-9be5-081a2d89a820",
+          "id": "7aa817be-b103-4fae-ab62-560790320960",
           "name": "Money ledger",
           "request": {
             "name": "Money ledger",
@@ -9544,7 +9544,7 @@
           },
           "response": [
             {
-              "id": "3507bbe6-890d-40f5-931b-43e1ac1e304c",
+              "id": "e959dd02-7fea-4b0b-917c-ebaeab829e01",
               "name": "Money logs",
               "originalRequest": {
                 "url": {
@@ -9619,7 +9619,7 @@
       "description": "Polling API for groups",
       "item": [
         {
-          "id": "b8c4158e-b775-47c9-a8db-8f5af21e970d",
+          "id": "c10d1f53-6e47-486f-aae7-0d794fc03e1d",
           "name": "Find all groups",
           "request": {
             "name": "Find all groups",
@@ -9649,7 +9649,7 @@
           },
           "response": [
             {
-              "id": "9cf4e5cc-a40e-4f59-885e-7b82ebda4f25",
+              "id": "0c2c19ab-f569-4116-a0bb-d887d214a7a8",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -9684,7 +9684,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c52a595e-1753-4de1-a8eb-49ffa7b17d26",
+              "id": "a506311b-8444-4dd1-a709-4a619de549b6",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -9719,7 +9719,7 @@
       "description": "",
       "item": [
         {
-          "id": "15c35b54-e527-4188-a883-f05ad039b036",
+          "id": "000597ff-e446-4c1b-9988-7710c50004c3",
           "name": "Find a coupon by ID",
           "request": {
             "name": "Find a coupon by ID",
@@ -9750,7 +9750,7 @@
           },
           "response": [
             {
-              "id": "ad2b5c92-4880-4579-b8f8-69fae1c82dd7",
+              "id": "12447a44-5a46-4714-b3dc-88b130c6ec52",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -9781,12 +9781,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"discount_type\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"all_new_customers\": \"<boolean>\",\n  \"expires_at\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"fully_used\": \"<boolean>\",\n  \"expired\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"duration\": \"<string>\",\n  \"total_number_of_uses\": \"<integer>\",\n  \"number_of_times_used\": \"<integer>\",\n  \"promocodes\": [\n    {\n      \"coupon\": {\n        \"id\": \"<integer>\",\n        \"code\": \"<string>\",\n        \"minimum_booking_value\": \"<integer>\",\n        \"first_time_use_only\": \"<boolean>\"\n      }\n    },\n    {\n      \"coupon\": {\n        \"id\": \"<integer>\",\n        \"code\": \"<string>\",\n        \"minimum_booking_value\": \"<integer>\",\n        \"first_time_use_only\": \"<boolean>\"\n      }\n    }\n  ]\n}",
+              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"discount_type\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"all_new_customers\": \"<boolean>\",\n  \"expires_at\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"fully_used\": \"<boolean>\",\n  \"expired\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"duration\": \"<string>\",\n  \"total_number_of_uses\": \"<integer>\",\n  \"number_of_times_used\": \"<integer>\",\n  \"promocodes\": [\n    {\n      \"coupon\": {\n        \"id\": \"<integer>\",\n        \"code\": \"<string>\",\n        \"minimum_booking_value\": \"<integer>\",\n        \"first_time_use_only\": \"<boolean>\",\n        \"redemption_limit\": \"<integer>\",\n        \"number_of_times_used\": \"<integer>\",\n        \"fully_used\": \"<boolean>\"\n      }\n    },\n    {\n      \"coupon\": {\n        \"id\": \"<integer>\",\n        \"code\": \"<string>\",\n        \"minimum_booking_value\": \"<integer>\",\n        \"first_time_use_only\": \"<boolean>\",\n        \"redemption_limit\": \"<integer>\",\n        \"number_of_times_used\": \"<integer>\",\n        \"fully_used\": \"<boolean>\"\n      }\n    }\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b780903a-9bf0-4d72-9c2c-fba0aed96545",
+              "id": "761cffe5-3d5b-4ba1-82a3-bfa17fae4518",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -9810,7 +9810,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "a89034ff-9b63-416a-9148-ff9804370352",
+              "id": "d1b41951-4879-43c2-bbc1-8cbeccbd4924",
               "name": "Not found - Coupon was not found",
               "originalRequest": {
                 "url": {
@@ -9840,7 +9840,7 @@
           }
         },
         {
-          "id": "766d8480-3b7f-473a-9fa6-cf4f7bb1a44a",
+          "id": "8b6ce660-b107-44bf-ad0c-34a7f252d077",
           "name": "Find all coupons",
           "request": {
             "name": "Find all coupons",
@@ -9870,7 +9870,7 @@
           },
           "response": [
             {
-              "id": "fe03107d-8b13-43d3-831e-b43d5d7bd42e",
+              "id": "f3055b7f-e3a1-428c-8af8-941f4ac960be",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -9900,12 +9900,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"discount_type\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"all_new_customers\": \"<boolean>\",\n    \"expires_at\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"fully_used\": \"<boolean>\",\n    \"expired\": \"<boolean>\",\n    \"status\": \"<string>\",\n    \"duration\": \"<string>\",\n    \"total_number_of_uses\": \"<integer>\",\n    \"number_of_times_used\": \"<integer>\",\n    \"promocodes\": [\n      {\n        \"coupon\": {\n          \"id\": \"<integer>\",\n          \"code\": \"<string>\",\n          \"minimum_booking_value\": \"<integer>\",\n          \"first_time_use_only\": \"<boolean>\"\n        }\n      },\n      {\n        \"coupon\": {\n          \"id\": \"<integer>\",\n          \"code\": \"<string>\",\n          \"minimum_booking_value\": \"<integer>\",\n          \"first_time_use_only\": \"<boolean>\"\n        }\n      }\n    ]\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"discount_type\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"all_new_customers\": \"<boolean>\",\n    \"expires_at\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"fully_used\": \"<boolean>\",\n    \"expired\": \"<boolean>\",\n    \"status\": \"<string>\",\n    \"duration\": \"<string>\",\n    \"total_number_of_uses\": \"<integer>\",\n    \"number_of_times_used\": \"<integer>\",\n    \"promocodes\": [\n      {\n        \"coupon\": {\n          \"id\": \"<integer>\",\n          \"code\": \"<string>\",\n          \"minimum_booking_value\": \"<integer>\",\n          \"first_time_use_only\": \"<boolean>\"\n        }\n      },\n      {\n        \"coupon\": {\n          \"id\": \"<integer>\",\n          \"code\": \"<string>\",\n          \"minimum_booking_value\": \"<integer>\",\n          \"first_time_use_only\": \"<boolean>\"\n        }\n      }\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"discount_type\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"all_new_customers\": \"<boolean>\",\n    \"expires_at\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"fully_used\": \"<boolean>\",\n    \"expired\": \"<boolean>\",\n    \"status\": \"<string>\",\n    \"duration\": \"<string>\",\n    \"total_number_of_uses\": \"<integer>\",\n    \"number_of_times_used\": \"<integer>\",\n    \"promocodes\": [\n      {\n        \"coupon\": {\n          \"id\": \"<integer>\",\n          \"code\": \"<string>\",\n          \"minimum_booking_value\": \"<integer>\",\n          \"first_time_use_only\": \"<boolean>\",\n          \"redemption_limit\": \"<integer>\",\n          \"number_of_times_used\": \"<integer>\",\n          \"fully_used\": \"<boolean>\"\n        }\n      },\n      {\n        \"coupon\": {\n          \"id\": \"<integer>\",\n          \"code\": \"<string>\",\n          \"minimum_booking_value\": \"<integer>\",\n          \"first_time_use_only\": \"<boolean>\",\n          \"redemption_limit\": \"<integer>\",\n          \"number_of_times_used\": \"<integer>\",\n          \"fully_used\": \"<boolean>\"\n        }\n      }\n    ]\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"discount_type\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"all_new_customers\": \"<boolean>\",\n    \"expires_at\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"fully_used\": \"<boolean>\",\n    \"expired\": \"<boolean>\",\n    \"status\": \"<string>\",\n    \"duration\": \"<string>\",\n    \"total_number_of_uses\": \"<integer>\",\n    \"number_of_times_used\": \"<integer>\",\n    \"promocodes\": [\n      {\n        \"coupon\": {\n          \"id\": \"<integer>\",\n          \"code\": \"<string>\",\n          \"minimum_booking_value\": \"<integer>\",\n          \"first_time_use_only\": \"<boolean>\",\n          \"redemption_limit\": \"<integer>\",\n          \"number_of_times_used\": \"<integer>\",\n          \"fully_used\": \"<boolean>\"\n        }\n      },\n      {\n        \"coupon\": {\n          \"id\": \"<integer>\",\n          \"code\": \"<string>\",\n          \"minimum_booking_value\": \"<integer>\",\n          \"first_time_use_only\": \"<boolean>\",\n          \"redemption_limit\": \"<integer>\",\n          \"number_of_times_used\": \"<integer>\",\n          \"fully_used\": \"<boolean>\"\n        }\n      }\n    ]\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "f3fda6a2-2101-4e2e-be04-6f7acb19e0db",
+              "id": "17f7a2bb-9dc0-4a68-aef1-4ba4c8b1dd6e",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -9934,7 +9934,7 @@
           }
         },
         {
-          "id": "18f60786-ca4d-4c74-a8da-50f9fb3ab8b8",
+          "id": "53e61a39-9a96-45e6-af55-a0d60dbfb219",
           "name": "Create a coupon",
           "request": {
             "name": "Create a coupon",
@@ -9971,7 +9971,7 @@
           },
           "response": [
             {
-              "id": "f0cfa7b3-74e9-4e64-a619-dbee73826b7e",
+              "id": "b8ab9bbf-c1c4-482f-b72d-051225a50225",
               "name": "Coupon created",
               "originalRequest": {
                 "url": {
@@ -10008,12 +10008,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"discount_type\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"all_new_customers\": \"<boolean>\",\n  \"expires_at\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"fully_used\": \"<boolean>\",\n  \"expired\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"duration\": \"<string>\",\n  \"total_number_of_uses\": \"<integer>\",\n  \"number_of_times_used\": \"<integer>\",\n  \"promocodes\": [\n    {\n      \"coupon\": {\n        \"id\": \"<integer>\",\n        \"code\": \"<string>\",\n        \"minimum_booking_value\": \"<integer>\",\n        \"first_time_use_only\": \"<boolean>\"\n      }\n    },\n    {\n      \"coupon\": {\n        \"id\": \"<integer>\",\n        \"code\": \"<string>\",\n        \"minimum_booking_value\": \"<integer>\",\n        \"first_time_use_only\": \"<boolean>\"\n      }\n    }\n  ]\n}",
+              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"discount_type\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"all_new_customers\": \"<boolean>\",\n  \"expires_at\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"fully_used\": \"<boolean>\",\n  \"expired\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"duration\": \"<string>\",\n  \"total_number_of_uses\": \"<integer>\",\n  \"number_of_times_used\": \"<integer>\",\n  \"promocodes\": [\n    {\n      \"coupon\": {\n        \"id\": \"<integer>\",\n        \"code\": \"<string>\",\n        \"minimum_booking_value\": \"<integer>\",\n        \"first_time_use_only\": \"<boolean>\",\n        \"redemption_limit\": \"<integer>\",\n        \"number_of_times_used\": \"<integer>\",\n        \"fully_used\": \"<boolean>\"\n      }\n    },\n    {\n      \"coupon\": {\n        \"id\": \"<integer>\",\n        \"code\": \"<string>\",\n        \"minimum_booking_value\": \"<integer>\",\n        \"first_time_use_only\": \"<boolean>\",\n        \"redemption_limit\": \"<integer>\",\n        \"number_of_times_used\": \"<integer>\",\n        \"fully_used\": \"<boolean>\"\n      }\n    }\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "1df0b66b-2a43-461f-87b7-09fae7306268",
+              "id": "51d548cf-a082-48da-a785-a6274bfa7131",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10045,7 +10045,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "dd7fb1e8-cddc-437c-8227-88986eed6b4a",
+              "id": "7f41ef20-4427-4ba9-a504-e9d2612f2396",
               "name": "Unprocessable - the coupon parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -10093,7 +10093,7 @@
           }
         },
         {
-          "id": "99cde376-adf5-4d70-86c1-3fd452d6a885",
+          "id": "150154e3-33d8-43e3-9401-13aafe8f437e",
           "name": "Assign Coupon to Customer",
           "request": {
             "name": "Assign Coupon to Customer",
@@ -10143,7 +10143,7 @@
           },
           "response": [
             {
-              "id": "f49ee9e4-614f-4540-ab1f-1943d5293a3b",
+              "id": "4471f27d-3948-47fc-a46e-8a4158890f6c",
               "name": "Promocode assigned",
               "originalRequest": {
                 "url": {
@@ -10193,12 +10193,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"minimum_booking_value\": \"<integer>\",\n  \"first_time_use_only\": \"<boolean>\"\n}",
+              "body": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"minimum_booking_value\": \"<integer>\",\n  \"first_time_use_only\": \"<boolean>\",\n  \"redemption_limit\": \"<integer>\",\n  \"number_of_times_used\": \"<integer>\",\n  \"fully_used\": \"<boolean>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "a389f12f-a00c-4ff6-a82d-fc87577bfd37",
+              "id": "195677ef-2e24-4734-a7c3-d641344a733b",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10243,7 +10243,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "ed0033fc-b36b-4872-a4da-5d9cc4c3db35",
+              "id": "aeea19f1-57d5-4235-9f67-9f6b013e7b73",
               "name": "Coupon has already been assigned to this Customer",
               "originalRequest": {
                 "url": {
@@ -10310,7 +10310,7 @@
       "description": "",
       "item": [
         {
-          "id": "bd40f2dc-951e-44f3-886f-eb3e17134f76",
+          "id": "ff02a550-5fb4-4473-8b49-ba001c4556b4",
           "name": "Find all promocodes",
           "request": {
             "name": "Find all promocodes",
@@ -10353,7 +10353,7 @@
           },
           "response": [
             {
-              "id": "e2c9ef8e-0179-454c-bd4f-b4d883e84a52",
+              "id": "93c38d24-34fc-4707-a687-c283e61597af",
               "name": "successful operation",
               "originalRequest": {
                 "url": {
@@ -10396,12 +10396,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"minimum_booking_value\": \"<integer>\",\n  \"first_time_use_only\": \"<boolean>\"\n}",
+              "body": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"minimum_booking_value\": \"<integer>\",\n  \"first_time_use_only\": \"<boolean>\",\n  \"redemption_limit\": \"<integer>\",\n  \"number_of_times_used\": \"<integer>\",\n  \"fully_used\": \"<boolean>\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "51abf7f6-11de-40e2-b6fa-e5bca76b214b",
+              "id": "614da587-dd29-4d37-95a7-2398af8b5e06",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10443,7 +10443,7 @@
           }
         },
         {
-          "id": "b6470638-89a9-4777-874d-83adbb0146e9",
+          "id": "5d9efcc0-34f7-481c-8b56-bfcaafdeb1f2",
           "name": "Create a promocode",
           "request": {
             "name": "Create a promocode",
@@ -10487,13 +10487,13 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"promocode\": {\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\"\n  }\n}"
+              "raw": "{\n  \"promocode\": {\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\",\n    \"first_time_use_only\": \"<boolean>\",\n    \"redemption_limit\": \"<integer>\"\n  }\n}"
             },
             "auth": null
           },
           "response": [
             {
-              "id": "6256a1cd-3709-4b24-83f7-bf3d0e86655a",
+              "id": "fd8be21d-4904-4c10-ba1f-9ead988b2f32",
               "name": "Promocode created",
               "originalRequest": {
                 "url": {
@@ -10532,7 +10532,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"promocode\": {\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\"\n  }\n}"
+                  "raw": "{\n  \"promocode\": {\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\",\n    \"first_time_use_only\": \"<boolean>\",\n    \"redemption_limit\": \"<integer>\"\n  }\n}"
                 }
               },
               "status": "Created",
@@ -10543,12 +10543,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\",\n    \"first_time_use_only\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\",\n    \"first_time_use_only\": \"<boolean>\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\",\n    \"first_time_use_only\": \"<boolean>\",\n    \"redemption_limit\": \"<integer>\",\n    \"number_of_times_used\": \"<integer>\",\n    \"fully_used\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\",\n    \"first_time_use_only\": \"<boolean>\",\n    \"redemption_limit\": \"<integer>\",\n    \"number_of_times_used\": \"<integer>\",\n    \"fully_used\": \"<boolean>\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "fcac5091-cc51-424a-b541-37be40c5debf",
+              "id": "bcfc1ff2-f441-40df-bbbb-715c367c8f49",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10583,7 +10583,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"promocode\": {\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\"\n  }\n}"
+                  "raw": "{\n  \"promocode\": {\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\",\n    \"first_time_use_only\": \"<boolean>\",\n    \"redemption_limit\": \"<integer>\"\n  }\n}"
                 }
               },
               "status": "Unauthorized",
@@ -10593,7 +10593,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "6a097571-efc9-4ade-bb74-33acd9af5f1c",
+              "id": "67cd49eb-ee3c-46ef-b6b5-326cde4f5b45",
               "name": "Unprocessable - the promocode parameters you provided are invalid",
               "originalRequest": {
                 "url": {
@@ -10632,7 +10632,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"promocode\": {\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\"\n  }\n}"
+                  "raw": "{\n  \"promocode\": {\n    \"code\": \"<string>\",\n    \"minimum_booking_value\": \"<integer>\",\n    \"first_time_use_only\": \"<boolean>\",\n    \"redemption_limit\": \"<integer>\"\n  }\n}"
                 }
               },
               "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
@@ -10652,6 +10652,1916 @@
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
+        },
+        {
+          "id": "6ba0822f-873b-45ab-8a35-c8141f9b1c28",
+          "name": "Find a promocode by ID",
+          "request": {
+            "name": "Find a promocode by ID",
+            "description": {
+              "content": "Returns a single promocode of the coupon, with how many times it has been used.\n\nRequires the `bookings.read` scope when using OAuth tokens.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons",
+                ":coupon_id",
+                "promocodes",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "coupon_id",
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) Coupon ID",
+                    "type": "text/plain"
+                  }
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {},
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f79bc413-2f73-45db-b9b3-9153581b846d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<integer>\",\n  \"code\": \"<string>\",\n  \"minimum_booking_value\": \"<integer>\",\n  \"first_time_use_only\": \"<boolean>\",\n  \"redemption_limit\": \"<integer>\",\n  \"number_of_times_used\": \"<integer>\",\n  \"fully_used\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e3e76c8-5025-4dd9-a25e-8acf105e9322",
+              "name": "Unauthorized - Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "241df692-dacc-4f1f-b051-6c594815e1a8",
+              "name": "Forbidden - the OAuth token lacks the `bookings.read` scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ed34bc1-8e5b-442b-a76e-43277dc5735d",
+              "name": "Not found - the coupon or promocode was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Coupon Redemption",
+      "description": "Each time a coupon is used on a booking, with or without a promocode, a redemption records it",
+      "item": [
+        {
+          "id": "9bffc6ba-8c6a-4e55-8edd-55f7a5c46c44",
+          "name": "List a coupon's redemptions",
+          "request": {
+            "name": "List a coupon's redemptions",
+            "description": {
+              "content": "Every time the coupon was used on a booking, newest first. This includes redemptions made with any of its promocodes, and ones made without a code, such as a coupon a staff member applied or one assigned to the customer.\n\nResults are paginated, with the totals in the `jammed-total-count`, `jammed-page-count`, `jammed-next-page` and `jammed-prev-page` response headers.\n\nRedemptions on cancelled bookings are still listed. Check `counted_against_coupon_limit` and `counted_against_promocode_limit` to see whether each one still uses up the coupon or code.\n\nRequires the `bookings.read` scope when using OAuth tokens.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons",
+                ":coupon_id",
+                "redemptions.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Only redemptions made by this customer",
+                    "type": "text/plain"
+                  },
+                  "key": "customer_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Only the redemption made on this booking",
+                    "type": "text/plain"
+                  },
+                  "key": "booking_code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                    "type": "text/plain"
+                  },
+                  "key": "from",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                    "type": "text/plain"
+                  },
+                  "key": "to",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "per_page",
+                  "value": "25"
+                }
+              ],
+              "variable": [
+                {
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "coupon_id",
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) Coupon ID",
+                    "type": "text/plain"
+                  }
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {},
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a41bf2e0-07de-44a5-a797-b0a7b5684a71",
+              "name": "Coupon redemptions, newest first",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "redemptions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made by this customer",
+                        "type": "text/plain"
+                      },
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only the redemption made on this booking",
+                        "type": "text/plain"
+                      },
+                      "key": "booking_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"amount\": \"<integer>\",\n    \"coupon_id\": \"<integer>\",\n    \"promocode_id\": \"<integer>\",\n    \"promocode_code\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"booking_cancelled\": \"<boolean>\",\n    \"counted_against_coupon_limit\": \"<boolean>\",\n    \"counted_against_promocode_limit\": \"<boolean>\",\n    \"customer\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"booking\": {\n      \"code\": \"<string>\",\n      \"start_at\": \"<integer>\",\n      \"end_at\": \"<integer>\",\n      \"room_id\": \"<integer>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"amount\": \"<integer>\",\n    \"coupon_id\": \"<integer>\",\n    \"promocode_id\": \"<integer>\",\n    \"promocode_code\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"booking_cancelled\": \"<boolean>\",\n    \"counted_against_coupon_limit\": \"<boolean>\",\n    \"counted_against_promocode_limit\": \"<boolean>\",\n    \"customer\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"booking\": {\n      \"code\": \"<string>\",\n      \"start_at\": \"<integer>\",\n      \"end_at\": \"<integer>\",\n      \"room_id\": \"<integer>\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a140ae5a-18aa-4c40-bdd0-3369b9f1d5db",
+              "name": "Bad request - `from` or `to` could not be parsed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "redemptions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made by this customer",
+                        "type": "text/plain"
+                      },
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only the redemption made on this booking",
+                        "type": "text/plain"
+                      },
+                      "key": "booking_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1857a0a5-7556-4fb1-96eb-0b41523df1e4",
+              "name": "Unauthorized - Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "redemptions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made by this customer",
+                        "type": "text/plain"
+                      },
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only the redemption made on this booking",
+                        "type": "text/plain"
+                      },
+                      "key": "booking_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ab8f0293-f6ff-41a0-80aa-85d555fe88bf",
+              "name": "Forbidden - the OAuth token lacks the `bookings.read` scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "redemptions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made by this customer",
+                        "type": "text/plain"
+                      },
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only the redemption made on this booking",
+                        "type": "text/plain"
+                      },
+                      "key": "booking_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "914ba24a-3552-450a-9b90-b322384c13d4",
+              "name": "Not found - the coupon or promocode was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "redemptions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made by this customer",
+                        "type": "text/plain"
+                      },
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only the redemption made on this booking",
+                        "type": "text/plain"
+                      },
+                      "key": "booking_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef8d0542-3257-4746-b444-ccbc754b7a9c",
+          "name": "Find a coupon redemption by ID",
+          "request": {
+            "name": "Find a coupon redemption by ID",
+            "description": {
+              "content": "Returns a single redemption of the coupon.\n\nRequires the `bookings.read` scope when using OAuth tokens.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons",
+                ":coupon_id",
+                "redemptions",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "coupon_id",
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) Coupon ID",
+                    "type": "text/plain"
+                  }
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {},
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f0e40dd-caed-40ca-8147-067274aee1ce",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "redemptions",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<integer>\",\n  \"amount\": \"<integer>\",\n  \"coupon_id\": \"<integer>\",\n  \"promocode_id\": \"<integer>\",\n  \"promocode_code\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"booking_cancelled\": \"<boolean>\",\n  \"counted_against_coupon_limit\": \"<boolean>\",\n  \"counted_against_promocode_limit\": \"<boolean>\",\n  \"customer\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"booking\": {\n    \"code\": \"<string>\",\n    \"start_at\": \"<integer>\",\n    \"end_at\": \"<integer>\",\n    \"room_id\": \"<integer>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecbaecc3-d4ea-487b-87ef-5b09a5637c59",
+              "name": "Unauthorized - Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "redemptions",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d26dcfbf-ac2a-439f-9749-e1a77e95d951",
+              "name": "Forbidden - the OAuth token lacks the `bookings.read` scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "redemptions",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "10153ee8-369f-4132-90aa-9c6efdda6700",
+              "name": "Not found - the coupon, promocode or redemption was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "redemptions",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47e439ff-f474-43cb-a57c-377b3e048693",
+          "name": "List a promocode's redemptions",
+          "request": {
+            "name": "List a promocode's redemptions",
+            "description": {
+              "content": "Every time a customer used this promocode on a booking, newest first.\n\nResults are paginated, with the totals in the `jammed-total-count`, `jammed-page-count`, `jammed-next-page` and `jammed-prev-page` response headers.\n\nRedemptions on cancelled bookings are still listed. Check `counted_against_coupon_limit` and `counted_against_promocode_limit` to see whether each one still uses up the coupon or code.\n\nRequires the `bookings.read` scope when using OAuth tokens.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons",
+                ":coupon_id",
+                "promocodes",
+                ":promocode_id",
+                "redemptions.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Only redemptions made by this customer",
+                    "type": "text/plain"
+                  },
+                  "key": "customer_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Only the redemption made on this booking",
+                    "type": "text/plain"
+                  },
+                  "key": "booking_code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                    "type": "text/plain"
+                  },
+                  "key": "from",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                    "type": "text/plain"
+                  },
+                  "key": "to",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "per_page",
+                  "value": "25"
+                }
+              ],
+              "variable": [
+                {
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "coupon_id",
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) Coupon ID",
+                    "type": "text/plain"
+                  }
+                },
+                {
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "promocode_id",
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) Promocode ID",
+                    "type": "text/plain"
+                  }
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {},
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dfc88212-f691-43e7-8536-54100e561c1a",
+              "name": "Coupon redemptions, newest first",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    ":promocode_id",
+                    "redemptions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made by this customer",
+                        "type": "text/plain"
+                      },
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only the redemption made on this booking",
+                        "type": "text/plain"
+                      },
+                      "key": "booking_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Promocode ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "promocode_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"amount\": \"<integer>\",\n    \"coupon_id\": \"<integer>\",\n    \"promocode_id\": \"<integer>\",\n    \"promocode_code\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"booking_cancelled\": \"<boolean>\",\n    \"counted_against_coupon_limit\": \"<boolean>\",\n    \"counted_against_promocode_limit\": \"<boolean>\",\n    \"customer\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"booking\": {\n      \"code\": \"<string>\",\n      \"start_at\": \"<integer>\",\n      \"end_at\": \"<integer>\",\n      \"room_id\": \"<integer>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"amount\": \"<integer>\",\n    \"coupon_id\": \"<integer>\",\n    \"promocode_id\": \"<integer>\",\n    \"promocode_code\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"booking_cancelled\": \"<boolean>\",\n    \"counted_against_coupon_limit\": \"<boolean>\",\n    \"counted_against_promocode_limit\": \"<boolean>\",\n    \"customer\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"booking\": {\n      \"code\": \"<string>\",\n      \"start_at\": \"<integer>\",\n      \"end_at\": \"<integer>\",\n      \"room_id\": \"<integer>\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9909a374-ccca-4acb-af87-e8503b71a07e",
+              "name": "Bad request - `from` or `to` could not be parsed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    ":promocode_id",
+                    "redemptions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made by this customer",
+                        "type": "text/plain"
+                      },
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only the redemption made on this booking",
+                        "type": "text/plain"
+                      },
+                      "key": "booking_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Promocode ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "promocode_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "18cb7543-5cf3-4376-a567-747af6e10a15",
+              "name": "Unauthorized - Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    ":promocode_id",
+                    "redemptions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made by this customer",
+                        "type": "text/plain"
+                      },
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only the redemption made on this booking",
+                        "type": "text/plain"
+                      },
+                      "key": "booking_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Promocode ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "promocode_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d23966d-ffe5-44b4-8bf6-2769bd0a9a69",
+              "name": "Forbidden - the OAuth token lacks the `bookings.read` scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    ":promocode_id",
+                    "redemptions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made by this customer",
+                        "type": "text/plain"
+                      },
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only the redemption made on this booking",
+                        "type": "text/plain"
+                      },
+                      "key": "booking_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Promocode ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "promocode_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "25474992-44e3-4fdf-8a04-2262762408b2",
+              "name": "Not found - the coupon or promocode was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    ":promocode_id",
+                    "redemptions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made by this customer",
+                        "type": "text/plain"
+                      },
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only the redemption made on this booking",
+                        "type": "text/plain"
+                      },
+                      "key": "booking_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or after this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only redemptions made on or before this day (YYYY-MM-DD), in the studio's timezone",
+                        "type": "text/plain"
+                      },
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Promocode ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "promocode_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e227954-f042-4553-a881-63a56a7a4165",
+          "name": "Find a promocode redemption by ID",
+          "request": {
+            "name": "Find a promocode redemption by ID",
+            "description": {
+              "content": "Returns a single redemption made with this promocode.\n\nRequires the `bookings.read` scope when using OAuth tokens.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons",
+                ":coupon_id",
+                "promocodes",
+                ":promocode_id",
+                "redemptions",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "coupon_id",
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) Coupon ID",
+                    "type": "text/plain"
+                  }
+                },
+                {
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "promocode_id",
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) Promocode ID",
+                    "type": "text/plain"
+                  }
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {},
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d92f03a-26bf-4be2-b322-e9c4d684c630",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    ":promocode_id",
+                    "redemptions",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Promocode ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "promocode_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<integer>\",\n  \"amount\": \"<integer>\",\n  \"coupon_id\": \"<integer>\",\n  \"promocode_id\": \"<integer>\",\n  \"promocode_code\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"booking_cancelled\": \"<boolean>\",\n  \"counted_against_coupon_limit\": \"<boolean>\",\n  \"counted_against_promocode_limit\": \"<boolean>\",\n  \"customer\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"booking\": {\n    \"code\": \"<string>\",\n    \"start_at\": \"<integer>\",\n    \"end_at\": \"<integer>\",\n    \"room_id\": \"<integer>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ddbd603-49aa-4fd6-a929-60d6777851e7",
+              "name": "Unauthorized - Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    ":promocode_id",
+                    "redemptions",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Promocode ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "promocode_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "00600675-06a5-4dd8-9ea7-05bcf2ffbe4c",
+              "name": "Forbidden - the OAuth token lacks the `bookings.read` scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    ":promocode_id",
+                    "redemptions",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Promocode ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "promocode_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9aad826f-1831-4b2f-a49e-5e18f12f40a6",
+              "name": "Not found - the coupon, promocode or redemption was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":coupon_id",
+                    "promocodes",
+                    ":promocode_id",
+                    "redemptions",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Coupon ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "coupon_id"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Promocode ID",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "promocode_id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [],
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
         }
       ]
     },
@@ -10660,7 +12570,7 @@
       "description": "Studio configuration and feature discovery",
       "item": [
         {
-          "id": "206691c3-6541-4fee-a6a0-bd75cb0f93f9",
+          "id": "b937331f-2b21-499d-bc9a-e2bbb5198ef8",
           "name": "Studio configuration",
           "request": {
             "name": "Studio configuration",
@@ -10690,7 +12600,7 @@
           },
           "response": [
             {
-              "id": "6fce1b73-7fed-4a1f-a222-79a89dd1a28d",
+              "id": "2e2bc523-e6f6-41a2-86dc-999b522c9a4d",
               "name": "Studio configuration",
               "originalRequest": {
                 "url": {
@@ -10737,7 +12647,7 @@
       "description": "Monthly exports that a studio admin has opened to API access (Exports page, \"API access\"). One-off exports are never available here.\n\nOAuth tokens must belong to an admin; staff accounts get a `403`. Every download is recorded in the export's audit log.\n",
       "item": [
         {
-          "id": "afeb2677-99a2-4865-978d-5c90cdf72c7a",
+          "id": "93f6e5f4-b256-458c-9e8a-f287c2be7ab6",
           "name": "List exports",
           "request": {
             "name": "List exports",
@@ -10767,7 +12677,7 @@
           },
           "response": [
             {
-              "id": "37fed80a-460e-4a12-83d6-44730e97ad32",
+              "id": "c8d71d75-9aec-4989-aa1d-f104c2de2d4c",
               "name": "Exports",
               "originalRequest": {
                 "url": {
@@ -10797,12 +12707,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"export_type\": \"extras\",\n    \"from_date\": \"<dateTime>\",\n    \"to_date\": \"<dateTime>\",\n    \"exported_at\": \"<dateTime>\",\n    \"content_type\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"filename\": \"<string>\",\n    \"byte_size\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"export_type\": \"booking_sales\",\n    \"from_date\": \"<dateTime>\",\n    \"to_date\": \"<dateTime>\",\n    \"exported_at\": \"<dateTime>\",\n    \"content_type\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"filename\": \"<string>\",\n    \"byte_size\": \"<integer>\"\n  }\n]",
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"export_type\": \"booking_sales\",\n    \"from_date\": \"<dateTime>\",\n    \"to_date\": \"<dateTime>\",\n    \"exported_at\": \"<dateTime>\",\n    \"content_type\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"filename\": \"<string>\",\n    \"byte_size\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"export_type\": \"payment_requests\",\n    \"from_date\": \"<dateTime>\",\n    \"to_date\": \"<dateTime>\",\n    \"exported_at\": \"<dateTime>\",\n    \"content_type\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"filename\": \"<string>\",\n    \"byte_size\": \"<integer>\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "cfcea7c1-191b-4085-824b-59392ed300e0",
+              "id": "d792aaf0-3e70-4598-a35f-37849ce297b4",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10825,7 +12735,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "e91390cb-1a31-4535-b2aa-964b997de08c",
+              "id": "db283a9f-2e94-4478-8762-241ec6657252",
               "name": "Forbidden - the OAuth token does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -10854,7 +12764,7 @@
           }
         },
         {
-          "id": "596f96fb-0648-4705-88b9-62ea8a8bd535",
+          "id": "dd4cc8c1-cef1-4d4f-b92a-55210eae4ecf",
           "name": "Get an export",
           "request": {
             "name": "Get an export",
@@ -10893,7 +12803,7 @@
           },
           "response": [
             {
-              "id": "895e3aaa-363a-4089-b37d-16c1747c9f23",
+              "id": "d257861b-1d6e-4d2c-a0c2-66419aff492e",
               "name": "Export",
               "originalRequest": {
                 "url": {
@@ -10940,7 +12850,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "eaf01c87-57ee-4004-8088-8f157086d58e",
+              "id": "08536ad3-5b6e-4b41-a094-eb35a68996c8",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -10975,7 +12885,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "ea446b10-4d01-464e-a267-d7ac1b833000",
+              "id": "9a7372dd-a512-4cd2-a2fe-c392abb2af36",
               "name": "Forbidden - the OAuth token does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -11010,7 +12920,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "0aad98e8-2797-4b11-ba81-6476cee40568",
+              "id": "97dea6ad-e15c-4f9e-8257-b25f6ba48e64",
               "name": "Not found - no export with API access has this id",
               "originalRequest": {
                 "url": {
@@ -11051,7 +12961,7 @@
           }
         },
         {
-          "id": "71db622a-106b-4847-a184-3ad52d98aec8",
+          "id": "12568739-b61f-418b-b4f0-f9812a943bd1",
           "name": "Download an export",
           "request": {
             "name": "Download an export",
@@ -11094,7 +13004,7 @@
           },
           "response": [
             {
-              "id": "7f3b64ba-2904-4038-ad9e-d3041fbeadae",
+              "id": "a98fb17a-69f4-41ed-845c-9d9057216b25",
               "name": "The export file",
               "originalRequest": {
                 "url": {
@@ -11142,7 +13052,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "a97e40c4-9916-4d59-a892-23cdee4ae49d",
+              "id": "d49f770f-4ffd-468d-9729-6ca436324ed8",
               "name": "Unauthorized - Invalid API key",
               "originalRequest": {
                 "url": {
@@ -11178,7 +13088,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "787b994f-fd0f-4b78-a554-fe9a988062ac",
+              "id": "580c109e-6a4e-4f07-80cb-2a78c231564c",
               "name": "Forbidden - the OAuth token does not belong to an admin",
               "originalRequest": {
                 "url": {
@@ -11214,7 +13124,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "a12ab9d1-cf81-471f-8da3-57d1b8fd08a2",
+              "id": "d7f3ae0e-5dcb-4f71-b15a-e6a5d285f877",
               "name": "Not found - no export with API access has this id",
               "originalRequest": {
                 "url": {
@@ -11250,7 +13160,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "77c8d133-5296-4b88-8c8a-8cca1a1edd46",
+              "id": "ac8c849c-f5fa-4686-bdec-ff87c5f36c27",
               "name": "Conflict - the file is still being generated; try again shortly",
               "originalRequest": {
                 "url": {
@@ -11310,7 +13220,7 @@
     }
   ],
   "info": {
-    "_postman_id": "96162233-d3bb-4d7c-afa2-260f127d13f5",
+    "_postman_id": "0b828ff0-eadc-4062-adc5-15309b671902",
     "name": "Jammed Bookings API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
