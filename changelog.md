@@ -26,6 +26,19 @@ Two ways to help a customer cancel their booking without sending them hunting th
 - Booking lists, other booking endpoints and webhooks never include the link.
 - Refunds and credit follow the studio's cancellation policy, exactly as when the customer cancels from their booking page.
 
+**Coupon redemptions and single promocodes**
+
+See every time a coupon or promocode was used, and on which booking, without pulling a monthly export.
+
+- `GET /coupons/{coupon_id}/redemptions.json` lists all of a coupon's redemptions, newest first: those made with any of its promocodes and those made without a code, such as a coupon a staff member applied or one assigned to the customer.
+- `GET /coupons/{coupon_id}/promocodes/{promocode_id}/redemptions.json` lists only the redemptions made with that promocode.
+- `GET .../redemptions/{id}.json` under either path returns a single redemption.
+- Both lists filter by `customer_id`, `booking_code` and the day the redemption was made (`from` and `to`, YYYY-MM-DD in the studio's timezone), and are paginated with the usual `jammed-*` headers.
+- Each redemption carries the discount `amount`, the promocode used, a summary of the customer and booking, and whether the booking was cancelled. Redemptions on cancelled bookings are still listed, with `counted_against_coupon_limit` and `counted_against_promocode_limit` saying whether each one still uses up the coupon or code, so the totals add up to `number_of_times_used`.
+- `GET /coupons/{coupon_id}/promocodes/{id}.json` returns a single promocode with its usage.
+- The promocode schema now documents `redemption_limit`, `number_of_times_used` and `fully_used`, which were already returned, and the create body documents `first_time_use_only` and `redemption_limit`, which were already accepted.
+- All of these need `bookings.read` on OAuth tokens. API-key auth is unaffected.
+
 ## `2.5.0`: 16 October 2026
 
 **Booking anchor endpoints**
