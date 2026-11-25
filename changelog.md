@@ -2,7 +2,7 @@
 
 ## `2.6.1`: 25 November 2026
 
-**Staff booking anchors, and anchors as a single point in time**
+**Staff booking anchors**
 
 Studios can now make sticky bookings follow staff instead of rooms, and the booking anchor endpoints cover both.
 
@@ -10,7 +10,6 @@ Studios can now make sticky bookings follow staff instead of rooms, and the book
 - `POST /booking_anchors` takes either `room_id` or `staff_id`, whichever kind the studio currently uses. An anchor of the other kind is stored but has no effect until the studio switches. Sending both, or neither, is a `422`.
 - `GET /booking_anchors` still lists only the kind the studio currently uses by default. A new `kind` parameter (`room`, `staff` or `all`) reaches the others, and `staff_id` filters alongside `room_id`.
 - `DELETE /booking_anchors/{id}` deletes an anchor of either kind.
-- **Breaking:** an anchor is now a single point in time, not a span. `POST /booking_anchors` takes `anchor_at` in place of `start_at` and `end_at`, and anchors return `anchor_at` and `anchor_time` in place of `start_at`, `end_at`, `start_time`, `end_time` and `duration`. A booking produces two `auto` anchors, one at each end. To mark a span as taken, create an anchor at its start and another at its end.
 
 ## `2.6.0`: 3 November 2026
 
