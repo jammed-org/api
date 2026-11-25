@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.6.0
+  version: 2.6.1
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -93,9 +93,11 @@ tags:
   description: Calculate the price of a booking and preview a time slot before creating it
 - name: Booking - Anchors
   description: |
-    A booking anchor marks time that is already taken in a room. When sticky bookings are on, only the slots immediately before and after an anchor stay bookable for that day.
+    A booking anchor is a point in time that bookings have to touch. When sticky bookings are on, a day with anchors only offers slots that start or finish on one of them, so new bookings sit straight before or after the existing ones. A day with no anchors stays fully open.
 
-    Jammed creates `auto` anchors from bookings, admins add `manual` ones in the admin, and anchors created through this API always have the source `api`. Anchors cannot be edited through the API: delete the anchor and create a new one instead.
+    An anchor belongs to either a room or a staff member, never both, and its `kind` says which. A studio uses one kind at a time: room anchors when sticky bookings follow rooms, staff anchors when they follow staff. Anchors of the other kind can still be created, listed and deleted here, but they are stored and ignored until the studio switches.
+
+    Jammed creates `auto` anchors from the start and end of each booking, admins add `manual` ones in the admin, and anchors created through this API always have the source `api`. Anchors cannot be edited through the API: delete the anchor and create a new one instead.
 
     These endpoints return a `422` error unless sticky bookings are turned on for the studio or for at least one room. OAuth tokens must belong to an admin; staff accounts get a `403`.
 - name: Customer
@@ -2888,7 +2890,9 @@ paths:
       - Booking - Anchors
       summary: List booking anchors
       description: |
-        List booking anchors, ordered by date, start time and room. Without a `date` only today's and future anchors are returned; pass a `date` to reach a past day.
+        List booking anchors, ordered by time, then room, then staff member. Without a `date` only today's and future anchors are returned; pass a `date` to reach a past day.
+
+        By default only the kind of anchor the studio currently uses is listed: room anchors, or staff anchors when sticky bookings follow staff. Pass `kind` to list the other kind, or both together.
 
         Results are paginated, with the totals in the `jammed-total-count`, `jammed-page-count`, `jammed-next-page` and `jammed-prev-page` response headers.
 
@@ -2896,6 +2900,12 @@ paths:
       operationId: listBookingAnchors
       parameters:
       - $ref: '#/components/parameters/authHeader'
+      - name: kind
+        in: query
+        description: Which anchors to list. Leave it out for the kind the studio currently uses.
+        schema:
+          type: string
+          enum: [room, staff, all]
       - name: date
         in: query
         description: Only anchors on this day (YYYY-MM-DD)
@@ -2904,12 +2914,17 @@ paths:
           format: date
       - name: room_id
         in: query
-        description: Only anchors in this room
+        description: Only anchors for this room. Ignored when only staff anchors are listed.
+        schema:
+          type: integer
+      - name: staff_id
+        in: query
+        description: Only anchors for this staff member. Ignored when only room anchors are listed.
         schema:
           type: integer
       - name: time
         in: query
-        description: Only anchors starting at this time of day (HH:MM), in the studio's timezone
+        description: Only anchors at this time of day (HH:MM), in the studio's timezone
         schema:
           type: string
           example: "10:00"
@@ -2925,7 +2940,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/booking_anchor'
         "400":
-          description: Bad request - the `date` could not be parsed
+          description: Bad request - the `date` could not be parsed, or the `kind` is not one of `room`, `staff` or `all`
         "401":
           description: Unauthorized - Invalid API key
         "403":
@@ -2941,9 +2956,11 @@ paths:
       - Booking - Anchors
       summary: Create booking anchor
       description: |
-        Anchor a span of time in a room so only the slots immediately before and after it stay bookable that day. Takes the same fields as the admin form: a room and a start and end time.
+        Anchor a point in time for a room or a staff member, so that day only offers them for slots that start or finish on an anchor. Takes the same fields as the admin form: an owner and a time.
 
-        The anchor's `date` and `duration` are worked out from `start_at` and `end_at`, and its `source` is always `api`. Times without a UTC offset are read in the studio's timezone.
+        Send either `room_id` or `staff_id`, not both. Either is accepted whichever kind the studio currently uses, but an anchor of the other kind has no effect until the studio switches, and is left out of the default list.
+
+        The anchor's `date` is worked out from `anchor_at`, and its `source` is always `api`. Times without a UTC offset are read in the studio's timezone.
 
         Requires the `bookings.write` scope when using OAuth tokens.
       operationId: createBookingAnchor
@@ -2961,19 +2978,29 @@ paths:
                   properties:
                     room_id:
                       type: integer
-                    start_at:
+                      description: The room to anchor. Leave out when sending `staff_id`.
+                    staff_id:
+                      type: integer
+                      description: The staff member to anchor. Leave out when sending `room_id`.
+                    anchor_at:
                       type: string
                       format: date-time
                       example: "2026-11-02T10:00:00"
-                    end_at:
-                      type: string
-                      format: date-time
-                      description: Must be after `start_at`
-                      example: "2026-11-02T13:00:00"
                   required:
-                  - room_id
-                  - start_at
-                  - end_at
+                  - anchor_at
+            examples:
+              room:
+                summary: Room anchor
+                value:
+                  booking_anchor:
+                    room_id: 12
+                    anchor_at: "2026-11-02T10:00:00"
+              staff:
+                summary: Staff anchor
+                value:
+                  booking_anchor:
+                    staff_id: 7
+                    anchor_at: "2026-11-02T10:00:00"
       responses:
         "201":
           description: Booking anchor created
@@ -2988,7 +3015,7 @@ paths:
         "403":
           description: Forbidden - the OAuth token lacks the scope, or does not belong to an admin
         "422":
-          description: Unprocessable - the room does not exist, the times are missing or backwards, or sticky bookings are not turned on
+          description: Unprocessable - the room or staff member does not exist, both or neither were sent, the time is missing, or sticky bookings are not turned on
           content:
             application/json:
               schema:
@@ -2999,7 +3026,7 @@ paths:
       - Booking - Anchors
       summary: Delete booking anchor
       description: |
-        Delete any booking anchor, whatever its source. Deleting an `auto` anchor reopens that day for its room, but Jammed recreates it the next time it syncs anchors from that booking (for example when the booking changes), as it does in the admin.
+        Delete any booking anchor, whatever its source or kind. Deleting an `auto` anchor reopens that day for its room or staff member, but Jammed recreates it the next time it syncs anchors from that booking (for example when the booking changes), as it does in the admin.
 
         There is no update endpoint: to move an anchor, delete it and create a new one.
 
@@ -4877,28 +4904,28 @@ components:
       properties:
         id:
           type: integer
+        kind:
+          type: string
+          enum: [room, staff]
+          description: Whether the anchor belongs to a room or a staff member
         room_id:
           type: integer
+          nullable: true
+          description: Set on room anchors, `null` on staff anchors
+        staff_id:
+          type: integer
+          nullable: true
+          description: Set on staff anchors, `null` on room anchors
         date:
           type: string
           format: date
-          description: The day the anchor applies to, in the studio's timezone
-        start_at:
+          description: The calendar day the anchor falls on, in the studio's timezone
+        anchor_at:
           type: integer
           description: Unix timestamp
-        end_at:
-          type: integer
-          description: Unix timestamp
-        start_time:
+        anchor_time:
           type: string
           description: "Format: YYYY-MM-DD HH:MM, in the studio's timezone"
-        end_time:
-          type: string
-          description: "Format: YYYY-MM-DD HH:MM, in the studio's timezone"
-        duration:
-          type: integer
-          nullable: true
-          description: Length in seconds that a slot has to match when sticky bookings match durations
         source:
           type: string
           enum: [auto, manual, api]
@@ -4909,6 +4936,19 @@ components:
           description: Code of the booking an `auto` anchor was created from
         room:
           type: object
+          nullable: true
+          description: "`null` on staff anchors"
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            code:
+              type: string
+        staff:
+          type: object
+          nullable: true
+          description: "`null` on room anchors"
           properties:
             id:
               type: integer
