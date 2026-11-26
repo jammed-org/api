@@ -3925,21 +3925,61 @@ components:
         source_data:
           type: object
           title: Source Data
-          description: "The source metadata of the booking, how and where the booking was made"
+          description: |
+            How and where the booking was made. Keys are only present when Jammed recorded them, so expect any of
+            them to be missing. Online bookings also carry the marketing attribution of the visit: its UTM tags and
+            any ad network click ID, each at most 255 characters.
           properties:
             source:
               type: string
               title: Source
-              description: "The source of the booking: app, online, regular_booking etc."
+              description: "Where the booking came from: `manually_added`, `regular_booking` or `enquiry` when Jammed sets
+                it. On online bookings it is whatever the booking link passed, and is often missing"
             platform:
               type: string
               title: Platform
-              description: "The platform where the booking was made: booking_form, dashboard, staff_section, calendar, app
-                etc."
+              description: "The app or surface the booking was made on, such as `booking_form`, `dashboard`, `staff_section`,
+                `calendar`, `jammed_app`, `api_v2`, `zapier` or `staff_app`"
             referrer:
               type: string
               title: Referrer
               description: "The referrer - the URL of the booking page"
+            utm_source:
+              type: string
+              description: "The `utm_source` of the visit the booking came from"
+              example: google
+            utm_medium:
+              type: string
+              description: "The `utm_medium` of the visit the booking came from"
+              example: cpc
+            utm_campaign:
+              type: string
+              description: "The `utm_campaign` of the visit the booking came from"
+              example: winter_rehearsals
+            utm_term:
+              type: string
+              description: "The `utm_term` of the visit the booking came from"
+            utm_content:
+              type: string
+              description: "The `utm_content` of the visit the booking came from"
+            gclid:
+              type: string
+              description: "Google Ads click ID"
+            gbraid:
+              type: string
+              description: "Google Ads click ID for iOS app campaigns"
+            wbraid:
+              type: string
+              description: "Google Ads click ID for iOS web campaigns"
+            msclkid:
+              type: string
+              description: "Microsoft Ads click ID"
+            ttclid:
+              type: string
+              description: "TikTok Ads click ID"
+            fbclid:
+              type: string
+              description: "Meta (Facebook and Instagram) click ID"
         code:
           type: string
           title: Code

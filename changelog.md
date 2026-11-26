@@ -12,6 +12,7 @@ Match the staff on a booking to the people in your own systems.
 - `GET /staff.json` lists the studio's staff with their `id`, `code`, `name`, `email`, `job_title`, and whether each is a `practitioner` (bookable onto bookings), an `admin` or `deleted`. It is ordered by name and paginated with the usual `jammed-*` headers.
 - Filter the list with `email` (an exact address, ignoring case) or `q` (part of a name or email). Removed staff are left out unless you send `include_deleted=true`, so the staff on older bookings can still be matched.
 - `GET /staff.json` needs `staff.read` on OAuth tokens. API-key auth is unaffected.
+- The booking's `source_data` is now fully documented. Alongside `source`, `platform` and `referrer`, online bookings carry the marketing attribution of the visit they came from: the UTM tags (`utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`) and any ad click ID (`gclid`, `gbraid`, `wbraid`, `msclkid`, `ttclid`, `fbclid`). These were already returned on bookings and in booking webhooks; any key can be missing.
 - No breaking changes: the booking fields are new and nothing was removed.
 
 ## `2.6.1`: 25 November 2026
