@@ -1,5 +1,19 @@
 # Jammed API changelog
 
+## `2.7.0`: 26 November 2026
+
+**Staff on bookings and a staff list**
+
+Match the staff on a booking to the people in your own systems.
+
+- Bookings now include `staff`, the staff assigned to the booking (such as an engineer or tutor) as `id`, `name` and `code`, and `staff_ids`, the same IDs on their own. Both are empty lists when nobody is assigned. A booking can have several staff.
+- Bookings also include `taken_by_id`, the ID of the staff member who took the booking, next to the existing `taken_by` name. It is `null` when the customer booked online.
+- These fields are on every booking response and in every booking webhook.
+- `GET /staff.json` lists the studio's staff with their `id`, `code`, `name`, `email`, `job_title`, and whether each is a `practitioner` (bookable onto bookings), an `admin` or `deleted`. It is ordered by name and paginated with the usual `jammed-*` headers.
+- Filter the list with `email` (an exact address, ignoring case) or `q` (part of a name or email). Removed staff are left out unless you send `include_deleted=true`, so the staff on older bookings can still be matched.
+- `GET /staff.json` needs `staff.read` on OAuth tokens. API-key auth is unaffected.
+- No breaking changes: the booking fields are new and nothing was removed.
+
 ## `2.6.1`: 25 November 2026
 
 **Staff booking anchors**
