@@ -1,5 +1,16 @@
 # Jammed API changelog
 
+## `2.6.1`: 25 November 2026
+
+**Staff booking anchors**
+
+Studios can now make sticky bookings follow staff instead of rooms, and the booking anchor endpoints cover both.
+
+- An anchor belongs to either a room or a staff member. Each anchor has a new `kind` (`room` or `staff`), along with `staff_id` and a `staff` summary; `room_id` and `room` are `null` on staff anchors.
+- `POST /booking_anchors` takes either `room_id` or `staff_id`, whichever kind the studio currently uses. An anchor of the other kind is stored but has no effect until the studio switches. Sending both, or neither, is a `422`.
+- `GET /booking_anchors` still lists only the kind the studio currently uses by default. A new `kind` parameter (`room`, `staff` or `all`) reaches the others, and `staff_id` filters alongside `room_id`.
+- `DELETE /booking_anchors/{id}` deletes an anchor of either kind.
+
 ## `2.6.0`: 3 November 2026
 
 **Partial booking updates, email lookups and fixes for integrations**
