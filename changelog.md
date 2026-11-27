@@ -1,5 +1,22 @@
 # Jammed API changelog
 
+## `2.8.0`: 27 November 2026
+
+**Memberships**
+
+See which customers are members, filter by tier, and manage memberships from your own systems.
+
+- Customers now include `is_member`, `true` while they have a current membership (started and not yet ended). It is always `false` when the studio has memberships turned off.
+- The customer `membership` field is now documented. It was already returned while a customer had a current membership, and is `null` otherwise. It now also carries the membership `id`, the `membership_tier_id`, the `tier_icon`, the `payment_status` (`unbilled`, `not_started`, `confirming`, `active`, `past_due` or `paused`) and `perks_entitled`.
+- `is_member` and the fuller `membership` are on customer responses, customer webhooks, and the `customer` on every booking response and booking webhook.
+- `GET /customers.json` takes `membership` (`any` or `none`), `membership_tier_id` and `exclude_membership_tier_id` (one tier ID, or several separated by commas). They combine with each other and with `email`.
+- `GET /membership_tiers.json` lists the studio's tiers, with `include_archived=true` for archived ones too. `GET /membership_tiers/{id}.json` shows one.
+- `GET /customers/{customer_id}/memberships.json` lists a customer's memberships, including ended ones (`active=true` for just the active one). `POST` assigns one, `PATCH /customers/{customer_id}/memberships/{id}.json` changes its tier, dates or notes, and `DELETE` ends it.
+- Changes made through the API behave exactly as they do in the admin: a new member on a Stripe-billed tier is emailed to set up payment, a tier change moves their subscription, and ending a membership cancels it.
+- New webhooks: `membership.created`, `membership.updated` and `membership.ended`, sent wherever the change was made, including memberships that lapse at their end date.
+- The membership endpoints answer `422` when the studio has memberships turned off. OAuth tokens need `customers.read` to read and `customers.write` to make changes. API-key auth is unaffected.
+- No breaking changes: every field and endpoint is new.
+
 ## `2.7.0`: 26 November 2026
 
 **Staff on bookings and a staff list**
