@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.6.1
+  version: 2.7.0
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -50,6 +50,7 @@ x-tagGroups:
   - Booking - Anchors
   - Customer
   - Room
+  - Staff
   - Extra
   - Notification
   - Blocked Time
@@ -73,6 +74,7 @@ x-tagGroups:
   - customer_model
   - group_model
   - room_model
+  - staff_model
   - coupon_model
   - promocode_model
   - coupon_redemption_model
@@ -104,6 +106,11 @@ tags:
   description: Polling API for customers
 - name: Room
   description: Polling API for rooms
+- name: Staff
+  description: |
+    The studio's staff accounts, so you can match Jammed staff to people in your own systems. A booking's `staff_ids` and `taken_by_id` are IDs from this list.
+
+    Jammed support accounts are never listed. OAuth tokens need `staff.read`.
 - name: Extra
 - name: Notification
 - name: Blocked Time
@@ -147,6 +154,10 @@ tags:
   x-displayName: Room Model
   description: |
     <SchemaDefinition schemaRef="#/components/schemas/room" />
+- name: staff_model
+  x-displayName: Staff Model
+  description: |
+    <SchemaDefinition schemaRef="#/components/schemas/staff" />
 - name: coupon_model
   x-displayName: Coupon Model
   description: |
@@ -1378,6 +1389,51 @@ paths:
         schema:
           type: string
         example: "Bearer <api_key>"
+
+  /staff.json:
+    get:
+      tags:
+      - Staff
+      summary: List staff
+      description: |
+        Returns the studio's staff, ordered by name, paginated with the usual `jammed-*` headers. Staff who have been
+        removed are left out unless `include_deleted=true`, which is useful for matching the staff on older bookings.
+      operationId: listStaff
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: email
+        in: query
+        description: Only the staff member with exactly this email address, ignoring case
+        schema:
+          type: string
+        example: bea@example.com
+      - name: q
+        in: query
+        description: Only staff whose name or email contains this text, ignoring case
+        schema:
+          type: string
+        example: bea
+      - name: include_deleted
+        in: query
+        description: Also list staff who have been removed from the studio
+        schema:
+          type: boolean
+          default: false
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/perPage'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/staff'
+        "401":
+          description: Unauthorized - Invalid API key
+        "403":
+          description: OAuth token without the `staff.read` scope
 
   /studio.json:
     get:
@@ -3869,21 +3925,61 @@ components:
         source_data:
           type: object
           title: Source Data
-          description: "The source metadata of the booking, how and where the booking was made"
+          description: |
+            How and where the booking was made. Keys are only present when Jammed recorded them, so expect any of
+            them to be missing. Online bookings also carry the marketing attribution of the visit: its UTM tags and
+            any ad network click ID, each at most 255 characters.
           properties:
             source:
               type: string
               title: Source
-              description: "The source of the booking: app, online, regular_booking etc."
+              description: "Where the booking came from: `manually_added`, `regular_booking` or `enquiry` when Jammed sets
+                it. On online bookings it is whatever the booking link passed, and is often missing"
             platform:
               type: string
               title: Platform
-              description: "The platform where the booking was made: booking_form, dashboard, staff_section, calendar, app
-                etc."
+              description: "The app or surface the booking was made on, such as `booking_form`, `dashboard`, `staff_section`,
+                `calendar`, `jammed_app`, `api_v2`, `zapier` or `staff_app`"
             referrer:
               type: string
               title: Referrer
               description: "The referrer - the URL of the booking page"
+            utm_source:
+              type: string
+              description: "The `utm_source` of the visit the booking came from"
+              example: google
+            utm_medium:
+              type: string
+              description: "The `utm_medium` of the visit the booking came from"
+              example: cpc
+            utm_campaign:
+              type: string
+              description: "The `utm_campaign` of the visit the booking came from"
+              example: winter_rehearsals
+            utm_term:
+              type: string
+              description: "The `utm_term` of the visit the booking came from"
+            utm_content:
+              type: string
+              description: "The `utm_content` of the visit the booking came from"
+            gclid:
+              type: string
+              description: "Google Ads click ID"
+            gbraid:
+              type: string
+              description: "Google Ads click ID for iOS app campaigns"
+            wbraid:
+              type: string
+              description: "Google Ads click ID for iOS web campaigns"
+            msclkid:
+              type: string
+              description: "Microsoft Ads click ID"
+            ttclid:
+              type: string
+              description: "TikTok Ads click ID"
+            fbclid:
+              type: string
+              description: "Meta (Facebook and Instagram) click ID"
         code:
           type: string
           title: Code
@@ -3999,6 +4095,65 @@ components:
           title: TakenBy
           description: "The name of the staff member who took the booking - if null, the booking was made by the customer
             themselves"
+        taken_by_id:
+          type: integer
+          nullable: true
+          title: TakenById
+          description: "The ID of the staff member who took the booking, from `GET /staff.json`. `null` when the customer
+            booked online"
+        staff_ids:
+          type: array
+          title: StaffIds
+          description: "IDs of the staff assigned to the booking, from `GET /staff.json`. Empty when nobody is assigned"
+          items:
+            type: integer
+        staff:
+          type: array
+          title: Staff
+          description: "The staff assigned to the booking, such as an engineer or tutor. A booking can have several"
+          items:
+            "$ref": "#/components/schemas/short_staff"
+    short_staff:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 42
+        name:
+          type: string
+          example: Bea Engineer
+        code:
+          type: string
+          example: 7KQ2M9XA
+    staff:
+      type: object
+      title: Staff
+      properties:
+        id:
+          type: integer
+          example: 42
+        code:
+          type: string
+          example: 7KQ2M9XA
+        name:
+          type: string
+          example: Bea Engineer
+        email:
+          type: string
+          example: bea@example.com
+        job_title:
+          type: string
+          nullable: true
+          example: Audio engineer
+        practitioner:
+          type: boolean
+          description: Whether the staff member can be booked onto bookings, such as an engineer or tutor
+        admin:
+          type: boolean
+          description: Whether the staff member is a studio admin
+        deleted:
+          type: boolean
+          description: Whether the staff member has been removed. Only `true` when listed with `include_deleted=true`
     room:
       type: object
       properties:
