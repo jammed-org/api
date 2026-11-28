@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Jammed Bookings API
-  version: 2.7.0
+  version: 2.8.0
   license:
     name: Jammed Bookings
     url: https://jammed.app
@@ -49,6 +49,7 @@ x-tagGroups:
   - Booking - Pricing
   - Booking - Anchors
   - Customer
+  - Membership
   - Room
   - Staff
   - Extra
@@ -65,6 +66,7 @@ x-tagGroups:
   tags:
   - Booking Webhooks
   - Customer Webhooks
+  - Membership Webhooks
   - Group Webhooks
   - Enquiry Webhooks
   - Export Webhooks
@@ -72,6 +74,8 @@ x-tagGroups:
   tags:
   - booking_model
   - customer_model
+  - membership_model
+  - membership_tier_model
   - group_model
   - room_model
   - staff_model
@@ -104,6 +108,15 @@ tags:
     These endpoints return a `422` error unless sticky bookings are turned on for the studio or for at least one room. OAuth tokens must belong to an admin; staff accounts get a `403`.
 - name: Customer
   description: Polling API for customers
+- name: Membership
+  description: |
+    Membership tiers and the memberships assigned to customers.
+
+    A customer has at most one active membership. It is **current** while it has started and not yet ended; `GET /customers.json` filters and the customer's `is_member` and `membership` fields all use the current membership. A membership that has ended stays in the customer's history with `active: false`.
+
+    Assigning, changing and ending memberships here does exactly what it does in the admin. On a Stripe-billed tier, a new member is emailed to set up their payment (and gets no perks until they do), changing tier moves their subscription to the new price, and ending a membership cancels the subscription straight away. Stripe-billed memberships run until cancelled, so any `ends_at` you send for them is ignored.
+
+    These endpoints return a `422` error unless the studio has memberships turned on. OAuth tokens need `customers.read` to read and `customers.write` to make changes.
 - name: Room
   description: Polling API for rooms
 - name: Staff
@@ -132,6 +145,9 @@ tags:
   description: Events that happen with a booking
 - name: Customer Webhooks
   description: Events that happen with a customer
+- name: Membership Webhooks
+  description: |
+    Events that happen with a customer's membership, wherever the change was made: the admin, this API, the customer signing up themselves, or a default tier being assigned automatically. Each carries the membership, with its tier and customer.
 - name: Group Webhooks
   description: Events that happen with a group/band
 - name: Enquiry Webhooks
@@ -146,6 +162,14 @@ tags:
   x-displayName: Customer Model
   description: |
     <SchemaDefinition schemaRef="#/components/schemas/customer" />
+- name: membership_model
+  x-displayName: Membership Model
+  description: |
+    <SchemaDefinition schemaRef="#/components/schemas/customer_membership" />
+- name: membership_tier_model
+  x-displayName: Membership Tier Model
+  description: |
+    <SchemaDefinition schemaRef="#/components/schemas/membership_tier" />
 - name: group_model
   x-displayName: Group Model
   description: |
@@ -737,6 +761,8 @@ paths:
         Returns all customers, newest first.
 
         Pass `email` to look one customer up by their exact email address (ignoring case and surrounding spaces). Deleted customers never match an email lookup.
+
+        Filter by membership with `membership` (`any` for current members, `none` for everyone else), `membership_tier_id` (current members of these tiers) and `exclude_membership_tier_id` (everyone except current members of these tiers). The filters combine with each other and with `email`. When the studio has memberships turned off, nobody counts as a member.
       operationId: getCustomers
       responses:
         "200":
@@ -747,6 +773,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/customer'
+        "400":
+          description: Bad request - `membership` is not `any` or `none`
         "401":
           description: Unauthorized - Invalid API key
       parameters:
@@ -763,6 +791,27 @@ paths:
           type: string
         description: Only the non-deleted customer with this exact email address
         example: geddy@rush.com
+      - name: membership
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [any, none]
+        description: "`any`: only customers with a current membership. `none`: only customers without one."
+      - name: membership_tier_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Only current members of these tiers. One tier ID, or several separated by commas.
+        example: "3,7"
+      - name: exclude_membership_tier_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Leave out current members of these tiers; customers without a membership are kept. One tier ID, or several separated by commas.
+        example: "3"
       - $ref: '#/components/parameters/page'
       - $ref: '#/components/parameters/perPage'
     post:
@@ -3312,6 +3361,214 @@ paths:
           description: Not found - no export with API access has this id
         "409":
           description: Conflict - the file is still being generated; try again shortly
+  /membership_tiers.json:
+    get:
+      tags:
+      - Membership
+      summary: List membership tiers
+      description: Lists the studio's membership tiers by name. Archived tiers are left out unless you send `include_archived=true`, so tiers on older memberships can still be matched. Paginated with the usual `jammed-*` headers.
+      operationId: listMembershipTiers
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: include_archived
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/perPage'
+      responses:
+        "200":
+          description: Membership tiers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/membership_tier'
+        "401":
+          description: Unauthorized - Invalid API key
+        "422":
+          description: Unprocessable - memberships are turned off for the studio
+  /membership_tiers/{id}.json:
+    get:
+      tags:
+      - Membership
+      summary: Get a membership tier
+      operationId: getMembershipTier
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Membership tier
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/membership_tier'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - no tier has this id
+        "422":
+          description: Unprocessable - memberships are turned off for the studio
+  /customers/{customer_id}/memberships.json:
+    get:
+      tags:
+      - Membership
+      summary: List a customer's memberships
+      description: The customer's memberships, newest first, including ones that have ended. Send `active=true` for only the active one. Paginated with the usual `jammed-*` headers.
+      operationId: listCustomerMemberships
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - $ref: '#/components/parameters/customerId'
+      - name: active
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/perPage'
+      responses:
+        "200":
+          description: Memberships
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/customer_membership'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - no customer has this id
+        "422":
+          description: Unprocessable - memberships are turned off for the studio
+    post:
+      tags:
+      - Membership
+      summary: Assign a membership
+      description: |
+        Puts the customer on a membership tier. It starts now unless you send `starts_at`, and runs until cancelled unless you send `ends_at` (ignored on Stripe-billed tiers).
+
+        On a Stripe-billed tier the customer is emailed to set up their payment; `payment_setup_requested` says whether that email was scheduled. A customer can only have one active membership: change it with `PATCH` instead.
+      operationId: createCustomerMembership
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - $ref: '#/components/parameters/customerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customer_membership_create'
+      responses:
+        "201":
+          description: Membership assigned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer_membership'
+        "400":
+          description: Bad request - the `membership` parameters are missing
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - no customer has this id
+        "422":
+          description: Unprocessable - memberships are turned off, the customer already has an active membership, the tier is archived or missing, or the dates are invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
+  /customers/{customer_id}/memberships/{id}.json:
+    get:
+      tags:
+      - Membership
+      summary: Get a customer's membership
+      operationId: getCustomerMembership
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - $ref: '#/components/parameters/customerId'
+      - $ref: '#/components/parameters/membershipId'
+      responses:
+        "200":
+          description: Membership
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer_membership'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - no such customer, or the membership is not theirs
+        "422":
+          description: Unprocessable - memberships are turned off for the studio
+    patch:
+      tags:
+      - Membership
+      summary: Change a membership
+      description: |
+        Changes the tier, dates or notes of an active membership. Send only what changes. Moving a Stripe-billed member to another tier moves their subscription too; if Stripe refuses, nothing changes and you get a `502`.
+      operationId: updateCustomerMembership
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - $ref: '#/components/parameters/customerId'
+      - $ref: '#/components/parameters/membershipId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customer_membership_create'
+      responses:
+        "200":
+          description: Membership changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer_membership'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - no such customer, or the membership is not theirs
+        "422":
+          description: Unprocessable - the membership has ended, or the changes are invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_error'
+        "502":
+          description: Bad gateway - Stripe refused to move the subscription
+    delete:
+      tags:
+      - Membership
+      summary: End a membership
+      description: Ends an active membership straight away and returns it with `active` set to `false`. A live Stripe subscription is cancelled first; if Stripe refuses, the membership stays and you get a `502`.
+      operationId: deleteCustomerMembership
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - $ref: '#/components/parameters/customerId'
+      - $ref: '#/components/parameters/membershipId'
+      responses:
+        "200":
+          description: Membership ended
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer_membership'
+        "401":
+          description: Unauthorized - Invalid API key
+        "404":
+          description: Not found - no such customer, or the membership is not theirs
+        "422":
+          description: Unprocessable - the membership has already ended
+        "502":
+          description: Bad gateway - Stripe refused to cancel the subscription
 x-webhooks:
   booking.created:
     get:
@@ -3597,6 +3854,45 @@ x-webhooks:
             application/json:
               schema:
                 "$ref": "#/components/schemas/enquiry"
+  membership.created:
+    get:
+      summary: membership.created
+      description: "Triggered when a customer is given a membership. A membership can be assigned ahead of its start date, so check `current` and `starts_at`."
+      tags:
+      - Membership Webhooks
+      responses:
+        "200":
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/customer_membership"
+  membership.updated:
+    get:
+      summary: membership.updated
+      description: "Triggered when an active membership changes tier, dates or notes, or when its Stripe payment status changes (for example the member finishes setting up payment, or a payment starts failing). Monthly renewals do not trigger it."
+      tags:
+      - Membership Webhooks
+      responses:
+        "200":
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/customer_membership"
+  membership.ended:
+    get:
+      summary: membership.ended
+      description: "Triggered when a membership ends: removed by staff or through the API, cancelled, or lapsed at its end date (sent by the nightly sweep, shortly after midnight). The payload has `active: false`."
+      tags:
+      - Membership Webhooks
+      responses:
+        "200":
+          description: Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/customer_membership"
   export.ready:
     get:
       summary: export.ready
@@ -3852,6 +4148,12 @@ components:
           type: boolean
           title: Mailing list opt-in
           description: "Whether this customer wants to be on the mailing list"
+        is_member:
+          type: boolean
+          title: Is member
+          description: "Whether the customer has a current membership. Always `false` when the studio has memberships turned off."
+        membership:
+          "$ref": "#/components/schemas/customer_membership_summary"
       required:
       - name
       - email
@@ -4316,6 +4618,199 @@ components:
             "$ref": "#/components/schemas/short_group"
         address:
           "$ref": "#/components/schemas/customer_billing_address"
+        is_member:
+          type: boolean
+          title: Is member
+          description: "Whether the customer has a current membership. Always `false` when the studio has memberships turned off."
+        membership:
+          "$ref": "#/components/schemas/customer_membership_summary"
+    customer_membership_summary:
+      type: object
+      nullable: true
+      title: Current membership
+      description: The customer's current membership, or `null` when they have none (or the studio has memberships turned off).
+      properties:
+        id:
+          type: integer
+          description: The membership's ID, for `/customers/{customer_id}/memberships/{id}`
+        membership_tier_id:
+          type: integer
+        tier_name:
+          type: string
+        tier_icon:
+          type: string
+          nullable: true
+        discount_percentage:
+          type: integer
+        payment_status:
+          $ref: "#/components/schemas/membership_payment_status"
+        perks_entitled:
+          type: boolean
+          description: Whether the tier's perks apply right now. Stripe-billed tiers only grant perks while the subscription is being paid.
+        starts_at:
+          type: integer
+          description: Unix timestamp
+        ends_at:
+          type: integer
+          nullable: true
+          description: Unix timestamp, or `null` when the membership runs until cancelled
+    membership_payment_status:
+      type: string
+      enum: [unbilled, not_started, confirming, active, past_due, paused]
+      description: |
+        `unbilled`: a free or offsite-billed tier, nothing to collect through Jammed.
+        `not_started`: a Stripe-billed tier with no subscription yet (or a cancelled one).
+        `confirming`: the first payment is being confirmed.
+        `active`: paid up, or trialing.
+        `past_due`: a payment failed and Stripe is retrying; perks still apply.
+        `paused`: Stripe has stopped retrying; perks do not apply.
+    membership_tier:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        short_description:
+          type: string
+        description:
+          type: string
+          nullable: true
+        icon:
+          type: string
+          nullable: true
+          description: An emoji
+        discount_percentage:
+          type: integer
+        discount_applies_to:
+          type: string
+          enum: [just_time_price, total]
+        hours_per_month:
+          type: integer
+          nullable: true
+        spend_limit_per_month:
+          type: integer
+          nullable: true
+          description: In cents/pence/units
+        hours_per_year:
+          type: integer
+          nullable: true
+        spend_limit_per_year:
+          type: integer
+          nullable: true
+          description: In cents/pence/units
+        billing_type:
+          type: string
+          enum: [free, offsite, stripe]
+        billing_amount:
+          type: integer
+          description: In cents/pence/units, per `billing_interval`
+        billing_interval:
+          type: string
+          enum: [month, year]
+        public_signup:
+          type: boolean
+          description: Whether customers can sign up to the tier themselves
+        default:
+          type: boolean
+          description: Whether new customers are put on this tier automatically
+        archived:
+          type: boolean
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    customer_membership:
+      type: object
+      properties:
+        id:
+          type: integer
+        customer_id:
+          type: integer
+        membership_tier_id:
+          type: integer
+        pending_membership_tier_id:
+          type: integer
+          nullable: true
+          description: The tier a member is part way through paying to move up to
+        active:
+          type: boolean
+          description: "`false` once the membership has ended"
+        current:
+          type: boolean
+          description: Active, started and not yet past its end date
+        notes:
+          type: string
+          nullable: true
+        payment_status:
+          $ref: "#/components/schemas/membership_payment_status"
+        perks_entitled:
+          type: boolean
+        cancel_at_period_end:
+          type: boolean
+        starts_at:
+          type: integer
+        ends_at:
+          type: integer
+          nullable: true
+        current_period_end:
+          type: integer
+          nullable: true
+          description: When the current Stripe billing period ends
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+        payment_setup_requested:
+          type: boolean
+          description: Only when assigning. Whether the customer was emailed to set up payment.
+        membership_tier:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            icon:
+              type: string
+              nullable: true
+            billing_type:
+              type: string
+              enum: [free, offsite, stripe]
+            discount_percentage:
+              type: integer
+        customer:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            email:
+              type: string
+            mobile:
+              type: string
+            mailing_list_opt_in:
+              type: boolean
+    customer_membership_create:
+      type: object
+      required: [membership]
+      properties:
+        membership:
+          type: object
+          properties:
+            membership_tier_id:
+              type: integer
+              description: Required when assigning
+            starts_at:
+              type: string
+              format: date-time
+              description: Defaults to now when assigning
+            ends_at:
+              type: string
+              description: A date (the membership runs to the end of that day) or a date-time. Ignored on Stripe-billed tiers.
+            notes:
+              type: string
     customer_billing_address:
       type: object
       title: Customer billing address
@@ -5362,6 +5857,17 @@ components:
         last_booking_at: 1643799530
         created_at: 1643799530
         updated_at: 1643799530
+        is_member: true
+        membership:
+          id: 88
+          membership_tier_id: 3
+          tier_name: Gold
+          tier_icon: 👑
+          discount_percentage: 10
+          payment_status: active
+          perks_entitled: true
+          starts_at: 1643799530
+          ends_at: null
         address:
           company: Rush
           address_1: 2112 Tom Sawyer Avenue
@@ -5398,6 +5904,18 @@ components:
 
     # ePOS schemas
   parameters:
+    customerId:
+      name: customer_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    membershipId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
     authHeader:
       name: Authorization
       in: header
